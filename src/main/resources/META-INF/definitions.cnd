@@ -1,2 +1,41 @@
-<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jacademix = 'http://www.jahia.org/academy/jahia/mix/1.0'>
+<jacademy = 'http://www.jahia.org/academy/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+
+[jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
+
+[jacademix:alink] mixin
+ - j:linkType (string, choicelist[linkTypeInitializer,resourceBundle]) = 'internal' mandatory autocreated
+
+[jacademy:footer1] > jnt:content, jacademix:component
+
+[jacademy:footer2] > jnt:content, jacademix:component
+
+[jacademy:homeTitle] > jnt:content, jacademix:component, mix:title
+
+[jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
+ + * (jacademy:product)
+
+[jacademy:product] > jnt:content, jacademix:component, mix:title orderable
+ - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - externalLink (string) = 'http://' mandatory internationalized
+ - textContent (string, richtext) mandatory internationalized
+
+[jacademy:document] > jnt:content, jacademix:component, mix:title orderable
+ - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - marketers (boolean) = 'false'
+ - developers (boolean) = 'false'
+ - sys_admin (boolean) = 'false'
+
+[jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, mix:title orderable
+ - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - textContent (string, richtext) mandatory internationalized
+ - marketers (boolean) = 'false'
+ - developers (boolean) = 'false'
+ - sys_admin (boolean) = 'false'
+
+[jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title
+
+[jacademy:docactions] > jnt:content, jacademix:component, mix:title
