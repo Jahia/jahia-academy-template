@@ -437,7 +437,9 @@ body{
     margin: 0 auto;
 }
 
-
+#documentation-level {
+    margin-top: 100px;
+}
 
 
 /*NAV LEVEL*/
@@ -850,8 +852,7 @@ ul.minor-version-tabs {
     margin-left: 2px;
 }
 
-
-.role-marketers{
+.role {
     background: #54b1ed;
     border-radius: 2px;
     color: white;
@@ -862,29 +863,22 @@ ul.minor-version-tabs {
     text-align: center;
     padding: 0 5px;
 }
+.role-marketers{
+    background: #54b1ed;
+    color: white;
+    border: 1px solid #0d6ca9;
+}
 
 .role-developers{
     background: #33cc6a;
-    border-radius: 2px;
     color: white;
     border: 1px solid #139541;
-    text-transform: uppercase;
-    font-size: 12px;
-    display: inline-block;
-    text-align: center;
-    padding: 0 5px;
 }
 
 .role-sysadmin{
     background: #33cc6a;
-    border-radius: 2px;
     color: white;
     border: 1px solid #139541;
-    text-transform: uppercase;
-    font-size: 12px;
-    display: inline-block;
-    text-align: center;
-    padding: 0 5px;
 }
 
 .documentation-header{

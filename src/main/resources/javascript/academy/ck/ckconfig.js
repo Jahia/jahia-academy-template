@@ -1,9 +1,11 @@
 CKEDITOR.stylesSet.add('text', [
-    { name:'Title', element:'h2'},
-    { name:'Subtitle', element:'h3'},
+    { name:'Title (h2)', element:'h2'},
+    { name:'Subtitle (h3)', element:'h3'},
+    { name:'Subtitle (h4)', element:'h4'},
     { name:'Text', element:'p'},
-    { name:'Inline blue text', element:'span', attributes:{"class":"blue", style:"box-sizing: border-box; font-weight: 700; color: rgb(0, 160, 227);" }},
-    { name:'Code', element:'code'}
+    { name:'Inline blue text', element:'srong', attributes:{"class":"blue"}},
+    { name:'Code', element:'code'},
+    { name:'Formated text', element:'pre'}
 ]);
 
 CKEDITOR.editorConfig = function( config ) {
@@ -19,11 +21,11 @@ CKEDITOR.editorConfig = function( config ) {
     config.templates_replaceContent = false;
 
     config.toolbar_Tiny = [
-        ['Source', '-', 'Templates', 'PasteText','SpellChecker','Styles'],
+        ['Source', '-', 'Templates', 'PasteText','wsc','Scayt','ACheck','Styles'],
         ['Bold','Italic'],
-        ['NumberedList', 'BulletedList', 'Outdent','Indent', 'Blockquote'],
-        ['JustifyLeft','JustifyCenter','JustifyRight'],
-        ['Link', 'Unlink','Anchor','Image'],
+        ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote'],
+        ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+        ['Link', 'Unlink', 'Anchor', 'Image'],
         ['RemoveFormat','HorizontalRule','ShowBlocks']
     ];
     config.extraPlugins='codesnippet';
@@ -35,7 +37,10 @@ CKEDITOR.editorConfig = function( config ) {
         xml: 'XML',
         html: 'HTML'
     };
+    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown';
+
 };
 CKEDITOR.config.toolbar = 'Tiny';
 
 CKEDITOR.dtd.$removeEmpty['i'] = 0;
+CKEDITOR.dtd.$removeEmpty['span'] = 0;

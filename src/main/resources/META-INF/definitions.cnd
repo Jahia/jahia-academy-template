@@ -20,21 +20,16 @@
 [jacademy:product] > jnt:content, jacademix:component, mix:title orderable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - externalLink (string) = 'http://' mandatory internationalized
- - textContent (string, richtext) mandatory internationalized
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 [jacademy:document] > jnt:content, jacademix:component, mix:title orderable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - marketers (boolean) = 'false'
- - developers (boolean) = 'false'
- - sys_admin (boolean) = 'false'
+ - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
 
 [jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, mix:title orderable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - textContent (string, richtext) mandatory internationalized
- - marketers (boolean) = 'false'
- - developers (boolean) = 'false'
- - sys_admin (boolean) = 'false'
 
 [jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title
 

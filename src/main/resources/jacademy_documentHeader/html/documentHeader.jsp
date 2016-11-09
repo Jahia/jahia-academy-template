@@ -28,11 +28,16 @@
                     <fmt:param value="${bindedComponent.properties['jcr:createdBy'].string}"/>
                 </fmt:message>
                 </h2>
-                <div class="role-wrapper">
-                    <c:if test="${bindedComponent.properties['marketers'].boolean}"><div class="role-marketers"><fmt:message key="academy.document.marketers"/></div></c:if>
-                    <c:if test="${bindedComponent.properties['developers'].boolean}"><div class="role-developers"><fmt:message key="academy.document.developers"/></div></c:if>
-                    <c:if test="${bindedComponent.properties['sys_admin'].boolean}"><div class="role-sysadmin"><fmt:message key="academy.document.sys_admin"/></div></c:if>
-                </div>
+                <c:set var="audiences" value="${bindedComponent.properties.audiences}"/>
+                <c:if test="${! empty audiences}">
+                    <div class="role-wrapper">
+                        <c:forEach items="${audiences}" var="audience" varStatus="status">
+                            <c:set var="audienceNode" value="${audience.node}"/>
+                            <div class="role role-${audienceNode.name}">${audienceNode.displayableName}</div>
+                        </c:forEach>
+                    </div>
+                </c:if>
+
             </div>
             <div class="col-md-5 col-sm-12 action-wrapper">
                 <div class="version-switcher">
