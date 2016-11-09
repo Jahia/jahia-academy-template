@@ -90,7 +90,7 @@
                 <configuration>
                     <instructions>
                         <Jahia-Module-Type>templatesSet</Jahia-Module-Type>
-                        <Jahia-Depends>default, bootstrap3-core, bootstrap3-components, jquery, toc</Jahia-Depends>
+                        <Jahia-Depends>default, bootstrap3-core, bootstrap3-components, jquery, toc, highlightjs</Jahia-Depends>
                     </instructions>
                 </configuration>
             </plugin>

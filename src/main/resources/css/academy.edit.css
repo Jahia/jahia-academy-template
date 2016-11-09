@@ -1,6 +1,6 @@
-
-
-
+body {
+    font-family: Lato;
+}
 
 
 .doc-height{
@@ -1334,3 +1334,15 @@ ul.doc-child li:before{
 
 
 }
+
+pre, code {
+    white-space: pre !important;
+    overflow-x: auto !important;
+}
+
+.hljs {
+    display: inline-block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+}
+

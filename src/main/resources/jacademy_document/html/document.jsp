@@ -23,18 +23,26 @@
 
 --%>
 <template:addResources type="css" resources="github-gist.css"/>
-<template:addResources type="css" resources="highlightjs-line-numbers.css"/>
-<template:addResources type="javascript" resources="academy/highlight.pack.js"/>
-<template:addResources type="javascript" resources="academy/highlightjs-line-numbers.min.js"/>
+<%--<template:addResources type="css" resources="highlightjs-line-numbers.css"/>--%>
+<template:addResources type="javascript" resources="highlight.pack.js"/>
+<%--<template:addResources type="javascript" resources="highlightjs-line-numbers.min.js"/>--%>
+<template:addResources type="javascript" resources="clipboard.min.js"/>
+<template:addResources type="css" resources="clipboard.css"/>
 <template:addResources type="inline">
     <script>
         $(document).ready(function () {
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
+                var copybutton = '<div class="bd-clipboard"><span class="btn-clipboard" title="Copy to clipboard">Copy</span></div>';
+                $(this).before(copybutton);
             });
-            $('code.hljs').each(function(i, block) {
-                hljs.lineNumbersBlock(block);
-            });
+            var clipboard = new Clipboard('.btn-clipboard', {
+                target: function (trigger) {
+                    return trigger.parentNode.nextElementSibling;
+                }
+            })            //$('code.hljs').each(function(i, block) {
+            //    hljs.lineNumbersBlock(block);
+            //});
         });
     </script>
 </template:addResources>

@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <title><fmt:message key="academy.welcome"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-ui.min.js"/>
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
@@ -37,22 +37,15 @@
         </c:otherwise>
     </c:choose>
 </head>
-<body style="font-family: Lato;">
-<div class="bodywrapper"><!--start bodywrapper-->
-    <template:area path="navigation"/>
-    <template:area path="pageContent"/>
-    <template:area path="footer"/>
-</div>
-<!--stop bodywrapper-->
-<c:if test="${renderContext.editMode}">
-    <template:addResources type="css" resources="edit.css" />
-</c:if>
-<template:theme/>
+<body>
+<template:area path="navigation"/>
+<template:area path="pageContent"/>
+<template:area path="footer"/>
 <c:if test="${renderContext.editMode and !renderContext.previewMode}">
     <template:addResources type="inlinejavascript">
         <script type="text/javascript">
             $(document).ready(function () {
-                $(".navbar-fixed-top").each(function(){
+                $(".navbar-fixed-top").each(function () {
                     $(this).removeClass("navbar-fixed-top");
                 });
                 $("ul.toc").removeClass("affix");

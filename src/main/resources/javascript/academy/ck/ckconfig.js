@@ -3,6 +3,7 @@ CKEDITOR.stylesSet.add('text', [
     { name:'Subtitle', element:'h2', attributes:{"class":"doc-child subtitle scrollspy-offset-fix", style:"font-weight: normal; box-sizing: border-box; padding-top: 180px; margin-top: -180px; color: rgb(0, 160, 227); font-size: 20px; margin-bottom: 10px;" }},
     { name:'Text', element:'p', attributes:{"class":"doc-child", style:"box-sizing: border-box; margin: 0px 0px 15px; color: rgb(45, 60, 87); font-size: 18px; font-family: Lato;" }},
     { name:'Inline blue text', element:'span', attributes:{"class":"blue", style:"box-sizing: border-box; font-weight: 700; color: rgb(0, 160, 227);" }},
+    { name:'Code', element:'code'}
 ]);
 
 CKEDITOR.editorConfig = function( config ) {
