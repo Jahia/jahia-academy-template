@@ -28,14 +28,11 @@
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="css" resources="bootstrap.css"/>
-    <c:choose>
-        <c:when test="${renderContext.editMode and !renderContext.previewMode}">
-            <template:addResources type="css" resources="academy.edit.css"/>
-        </c:when>
-        <c:otherwise>
-            <template:addResources type="css" resources="academy.css"/>
-        </c:otherwise>
-    </c:choose>
+    <template:addResources type="css" resources="academy.css"/>
+    <c:if test="${renderContext.editMode and !renderContext.previewMode}">
+        <template:addResources type="css" resources="academy.edit.css"/>
+    </c:if>
+
 </head>
 <body>
 <template:area path="navigation"/>
