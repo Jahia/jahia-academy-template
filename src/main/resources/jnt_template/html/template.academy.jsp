@@ -29,7 +29,7 @@
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="css" resources="bootstrap.css"/>
     <template:addResources type="css" resources="academy.css"/>
-    <c:if test="${renderContext.editMode and !renderContext.previewMode}">
+    <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>
     </c:if>
 
@@ -38,7 +38,7 @@
 <template:area path="navigation"/>
 <template:area path="pageContent"/>
 <template:area path="footer"/>
-<c:if test="${renderContext.editMode and !renderContext.previewMode}">
+<c:if test="${renderContext.editMode}">
     <template:addResources type="inlinejavascript">
         <script type="text/javascript">
             $(document).ready(function () {
