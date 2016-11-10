@@ -3,7 +3,7 @@ CKEDITOR.stylesSet.add('text', [
     { name:'Subtitle (h3)', element:'h3'},
     { name:'Subtitle (h4)', element:'h4'},
     { name:'Text', element:'p'},
-    { name:'Inline blue text', element:'srong', attributes:{"class":"blue"}},
+    { name:'Inline blue text', element:'strong', attributes:{"class":"blue"}},
     { name:'Code', element:'code'},
     { name:'Formated text', element:'pre'}
 ]);
@@ -12,7 +12,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.siteKey = (typeof contextJsParameters != 'undefined') ? contextJsParameters.siteKey: '';
     config.workspace = (typeof contextJsParameters != 'undefined') ? contextJsParameters.workspace: '';
 
-    config.contentsCss = [ ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/files/' + config.workspace + '/sites/' + config.siteKey + '/files/bootstrap/css/bootstrap.css',((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/css/academy.css'];
+    config.contentsCss = [ ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/css/doc.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/files/' + config.workspace + '/sites/' + config.siteKey + '/files/bootstrap/css/bootstrap.css',((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/css/academy.css'];
     config.templates_files = [ ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/javascript/academy/ck/cktemplates.js' ];
 
     config.stylesSet = 'text';

@@ -445,7 +445,7 @@ body{
 /*NAV LEVEL*/
 #documentation-child-content,
 #documentation-level-content{
-    padding-top: 180px;
+    padding-top: 80px;
     padding-bottom: 80px;
 }
 
@@ -506,8 +506,8 @@ body{
 }
 
 #left-toc-sidebar ul{
-    padding: 20px;
-    margin-top: 180px;
+    padding: 4px 20px 20px 20px;
+    margin-top: 80px;
     border: 1px solid #dadde4;
     width: 330px;
 }
@@ -1267,8 +1267,8 @@ ul.doc-child li:before{
     /*sidebar*/
 
     #left-toc-sidebar ul{
-        padding: 20px;
-        margin-top: 180px;
+        padding: 4px 20px 20px 20px;
+        margin-top: 80px;
         border: 1px solid #dadde4;
         width: 290px;
         position: relative;

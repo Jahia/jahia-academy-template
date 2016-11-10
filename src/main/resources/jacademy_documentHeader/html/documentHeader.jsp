@@ -17,18 +17,36 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<c:set var="bindedComponent" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
+<c:set var="boundComponent" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
+<c:set var="documentNode" value="${null}"/>
+<%-- Check for a document Node to bind --%>
+<c:if test="${boundComponent != null}">
+    <c:choose>
+        <c:when test="${boundComponent.primaryNodeType eq 'jacademy:document'}">
+            <%-- If bound component is not a document search for a document in its children --%>
+            <c:set var="documentNode" value="${boundComponent}"/>
+        </c:when>
+        <c:otherwise>
+            <%-- If bound component  is not a document search for a document in its children --%>
+            <c:set var="documentChildren" value="${jcr:getChildrenOfType(boundComponent,'jacademy:document')}"/>
+            <c:if test="${fn:length(documentChildren)>0}">
+                <c:set var="documentNode" value="${documentChildren[0]}"/>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
+</c:if>
+<%-- Then display the document Header --%>
 <c:choose>
-    <c:when test="${bindedComponent != null}">
+    <c:when test="${documentNode != null}">
         <div class="row documentation-header">
             <div class="col-md-7 col-sm-12">
-                <h1 class="doc-child main-title">${bindedComponent.properties['jcr:title'].string}</h1>
+                <h1 class="doc-child main-title">${documentNode.properties['jcr:title'].string}</h1>
                 <h2 class="doc-child author">
                 <fmt:message key="academy.document.writtenBy">
-                    <fmt:param value="${bindedComponent.properties['jcr:createdBy'].string}"/>
+                    <fmt:param value="${documentNode.properties['jcr:createdBy'].string}"/>
                 </fmt:message>
                 </h2>
-                <c:set var="audiences" value="${bindedComponent.properties.audiences}"/>
+                <c:set var="audiences" value="${documentNode.properties.audiences}"/>
                 <c:if test="${! empty audiences}">
                     <div class="role-wrapper">
                         <c:forEach items="${audiences}" var="audience" varStatus="status">
@@ -65,6 +83,10 @@
         </div>
     </c:when>
     <c:otherwise>
-        <fmt:message key="academy.binded.empty"/>
+        <%-- Or a wrong binding message --%>
+        <fmt:message key="jacademy_documentHeader" var="documentHeaderName"/>
+        <fmt:message key="academy.document.empty">
+            <fmt:param value="${documentHeaderName}"/>
+        </fmt:message>
     </c:otherwise>
 </c:choose>

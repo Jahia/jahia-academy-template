@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
-        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default jquery toc highlightjs"
+        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default highlightjs jquery toc"
                               j:installedModules="jahia-academy-template"
                               j:modulePriority="0"
                               j:moduleType="templatesSet"
@@ -125,8 +125,7 @@
                                 <search-form j:view="academy"
                                   jcr:mixinTypes="jmix:renderable"
                                   jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
-                                  position="right"
-                                  result="/modules/jahia-academy-template/home"/>
+                                  position="right"/>
                             </navigation-bar>
                         </navigation>
                         <footer jcr:primaryType="jnt:contentList">
@@ -254,12 +253,20 @@
                                                          jcr:mixinTypes="bootstrap3mix:cssClass"
                                                          jcr:primaryType="bootstrap3nt:column"
                                                          offset="0"
-                                                         span="4"/>
+                                                         span="4">
+                                                        <breadcrumb-column-4 jcr:primaryType="jnt:contentList">
+                                                            <docactions jcr:primaryType="jacademy:docactions"/>
+                                                        </breadcrumb-column-4>
+                                                    </breadcrumb-column-4>
                                                     <breadcrumb-column-8 cssClass="col-sm-12 col-xs-12"
                                                          jcr:mixinTypes="bootstrap3mix:cssClass"
                                                          jcr:primaryType="bootstrap3nt:column"
                                                          offset="0"
-                                                         span="8"/>
+                                                         span="8">
+                                                        <breadcrumb-column-8 jcr:primaryType="jnt:contentList">
+                                                            <breadcrumb jcr:primaryType="jacademy:breadcrumb"/>
+                                                        </breadcrumb-column-8>
+                                                    </breadcrumb-column-8>
                                                 </breadcrumb-row>
                                             </breadcrumb-center-container>
                                         </breadcrumb-center-container>
@@ -276,12 +283,27 @@
                                                         jcr:mixinTypes="bootstrap3mix:cssClass bootstrap3mix:htmlID"
                                                         jcr:primaryType="bootstrap3nt:column"
                                                         offset="0"
-                                                        span="4"/>
+                                                        span="4">
+                                                <documentation-toc-column jcr:primaryType="jnt:contentList">
+                                                    <table-of-content depth="1"
+                                                      heading="h2"
+                                                      j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-container/document-container/documentation-row/documentation-column/documentation-column/document-area"
+                                                      j:view="academy"
+                                                      jcr:mixinTypes="jmix:renderable"
+                                                      jcr:primaryType="jnt:toc"/>
+                                                </documentation-toc-column>
+                                            </documentation-toc-column>
                                             <documentation-column htmlID="documentation-child-content"
                                                     jcr:mixinTypes="bootstrap3mix:htmlID"
                                                     jcr:primaryType="bootstrap3nt:column"
                                                     offset="0"
-                                                    span="8"/>
+                                                    span="8">
+                                                <documentation-column jcr:primaryType="jnt:contentList">
+                                                    <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-container/document-container/documentation-row/documentation-column/documentation-column/document-area"
+                                                    jcr:primaryType="jacademy:documentHeader"/>
+                                                    <document-area j:allowedTypes="jacademy:document" jcr:primaryType="jnt:area"/>
+                                                </documentation-column>
+                                            </documentation-column>
                                         </documentation-row>
                                     </document-container>
                                 </document-container>
@@ -294,39 +316,12 @@
                               j:view="jahia-academy-template"
                               jcr:primaryType="jnt:contentTemplate">
                         <pagecontent jcr:primaryType="jnt:contentList">
-                            <main-resource-display j:mainResourceView="default" jcr:primaryType="jnt:mainResourceDisplay"/>
+                            <documentheader jcr:primaryType="jacademy:documentHeader"/>
+                            <document-area jcr:primaryType="jnt:area"/>
                         </pagecontent>
                     </content-template>
                 </templates>
                 
-                <home j:isHomePage="true"
-               j:templateName="home"
-               jcr:primaryType="jnt:page">
-                    <j:translation_en jcr:language="en"
-                              jcr:mixinTypes="mix:title"
-                              jcr:primaryType="jnt:translation"
-                              jcr:title="Home"/>
-                </home>
             </jahia-academy-template>
     </modules>
-    <sites jcr:primaryType="jnt:virtualsitesFolder">
-        <systemsite jcr:primaryType="jnt:virtualsite">
-            <categories jcr:primaryType="jnt:category">
-                <audiences jcr:primaryType="jnt:category">
-                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Audiences"/>
-                    <marketers jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Marketers"/>
-                    </marketers>
-                    <developers jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Developers"/>
-                    </developers>
-                    <sysadmins jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Sysadmins"/>
-                    </sysadmins>
-                </audiences>
-            </categories>
-        </systemsite>
-    </sites>
 </content>
-
-

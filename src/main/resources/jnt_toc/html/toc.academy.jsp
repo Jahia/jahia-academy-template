@@ -18,7 +18,6 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="javascript" resources="jquery.min.js,jquery.toc.js"/>
-
 <c:set var="heading" value="${currentNode.properties.heading.string}"/>
 <c:if test="${empty heading}">
     <c:set var="heading" value="h2"/>
@@ -62,12 +61,21 @@
     </c:when>
 </c:choose>
 <c:set var="bindedComponent" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
+<c:if test="${bindedComponent != null}">
+    <c:if test="${!(bindedComponent.primaryNodeType eq 'jacademy:document')}">
+        <%-- If bound component  is not a document search for a document in its children --%>
+        <c:set var="documentChildren" value="${jcr:getChildrenOfType(bindedComponent,'jacademy:document')}"/>
+        <c:if test="${fn:length(documentChildren)>0}">
+            <c:set var="bindedComponent" value="${documentChildren[0]}"/>
+        </c:if>
+    </c:if>
+</c:if>
 <c:choose>
     <c:when test="${bindedComponent.path eq renderContext.mainResource.node.path}">
         <c:set var="toc" value="body"/>
     </c:when>
     <c:otherwise>
-        <c:set var="toc" value="div#toc_${currentNode.identifier}"/>
+        <c:set var="toc" value="div#toc_${bindedComponent.identifier}"/>
     </c:otherwise>
 
 </c:choose>

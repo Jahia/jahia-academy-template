@@ -15,6 +15,9 @@
 #left-toc-sidebar ul{
     margin-top: 0;
 }
+#documentation-level {
+    margin-top: 50px;
+}
 @media (max-width: 900px) {
     #documentation-child-content,
     #documentation-level-content{

@@ -1,0 +1,87 @@
+.document-content h3{
+    color: #2d3c57;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-top: 180px;
+    margin-top: -180px;
+}
+
+.document-content h4{
+    color: #00a0e3;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding-top: 180px;
+    margin-top: -180px;
+}
+
+.document-content p{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.document-content {
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.document-content ol{
+    padding: 0;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.document-content ol li{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 10px 0;
+    margin-left: 15px;
+}
+
+.document-content ol.doc-child li{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 10px 0 10px 50px;
+    counter-increment: step-counter;
+    text-indent: -50px;
+}
+
+.document-content ol li:before{
+    content: counter(step-counter);
+    margin-right: 25px;
+    background-color: #00a0e3;
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.document-content ul{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.document-content ul li{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 10px 0;
+    text-indent: -14px;
+    margin-left: 15px;
+}
+
+.document-content ul li:before{
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    height: 10px;
+    width: 5px;
+    background: url('../img/ic_list_1.png') no-repeat left top;
+}

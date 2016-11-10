@@ -22,6 +22,7 @@
 <template:addResources type="javascript" resources="academy/ck/lib/highlight.pack.js"/>
 
 --%>
+<template:addResources type="css" resources="doc.css"/>
 <template:addResources type="css" resources="github-gist.css"/>
 <%--<template:addResources type="css" resources="highlightjs-line-numbers.css"/>--%>
 <template:addResources type="javascript" resources="highlight.pack.js"/>
@@ -47,4 +48,4 @@
     </script>
 </template:addResources>
 
-<div>${currentNode.properties['textContent'].string}</div>
+<div id="toc_${currentNode.identifier}" class="document-content">${currentNode.properties['textContent'].string}</div>
