@@ -324,4 +324,22 @@
                 
             </jahia-academy-template>
     </modules>
+    <sites jcr:primaryType="jnt:virtualsitesFolder">
+        <systemsite jcr:primaryType="jnt:virtualsite">
+            <categories jcr:primaryType="jnt:category">
+                <audiences jcr:primaryType="jnt:category">
+                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Audiences"/>
+                    <marketers jcr:primaryType="jnt:category">
+                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Marketers"/>
+                    </marketers>
+                    <developers jcr:primaryType="jnt:category">
+                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Developers"/>
+                    </developers>
+                    <sysadmins jcr:primaryType="jnt:category">
+                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Sysadmins"/>
+                    </sysadmins>
+                </audiences>
+            </categories>
+        </systemsite>
+    </sites>
 </content>
