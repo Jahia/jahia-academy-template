@@ -26,8 +26,13 @@
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-ui.min.js"/>
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
+    <template:addResources type="javascript" resources="highlight.pack.js"/>
+    <template:addResources type="javascript" resources="clipboard.min.js"/>
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
-    <template:addResources type="css" resources="bootstrap.css"/>
+    <template:addResources type="css" resources="bootstrap.min.css"/>
+    <template:addResources type="css" resources="foundation.css"/>
+    <template:addResources type="css" resources="doc.css"/>
+    <template:addResources type="css" resources="clipboard.css"/>
     <template:addResources type="css" resources="academy.css"/>
     <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>

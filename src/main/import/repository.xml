@@ -255,7 +255,9 @@
                                         <docactions jcr:primaryType="jacademy:docactions"/>
                                     </document-header-side>
                                     <document-header-main jcr:primaryType="jnt:contentList">
-                                        <breadcrumb jcr:primaryType="jacademy:breadcrumb"/>
+                                        <breadcrumb-1 cssClass="breadcrumb-nav"
+                                         jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb"
+                                         jcr:primaryType="bootstrap3nt:breadcrumb"/>
                                     </document-header-main>
                                 </document-header>
                                 <document-content columnsType="predefinedColumns"

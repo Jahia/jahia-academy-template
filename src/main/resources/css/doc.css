@@ -15,16 +15,10 @@
 }
 
 .document-content p{
-    color: #2d3c57;
-    font-size: 18px;
-    font-weight: 300;
     margin-bottom: 15px;
 }
 
 .document-content {
-    color: #2d3c57;
-    font-size: 18px;
-    font-weight: 300;
     margin-bottom: 15px;
 }
 
@@ -35,9 +29,6 @@
 }
 
 .document-content ol li{
-    color: #2d3c57;
-    font-size: 18px;
-    font-weight: 300;
     margin: 10px 0;
     margin-left: 15px;
 }

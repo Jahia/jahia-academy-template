@@ -22,13 +22,7 @@
 <template:addResources type="javascript" resources="academy/ck/lib/highlight.pack.js"/>
 
 --%>
-<template:addResources type="css" resources="doc.css"/>
-<template:addResources type="css" resources="github-gist.css"/>
 <%--<template:addResources type="css" resources="highlightjs-line-numbers.css"/>--%>
-<template:addResources type="javascript" resources="highlight.pack.js"/>
-<%--<template:addResources type="javascript" resources="highlightjs-line-numbers.min.js"/>--%>
-<template:addResources type="javascript" resources="clipboard.min.js"/>
-<template:addResources type="css" resources="clipboard.css"/>
 <template:addResources type="inline">
     <script>
         $(document).ready(function () {

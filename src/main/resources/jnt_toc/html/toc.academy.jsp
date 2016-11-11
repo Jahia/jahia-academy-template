@@ -81,18 +81,7 @@
 </c:choose>
 
 <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar">
-<ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav"></ul>
+    <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav"></ul>
+    <a href="#top" class="back-to-top"> Back to top </a>
 </nav>
 
-<c:if test="${renderContext.editMode}">
-    <template:addResources type="inlinejavascript">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".navbar-fixed-top").each(function () {
-                    $(this).removeClass("navbar-fixed-top");
-                });
-                $("ul.toc").removeClass("affix");
-            });
-        </script>
-    </template:addResources>
-</c:if>
