@@ -504,8 +504,10 @@ body{
 #sidebar.nav>.active>ul {
     display: block;
 }
-
-#left-toc-sidebar ul{
+#left-toc-sidebar ul {
+    list-style-type: none;
+}
+#left-toc-sidebar > ul{
     padding: 4px 20px 20px 20px;
     margin-top: 80px;
     border: 1px solid #dadde4;

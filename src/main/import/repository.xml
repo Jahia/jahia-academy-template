@@ -266,7 +266,7 @@
                                        sectionElement="div"
                                        sectionId="documentation-level">
                                     <document-content-side jcr:primaryType="jnt:contentList">
-                                        <table-of-content depth="1"
+                                        <table-of-content depth="3"
                                              heading="h2"
                                              j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-content/document-content-main/document-area"
                                              j:view="academy"
