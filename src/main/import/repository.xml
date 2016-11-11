@@ -248,7 +248,7 @@
                                       sectionCssClass="navbar-fixed-top"
                                       sectionElement="div"
                                       sectionId="academy-breadcrumb">
-                                    <document-header-side j:classname="child-actions"
+                                    <document-header-side j:classname="child-actions hidden-xs hidden-sm"
                                               j:skin="skins.custom"
                                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                               jcr:primaryType="jnt:contentList">

@@ -24,3 +24,10 @@
         padding-top: 0;
     }
 }
+.navbar-fixed-top,.affix {
+    position: relative;
+    top:auto;
+}
+#documentation-level {
+    margin-top:0;
+}

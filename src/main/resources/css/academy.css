@@ -294,7 +294,7 @@ ulbar-search{
 
 .breadcrumb-nav li::after{
     content: " ▶︎";
-    margin: 0 -6px 0 8px;
+    margin: 0 0 8px;
     font-size: 10px;
 }
 
@@ -1283,4 +1283,13 @@ ul.breadcrumb-nav {
 
 .navbar-brand {
     padding-top:30px;
+}
+.btn-clipboard {
+    top: 0;
+    right: 0;
+    background-color: #ccc;
+    opacity: .75;
+}
+pre {
+    padding: 5px;
 }
