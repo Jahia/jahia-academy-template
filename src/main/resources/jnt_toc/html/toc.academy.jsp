@@ -79,6 +79,10 @@
     </c:otherwise>
 
 </c:choose>
-<ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="toc nav <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" data-spy="affix" data-offset-top="-1" data-offset-bottom="500">
-    <h1 class="title">${bindedComponent.properties['jcr:title'].string}</h1>
-</ul>
+<div id="left-toc-sidebar" class="hidden-sm hidden-xs">
+    <ul data-toc="${toc}" data-toc-headings="${tocHeadings}"
+        class="toc nav <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" data-spy="affix"
+        data-offset-top="-1" data-offset-bottom="500">
+        <h1 class="title">${bindedComponent.properties['jcr:title'].string}</h1>
+    </ul>
+</div>

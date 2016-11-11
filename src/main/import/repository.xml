@@ -240,73 +240,48 @@
                                     jcr:primaryType="jnt:translation"
                                     jcr:title="Documentation"/>
                             <pageContent jcr:primaryType="jnt:contentList">
-                                <breadcrumb-container cssClass="navbar-fixed-top"
-                                           fluid="true"
-                                           htmlID="academy-breadcrumb"
-                                           jcr:mixinTypes="bootstrap3mix:cssClass bootstrap3mix:htmlID"
-                                           jcr:primaryType="bootstrap3nt:container">
-                                    <breadcrumb-container jcr:primaryType="jnt:contentList">
-                                        <breadcrumb-center-container fluid="false" jcr:primaryType="bootstrap3nt:container">
-                                            <breadcrumb-center-container jcr:primaryType="jnt:contentList">
-                                                <breadcrumb-row jcr:primaryType="bootstrap3nt:row">
-                                                    <breadcrumb-column-4 cssClass="child-actions col-sm-12 col-xs-12"
-                                                         jcr:mixinTypes="bootstrap3mix:cssClass"
-                                                         jcr:primaryType="bootstrap3nt:column"
-                                                         offset="0"
-                                                         span="4">
-                                                        <breadcrumb-column-4 jcr:primaryType="jnt:contentList">
-                                                            <docactions jcr:primaryType="jacademy:docactions"/>
-                                                        </breadcrumb-column-4>
-                                                    </breadcrumb-column-4>
-                                                    <breadcrumb-column-8 cssClass="col-sm-12 col-xs-12"
-                                                         jcr:mixinTypes="bootstrap3mix:cssClass"
-                                                         jcr:primaryType="bootstrap3nt:column"
-                                                         offset="0"
-                                                         span="8">
-                                                        <breadcrumb-column-8 jcr:primaryType="jnt:contentList">
-                                                            <breadcrumb jcr:primaryType="jacademy:breadcrumb"/>
-                                                        </breadcrumb-column-8>
-                                                    </breadcrumb-column-8>
-                                                </breadcrumb-row>
-                                            </breadcrumb-center-container>
-                                        </breadcrumb-center-container>
-                                    </breadcrumb-container>
-                                </breadcrumb-container>
-                                <document-container fluid="false"
-                                         htmlID="documentation-level"
-                                         jcr:mixinTypes="bootstrap3mix:htmlID"
-                                         jcr:primaryType="bootstrap3nt:container">
-                                    <document-container jcr:primaryType="jnt:contentList">
-                                        <documentation-row jcr:primaryType="bootstrap3nt:row">
-                                            <documentation-toc-column cssClass="hidden-sm hidden-xs"
-                                                        htmlID="left-toc-sidebar"
-                                                        jcr:mixinTypes="bootstrap3mix:cssClass bootstrap3mix:htmlID"
-                                                        jcr:primaryType="bootstrap3nt:column"
-                                                        offset="0"
-                                                        span="4">
-                                                <documentation-toc-column jcr:primaryType="jnt:contentList">
-                                                    <table-of-content depth="1"
-                                                      heading="h2"
-                                                      j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-container/document-container/documentation-row/documentation-column/documentation-column/document-area"
-                                                      j:view="academy"
-                                                      jcr:mixinTypes="jmix:renderable"
-                                                      jcr:primaryType="jnt:toc"/>
-                                                </documentation-toc-column>
-                                            </documentation-toc-column>
-                                            <documentation-column htmlID="documentation-child-content"
-                                                    jcr:mixinTypes="bootstrap3mix:htmlID"
-                                                    jcr:primaryType="bootstrap3nt:column"
-                                                    offset="0"
-                                                    span="8">
-                                                <documentation-column jcr:primaryType="jnt:contentList">
-                                                    <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-container/document-container/documentation-row/documentation-column/documentation-column/document-area"
-                                                    jcr:primaryType="jacademy:documentHeader"/>
-                                                    <document-area j:allowedTypes="jacademy:document" jcr:primaryType="jnt:area"/>
-                                                </documentation-column>
-                                            </documentation-column>
-                                        </documentation-row>
-                                    </document-container>
-                                </document-container>
+                                <document-header columnsType="predefinedColumns"
+                                      grid="4_8"
+                                      gridLayout="fixed-width"
+                                      jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                      jcr:primaryType="bootstrap3nt:columns"
+                                      sectionCssClass="navbar-fixed-top"
+                                      sectionElement="div"
+                                      sectionId="academy-breadcrumb">
+                                    <document-header-side j:classname="child-actions"
+                                              j:skin="skins.custom"
+                                              jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                              jcr:primaryType="jnt:contentList">
+                                        <docactions jcr:primaryType="jacademy:docactions"/>
+                                    </document-header-side>
+                                    <document-header-main jcr:primaryType="jnt:contentList">
+                                        <breadcrumb jcr:primaryType="jacademy:breadcrumb"/>
+                                    </document-header-main>
+                                </document-header>
+                                <document-content columnsType="predefinedColumns"
+                                       grid="4_8"
+                                       gridLayout="fixed-width"
+                                       jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                       jcr:primaryType="bootstrap3nt:columns"
+                                       sectionElement="div"
+                                       sectionId="documentation-level">
+                                    <document-content-side jcr:primaryType="jnt:contentList">
+                                        <table-of-content depth="1"
+                                             heading="h2"
+                                             j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-content/document-content-main/document-area"
+                                             j:view="academy"
+                                             jcr:mixinTypes="jmix:renderable"
+                                             jcr:primaryType="jnt:toc"/>
+                                    </document-content-side>
+                                    <document-content-main j:id="documentation-child-content"
+                                               j:skin="skins.custom"
+                                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                               jcr:primaryType="jnt:contentList">
+                                        <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-content/document-content-main/document-area"
+                                           jcr:primaryType="jacademy:documentHeader"/>
+                                        <document-area j:allowedTypes="jacademy:document" jcr:primaryType="jnt:area"/>
+                                    </document-content-main>
+                                </document-content>
                             </pageContent>
                         </documentation>
                     </base>
@@ -324,22 +299,4 @@
                 
             </jahia-academy-template>
     </modules>
-    <sites jcr:primaryType="jnt:virtualsitesFolder">
-        <systemsite jcr:primaryType="jnt:virtualsite">
-            <categories jcr:primaryType="jnt:category">
-                <audiences jcr:primaryType="jnt:category">
-                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Audiences"/>
-                    <marketers jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Marketers"/>
-                    </marketers>
-                    <developers jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Developers"/>
-                    </developers>
-                    <sysadmins jcr:primaryType="jnt:category">
-                        <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Sysadmins"/>
-                    </sysadmins>
-                </audiences>
-            </categories>
-        </systemsite>
-    </sites>
 </content>
