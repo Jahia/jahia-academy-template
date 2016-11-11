@@ -1145,23 +1145,23 @@ ul.doc-child li:before{
 @media (max-width: 977px) {
 
 
-    .navbar-toggle{
+    /*.navbar-toggle{
         background: white;
-    }
+    }*/
 
     .training-sidebar{
         box-shadow: 0px 3px 5px rgba(0, 0, 0,.1);
         margin-top: 90px;
     }
 
-    .navbar-shadow{
+    /*.navbar-shadow{
         box-shadow: none;
         background: #f5f5f5;
         -webkit-transition: all .75s;
         -moz-transition: all .75s;
         -ms-transition: all .75s;
         -o-transition: all .75s;
-    }
+    }*/
 
     .card, .card:hover{
         margin-top: 100px;
@@ -1172,11 +1172,12 @@ ul.doc-child li:before{
         margin-top: 50px;
     }
 
-    .navbar-nav{
+    /*.navbar-nav{
         width: 100%;
         margin: 10px 0 0 0!important;
         padding: 20px;
     }
+    */
 
     #home-grid-row{
         display: inline-block;
@@ -1210,7 +1211,7 @@ ul.doc-child li:before{
         float: none;
     }
 
-    /*NAVBAR*/
+    /*NAVBAR
 
     .navbar-header {
         float: none;
@@ -1262,6 +1263,7 @@ ul.doc-child li:before{
         box-shadow: none;
     }
 
+*/
     /*DOCUMENTATION*/
 
     /*sidebar*/
