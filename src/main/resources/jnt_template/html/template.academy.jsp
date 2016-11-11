@@ -34,21 +34,9 @@
     </c:if>
 
 </head>
-<body>
+<body data-spy="scroll" data-target="#sidebar">
 <template:area path="navigation"/>
 <template:area path="pageContent"/>
 <template:area path="footer"/>
-<c:if test="${renderContext.editMode}">
-    <template:addResources type="inlinejavascript">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".navbar-fixed-top").each(function () {
-                    $(this).removeClass("navbar-fixed-top");
-                });
-                $("ul.toc").removeClass("affix");
-            });
-        </script>
-    </template:addResources>
-</c:if>
 </body>
 </html>

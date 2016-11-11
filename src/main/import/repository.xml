@@ -84,7 +84,7 @@
                         <navigation jcr:primaryType="jnt:contentList">
                             <navigation-bar fluid="true"
                                   inverse="false"
-                                  j:styleName="navbar navbar-default navbar-fixed-top"
+                                  j:styleName="navbar navbar-fixed-top"
                                   j:view="academy"
                                   jcr:mixinTypes="jmix:renderable"
                                   jcr:primaryType="bootstrap3nt:enhancedNavBar"
@@ -179,7 +179,7 @@
                                     jcr:primaryType="jnt:translation"
                                     jcr:title="Product Home"/>
                             <pageContent jcr:primaryType="jnt:contentList">
-                                <breadcrumb-container cssClass="navbar-fixed-top"
+                                <breadcrumb-container cssClass="navbar-fixed-top nav-breadcrubm"
                                            fluid="true"
                                            htmlID="academy-breadcrumb"
                                            jcr:mixinTypes="bootstrap3mix:cssClass bootstrap3mix:htmlID"
@@ -266,7 +266,7 @@
                                        sectionElement="div"
                                        sectionId="documentation-level">
                                     <document-content-side jcr:primaryType="jnt:contentList">
-                                        <table-of-content depth="3"
+                                        <table-of-content depth="2"
                                              heading="h2"
                                              j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-content/document-content-main/document-area"
                                              j:view="academy"

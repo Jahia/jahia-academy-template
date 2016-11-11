@@ -79,10 +79,20 @@
     </c:otherwise>
 
 </c:choose>
-<div id="left-toc-sidebar" class="hidden-sm hidden-xs">
-    <ul data-toc="${toc}" data-toc-headings="${tocHeadings}"
-        class="toc nav <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" data-spy="affix"
-        data-offset-top="-1" data-offset-bottom="500">
-        <h1 class="title">${bindedComponent.properties['jcr:title'].string}</h1>
-    </ul>
-</div>
+
+<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar">
+<ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav"></ul>
+</nav>
+
+<c:if test="${renderContext.editMode}">
+    <template:addResources type="inlinejavascript">
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".navbar-fixed-top").each(function () {
+                    $(this).removeClass("navbar-fixed-top");
+                });
+                $("ul.toc").removeClass("affix");
+            });
+        </script>
+    </template:addResources>
+</c:if>
