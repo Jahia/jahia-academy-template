@@ -26,6 +26,7 @@
     padding: 0;
     list-style: none;
     margin-bottom: 30px;
+    counter-reset:section;
 }
 
 .document-content ol li{
@@ -43,7 +44,6 @@
 }
 
 .document-content ol li:before{
-    content: counter(step-counter);
     margin-right: 25px;
     background-color: #00a0e3;
     color: white;
@@ -51,6 +51,8 @@
     font-weight: 300;
     padding: 3px 8px;
     border-radius: 20px;
+    counter-increment: section;
+    content: counters(section,".");
 }
 
 .document-content ul{
