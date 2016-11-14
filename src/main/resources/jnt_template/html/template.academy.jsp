@@ -31,7 +31,6 @@
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="css" resources="bootstrap.min.css"/>
     <template:addResources type="css" resources="foundation.css"/>
-    <template:addResources type="css" resources="doc.css"/>
     <template:addResources type="css" resources="clipboard.css"/>
     <template:addResources type="css" resources="academy.css"/>
     <c:if test="${renderContext.editMode}">

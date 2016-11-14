@@ -1275,9 +1275,93 @@ ul.breadcrumb-nav {
     background-color: #ccc;
     opacity: .75;
 }
+ol li code,
+ol li span.btn-clipboard {
+    text-indent:0;
+}
 pre {
     padding: 5px;
 }
 .bs-docs-nav .navbar-toggle .icon-bar {
     color: #333333;
+}
+.document-content h3{
+    color: #2d3c57;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-top: 180px;
+    margin-top: -180px;
+}
+
+.document-content h4{
+    color: #00a0e3;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding-top: 180px;
+    margin-top: -180px;
+}
+
+.document-content p{
+    margin-bottom: 15px;
+}
+
+.document-content {
+    margin-bottom: 15px;
+}
+
+.document-content ol{
+    padding: 0;
+    list-style: none;
+    margin-bottom: 30px;
+    counter-reset:section;
+}
+
+.document-content ol li{
+    margin: 10px 0;
+    margin-left: 40px;
+    text-indent: -40px;
+}
+
+.document-content ol.doc-child li{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 10px 0 ;
+    counter-increment: step-counter;
+}
+
+.document-content ol li:before{
+    margin-right: 15px;
+    background-color: #00a0e3;
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 3px 8px;
+    border-radius: 20px;
+    counter-increment: section;
+    content: counters(section,".");
+}
+
+.document-content ul{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.document-content ul li{
+    color: #2d3c57;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 10px 0;
+    text-indent: -14px;
+    margin-left: 15px;
+}
+
+.document-content ul li:before{
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    height: 10px;
+    width: 5px;
+    background: url('../img/ic_list_1.png') no-repeat left top;
 }
