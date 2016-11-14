@@ -1092,7 +1092,7 @@ pre, code {
 }
 
 .hljs {
-    display: inline-block !important;
+    /*display: inline-block !important;*/
     overflow-x: auto !important;
     width: 100% !important;
     background-color: transparent;
@@ -1100,10 +1100,9 @@ pre, code {
 
 
 
-/*
- * Sideuligation
+/* bs-docs side navigation
  *
- * Scrollspy and affixed enhanceduligation to highlight sections and secondary
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
  * sections of docs content.
  */
 
@@ -1204,7 +1203,7 @@ pre, code {
     }
 }
 
-/* Show and affix the sideul when space allows it */
+/* Show and affix the side ul when space allows it */
 @media (min-width: 992px) {
     .bs-docs-sidebar ul > .active > ul {
         display: block;
@@ -1235,7 +1234,7 @@ pre, code {
     }
 }
 
-/* Show and affix the sideul when space allows it */
+/* Show and affix the side ul when space allows it */
 @media (min-width: 992px) {
     .bs-docs-sidebar ul > .active > ul {
         display: block;
