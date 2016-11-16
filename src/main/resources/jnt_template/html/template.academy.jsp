@@ -30,10 +30,10 @@
     <template:addResources type="javascript" resources="clipboard.min.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
-    <template:addResources type="css" resources="bootstrap.min.css"/>
-    <template:addResources type="css" resources="foundation.css"/>
-    <template:addResources type="css" resources="clipboard.css"/>
-    <template:addResources type="css" resources="academy.css"/>
+    <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
+    <template:addResources type="css" resources="foundation.css" media="screen,print"/>
+    <template:addResources type="css" resources="clipboard.css" media="screen,print"/>
+    <template:addResources type="css" resources="academy.css" media="screen,print"/>
     <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>
     </c:if>

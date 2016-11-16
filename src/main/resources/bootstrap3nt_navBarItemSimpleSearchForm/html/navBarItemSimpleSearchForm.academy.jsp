@@ -17,4 +17,5 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<li class="hidden-xs hidden-sm"><a href="#"><img class="navbar-search" src="<c:url value="${url.currentModule}/img/search.png"/>" alt=""></a></li>
+<%-- FIXME: need a better position... --%>
+<div class="hidden-xs hidden-sm"><a href="#"><img class="navbar-search" src="<c:url value='${url.currentModule}/img/search.png'/>" alt=""></a></div>

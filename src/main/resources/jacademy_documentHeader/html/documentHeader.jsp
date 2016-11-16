@@ -57,7 +57,7 @@
                 </c:if>
 
             </div>
-            <div class="col-md-5 col-sm-12 action-wrapper">
+            <div class="col-md-5 col-sm-12 action-wrapper hidden-print">
                 <div class="version-switcher">
                     <label for="version"><fmt:message key="academy.document.version"/></label>
                     <select name="version" id="version">

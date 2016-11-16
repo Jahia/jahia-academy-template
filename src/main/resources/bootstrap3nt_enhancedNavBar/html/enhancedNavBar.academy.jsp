@@ -30,7 +30,7 @@
             <c:set var="navbarClasses" value="${navbarClasses} ${styleName.string}"/>
         </c:if>
         <nav class="${navbarClasses}">
-            <div class="container">
+            <div class="container hidden-print">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#academy-navbar-collapse-1" aria-expanded="false">

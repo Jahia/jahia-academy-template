@@ -80,7 +80,7 @@
 
 </c:choose>
 
-<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
+<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
     <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
     <a href="#top" class="back-to-top"> Back to top </a>
 </nav>
