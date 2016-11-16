@@ -28,6 +28,7 @@
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
     <template:addResources type="javascript" resources="highlight.pack.js"/>
     <template:addResources type="javascript" resources="clipboard.min.js"/>
+    <template:addResources type="javascript" resources="academy/academy.js"/>
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="css" resources="bootstrap.min.css"/>
     <template:addResources type="css" resources="foundation.css"/>

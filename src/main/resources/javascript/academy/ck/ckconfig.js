@@ -26,7 +26,7 @@ CKEDITOR.editorConfig = function (config) {
         ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote'],
         ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
         ['Link', 'Unlink', 'Anchor', 'Image'],
-        ['RemoveFormat', 'HorizontalRule', 'ShowBlocks']
+        ['RemoveFormat', 'HorizontalRule', 'ShowBlocks', 'CodeSnippet']
     ];
     config.extraPlugins = 'codesnippet';
     config.codeSnippet_theme = 'googlecode';
