@@ -33,13 +33,22 @@
                 </c:when>
                 <c:otherwise>
                     <%-- try to finf the sbinding page with current version --%>
+                    <c:set var="localPathToDoc" value="${fn:replace(renderContext.mainResource.node.path, pageNode.path, '')}"/>
                     <c:set var="versionNodes" value="${jcr:getChildrenOfType(pageNode.parent, 'jacademix:isVersionPage')}"/>
                     <c:forEach var="versionNode" items="${versionNodes}">
                         <c:set var="versionNodeVersion" value="${versionNode.properties.version.string}"/>
-                            <c:if test="${versionNodeVersion eq 'current'}">
-                                <c:url var="currentVersionNodeUrl" value="${versionNode.url}"/>
-                                <c:set var="hasFindCurrentVersion" value="true"/>
-                            </c:if>
+                        <c:if test="${versionNodeVersion eq 'current'}">
+                            <jcr:node var="versionDocNode" path="${versionNode.path}${localPathToDoc}"/>
+                            <c:choose>
+                                <c:when test="${! empty versionDocNode}">
+                                    <c:url var="currentVersionNodeUrl" value="${versionDocNode.url}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:url var="currentVersionNodeUrl" value="${versionNode.url}"/>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:set var="hasFindCurrentVersion" value="true"/>
+                        </c:if>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>

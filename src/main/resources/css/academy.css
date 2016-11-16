@@ -1389,3 +1389,8 @@ hr:after {
 code {
     font-size: 80%;
 }
+#documentation-child-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

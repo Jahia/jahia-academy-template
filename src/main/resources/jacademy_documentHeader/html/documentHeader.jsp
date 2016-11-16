@@ -61,15 +61,62 @@
                 <div class="version-switcher">
                     <label for="version"><fmt:message key="academy.document.version"/></label>
                     <select name="version" id="version">
-                        <option>7.1.2</option>
-                        <option>7.2</option>
-                        <option>7.2.2</option>
-                        <option>7.3.1</option>
-                        <option>7.4.2</option>
-                        <option>7.5.2</option>
-                        <option>8.2</option>
+                        <c:set var="pageNodes" value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
+                        <%--
+                        we try to get the parent page with a jacademix:isVersionPage mixin. This will be the current version
+                        of the page.
+                        --%>
+                        <c:forEach var="pageNode" items="${pageNodes}" end="0">
+                            <%--
+                            localPathToDoc is the "right part of the path" from the version page
+                            Typically if full path is /sites/academy/home/documentation/dx/7.1/converting-osgi-module
+                            and the version (the page with jacademix:isVersionPage) is 7.1, then
+                            the localPathToDoc will be /converting-osgi-module
+                            --%>
+                            <c:set var="localPathToDoc" value="${fn:replace(renderContext.mainResource.node.path, pageNode.path, '')}"/>
+                            <c:set var="versionNodes" value="${jcr:getChildrenOfType(pageNode.parent, 'jacademix:isVersionPage')}"/>
+                            <%--
+                            Now we iterate all different page version and check if a node with localPathToDoc
+                            eists. If yes, the keep this URL, else give URL to version page
+                            --%>
+                            <c:forEach var="versionNode" items="${versionNodes}">
+                               <jcr:node var="versionDocNode" path="${versionNode.path}${localPathToDoc}"/>
+                                <c:url var="versionTitle" value="${versionNode.displayableName}"/>
+                                <c:set var="isCurrent" value="${fn:contains(renderContext.mainResource.node.path, versionNode.path)}"/>
+                                <c:choose>
+                                    <c:when test="${! empty versionDocNode}">
+                                        <c:url var="versionUrl" value="${versionDocNode.url}"/>
+                                        <option value="${versionUrl}" <c:if test="${isCurrent}">selected="selected"</c:if>>${versionTitle}</option>
+                                    </c:when>
+                                    <%--
+                                    Question: Should we generate a link to home doc for this version if the doc do not exist?
+                                    let say no for now... else uncomment the otherwise part.
+                                    <c:otherwise>
+                                        <c:url var="versionUrl" value="${versionNode.url}"/>
+                                        <option value="${versionUrl}" <c:if test="${isCurrent}">selected="selected"</c:if>>${versionTitle}</option>
+                                    </c:otherwise>
+                                    --%>
+                                </c:choose>
+                                <c:remove var="versionDocNode"/>
+                                <c:remove var="versionUrl"/>
+                            </c:forEach>
+                        </c:forEach>
                     </select>
-                    <span>Read in French</span>
+                    <template:addResources type="inline">
+                        <script>
+                            $(function(){
+                                // bind change event to select
+                                $('#version').on('change', function () {
+                                    var url = $(this).val(); // get selected value
+                                    if (url) { // require a URL
+                                        window.location = url; // redirect
+                                    }
+                                    return false;
+                                });
+                            });
+                        </script>
+                    </template:addResources>
+                    <%--<span>Read in French</span>--%>
                 </div>
                 <div class="action-buttons">
                     <a href="#">
