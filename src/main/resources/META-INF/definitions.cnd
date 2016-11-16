@@ -32,3 +32,10 @@
 [jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title
 
 [jacademy:docactions] > jnt:content, jacademix:component, mix:title
+
+[jacademix:isVersionPage] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - version (string) = '7.2' mandatory
+
+[jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly

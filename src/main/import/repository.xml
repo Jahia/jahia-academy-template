@@ -87,8 +87,7 @@
                                   j:styleName="navbar navbar-fixed-top"
                                   j:view="academy"
                                   jcr:mixinTypes="jmix:renderable"
-                                  jcr:primaryType="bootstrap3nt:enhancedNavBar"
-                                  option="navbar-fixed-top">
+                                  jcr:primaryType="bootstrap3nt:enhancedNavBar">
                                 <j:translation_fr jcr:language="fr"
                                        jcr:mixinTypes="mix:title"
                                        jcr:primaryType="jnt:translation"
@@ -245,7 +244,7 @@
                                       gridLayout="fixed-width"
                                       jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                       jcr:primaryType="bootstrap3nt:columns"
-                                      sectionCssClass="navbar-fixed-top"
+                                      sectionCssClass="navbar-fixed-top hidden-xs hidden-sm"
                                       sectionElement="div"
                                       sectionId="academy-breadcrumb">
                                     <document-header-side j:classname="child-actions hidden-xs hidden-sm"
@@ -281,6 +280,7 @@
                                                jcr:primaryType="jnt:contentList">
                                         <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/documentation/pageContent/document-content/document-content-main/document-area"
                                            jcr:primaryType="jacademy:documentHeader"/>
+                                        <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
                                         <document-area j:allowedTypes="jacademy:document" jcr:primaryType="jnt:area"/>
                                     </document-content-main>
                                 </document-content>

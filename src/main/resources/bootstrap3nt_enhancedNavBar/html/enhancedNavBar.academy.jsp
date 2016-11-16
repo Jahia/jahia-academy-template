@@ -45,14 +45,14 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="academy-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
+
                         <c:forEach items="${jcr:getChildrenOfType(currentNode, 'bootstrap3mix:navBarItem')}" var="child"
                                    varStatus="status">
                             <c:if test="${child.properties['position'].string eq 'right'}">
                                 <template:module node="${child}"/>
                             </c:if>
                         </c:forEach>
-                    </ul>
+
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
