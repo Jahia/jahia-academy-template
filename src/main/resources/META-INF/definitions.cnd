@@ -4,9 +4,8 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
-[jacademix:topic] >  mixin
-[jacademix:document] >  mixin
-[jacademix:currentVersion] > mixin
+[jacademix:topic]  mixin
+[jacademix:document] mixin
 
 [jacademix:alink] mixin
  - j:linkType (string, choicelist[linkTypeInitializer,resourceBundle]) = 'internal' mandatory autocreated
