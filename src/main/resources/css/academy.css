@@ -448,17 +448,15 @@ body{
     margin: 0 auto;
 }
 
-#documentation-level {
-    margin-top: 190px;
-}
-
-
 #sidebar ul ul {
     list-style-type:none;
 }
 .navbar-fixed-top {
     background-color: #fff;
     height: 90px;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(220, 220, 220, 0.2);
+    -moz-box-shadow:    0px 5px 10px 0px rgba(220, 220, 220, 0.2);
+    box-shadow:         0px 5px 10px 0px rgba(220, 220, 220, 0.2);
 }
 /*CHILD LEVEL*/
 .version-switcher span{
