@@ -28,7 +28,7 @@ CKEDITOR.editorConfig = function (config) {
         ['Link', 'Unlink', 'Anchor', 'Image'],
         ['RemoveFormat', 'HorizontalRule', 'ShowBlocks', 'CodeSnippet']
     ];
-    config.extraPlugins = 'codesnippet';
+    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet';
     config.codeSnippet_theme = 'googlecode';
     config.codeSnippet_languages = {
         javascript: 'JavaScript',
@@ -37,7 +37,6 @@ CKEDITOR.editorConfig = function (config) {
         xml: 'XML',
         html: 'HTML'
     };
-    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown';
 
 };
 CKEDITOR.config.toolbar = 'Tiny';
