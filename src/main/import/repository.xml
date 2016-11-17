@@ -183,7 +183,7 @@
                                                 gridLayout="fixed-width"
                                                 jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                                 jcr:primaryType="bootstrap3nt:columns"
-                                                sectionCssClass="navbar-fixed-top academy-breadcrumb  hidden-print"
+                                                sectionCssClass="academy-breadcrumb  hidden-print"
                                                 sectionElement="div"
                                                 sectionId="academy-breadcrumb">
                                     <product-header-main jcr:primaryType="jnt:contentList">
@@ -265,7 +265,7 @@
                                       gridLayout="fixed-width"
                                       jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                       jcr:primaryType="bootstrap3nt:columns"
-                                      sectionCssClass="navbar-fixed-top hidden-xs hidden-sm hidden-print"
+                                      sectionCssClass="hidden-xs hidden-sm hidden-print"
                                       sectionElement="div"
                                       sectionId="academy-breadcrumb">
                                     <document-header-side j:classname="child-actions hidden-xs hidden-sm"
