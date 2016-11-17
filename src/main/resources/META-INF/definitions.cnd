@@ -21,7 +21,7 @@
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
  + * (jacademy:product)
 
-[jacademy:product] > jnt:content, jacademix:component, mix:title orderable
+[jacademy:productCard] > jnt:content, jacademix:component, mix:title orderable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - externalLink (string) = 'http://' mandatory internationalized
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized

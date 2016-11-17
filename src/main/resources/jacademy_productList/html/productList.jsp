@@ -51,5 +51,5 @@
     </section>
 </div>
 <c:if test="${renderContext.editMode}">
-    <template:module path="*" nodeTypes="jacademy:homeproduct"/>
+    <template:module path="*" nodeTypes="jacademy:productCard"/>
 </c:if>
