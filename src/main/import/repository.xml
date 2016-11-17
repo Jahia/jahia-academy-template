@@ -147,82 +147,83 @@
                             </footer-2>
                         </footer>
                         <product-home j:hiddenTemplate="false"
-                             j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                             jcr:primaryType="jnt:pageTemplate">
+                                      j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
+                                      jcr:primaryType="jnt:pageTemplate">
                             <j:translation_fr jcr:language="fr"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <j:translation_de jcr:language="de"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <j:translation_pt jcr:language="pt"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <j:translation_en_US jcr:language="en_US"
-                                       jcr:mixinTypes="mix:title"
-                                       jcr:primaryType="jnt:translation"
-                                       jcr:title="Product Home"/>
+                                                 jcr:mixinTypes="mix:title"
+                                                 jcr:primaryType="jnt:translation"
+                                                 jcr:title="Product Home"/>
                             <j:translation_en jcr:language="en"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <j:translation_it jcr:language="it"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <j:translation_es jcr:language="es"
-                                    jcr:mixinTypes="mix:title"
-                                    jcr:primaryType="jnt:translation"
-                                    jcr:title="Product Home"/>
+                                              jcr:mixinTypes="mix:title"
+                                              jcr:primaryType="jnt:translation"
+                                              jcr:title="Product Home"/>
                             <pageContent jcr:primaryType="jnt:contentList">
                                 <product-header columnsType="predefinedColumns"
-                                     grid="4_8"
-                                     gridLayout="fixed-width"
-                                     jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
-                                     jcr:primaryType="bootstrap3nt:columns"
-                                     sectionCssClass="navbar-fixed-top academy-breadcrumb hidden-print"
-                                     sectionElement="div"
-                                     sectionId="academy-breadcrumb">
+                                                grid="4_8"
+                                                gridLayout="fixed-width"
+                                                jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                                jcr:primaryType="bootstrap3nt:columns"
+                                                sectionCssClass="navbar-fixed-top academy-breadcrumb  hidden-print"
+                                                sectionElement="div"
+                                                sectionId="academy-breadcrumb">
                                     <product-header-main jcr:primaryType="jnt:contentList">
                                         <breadcrumb cssClass="breadcrumb-nav"
-                                       jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb"
-                                       jcr:primaryType="bootstrap3nt:breadcrumb"/>
+                                                    jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb"
+                                                    jcr:primaryType="bootstrap3nt:breadcrumb"/>
                                     </product-header-main>
                                 </product-header>
                                 <product-intro columnsType="predefinedColumns"
-                                    containerCssClass="doc-description"
-                                    grid="8_4"
-                                    gridLayout="fixed-width"
-                                    jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
-                                    jcr:primaryType="bootstrap3nt:columns">
-                                    <product-intro-main j:skin="skins.custom"
+                                               containerCssClass="doc-description"
+                                               grid="8_4"
+                                               gridLayout="fixed-width"
+                                               jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                               jcr:primaryType="bootstrap3nt:columns">
+                                    <product-intro-main j:classname="doc-info doc-height"
+                                                        j:skin="skins.custom"
                                                         jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                                        j:classname="doc-info doc-height"
                                                         jcr:primaryType="jnt:contentList">
                                         <area419081 j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
                                     </product-intro-main>
-                                    <product-intro-side j:skin="skins.custom"
+                                    <product-intro-side j:classname="doc-panel doc-height"
+                                                        j:skin="skins.custom"
                                                         jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                                        j:classname="doc-panel doc-height"
                                                         jcr:primaryType="jnt:contentList">
                                         <area184524 j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
                                     </product-intro-side>
                                 </product-intro>
                                 <product-topics columnsType="predefinedColumns"
-                                     grid="12"
-                                     gridLayout="fixed-width"
-                                     jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
-                                     jcr:primaryType="bootstrap3nt:columns">
+                                                grid="12"
+                                                gridLayout="fixed-width"
+                                                jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                                jcr:primaryType="bootstrap3nt:columns">
                                     <product-topics-main jcr:primaryType="jnt:contentList">
-                                        <topics jcr:primaryType="jacademy:topicList">
-                                            <j:translation_en jcr:language="en"
-                                                jcr:mixinTypes="mix:title"
-                                                jcr:primaryType="jnt:translation"
-                                                jcr:title="Topics"/>
-                                        </topics>
+                                        <navigation-menu j:baselineNode="currentPage"
+                                                         j:maxDepth="10"
+                                                         j:menuItemView="menuElement"
+                                                         j:startLevel="0"
+                                                         j:view="academy"
+                                                         jcr:mixinTypes="jmix:renderable"
+                                                         jcr:primaryType="jnt:navMenu"/>
                                     </product-topics-main>
                                 </product-topics>
                             </pageContent>
