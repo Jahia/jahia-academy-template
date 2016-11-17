@@ -82,6 +82,10 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                         def description = menuItem.properties["jcr:description"]
                         def tooltip = ""
                         def collapseClass = currentMenuLevel>2?"collapse":""
+                        def shortdoc = false
+                        if(currentMenuLevel<=2 && menuItem.primaryNodeTypeName == "jnt:page"){
+                            shortdoc = true
+                        }
                         if(description){
                             tooltip = "data-toggle=\"tooltip\" data-placement=\"right\" title=\""+description.string+"\""
                         }
@@ -101,7 +105,13 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                             if(currentMenuLevel == 1 ){
                                 print("<article class=\"doc-list\">")
                                 print("<h3 "+tooltip+">")
-                                print(menuItem.name)
+                                if(shortdoc){
+                                    print("<a "+linkURL+collapseAttributes+">")
+                                }
+                                print(menuItem.displayableName)
+                                if(shortdoc){
+                                    print("</a>")
+                                }
                                 print("</h3>")
                             }
                             else{
@@ -110,10 +120,12 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                     print("<ul id=\""+node.identifier+"\" class=\""+collapseClass+" navmenu level_${currentMenuLevel} documentation-list\">")
                                     closeUl = true;
                                 }
-                                print("<li class=\"${listItemCssClass}\" "+tooltip+">")
-                                print("<a "+linkURL+collapseAttributes+">")
-                                print(menuItem.displayableName)
-                                print("</a>")
+                                if(menuItem.primaryNodeTypeName == "jnt:page" || hasChildren){
+                                    print("<li class=\"${listItemCssClass}\" "+tooltip+">")
+                                    print("<a "+linkURL+collapseAttributes+">")
+                                    print(menuItem.displayableName)
+                                    print("</a>")
+                                }
                             }
                         }
                         if (hasChildren) {
@@ -123,7 +135,9 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                             if(currentMenuLevel == 1 ){
                                 print("</article>")
                             } else {
-                                print "</li>"
+                                if(menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
+                                    print "</li>"
+                                }
                             }
                             firstEntry = false;
                         }
