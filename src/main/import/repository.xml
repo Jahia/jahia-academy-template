@@ -116,15 +116,15 @@
                                        jcr:mixinTypes="mix:title"
                                        jcr:primaryType="jnt:translation"
                                        jcr:title="Navigation-bar"/>
-                                <navigation-menu j:baselineNode="home"
-                                      j:maxDepth="2"
-                                      j:startLevel="0"
-                                      jcr:primaryType="bootstrap3nt:navBarItemMenu"
-                                      position="right"/>
                                 <search-form j:view="academy"
                                   jcr:mixinTypes="jmix:renderable"
                                   jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
                                   position="right"/>
+                                <navigation-menu j:baselineNode="home"
+                                                 j:maxDepth="3"
+                                                 j:startLevel="0"
+                                                 jcr:primaryType="bootstrap3nt:navBarItemMenu"
+                                                 position="right"/>
                             </navigation-bar>
                         </navigation>
                         <footer jcr:primaryType="jnt:contentList">
