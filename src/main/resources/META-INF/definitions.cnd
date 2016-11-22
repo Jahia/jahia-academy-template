@@ -19,7 +19,7 @@
 [jacademy:topicList] > jnt:contentList, jacademix:component, mix:title orderable
 
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
- + * (jacademy:product)
+ + * (jacademy:productCard)
 
 [jacademy:productCard] > jnt:content, jacademix:component, mix:title orderable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
