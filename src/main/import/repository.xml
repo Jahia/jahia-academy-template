@@ -130,7 +130,7 @@
                                             <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                               jcr:primaryType="jacademy:documentHeader"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                            <document-area j:allowedTypes="jacademy:document" jcr:primaryType="jnt:area"/>
+                                            <document-area j:allowedTypes="jacademy:document jacademy:embedVideo" jcr:primaryType="jnt:area"/>
                                         </document-content-main>
                                     </document-content>
                                 </pagecontent>
@@ -153,13 +153,13 @@
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <area419081 j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
+                                            <main j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
                                         </product-intro-main>
                                         <product-intro-side j:classname="doc-panel doc-height"
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <area184524 j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
+                                            <side j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
                                         </product-intro-side>
                                     </product-intro>
                                     <product-topics columnsType="predefinedColumns"

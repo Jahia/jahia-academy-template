@@ -1410,4 +1410,7 @@ ol.breadcrumb.breadcrumb-nav {
         display: inline-block;
     }
 }
+.navbar-collapse {
+    background-color: white;
+}
 
