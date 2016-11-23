@@ -22,13 +22,13 @@
 <%-- Check for a document Node to bind --%>
 <c:if test="${boundComponent != null}">
     <c:choose>
-        <c:when test="${boundComponent.primaryNodeType eq 'jacademy:document'}">
+        <c:when test="${boundComponent.primaryNodeType eq 'jacademix:document'}">
             <%-- If bound component is not a document search for a document in its children --%>
             <c:set var="documentNode" value="${boundComponent}"/>
         </c:when>
         <c:otherwise>
             <%-- If bound component  is not a document search for a document in its children --%>
-            <c:set var="documentChildren" value="${jcr:getChildrenOfType(boundComponent,'jacademy:document')}"/>
+            <c:set var="documentChildren" value="${jcr:getChildrenOfType(boundComponent,'jacademix:document')}"/>
             <c:if test="${fn:length(documentChildren)>0}">
                 <c:set var="documentNode" value="${documentChildren[0]}"/>
             </c:if>
