@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean class="org.jahia.services.content.rules.ModuleGlobalObject">
+        <property name="globalRulesObject">
+            <map>
+                <entry key="academyImageService">
+                    <bean class="org.jahia.modules.academy.services.AcademyImageService">
+                        <property name="jahiaImageService" ref="imageService" />
+                        <property name="rulesImageService" ref="rulesImageService" />
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean name="rulesImageService" class="org.jahia.services.content.rules.ImageService"
+          factory-method="getInstance">
+        <property name="imageService" ref="imageService"/>
+    </bean>
+
+    <bean id="academyImageUrlRewriter" class="org.jahia.modules.academy.filters.AcademyImageUrlRewriter">
+        <property name="priority" value="22"/>
+        <property name="description"
+                  value="Find URL toward /files images and rewrite them in order to use the community750 thumbnail"/>
+        <property name="applyOnNodeTypes" value="jacademy:document"/>
+    </bean>
+</beans>

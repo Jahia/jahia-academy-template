@@ -1,6 +1,7 @@
 package org.jahia.modules.jahiaacademytemplate.rules
 
 // list any import classes here.
+import org.jahia.modules.academy.services.AcademyImageService
 import org.jahia.services.content.rules.*
 import org.jahia.services.content.JCRContentUtils
 import org.slf4j.Logger
@@ -12,3 +13,15 @@ global User user
 global Service service
 global Logger logger
 global JCRContentUtils jcrUtils
+global AcademyImageService academyImageService
+
+
+
+rule "Update community thumbnail"
+    when
+        A file content has been modified
+            - the mimetype matches image/.*
+    then
+        Create a thumbnail "community750" of size 750
+        Log "Community thumbnail created"
+end
