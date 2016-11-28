@@ -44,8 +44,9 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 				logger.debug("New SRC value : " + sbSrcValue.toString());
 
 				// Rewrite the whole IMG tag
-				StringBuilder newImgTag = new StringBuilder("<img ");
-				newImgTag.append("alt=\"" + imgTag.getAttributeValue("alt") + "\"");
+				StringBuilder newImgTag = new StringBuilder("<img");
+				newImgTag.append(" alt=\"" + imgTag.getAttributeValue("alt") + "\" data-lity");
+				newImgTag.append(" data-lity-target=\"" + srcValue + "\"");
 				newImgTag.append(" src=\"" + sbSrcValue.toString() + "\"/>");
 
 				logger.debug("New IMG tag : " + newImgTag.toString());
