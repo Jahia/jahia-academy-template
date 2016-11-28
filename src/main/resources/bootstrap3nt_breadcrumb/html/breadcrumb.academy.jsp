@@ -39,7 +39,7 @@
 
             <%-- now we check if there is sister pages --%>
             <c:set var="parentPage" value="${jcr:getParentOfType(pageNode, 'jmix:navMenuItem')}"/>
-            <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jnt:page')}"/>
+            <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
             <c:set var="hasSisterPages" value="${fn:length(sisterPages) > 1}"/>
             <c:choose>
                 <c:when test="${hasSisterPages}">
@@ -47,20 +47,43 @@
                         <c:choose>
                             <c:when test="${jcr:findDisplayableNode(pageNode, renderContext) ne pageNode}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                   aria-expanded="false"><c:out value="${pageNode.displayableName}"/></a>
+                                   aria-expanded="false"><c:out value="${pageNode.displayableName}"/> <span class="caret"></span></a>
                             </c:when>
                             <c:otherwise>
                                 <a href="<c:url value='${pageNode.url}'/>" class="dropdown-toggle" data-toggle="dropdown"
-                                   role="button" aria-haspopup="true" aria-expanded="false">
-                                    <c:out value="${pageNode.displayableName}"/>
-                                </a>
+                                   role="button" aria-haspopup="true" aria-expanded="false"><c:out value="${pageNode.displayableName}"/> <span class="caret"></span></a>
                             </c:otherwise>
                         </c:choose>
                         <ul class="dropdown-menu">
-                            <c:forEach items="${sisterPages}" var="sisterPage">
-                                <c:url var="sisterPageUrl" value="${sisterPage.url}"/>
-                                <c:set var="active"><c:if test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}"> class="active"</c:if></c:set>
-                                <li ${active}><a href="${sisterPageUrl}">${sisterPage.displayableName}</a></li>
+                            <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
+                                <c:choose>
+                                    <c:when test="${jcr:isNodeType(sisterPage, 'jnt:navMenuText')}">
+                                        <c:set var="active"><c:if test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}">active</c:if></c:set>
+                                        <c:set var="subsisterPages" value="${jcr:getChildrenOfType(sisterPage, 'jnt:page')}"/>
+                                        <c:set var="hassubSisterPages" value="${fn:length(subsisterPages) > 1}"/>
+                                        <c:choose>
+                                            <c:when test="${hassubSisterPages}">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="sub-menu-trigger" role="button">${sisterPage.displayableName}</a>
+                                                    <ul class="dropdown-menu">
+                                                        <c:forEach items="${subsisterPages}" var="subsisterPage" varStatus="status">
+                                                            <c:url var="subsisterPageUrl" value="${sisterPage.url}"/>
+                                                            <li><a href="${subsisterPageUrl}">${subsisterPage.displayableName}</a></li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li><a href="#">${sisterPage.displayableName}</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:when test="${jcr:isNodeType(sisterPage, 'jnt:page')}">
+                                        <c:url var="sisterPageUrl" value="${sisterPage.url}"/>
+                                        <c:set var="active"><c:if test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}"> class="active"</c:if></c:set>
+                                        <li ${active}><a href="${sisterPageUrl}">${sisterPage.displayableName}</a></li>
+                                    </c:when>
+                                </c:choose>
                             </c:forEach>
                         </ul>
                     </li>
