@@ -1216,9 +1216,10 @@ pre, pre code {
 .back-to-top,
 .bs-docs-theme-toggle {
     display: none;
-    padding: 4px 10px;
+    padding: 0 10px;
     margin-top: 10px;
     margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 12px;
     font-weight: 500;
     color: #999;
@@ -1230,6 +1231,12 @@ pre, pre code {
 }
 .bs-docs-theme-toggle {
     margin-top: 0;
+}
+.notopmargin {
+    margin-top: 0;
+}
+.nobottommargin {
+    margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
@@ -1430,6 +1437,7 @@ code {
 }
 div#documentation-level {
     padding-top: 170px;
+    margin-bottom: 30px;
 }
 .navbar-collapse {
     background-color: white;
@@ -1440,4 +1448,6 @@ li table {
 }
 .dropdown-submenu .dropdown-menu {
     display: none;
+}.bs-docs-sidebar strong {
+    padding-left: 20px;
 }
