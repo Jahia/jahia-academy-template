@@ -1,8 +1,10 @@
 package org.jahia.modules.academy.filters;
 
+import com.ctc.wstx.util.StringUtil;
 import net.htmlparser.jericho.OutputDocument;
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.StartTag;
+import org.apache.commons.lang.StringUtils;
 import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.filter.AbstractFilter;
@@ -29,9 +31,12 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 		OutputDocument out = new OutputDocument(source);
 
 		List<StartTag> imgTags = source.getAllStartTags("img");
+
+		String context = renderContext.getURLGenerator().getContext();
+		logger.debug("Context : " + context);
 		for (StartTag imgTag : imgTags) {
 			String srcValue = imgTag.getAttributeValue("src");
-			if (srcValue.startsWith(PATH_TOWARD_IMG)) {
+			if (srcValue.startsWith(context + PATH_TOWARD_IMG)) {
 				logger.debug("SRC value to rewrite : " + srcValue);
 				StringBuilder sbSrcValue = new StringBuilder(srcValue);
 				if (srcValue.contains("?")) {
