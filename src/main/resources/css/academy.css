@@ -294,7 +294,7 @@ body{
 
 .breadcrumb-nav li::after{
     content: " ▶︎";
-    margin: 0 0 8px;
+    margin: 8px;
     font-size: 10px;
 }
 
@@ -1351,7 +1351,7 @@ pre {
 
 .document-content ul li{
     color: #2d3c57;
-    font-size: 18px;
+    /*font-size: 18px;*/
     font-weight: 300;
     margin: 10px 0;
     text-indent: -14px;
@@ -1414,3 +1414,25 @@ ol.breadcrumb.breadcrumb-nav {
     background-color: white;
 }
 
+li table {
+    text-indent: 0;
+}
+.breadcrumb-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.breadcrumb-nav .dropdown-menu li:first-child {
+    display: block;
+}
+.breadcrumb-nav .dropdown-menu li {
+    display: block;
+}
+.breadcrumb-nav .dropdown-menu li:after {
+    content: "";
+    margin:0;
+}
+.breadcrumb-nav li.dropdown:before {
+    content: "";
+    padding: 0;
+}

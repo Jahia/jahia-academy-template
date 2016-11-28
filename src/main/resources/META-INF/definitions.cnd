@@ -3,15 +3,17 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
+
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
+
 [jacademix:topic]  mixin
 
 [jacademix:document] > jacademix:component, mix:title mixin
-- audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
-- icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
+ - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
 
 [jacademix:alink] mixin
- - j:linkType (string, choicelist[linkTypeInitializer,resourceBundle]) = 'internal' mandatory autocreated
+ - j:linkType (string, choicelist[linkTypeInitializer, resourceBundle]) = 'internal' mandatory autocreated
 
 [jacademy:footer1] > jnt:content, jacademix:component
 
@@ -29,7 +31,7 @@
  - externalLink (string) = 'http://' mandatory internationalized
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
-[jacademy:document] >  jnt:content, jacademix:document orderable
+[jacademy:document] > jnt:content, jacademix:document orderable
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 
@@ -46,6 +48,6 @@
 
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
-[jacademy:embedVideo] >  jnt:content, jacademix:document orderable
-- provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
-- id (string) mandatory
+[jacademy:embedVideo] > jnt:content, jacademix:document orderable
+ - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
+ - id (string) mandatory
