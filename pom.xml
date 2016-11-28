@@ -57,7 +57,7 @@
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-academy-template</artifactId>
     <name>Jahia Academy Template</name>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom profile module (Jahia Academy Template) for running on a Digital Experience Manager server.</description>
 

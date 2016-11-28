@@ -40,8 +40,7 @@
 
 </head>
 <body data-spy="scroll" data-target="#sidebar">
-<template:area path="navigation"/>
-<template:area path="pageContent"/>
+<template:area path="pagecontent"/>
 <template:area path="footer"/>
 </body>
 </html>

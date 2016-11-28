@@ -208,7 +208,7 @@ body{
 
 .navbar{
     height: 90px;
-    padding: 20px;
+    padding: 20px 0;
     background: white!important;
     border: none!important;
     margin: 0;
@@ -235,7 +235,7 @@ body{
 }
 
 .navbar-search{
-    margin-top: -3px;
+    margin-top: 19px;
 }
 .logo{
     display: block;
@@ -250,8 +250,7 @@ body{
     background: #f3f5f9;
     border-bottom: 1px solid #dadde4;
     border-top: 1px solid #dadde4;
-    margin-top: 90px;
-    height:60px;
+    margin-top: 70px;
     -webkit-box-shadow: 0px 5px 10px 0px rgba(220, 220, 220, 0.2);
     -moz-box-shadow:    0px 5px 10px 0px rgba(220, 220, 220, 0.2);
     box-shadow:         0px 5px 10px 0px rgba(220, 220, 220, 0.2);
@@ -290,12 +289,13 @@ body{
 .breadcrumb-nav a{
     display: inline-block;
     color: #2d3c57;
-    padding-right: 13px;
+    /*padding-right: 13px;*/
 }
 
 .breadcrumb-nav li::after{
-    content: " ▶︎";
-    margin: 0 0 8px;
+    /*content: " ▶︎";*/
+    content: "/\00a0";
+    margin: 8px;
     font-size: 10px;
 }
 
@@ -311,11 +311,48 @@ body{
 }
 .breadcrumb-nav>li+li:before {
     content: '';
+    padding:0;
 }
 .breadcrumb-img{
     display: block;
     margin: 0 auto;
 }
+ul.breadcrumb-nav {
+    padding-top: 6px;
+}
+ol.breadcrumb.breadcrumb-nav {
+    background: none;
+    margin-bottom:0;
+}
+
+@media (max-width: 768px) {
+    .breadcrumb li {
+        display: none;
+    }
+    .breadcrumb li:nth-last-child(-n+3){
+        display: inline-block;
+    }
+}
+.breadcrumb-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.breadcrumb-nav .dropdown-menu li:first-child {
+    display: block;
+}
+.breadcrumb-nav .dropdown-menu li {
+    display: block;
+}
+.breadcrumb-nav .dropdown-menu li:after {
+    content: "";
+    margin:0;
+}
+.breadcrumb-nav li.dropdown:before {
+    content: "";
+    padding: 0;
+}
+
 /*#####################################
 ############ DOCUMENTATION ############
 #######################################*/
@@ -1263,10 +1300,6 @@ pre, pre code {
         width: 263px;
     }
 }
-ul.breadcrumb-nav {
-    padding-top: 6px;
-}
-
 
 .btn-clipboard {
     top: 0;
@@ -1352,7 +1385,7 @@ pre {
 
 .document-content ul li{
     color: #2d3c57;
-    font-size: 18px;
+    /*font-size: 18px;*/
     font-weight: 300;
     margin: 10px 0;
     text-indent: -14px;
@@ -1394,4 +1427,17 @@ code {
 }
 #documentation-child-content .action-btn img {
     display: inline;
+}
+div#documentation-level {
+    padding-top: 170px;
+}
+.navbar-collapse {
+    background-color: white;
+}
+
+li table {
+    text-indent: 0;
+}
+.dropdown-submenu .dropdown-menu {
+    display: none;
 }
