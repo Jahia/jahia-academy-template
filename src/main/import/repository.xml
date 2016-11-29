@@ -204,7 +204,7 @@
                                         jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
                                         position="right"/>
                                         <navigation-menu j:baselineNode="home"
-                                            j:maxDepth="3"
+                                            j:maxDepth="4"
                                             j:startLevel="0"
                                             jcr:primaryType="bootstrap3nt:navBarItemMenu"
                                             position="right"/>

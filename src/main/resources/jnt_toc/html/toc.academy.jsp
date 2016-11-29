@@ -81,7 +81,30 @@
 </c:choose>
 
 <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
+    <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
+    <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
+    <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jnt:page')}"/>
+    <c:set var="currentPageIndex" value="0"/>
+
+    <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
+        <c:if test="${currentPageNode.path eq sisterPage.path}">
+            <c:set var="currentPageIndex" value="${status.index}"/>
+        </c:if>
+    </c:forEach>
+    <c:if test="${currentPageIndex - 1 >= 0}">
+        <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
+        <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
+        <a href="${previousPageUrl}" class="back-to-top notopmargin"> Prev<span class="glyphicon glyphicon-menu-right"></span> ${previousPageNode.displayableName}</a>
+    </c:if>
+    <strong>${currentPageNode.displayableName}</strong>
     <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
-    <a href="#top" class="back-to-top"> Back to top </a>
+    <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
+        <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
+        <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
+        <a href="${nextPageUrl}" class="back-to-top nobottommargin"> Next<span class="glyphicon glyphicon-menu-right"></span> ${nextPageNode.displayableName}</a>
+    </c:if>
+    <a href="#top" class="back-to-top ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
+
+
 </nav>
 
