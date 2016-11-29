@@ -34,6 +34,7 @@
     <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
     <template:addResources type="css" resources="foundation.css" media="screen,print"/>
     <template:addResources type="css" resources="clipboard.css" media="screen,print"/>
+    <template:addResources type="css" resources="font-awesome.min.css" media="screen,print"/>
     <template:addResources type="css" resources="academy.css" media="screen,print"/>
     <template:addResources type="css" resources="libraries/lity.min.css" media="screen"/>
     <c:if test="${renderContext.editMode}">

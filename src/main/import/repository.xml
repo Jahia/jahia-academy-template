@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
-        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default highlightjs jquery toc"
+        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default font-awesome highlightjs jquery toc"
                               j:installedModules="jahia-academy-template"
                               j:modulePriority="0"
                               j:moduleType="templatesSet"

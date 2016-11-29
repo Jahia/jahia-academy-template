@@ -5,14 +5,20 @@ CKEDITOR.stylesSet.add('text', [
     {name: 'Text', element: 'p'},
     {name: 'Inline blue text', element: 'strong', attributes: {"class": "blue"}},
     {name: 'Code', element: 'code'},
-    {name: 'Formated text', element: 'pre'}
+    {name: 'Formated text', element: 'pre'},
+    {name: 'Box success', element: 'div', attributes: {"class": "alert alert-success"}},
+    {name: 'Box info', element: 'div', attributes: {"class": "alert alert-info"}},
+    {name: 'Box warning', element: 'div', attributes: {"class": "alert alert-warning"}},
+    {name: 'Box danger', element: 'div', attributes: {"class": "alert alert-danger"}},
+    {name: 'Box grey', element: 'div', attributes: {"class": "well"}}
 ]);
+CKEDITOR.plugins.addExternal('fontawesome', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/javascript/academy/ck/fontawesome/plugin.js');
 
 CKEDITOR.editorConfig = function (config) {
     config.siteKey = (typeof contextJsParameters != 'undefined') ? contextJsParameters.siteKey : '';
     config.workspace = (typeof contextJsParameters != 'undefined') ? contextJsParameters.workspace : '';
 
-    config.contentsCss = [((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/bootstrap3-core/css/bootstrap.min.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/highlightjs/css/foundation.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/highlightjs/css/clipboard.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/css/academy.css'];
+    config.contentsCss = [((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/bootstrap3-core/css/bootstrap.min.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/highlightjs/css/foundation.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/highlightjs/css/clipboard.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/css/academy.css', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/font-awesome/css/font-awesome.min.css' ];
     config.templates_files = [((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/javascript/academy/ck/cktemplates.js'];
 
     config.stylesSet = 'text';
@@ -25,10 +31,10 @@ CKEDITOR.editorConfig = function (config) {
         ['Bold', 'Italic'],
         ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote'],
         ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
-        ['Link', 'Unlink', 'Anchor', 'Image'],
+        ['Link', 'Unlink', 'Anchor', 'Image','FontAwesome'],
         ['RemoveFormat', 'HorizontalRule', 'ShowBlocks', 'CodeSnippet']
     ];
-    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet';
+    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome';
     config.codeSnippet_theme = 'googlecode';
     config.codeSnippet_languages = {
         javascript: 'JavaScript',
