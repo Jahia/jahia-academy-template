@@ -154,13 +154,13 @@
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <main j:allowedTypes="jacademy:textContent" jcr:primaryType="jnt:area"/>
+                                            <main j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
                                         </product-intro-main>
                                         <product-intro-side j:classname="doc-panel doc-height"
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <side j:allowedTypes="jacademy:textContent" jcr:primaryType="jnt:area"/>
+                                            <side j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
                                         </product-intro-side>
                                     </product-intro>
                                     <product-topics columnsType="predefinedColumns"

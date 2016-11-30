@@ -123,20 +123,29 @@
                     </template:addResources>
                         <%--<span>Read in French</span>--%>
                 </div>
-                <div class="action-buttons">
-                    <a href="#">
-                        <div class="action-btn"><img src="<c:url value="${url.currentModule}/img/pdf_ic.png"/>"
-                                                     alt=""><span><fmt:message
-                                key="academy.document.download"/></span><span><fmt:message
-                                key="academy.document.format.pdf"/></span></div>
-                    </a>
-                    <a href="#">
-                        <div class="action-btn"><img src="<c:url value="${url.currentModule}/img/forum_ic.png"/>"
-                                                     alt=""><span><fmt:message
-                                key="academy.document.goto"/></span><span><fmt:message
-                                key="academy.document.forum"/></span></div>
-                    </a>
-                </div>
+
+                <c:set var="pdfNode" value="${documentNode.properties.pdf.node}"/>
+                <c:if test="${! empty pdfNode}">
+                    <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
+                </c:if>
+                <%-- TODO: also create link to deicated forum --%>
+                <c:if test="${! empty pdfUrl}">
+                    <div class="action-buttons">
+                        <a href="${pdfUrl}">
+                            <div class="action-btn"><i class="fa fa-file-pdf-o fa-2x text-danger" aria-hidden="true"></i><span><fmt:message
+                                    key="academy.document.download"/></span><%--<span><fmt:message
+                                    key="academy.document.format.pdf"/></span>--%></div>
+                        </a>
+                            <%--
+                            <a href="#">
+                                <div class="action-btn"><img src="<c:url value="${url.currentModule}/img/forum_ic.png"/>"
+                                                             alt=""><span><fmt:message
+                                        key="academy.document.goto"/></span><span><fmt:message
+                                        key="academy.document.forum"/></span></div>
+                            </a>
+                            --%>
+                    </div>
+                </c:if>
             </div>
         </div>
     </c:when>

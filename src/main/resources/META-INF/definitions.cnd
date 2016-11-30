@@ -5,15 +5,20 @@
 
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
+[jacademix:content] > jmix:droppableContent mixin
 
 //[jacademix:topic]  mixin
 
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
-[jacademix:document] > mix:title, jmix:droppableContent mixin
+[jacademix:document] > mix:title mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+
+[jacademix:embedVideo] > jmix:droppableContent mixin
+ - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
+ - id (string) mandatory
 
 //[jacademix:alink] mixin
 // - j:linkType (string, choicelist[linkTypeInitializer, resourceBundle]) = 'internal' mandatory autocreated
@@ -33,9 +38,11 @@
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - externalLink (string) = 'http://' mandatory internationalized
 
-[jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
+[jacademy:document] > jnt:content, jmix:droppableContent, jacademix:document, jacademix:textContent
+ - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
-[jacademy:textContent] > jnt:content, jacademix:component, jacademix:textContent
+[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content
+[jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content
 
 [jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, jmix:studioOnly
 
@@ -50,6 +57,4 @@
 
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
-[jacademy:embedVideo] > jnt:content, jacademix:document
- - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
- - id (string) mandatory
+[jacademy:embedVideo] > jnt:content, jmix:droppableContent, jacademix:document, jacademix:embedVideo

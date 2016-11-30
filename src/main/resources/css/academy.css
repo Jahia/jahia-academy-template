@@ -51,6 +51,7 @@ body {
 
 .doc-description .doc-panel{
     padding: 25px 35px;
+    margin:0 -15px 0 -30px;
 }
 
 .doc-description .doc-panel ul{
@@ -537,20 +538,26 @@ ol.breadcrumb.breadcrumb-nav {
 
 .action-buttons{
     display: inline-block;
+    text-align: center;
 }
-
+.action-buttons i {
+    display: block;
+}
+.action-buttons a:hover {
+    text-decoration: none;
+}
+/*
 .action-buttons a:first-child div{
     border-bottom: 1px solid #dadde4;
 }
-
+*/
 
 .action-btn img{
     margin-right: 10px;
 }
 
 .action-btn span{
-    font-size: 10px;
-    vertical-align: 6px;
+    font-size: 13px;
     color: #606060;
 }
 
@@ -563,7 +570,7 @@ ol.breadcrumb.breadcrumb-nav {
     text-decoration: none;
 }
 
-
+/*
 .action-btn span:last-child{
     display: block;
     padding-left: 35px;
@@ -572,7 +579,7 @@ ol.breadcrumb.breadcrumb-nav {
     font-size: 13px;
     margin-top: -13px;
 }
-
+*/
 .action-btn{
     width: 100%;
     padding: 10px;
@@ -1725,4 +1732,14 @@ li table,li div  {
     .hidden-xl {
         display: none !important;
     }
+}
+.embed-responsive,.document-content img {
+    box-shadow: 1px 1px  10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 1px  10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px  10px rgba(0, 0, 0, 0.1);
+}
+.document-content img.noshadow {
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
 }
