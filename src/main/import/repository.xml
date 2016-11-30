@@ -109,7 +109,7 @@
                                        jcr:title="Documentation"/>
                                 <pagecontent jcr:primaryType="jnt:contentList">
                                     <document-content columnsType="predefinedColumns"
-                                          grid="3_9"
+                                          grid="4_8"
                                           gridLayout="fixed-width"
                                           jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                           jcr:primaryType="bootstrap3nt:columns"

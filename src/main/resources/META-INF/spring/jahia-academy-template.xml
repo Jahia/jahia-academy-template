@@ -24,6 +24,6 @@
         <property name="priority" value="22"/>
         <property name="description"
                   value="Find URL toward /files images and rewrite them in order to use the community750 thumbnail"/>
-        <property name="applyOnNodeTypes" value="jacademix:document"/>
+        <property name="applyOnNodeTypes" value="jacademix:document,jacademix:content"/>
     </bean>
 </beans>

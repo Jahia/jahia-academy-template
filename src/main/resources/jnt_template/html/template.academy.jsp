@@ -32,6 +32,7 @@
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="javascript" resources="academy/libraries/lity.min.js"/>
     <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
+    <template:addResources type="css" resources="bootstrapXl.css" media="screen,print"/>
     <template:addResources type="css" resources="foundation.css" media="screen,print"/>
     <template:addResources type="css" resources="clipboard.css" media="screen,print"/>
     <template:addResources type="css" resources="font-awesome.min.css" media="screen,print"/>

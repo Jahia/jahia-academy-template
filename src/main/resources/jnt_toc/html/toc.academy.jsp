@@ -94,14 +94,14 @@
     <c:if test="${currentPageIndex - 1 >= 0}">
         <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
         <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
-        <a href="${previousPageUrl}" class="back-to-top notopmargin"> Prev<span class="glyphicon glyphicon-menu-right"></span> ${previousPageNode.displayableName}</a>
+        <a href="${previousPageUrl}" class="back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
     </c:if>
     <strong>${currentPageNode.displayableName}</strong>
     <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
     <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
         <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
         <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
-        <a href="${nextPageUrl}" class="back-to-top nobottommargin"> Next<span class="glyphicon glyphicon-menu-right"></span> ${nextPageNode.displayableName}</a>
+        <a href="${nextPageUrl}" class="back-to-top nobottommargin"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${nextPageNode.displayableName}</a>
     </c:if>
     <a href="#top" class="back-to-top ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
 
