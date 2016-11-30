@@ -6,40 +6,42 @@
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
 
-[jacademix:topic]  mixin
+//[jacademix:topic]  mixin
 
-[jacademix:document] > jacademix:component, mix:title mixin
+[jacademix:textContent] mixin
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+
+[jacademix:document] > mix:title, jmix:droppableContent mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
 
-[jacademix:alink] mixin
- - j:linkType (string, choicelist[linkTypeInitializer, resourceBundle]) = 'internal' mandatory autocreated
+//[jacademix:alink] mixin
+// - j:linkType (string, choicelist[linkTypeInitializer, resourceBundle]) = 'internal' mandatory autocreated
 
 [jacademy:footer1] > jnt:content, jacademix:component
 
 [jacademy:footer2] > jnt:content, jacademix:component
 
-[jacademy:homeTitle] > jnt:content, jacademix:component, mix:title
+//[jacademy:homeTitle] > jnt:content, jacademix:component, mix:title
 
-[jacademy:topicList] > jnt:contentList, jacademix:component, mix:title orderable
+//[jacademy:topicList] > jnt:contentList, jacademix:component, mix:title orderable
 
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
  + * (jacademy:productCard)
 
-[jacademy:productCard] > jnt:content, mix:title orderable
+[jacademy:productCard] > jnt:content, mix:title, jacademix:textContent
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - externalLink (string) = 'http://' mandatory internationalized
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
-[jacademy:document] > jnt:content, jacademix:document orderable
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+[jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
 
+[jacademy:textContent] > jnt:content, jacademix:component, jacademix:textContent
 
-[jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent
+[jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, jmix:studioOnly
 
-[jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title
+[jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
 
-[jacademy:docactions] > jnt:content, jacademix:component, mix:title
+//[jacademy:docactions] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
 
 [jacademix:isVersionPage] mixin
  extends = jmix:navMenuItem
@@ -48,6 +50,6 @@
 
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
-[jacademy:embedVideo] > jnt:content, jacademix:document orderable
+[jacademy:embedVideo] > jnt:content, jacademix:document
  - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
  - id (string) mandatory

@@ -109,7 +109,7 @@
                                        jcr:title="Documentation"/>
                                 <pagecontent jcr:primaryType="jnt:contentList">
                                     <document-content columnsType="predefinedColumns"
-                                          grid="4_8"
+                                          grid="3_9"
                                           gridLayout="fixed-width"
                                           jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                           jcr:primaryType="bootstrap3nt:columns"
@@ -130,7 +130,7 @@
                                             <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                               jcr:primaryType="jacademy:documentHeader"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                            <document-area j:allowedTypes="jacademy:document jacademy:embedVideo"
+                                            <document-area j:allowedTypes="jacademix:document"
                                              jcr:primaryType="jnt:area"/>
                                         </document-content-main>
                                     </document-content>
@@ -154,13 +154,13 @@
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <main j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
+                                            <main j:allowedTypes="jacademy:textContent" jcr:primaryType="jnt:area"/>
                                         </product-intro-main>
                                         <product-intro-side j:classname="doc-panel doc-height"
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <side j:allowedTypes="jnt:bigText" jcr:primaryType="jnt:area"/>
+                                            <side j:allowedTypes="jacademy:textContent" jcr:primaryType="jnt:area"/>
                                         </product-intro-side>
                                     </product-intro>
                                     <product-topics columnsType="predefinedColumns"

@@ -18,4 +18,4 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <img src="${currentNode.properties['icon'].node.url}" alt="">
-${currentNode.properties['textContent'].string}
+${currentNode.properties.textContent.string}

@@ -42,4 +42,6 @@
     </script>
 </template:addResources>
 
-<div id="toc_${currentNode.identifier}" class="document-content">${currentNode.properties['textContent'].string}</div>
+<div id="toc_${currentNode.identifier}" class="document-content">
+    ${currentNode.properties.textContent.string}
+</div>
