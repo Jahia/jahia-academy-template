@@ -93,8 +93,16 @@
     </c:if>
 
 </head>
-<body data-spy="scroll" data-target="#sidebar"><a id="top"></a>
+<body data-spy="scroll" data-target="#sidebar" ><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
+<script>
+    // fix offset  for scrollspy
+    offsetHeight=50;
+    $('body').scrollspy({
+        offset: offsetHeight
+    });
+    var scrollPos = $('body > .container').find($(this).attr('href')).offset().top - (offsetHeight - 1);
+</script>
 </body>
 </html>

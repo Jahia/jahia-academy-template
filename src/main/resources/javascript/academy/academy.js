@@ -43,5 +43,7 @@ $(document).on('click', 'a[data-scrollto]', function (event) {
     }, 200, function () {
         window.location.hash = scrollto;
     });
+    scrollBy(0, -20);
     return false;
 });
+

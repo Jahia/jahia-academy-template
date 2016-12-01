@@ -157,10 +157,6 @@ body {
     color: #00a0e3;
 }
 
-.scrollspy-offset-fix{
-    padding-top: 180px;
-    margin-top: -180px;
-}
 
 .sticky-sidebar{
     background: red;
@@ -1448,7 +1444,7 @@ code {
     display: inline;
 }
 div#documentation-level {
-    padding-top: 170px;
+    margin-top: 180px;
     margin-bottom: 30px;
 }
 .navbar-collapse {
