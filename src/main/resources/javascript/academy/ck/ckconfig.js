@@ -1,9 +1,9 @@
 CKEDITOR.stylesSet.add('text', [
-    {name: 'Title (h2)', element: 'h2'},
-    {name: 'Subtitle (h3)', element: 'h3'},
-    {name: 'Subtitle (h4)', element: 'h4'},
+    {name: 'H2', element: 'h2'},
+    {name: 'H3', element: 'h3'},
+    {name: 'H4', element: 'h4'},
     {name: 'Text', element: 'p'},
-    {name: 'Inline blue text', element: 'strong', attributes: {"class": "blue"}},
+    {name: 'Blue text', element: 'strong', attributes: {"class": "blue"}},
     {name: 'Code', element: 'code'},
     {name: 'Formated text', element: 'pre'},
     {name: 'Box success', element: 'div', attributes: {"class": "alert alert-success"}},
