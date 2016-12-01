@@ -48,6 +48,8 @@
 
 [jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
 
+[jacademy:navButtons] > jnt:content, jacademix:component, jmix:studioOnly
+
 //[jacademy:docactions] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
 
 [jacademix:isVersionPage] mixin
@@ -58,3 +60,8 @@
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
 [jacademy:embedVideo] > jnt:content, jmix:droppableContent, jacademix:document, jacademix:embedVideo
+
+[jacademix:alternateTitle] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - alternateTitle (string) internationalized

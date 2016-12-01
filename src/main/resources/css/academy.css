@@ -326,7 +326,7 @@ ol.breadcrumb.breadcrumb-nav {
     margin-bottom:0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .breadcrumb li {
         display: none;
     }
@@ -431,27 +431,27 @@ ol.breadcrumb.breadcrumb-nav {
     font-weight: 400;
 }
 
-#card-list {
+#pinBoot ul  {
     list-style: none;
     padding: 15px 0 0 0 ;
     margin: 15px 0 0 0 ;
     border-top: 1px solid #eeeeee;
 }
 
-#card-list li{
+#pinBoot ul li{
     font-size: 17px;
 }
 
-#card-list li a{
+#pinBoot ul li a{
     color: #2d3c57;
 }
 
-#card-list li a:hover{
+#pinBoot ul li a:hover{
     color: #00a0e3;
     text-decoration: none;
 }
 
-#card-list li ul {
+#pinBoot ul li ul {
     list-style: none;
     border: none;
     margin-top: 5px;
@@ -459,7 +459,7 @@ ol.breadcrumb.breadcrumb-nav {
     padding: 0;
 }
 
-#card-list li ul li{
+#pinBoot ul li ul li{
     margin: 5px auto;
     font-size: 14px;
     color: #2d3c57;
@@ -468,11 +468,11 @@ ol.breadcrumb.breadcrumb-nav {
     display: block;
 }
 
-#card-list li ul li a{
+#pinBoot ul li ul li a{
     color: #2d3c57;
 }
 
-#card-list li ul li a:hover{
+#pinBoot ul li ul li a:hover{
     color: #00a0e3;
 }
 
@@ -689,10 +689,11 @@ ul.minor-version-tabs {
 
 .documentation-header{
     border-bottom: 1px dashed #e5e5e5;
-    margin-bottom: 35px;
     padding: 0;
 }
-
+.navbuttons {
+    margin-bottom: 35px;
+}
 .child-actions{
     text-align: center;
 }
@@ -1229,7 +1230,10 @@ pre, pre code {
     margin-left: 10px;
     margin-bottom: 10px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 900;
+}
+.back-to-top.light {
+    font-weight: 900;
     color: #999;
 }
 .back-to-top:hover,
@@ -1468,7 +1472,7 @@ li table,li div  {
     }
 
     body {
-        font-size: 20px;
+        font-size: 18px;
     }
     pre {
         font-size: 15px;
@@ -1489,4 +1493,9 @@ li table,li div  {
     box-shadow:none;
     -webkit-box-shadow:none;
     -moz-box-shadow:none;
+}
+@media (max-width: 992px) {
+    .action-wrapper {
+        display: none;
+    }
 }
