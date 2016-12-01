@@ -3,33 +3,23 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
-
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
 [jacademix:content] > jmix:droppableContent mixin
-
-//[jacademix:topic]  mixin
 
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
-[jacademix:document] > mix:title mixin
+[jacademix:document] > jmix:droppableContent, mix:title mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
 
-[jacademix:embedVideo] > jmix:droppableContent mixin
+[jacademix:embedVideo]  mixin
  - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
  - id (string) mandatory
-
-//[jacademix:alink] mixin
-// - j:linkType (string, choicelist[linkTypeInitializer, resourceBundle]) = 'internal' mandatory autocreated
 
 [jacademy:footer1] > jnt:content, jacademix:component
 
 [jacademy:footer2] > jnt:content, jacademix:component
-
-//[jacademy:homeTitle] > jnt:content, jacademix:component, mix:title
-
-//[jacademy:topicList] > jnt:contentList, jacademix:component, mix:title orderable
 
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
  + * (jacademy:productCard)
@@ -38,7 +28,7 @@
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - externalLink (string) = 'http://' mandatory internationalized
 
-[jacademy:document] > jnt:content, jmix:droppableContent, jacademix:document, jacademix:textContent
+[jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
 [jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content
@@ -50,8 +40,6 @@
 
 [jacademy:navButtons] > jnt:content, jacademix:component, jmix:studioOnly
 
-//[jacademy:docactions] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
-
 [jacademix:isVersionPage] mixin
  extends = jmix:navMenuItem
  itemtype = content
@@ -59,7 +47,7 @@
 
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
-[jacademy:embedVideo] > jnt:content, jmix:droppableContent, jacademix:document, jacademix:embedVideo
+[jacademy:embedVideo] > jnt:content, jacademix:document, jacademix:embedVideo
 
 [jacademix:alternateTitle] mixin
  extends = jmix:navMenuItem

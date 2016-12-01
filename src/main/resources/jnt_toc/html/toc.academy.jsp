@@ -96,7 +96,7 @@
         <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
         <a href="${previousPageUrl}" class="text-success back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
     </c:if>
-    <strong>${currentPageNode.displayableName}</strong>
+    <a href="#top"><strong>${currentPageNode.displayableName}</strong></a>
     <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
     <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
         <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>

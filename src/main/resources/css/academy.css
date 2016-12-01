@@ -1464,6 +1464,8 @@ li table,li div  {
 .bs-docs-sidebar strong {
     margin-left: 20px;
     display: block;
+    line-height: normal;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 1600px) {
