@@ -96,14 +96,14 @@
         <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
         <a href="${previousPageUrl}" class="text-success back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
     </c:if>
-    <a href="#top"><strong>${currentPageNode.displayableName}</strong></a>
+    <a href="#top" data-scrollto="#top"><strong>${currentPageNode.displayableName}</strong></a>
     <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
     <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
         <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
         <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
         <a href="${nextPageUrl}" class="text-success back-to-top nobottommargin"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${nextPageNode.displayableName}</a>
     </c:if>
-    <a href="#top" class="back-to-top light ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
+    <a href="#top" data-scrollto="#top" class="back-to-top light ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
 
 
 </nav>

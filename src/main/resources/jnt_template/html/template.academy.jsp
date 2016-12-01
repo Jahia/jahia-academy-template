@@ -35,40 +35,41 @@
         <c:set var="pageDescription"
                value="${fn:substring(renderContext.mainResource.node.properties['jcr:description'].string,0,160)}"/>
         <meta name="description" content="${fn:escapeXml(pageDescription)}"/>
-        <meta property="og:description" content="${fn:escapeXml(pageDescription)}" />
+        <meta property="og:description" content="${fn:escapeXml(pageDescription)}"/>
     </c:if>
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <c:choose>
         <c:when test="${currentLang eq 'en'}">
-            <meta property="og:locale" content="en_US" />
+            <meta property="og:locale" content="en_US"/>
         </c:when>
         <c:when test="${currentLang eq 'fr'}">
-            <meta property="og:locale" content="fr_FR" />
+            <meta property="og:locale" content="fr_FR"/>
         </c:when>
         <c:when test="${currentLang eq 'de'}">
-            <meta property="og:locale" content="de_DE" />
+            <meta property="og:locale" content="de_DE"/>
         </c:when>
         <c:otherwise>
-            <meta property="og:locale" content="${currentLang}" />
+            <meta property="og:locale" content="${currentLang}"/>
         </c:otherwise>
     </c:choose>
-    <meta property="og:title" content="${fn:escapeXml(pageTitle)}" />
+    <meta property="og:title" content="${fn:escapeXml(pageTitle)}"/>
     <c:choose>
         <c:when test="${pageContext.request.serverPort == 80 || pageContext.request.serverPort == 443}">
             <c:set var="serverUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}"/>
         </c:when>
         <c:otherwise>
-            <c:set var="serverUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
+            <c:set var="serverUrl"
+                   value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
         </c:otherwise>
     </c:choose>
     <c:url var="currentPageUrl" value="${renderContext.mainResource.node.url}"/>
-    <meta property="og:url" content="${serverUrl}${currentPageUrl}" />
+    <meta property="og:url" content="${serverUrl}${currentPageUrl}"/>
     <c:set var="imageUrl" value="${url.currentModule}/img/logo.png"/>
     <c:set var="imageWidth" value="250"/>
     <c:set var="imageHeight" value="120"/>
-    <meta property="og:image" content="${serverUrl}${imageUrl}" />
-    <meta property="og:image:width" content="${imageWidth}" />
-    <meta property="og:image:height" content="${imageHeight}" />
+    <meta property="og:image" content="${serverUrl}${imageUrl}"/>
+    <meta property="og:image:width" content="${imageWidth}"/>
+    <meta property="og:image:height" content="${imageHeight}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -92,7 +93,7 @@
     </c:if>
 
 </head>
-<body data-spy="scroll" data-target="#sidebar">
+<body data-spy="scroll" data-target="#sidebar"><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
 </body>

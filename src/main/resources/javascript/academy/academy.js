@@ -1,27 +1,25 @@
 //TAKE THE TALLEST DOC HEIGHT
 function setdocheight() {
 
-    if($(window).width() > 998){
+    if ($(window).width() > 998) {
 
         var max = -1;
 
         $(".doc-height").css("height", "auto");
 
-        $(".doc-height").each(function() {
+        $(".doc-height").each(function () {
             var h = $(this).height();
             max = h > max ? h : max;
         });
 
-        $(".doc-height").css("height", max + 50 , "px");
+        $(".doc-height").css("height", max + 50, "px");
 
     } else {
         $(".doc-height").css("height", "auto");
-    };
+    }
+    ;
 
 };
-
-
-
 
 
 // FUNCTION CALLS
@@ -31,6 +29,19 @@ setdocheight();
 
 
 // on resize
-window.onresize = function(event) {
+window.onresize = function (event) {
     setdocheight();
-};	
+};
+
+
+$(document).on('click', 'a[data-scrollto]', function (event) {
+    event.preventDefault();
+    scrollto = $.attr(this, 'data-scrollto');
+    offset = scrollto === "#top" ? 0 : 170;
+    $('html, body').animate({
+        scrollTop: $(scrollto).offset().top - offset
+    }, 200, function () {
+        window.location.hash = scrollto;
+    });
+    return false;
+});
