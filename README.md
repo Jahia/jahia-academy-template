@@ -52,4 +52,4 @@ Add this into your `<INSTALL_DIR>/digital-factory-config/jahia/applicationcontex
                 </entry>
             </map>
         </constructor-arg>
-    </bean>``
+    </bean>

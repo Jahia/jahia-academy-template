@@ -93,7 +93,8 @@
     </c:if>
 
 </head>
-<body data-spy="scroll" data-target="#sidebar" data-offset="180"><a id="top"></a>
+<c:set var="homeCss"><c:if test="${renderContext.mainResource.node.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
+<body data-spy="scroll" data-target="#sidebar" data-offset="180"${homeCss}><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
 </body>

@@ -11,5 +11,8 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<%--
 <c:url var="footer2_picture" value="${url.currentModule}/img/footer_02.png"/>
 <img src="${footer2_picture}" alt="">
+--%>
+${currentNode.properties.textContent.string}

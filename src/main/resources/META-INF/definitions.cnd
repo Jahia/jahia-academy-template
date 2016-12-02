@@ -4,7 +4,7 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
-[jacademix:content] > jmix:droppableContent mixin
+[jacademix:content] mixin
 
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
@@ -19,7 +19,7 @@
 
 [jacademy:footer1] > jnt:content, jacademix:component
 
-[jacademy:footer2] > jnt:content, jacademix:component
+[jacademy:footer2] > jnt:content, jmix:droppableContent, jacademix:textContent
 
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
  + * (jacademy:productCard)
@@ -31,8 +31,8 @@
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
-[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content
-[jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content
+[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component
+[jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content, jacademix:component
 
 [jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, jmix:studioOnly
 

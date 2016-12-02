@@ -1,9 +1,20 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
 body {
     font-family: Lato,sans-serif;
     color: #2d3c57;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
+    /* Margin bottom by footer height */
+    margin-bottom: 100px;
+}
+body.home {
+    background: url('../img/documentation_bg.jpg') no-repeat center top 100px;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .doc-height{
     height: auto;
@@ -186,10 +197,26 @@ body {
     background: #323332;
 }
 
-.footer-2{
+.footer-2 {
     background: #282928;
-}
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.25);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    position: absolute;
+    bottom: 0;
+    /* Set the fixed height of the footer here */
+    height:100px;
+    width: 100%;
 
+}
+.footer-2 .row {
+    padding: 40px 0;
+}
+.footer-2 a,.footer-2 p {
+    color: rgba(255, 255, 255, 0.25);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
 .footer-1 img, .footer-2 img{
     display: block;
     margin: 0 auto;
@@ -198,7 +225,7 @@ body {
 /*COMMON*/
 
 body{
-    position: relative;
+    /*position: relative;*/
     font-family: Lato;
     overflow-x: hidden;
 }
@@ -359,9 +386,6 @@ ol.breadcrumb.breadcrumb-nav {
 /*Doc Landing*/
 
 #documentation-header{
-    background: url('../img/documentation_bg.jpg') no-repeat center top 100px;
-    background-size: cover;
-    background-attachment: fixed;
     padding-top:150px;
 }
 
@@ -1131,6 +1155,7 @@ pre, code {
 }
 pre, pre code {
     white-space: pre !important;
+    text-indent: 0;
 }
 .hljs {
     /*display: inline-block !important;*/
@@ -1339,16 +1364,22 @@ pre {
     color: #2d3c57;
     font-size: 24px;
     margin-bottom: 20px;
-    padding-top: 180px;
-    margin-top: -180px;
+    /*padding-top: 180px;
+    margin-top: -180px;*/
 }
 
 .document-content h4{
     color: #00a0e3;
     font-size: 20px;
     margin-bottom: 10px;
-    padding-top: 180px;
-    margin-top: -180px;
+    /*padding-top: 180px;
+    margin-top: -180px;*/
+}
+.document-content h5{
+    font-size: 18px;
+    margin-bottom: 10px;
+    /*padding-top: 180px;
+    margin-top: -180px;*/
 }
 
 .document-content p{

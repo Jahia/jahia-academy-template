@@ -77,23 +77,14 @@
                             </pagecontent>
                         </home>
                         <footer jcr:primaryType="jnt:contentList">
-                            <footer-1 cssClass="footer-1"
-                            fluid="true"
-                            jcr:mixinTypes="bootstrap3mix:cssClass"
-                            jcr:primaryType="bootstrap3nt:container">
-                                <container jcr:primaryType="jnt:contentList"/>
-                                <footer-1 jcr:primaryType="jnt:contentList">
-                                    <footer1 jcr:primaryType="jacademy:footer1"/>
-                                </footer-1>
-                            </footer-1>
-                            <footer-2 cssClass="footer-2"
-                            fluid="true"
-                            jcr:mixinTypes="bootstrap3mix:cssClass"
-                            jcr:primaryType="bootstrap3nt:container">
-                                <footer-2 jcr:primaryType="jnt:contentList">
-                                    <footer2 jcr:primaryType="jacademy:footer2"/>
-                                </footer-2>
-                            </footer-2>
+                            <copyright columnsType="predefinedColumns"
+                             grid="6_6"
+                             gridLayout="fixed-width"
+                             jcr:mixinTypes="bootstrap3mix:createAbsoluteAreas bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                             jcr:primaryType="bootstrap3nt:columns"
+                             level="0"
+                             sectionCssClass="footer-2"
+                             sectionElement="div"/>
                         </footer>
                         <subpage j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
                             <j:translation_en jcr:language="en"
@@ -129,11 +120,10 @@
                                                   jcr:primaryType="jnt:contentList">
                                             <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                               jcr:primaryType="jacademy:documentHeader"/>
-                                            <document-buttons jcr:primaryType="jacademy:navButtons" />
+                                            <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                            <document-area j:allowedTypes="jacademix:document"
-                                             jcr:primaryType="jnt:area"/>
-                                            <document-buttons2 jcr:primaryType="jacademy:navButtons" />
+                                            <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
+                                            <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
                                         </document-content-main>
                                     </document-content>
                                 </pagecontent>
