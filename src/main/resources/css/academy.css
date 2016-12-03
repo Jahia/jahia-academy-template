@@ -1411,7 +1411,7 @@ pre {
     counter-increment: step-counter;
 }
 
-.document-content ol li:before{
+.document-content ol > li:before{
     margin-right: 15px;
     background-color: #00a0e3;
     color: white;
