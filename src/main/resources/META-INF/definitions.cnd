@@ -2,9 +2,28 @@
 <jacademy = 'http://www.jahia.org/academy/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<mix = 'http://www.jcp.org/jcr/mix/1.0'>
+
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
+
 [jacademix:content] mixin
+
+[jacademix:externalLink] > jmix:templateMixin mixin
+ extends = jacademix:link
+ - externalLink (string) = 'http://' internationalized
+
+[jacademix:internalLink] > jmix:templateMixin mixin
+ extends = jacademix:link
+ - internalLink (weakreference, picker[type='page']) < 'jnt:page'
+
+[jacademix:fileLink] > jmix:templateMixin mixin
+ extends = jacademix:link
+ - fileLink (weakreference) internationalized < 'jnt:file'
+
+[jacademix:link] > mix:title mixin
+ - linkTitle (string) internationalized
+ - linkType (string, choicelist[linkInitializer, resourceBundle]) = 'noLink' autocreated < 'internal', 'external', 'file', 'noLink'
 
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
@@ -24,14 +43,14 @@
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
  + * (jacademy:productCard)
 
-[jacademy:productCard] > jnt:content, mix:title, jacademix:textContent
+[jacademy:productCard] > jnt:content, mix:title, jacademix:textContent, jacademix:link
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
- - externalLink (string) = 'http://' mandatory internationalized
 
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
 [jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component
+
 [jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content, jacademix:component
 
 [jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, jmix:studioOnly

@@ -17,5 +17,52 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<img src="${currentNode.properties['icon'].node.url}" alt="">
+
+<c:set var="iconNode" value="${currentNode.properties.icon.node}"/>
+<c:if test="${! empty iconNode}">
+    <c:url var="iconUrl" value="${iconNode.url}" context="/"/>
+
+    <c:set var="linkType" value="${currentNode.properties.linkType.string}"/>
+    <c:set var="linkTitle" value="${currentNode.properties.linkTitle.string}"/>
+    <c:if test="${empty linkTitle}">
+        <c:set var="linkTitle" value="${currentNode.properties['jcr:title'].string}"/>
+    </c:if>
+    <c:url var="linkUrl" value="${currentNode.url}"/>
+    <c:choose>
+        <c:when test="${jcr:isNodeType(currentNode, 'cnt:customerStudies')}">
+            <c:url var="linkUrl" value="${currentNode.url}" context="/"/>
+        </c:when>
+
+        <c:when test="${linkType == 'internal'}">
+            <c:set var="linkNode" value="${currentNode.properties.internalLink.node}"/>
+            <c:if test="${! empty linkNode}">
+                <c:if test="${empty linkTitle}">
+                    <c:set var="linkTitle" value="${linkNode.displayableName}"/>
+                </c:if>
+                <c:url var="linkUrl" value="${linkNode.url}" context="/"/>
+            </c:if>
+        </c:when>
+        <c:when test="${linkType == 'file'}">
+            <c:set var="linkNode" value="${currentNode.properties.fileLink.node}"/>
+            <c:if test="${! empty linkNode}">
+                <c:if test="${empty linkTitle}">
+                    <c:set var="linkTitle" value="${linkNode.displayableName}"/>
+                </c:if>
+                <c:url var="linkUrl" value="${linkNode.url}" context="/"/>
+            </c:if>
+        </c:when>
+        <c:when test="${linkType == 'external'}">
+            <c:set var="linkUrl" value="${currentNode.properties.externalLink.string}"/>
+        </c:when>
+    </c:choose>
+    <c:choose>
+        <c:when test="${! empty linkUrl}">
+            <a href="${linkUrl}" title="${fn:escapeXml(linkTitle)}"><img src="${iconUrl}" alt="${fn:escapeXml(iconNode.displayableName)}"></a>
+        </c:when>
+        <c:otherwise>
+            <img src="${iconUrl}" alt="${fn:escapeXml(iconNode.displayableName)}">
+        </c:otherwise>
+    </c:choose>
+</c:if>
+
 ${currentNode.properties.textContent.string}

@@ -15,6 +15,10 @@
         </property>
     </bean>
 
+    <bean id="linkInitializer" class="org.jahia.modules.components.initializers.LinkInitializer">
+        <property name="key" value="linkInitializer"/>
+    </bean>
+
     <bean name="rulesImageService" class="org.jahia.services.content.rules.ImageService"
           factory-method="getInstance">
         <property name="imageService" ref="imageService"/>
