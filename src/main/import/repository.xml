@@ -53,10 +53,12 @@
                                      jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
                                      position="right"/>
                                     <navigation-menu j:baselineNode="home"
-                                         j:maxDepth="3"
-                                         j:startLevel="0"
-                                         jcr:primaryType="bootstrap3nt:navBarItemMenu"
-                                         position="right"/>
+                                                     j:maxDepth="4"
+                                                     j:startLevel="0"
+                                                     j:view="academy"
+                                                     jcr:mixinTypes="jmix:renderable"
+                                                     jcr:primaryType="bootstrap3nt:navBarItemMenu"
+                                                     position="right"/>
                                 </navigation-bar>
                                 <documentation-header fluid="true"
                                            htmlID="documentation-header"
@@ -198,6 +200,8 @@
                                         <navigation-menu j:baselineNode="home"
                                             j:maxDepth="4"
                                             j:startLevel="0"
+                                            j:view="academy"
+                                            jcr:mixinTypes="jmix:renderable"
                                             jcr:primaryType="bootstrap3nt:navBarItemMenu"
                                             position="right"/>
                                     </navigation-bar>

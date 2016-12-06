@@ -29,10 +29,6 @@
     </c:if>
     <c:url var="linkUrl" value="${currentNode.url}"/>
     <c:choose>
-        <c:when test="${jcr:isNodeType(currentNode, 'cnt:customerStudies')}">
-            <c:url var="linkUrl" value="${currentNode.url}" context="/"/>
-        </c:when>
-
         <c:when test="${linkType == 'internal'}">
             <c:set var="linkNode" value="${currentNode.properties.internalLink.node}"/>
             <c:if test="${! empty linkNode}">

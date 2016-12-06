@@ -38,113 +38,114 @@ printMenu = { node, navMenuLevel, omitFormatting ->
         def closeUl = false;
         children.eachWithIndex() { menuItem, index ->
             try {
-                itemPath = menuItem.path;
-                inpath = renderContext.mainResource.node.path == itemPath || renderContext.mainResource.node.path.startsWith(itemPath + "/");
-                def referenceIsBroken = false;
-                if (menuItem.isNodeType("jmix:nodeReference")) {
-                    try {
-                        currentResource.dependencies.add(menuItem.properties['j:node'].string);
-                    } catch (ItemNotFoundException e) {
-                    }
-                    try {
-                        if (menuItem.properties['j:node'].node != null) {
-                            selected = renderContext.mainResource.node.path == menuItem.properties['j:node'].node.path;
-                        } else {
+                if (!menuItem.isNodeType("jacademix:hidePage")) {
+
+                    itemPath = menuItem.path;
+                    inpath = renderContext.mainResource.node.path == itemPath || renderContext.mainResource.node.path.startsWith(itemPath + "/");
+                    def referenceIsBroken = false;
+                    if (menuItem.isNodeType("jmix:nodeReference")) {
+                        try {
+                            currentResource.dependencies.add(menuItem.properties['j:node'].string);
+                        } catch (ItemNotFoundException e) {
+                        }
+                        try {
+                            if (menuItem.properties['j:node'].node != null) {
+                                selected = renderContext.mainResource.node.path == menuItem.properties['j:node'].node.path;
+                            } else {
+                                selected = false;
+                                referenceIsBroken = true;
+                            }
+                        } catch (ItemNotFoundException e) {
                             selected = false;
                             referenceIsBroken = true;
                         }
-                    } catch (ItemNotFoundException e) {
-                        selected = false;
-                        referenceIsBroken = true;
+                    } else {
+                        selected = renderContext.mainResource.node.path == itemPath
                     }
-                } else {
-                    selected = renderContext.mainResource.node.path == itemPath
-                }
-                correctType = true
-                if(menuItem.isNodeType("jmix:navMenu")){
-                    correctType = false
-                }
-                if (menuItem.properties['j:displayInMenuName']) {
-                    correctType = false
-                    menuItem.properties['j:displayInMenuName'].each() {
-                        correctType |= (it.string == currentNode.name)
+                    correctType = true
+                    if (menuItem.isNodeType("jmix:navMenu")) {
+                        correctType = false
                     }
-                }
-                if (!referenceIsBroken && correctType && (startLevelValue < navMenuLevel || inpath)) {
-                    hasChildren = navMenuLevel < maxDepth.long && JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jmix:sitemap,jnt:nodeLink,jnt:externalLink")
-                    if (startLevelValue < navMenuLevel) {
-                        //print ("<h1>"+itemPath+closeUl+"</h1>")
-                        listItemCssClass = (hasChildren ? "hasChildren" : "noChildren") + (inpath ? " inPath" : "") + (selected ? " selected" : "") + (index == 0 ? " firstInLevel" : "") + (index == nbOfChilds - 1 ? " lastInLevel" : "");
-                        Resource resource = new Resource(menuItem, "html", "menuElement", currentResource.getContextConfiguration());
-                        currentResource.getDependencies().add(menuItem.getCanonicalPath())
-                        def render = RenderService.getInstance().render(resource, renderContext)
-                        def currentMenuLevel = navMenuLevel - startLevelValue
-                        def description = menuItem.properties["jcr:description"]
-                        def tooltip = ""
-                        def collapseClass = currentMenuLevel>2?"collapse":""
-                        def shortdoc = false
-                        if(currentMenuLevel<=2 && menuItem.primaryNodeTypeName == "jnt:page"){
-                            shortdoc = true
+                    if (menuItem.properties['j:displayInMenuName']) {
+                        correctType = false
+                        menuItem.properties['j:displayInMenuName'].each() {
+                            correctType |= (it.string == currentNode.name)
                         }
-                        if(description){
-                            tooltip = "data-toggle=\"tooltip\" data-placement=\"right\" title=\""+description.string+"\""
-                        }
-                        def linkURL = ""
-                        def collapseAttributes = ""
-                        if(!hasChildren){
-                            linkURL="primaryNodeType=\""+menuItem.primaryNodeType+"\""
-                            if(menuItem.primaryNodeTypeName == "jnt:page"){
-                                linkURL="href=\""+menuItem.url+"\""
+                    }
+                    if (!referenceIsBroken && correctType && (startLevelValue < navMenuLevel || inpath)) {
+                        hasChildren = navMenuLevel < maxDepth.long && JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jmix:sitemap,jnt:nodeLink,jnt:externalLink")
+                        if (startLevelValue < navMenuLevel) {
+                            //print ("<h1>"+itemPath+closeUl+"</h1>")
+                            listItemCssClass = (hasChildren ? "hasChildren" : "noChildren") + (inpath ? " inPath" : "") + (selected ? " selected" : "") + (index == 0 ? " firstInLevel" : "") + (index == nbOfChilds - 1 ? " lastInLevel" : "");
+                            Resource resource = new Resource(menuItem, "html", "menuElement", currentResource.getContextConfiguration());
+                            currentResource.getDependencies().add(menuItem.getCanonicalPath())
+                            def render = RenderService.getInstance().render(resource, renderContext)
+                            def currentMenuLevel = navMenuLevel - startLevelValue
+                            def description = menuItem.properties["jcr:description"]
+                            def tooltip = ""
+                            def collapseClass = currentMenuLevel > 2 ? "collapse" : ""
+                            def shortdoc = false
+                            if (currentMenuLevel <= 2 && menuItem.primaryNodeTypeName == "jnt:page") {
+                                shortdoc = true
                             }
-                        }
-                        else{
-                            linkURL="href=\"#"+menuItem.identifier+"\""
-                            collapseAttributes = "role=\"button\" data-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\""+menuItem.identifier+"\""
-                        }
-                        if (render != "") {
-                            if(currentMenuLevel == 1 ){
-                                print("<article class=\"doc-list\">")
-                                print("<h3 "+tooltip+">")
-                                if(shortdoc){
-                                    print("<a "+linkURL+collapseAttributes+">")
-                                }
-                                print(menuItem.displayableName)
-                                if(shortdoc){
-                                    print("</a>")
-                                }
-                                print("</h3>")
+                            if (description) {
+                                tooltip = "data-toggle=\"tooltip\" data-placement=\"right\" title=\"" + description.string + "\""
                             }
-                            else{
-                                if (firstEntry) {
-                                    empty = false;
-                                    print("<ul id=\""+node.identifier+"\" class=\""+collapseClass+" navmenu level_${currentMenuLevel} documentation-list\">")
-                                    closeUl = true;
+                            def linkURL = ""
+                            def collapseAttributes = ""
+                            if (!hasChildren) {
+                                linkURL = "primaryNodeType=\"" + menuItem.primaryNodeType + "\""
+                                if (menuItem.primaryNodeTypeName == "jnt:page") {
+                                    linkURL = "href=\"" + menuItem.url + "\""
                                 }
-                                if(menuItem.primaryNodeTypeName == "jnt:page" || hasChildren){
-                                    print("<li class=\"${listItemCssClass}\" "+tooltip+">")
-                                    print("<a "+linkURL+collapseAttributes+">")
-                                    print(menuItem.displayableName)
-                                    print("</a>")
-                                }
-                            }
-                        }
-                        if (hasChildren) {
-                            printMenu(menuItem, navMenuLevel + 1, true)
-                        }
-                        if (render != "") {
-                            if(currentMenuLevel == 1 ){
-                                print("</article>")
                             } else {
-                                if(menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
-                                    print "</li>"
+                                linkURL = "href=\"#" + menuItem.identifier + "\""
+                                collapseAttributes = "role=\"button\" data-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\"" + menuItem.identifier + "\""
+                            }
+                            if (render != "") {
+                                if (currentMenuLevel == 1) {
+                                    print("<article class=\"doc-list\">")
+                                    print("<h3 " + tooltip + ">")
+                                    if (shortdoc) {
+                                        print("<a " + linkURL + collapseAttributes + ">")
+                                    }
+                                    print(menuItem.displayableName)
+                                    if (shortdoc) {
+                                        print("</a>")
+                                    }
+                                    print("</h3>")
+                                } else {
+                                    if (firstEntry) {
+                                        empty = false;
+                                        print("<ul id=\"" + node.identifier + "\" class=\"" + collapseClass + " navmenu level_${currentMenuLevel} documentation-list\">")
+                                        closeUl = true;
+                                    }
+                                    if (menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
+                                        print("<li class=\"${listItemCssClass}\" " + tooltip + ">")
+                                        print("<a " + linkURL + collapseAttributes + ">")
+                                        print(menuItem.displayableName)
+                                        print("</a>")
+                                    }
                                 }
                             }
-                            firstEntry = false;
+                            if (hasChildren) {
+                                printMenu(menuItem, navMenuLevel + 1, true)
+                            }
+                            if (render != "") {
+                                if (currentMenuLevel == 1) {
+                                    print("</article>")
+                                } else {
+                                    if (menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
+                                        print "</li>"
+                                    }
+                                }
+                                firstEntry = false;
+                            }
+                        } else if (hasChildren) {
+                            //                    print "<li>"
+                            printMenu(menuItem, navMenuLevel + 1, true)
+                            //                    print "</li>"
                         }
-                    } else if (hasChildren) {
-                        //                    print "<li>"
-                        printMenu(menuItem, navMenuLevel + 1, true)
-                        //                    print "</li>"
                     }
                 }
             } catch (Exception e) {

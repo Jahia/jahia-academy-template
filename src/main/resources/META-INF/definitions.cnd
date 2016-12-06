@@ -15,7 +15,7 @@
 
 [jacademix:internalLink] > jmix:templateMixin mixin
  extends = jacademix:link
- - internalLink (weakreference, picker[type='page']) < 'jnt:page'
+ - internalLink (weakreference,picker[type='editoriallink']) < jmix:droppableContent, jnt:page, jnt:contentFolder, jnt:folder
 
 [jacademix:fileLink] > jmix:templateMixin mixin
  extends = jacademix:link
@@ -72,3 +72,8 @@
  extends = jmix:navMenuItem
  itemtype = content
  - alternateTitle (string) internationalized
+ 
+[jacademix:hidePage] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - value (string) = 'This page will be hidden in the menu.' protected

@@ -5,20 +5,17 @@
 <%@ taglib prefix="s" uri="http://www.jahia.org/tags/search" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 
-<template:addResources type="css" resources="simplesearchform.css"/>
 
 <template:addCacheDependency uuid="${currentNode.properties.result.string}"/>
 <c:if test="${not empty currentNode.properties.result.node}">
-    <c:url value='${url.base}${currentNode.properties.result.node.path}.html' var="searchUrl"/>
+    <c:url var="searchUrl" value='${currentNode.properties.result.node.url}' context="/"/>
     <s:form method="post" class="form-inline" action="${searchUrl}">
-        <jcr:nodeProperty name="jcr:title" node="${currentNode}" var="title"/>
         <s:site value="${renderContext.site.name}" includeReferencesFrom="systemsite" display="false"/>
         <s:language value="${renderContext.mainResource.locale}" display="false"/>
-        <fmt:message key='search.startSearching' var="startSearching"/>
-
         <div class="form-group">
-            <label for="exampleInputEmail1">Search for</label>
-            <s:term match="all_words" id="searchTerm" placeholder="Type any terms" searchIn="siteContent,tags,files" class="form-control"/>
+            <label for="searchTerm">Search for</label>
+            <%--<s:term match="all_words" id="searchTerm" placeholder="Type any terms" searchIn="siteContent,tags,files" class="form-control"/>--%>
+            <s:term match="all_words" id="searchTerm" placeholder="Type any terms" searchIn="siteContent,tags" class="form-control"/>
         </div>
         <button type="submit" class="btn btn-default"><fmt:message key='search.submit'/></button>
     </s:form>

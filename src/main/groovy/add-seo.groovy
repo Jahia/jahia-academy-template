@@ -88,7 +88,6 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                 }
 
                 // remove unwanted types
-                contentTypes.remove("cnt:employee");
                 contentTypes.remove("jnt:content");
                 contentTypes.remove("jnt:contentFolder");
                 contentTypes.remove("jnt:file");
