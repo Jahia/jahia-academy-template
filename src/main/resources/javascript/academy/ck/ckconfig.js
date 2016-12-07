@@ -13,6 +13,7 @@ CKEDITOR.stylesSet.add('text', [
     {name: 'Box grey', element: 'div', attributes: {"class": "well"}}
 ]);
 CKEDITOR.plugins.addExternal('fontawesome', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/javascript/academy/ck/fontawesome/plugin.js');
+CKEDITOR.plugins.addExternal('maximize', ((typeof contextJsParameters != 'undefined') ? contextJsParameters.contextPath : '') + '/modules/jahia-academy-template/javascript/academy/ck/maximize/plugin.js');
 
 CKEDITOR.editorConfig = function (config) {
     config.siteKey = (typeof contextJsParameters != 'undefined') ? contextJsParameters.siteKey : '';
@@ -32,9 +33,10 @@ CKEDITOR.editorConfig = function (config) {
         ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote'],
         ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
         ['Link', 'Unlink', 'Anchor', 'Image','FontAwesome'],
-        ['RemoveFormat', 'HorizontalRule', 'ShowBlocks', 'CodeSnippet']
+        ['RemoveFormat', 'HorizontalRule', 'CodeSnippet'],
+        ['Maximize']
     ];
-    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome';
+    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome,maximize';
     config.codeSnippet_theme = 'googlecode';
     config.codeSnippet_languages = {
         javascript: 'JavaScript',

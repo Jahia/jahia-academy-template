@@ -550,7 +550,7 @@ ol.breadcrumb.breadcrumb-nav {
 
 .action-wrapper{
     border: 1px solid #dadde4;
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 0;
     width: auto;
     float: right;
@@ -1374,12 +1374,14 @@ pre {
     margin-bottom: 10px;
     /*padding-top: 180px;
     margin-top: -180px;*/
+    font-weight: 900;
 }
 .document-content h5{
     font-size: 18px;
     margin-bottom: 10px;
     /*padding-top: 180px;
     margin-top: -180px;*/
+    font-weight: 900;
 }
 
 .document-content p{
@@ -1561,4 +1563,7 @@ li table,li div  {
 
 #custom-search-input .glyphicon-search{
     font-size: 23px;
+}
+.dropdown-menu {
+    min-width: 250px;
 }

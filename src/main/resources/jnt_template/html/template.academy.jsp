@@ -15,6 +15,7 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <c:set var="currentLang" value="${renderContext.mainResourceLocale.language}"/>
+<c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${currentLang}">
 <head>
     <meta name="robots" content="noindex">
@@ -22,18 +23,34 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <c:set var="pageTitle"
-           value="${renderContext.mainResource.node.displayableName}"/>
-    <c:if test="${jcr:isNodeType(renderContext.mainResource.node, 'jacademix:alternateTitle')}">
-        <c:set var="alternateTitle" value="${renderContext.mainResource.node.properties.alternateTitle.string}"/>
+           value="${mainResourceNode.displayableName}"/>
+    <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:alternateTitle')}">
+        <c:set var="alternateTitle" value="${mainResourceNode.properties.alternateTitle.string}"/>
         <c:if test="${not empty alternateTitle}">
             <c:set var="pageTitle"
                    value="${alternateTitle}"/>
         </c:if>
     </c:if>
-    <title>${fn:escapeXml(pageTitle)}</title>
-    <c:if test="${not empty renderContext.mainResource.node.properties['jcr:description'].string}">
+    <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
+        <c:if test="${mainResourceNode.properties['j:templateName'].string eq 'documentation'}">
+            <%-- This is a doc -> try to get the product name --%>
+            <c:set var="pageNodes"
+                   value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
+            <%--
+            we try to get the parent page with a jacademix:isVersionPage mixin. This will be the current version
+            of the page.
+            --%>
+            <c:forEach var="pageNode" items="${pageNodes}" end="0">
+                <c:set var="versionNode" value="${pageNode}"/>
+                <c:set var="productNode" value="${versionNode.parent}"/>
+                <c:set var="productInfo">${' '}|${' '}${productNode.displayableName}${' '}(${versionNode.displayableName})</c:set>
+            </c:forEach>
+        </c:if>
+    </c:if>
+    <title>${fn:escapeXml(pageTitle)}${fn:escapeXml(productInfo)}</title>
+    <c:if test="${not empty mainResourceNode.properties['jcr:description'].string}">
         <c:set var="pageDescription"
-               value="${fn:substring(renderContext.mainResource.node.properties['jcr:description'].string,0,160)}"/>
+               value="${fn:substring(mainResourceNode.properties['jcr:description'].string,0,160)}"/>
         <meta name="description" content="${fn:escapeXml(pageDescription)}"/>
         <meta property="og:description" content="${fn:escapeXml(pageDescription)}"/>
     </c:if>
@@ -52,7 +69,7 @@
             <meta property="og:locale" content="${currentLang}"/>
         </c:otherwise>
     </c:choose>
-    <meta property="og:title" content="${fn:escapeXml(pageTitle)}"/>
+    <meta property="og:title" content="${fn:escapeXml(pageTitle)}${fn:escapeXml(productInfo)}"/>
     <c:choose>
         <c:when test="${pageContext.request.serverPort == 80 || pageContext.request.serverPort == 443}">
             <c:set var="serverUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}"/>
@@ -62,7 +79,7 @@
                    value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
         </c:otherwise>
     </c:choose>
-    <c:url var="currentPageUrl" value="${renderContext.mainResource.node.url}"/>
+    <c:url var="currentPageUrl" value="${mainResourceNode.url}"/>
     <meta property="og:url" content="${serverUrl}${currentPageUrl}"/>
     <c:set var="imageUrl" value="${url.currentModule}/img/logo.png"/>
     <c:set var="imageWidth" value="250"/>
@@ -93,7 +110,7 @@
     </c:if>
 
 </head>
-<c:set var="homeCss"><c:if test="${renderContext.mainResource.node.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
+<c:set var="homeCss"><c:if test="${mainResourceNode.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
 <body data-spy="scroll" data-target="#sidebar" data-offset="180"${homeCss}><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
