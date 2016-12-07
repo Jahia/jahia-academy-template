@@ -18,8 +18,6 @@
 <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${currentLang}">
 <head>
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <c:set var="pageTitle"
