@@ -50,3 +50,14 @@ $(document).on('click', 'a[data-scrollto]', function (event) {
 $('a[href^="http://"]').attr('target','_blank');
 $('a[href^="https://"]').attr('target','_blank');
 
+
+$(document).ready(function ($) {
+    // delegate calls to data-toggle="lightbox"
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+            always_show_close: false
+        });
+    });
+});
+

@@ -36,6 +36,7 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 		logger.debug("Context : " + context);
 		for (StartTag imgTag : imgTags) {
 			String srcValue = imgTag.getAttributeValue("src");
+			String imgClass = imgTag.getAttributeValue("class");
 			if (srcValue.startsWith(context + PATH_TOWARD_IMG)) {
 				logger.debug("SRC value to rewrite : " + srcValue);
 				StringBuilder sbSrcValue = new StringBuilder(srcValue);
@@ -49,10 +50,23 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 				logger.debug("New SRC value : " + sbSrcValue.toString());
 
 				// Rewrite the whole IMG tag
+				/*
+				 <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4">
+                     <img src="//i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-responsive">
+                 </a>
+				*/
+				StringBuilder newImgTag = new StringBuilder("<a href=\"").append(srcValue).append("\" data-toggle=\"lightbox\" data-gallery=\"doc-images\">");
+				newImgTag.append("<img src=\"").append(sbSrcValue.toString()).append("\"");
+				if (! "".equals(imgClass)){
+					newImgTag.append(" class=\""+ imgClass + "\"");
+				}
+				newImgTag.append("></a>");
+				/*
 				StringBuilder newImgTag = new StringBuilder("<img");
 				newImgTag.append(" alt=\"" + imgTag.getAttributeValue("alt") + "\" data-lity");
 				newImgTag.append(" data-lity-target=\"" + srcValue + "\"");
 				newImgTag.append(" src=\"" + sbSrcValue.toString() + "\"/>");
+				 */
 
 				logger.debug("New IMG tag : " + newImgTag.toString());
 				out.replace(imgTag, newImgTag.toString());
