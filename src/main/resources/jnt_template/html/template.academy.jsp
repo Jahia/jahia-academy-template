@@ -93,9 +93,11 @@
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
     <template:addResources type="javascript" resources="highlight.pack.js"/>
     <template:addResources type="javascript" resources="clipboard.min.js"/>
-    <template:addResources type="javascript" resources="academy/academy.js"/>
     <template:addResources type="javascript" resources="academy/libraries/dynamicgrid.js"/>
     <template:addResources type="javascript" resources="ekko-lightbox.min.js"/>
+    <template:addResources type="javascript" resources="headroom.min.js"/>
+    <template:addResources type="javascript" resources="jQuery.headroom.js"/>
+    <template:addResources type="javascript" resources="academy/academy.js"/>
     <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
     <template:addResources type="css" resources="bootstrapXl.css" media="screen,print"/>
     <template:addResources type="css" resources="foundation.css" media="screen,print"/>

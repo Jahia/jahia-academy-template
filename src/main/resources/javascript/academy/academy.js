@@ -59,5 +59,9 @@ $(document).ready(function ($) {
             always_show_close: false
         });
     });
+    $(".navbar-fixed-top").headroom({
+        "offset": 205,
+        "tolerance": 5
+    });
 });
 
