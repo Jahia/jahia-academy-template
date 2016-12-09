@@ -29,7 +29,7 @@ def empty = true
 def printMenu;
 printMenu = { node, navMenuLevel, omitFormatting ->
     if (navMenuLevel == 1) {
-        print("<section class=\"documentation-list-wrapper\" id=\"pinBoot\" style=\"height: 524px;\">")
+        print("<div class=\"documentation-list-wrapper\" id=\"pinBoot\" style=\"height: 524px;\">")
     }
     firstEntry = true;
     if (node) {
@@ -163,14 +163,12 @@ printMenu = { node, navMenuLevel, omitFormatting ->
         }
     }
     if (navMenuLevel == 1) {
-        if (layoutID) {
-            print("</section>")
-        }
+        print("</div>")
     }
 }
 // Add dependencies to parent of main resource so that we are aware of new pages at sibling level
 try {
-currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath());
+    currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath());
 } catch (ItemNotFoundException e) {
 }
 printMenu(base, 1, false)

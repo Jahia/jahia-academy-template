@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="currentLang" value="${renderContext.mainResourceLocale.language}"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${currentLang}" lang="${currentLang}" >
+<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,12 +15,10 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<c:set var="currentLang" value="${renderContext.mainResourceLocale.language}"/>
 <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${currentLang}">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
     <c:set var="pageTitle"
            value="${mainResourceNode.displayableName}"/>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:alternateTitle')}">
@@ -86,7 +85,7 @@
     <meta property="og:image:width" content="${imageWidth}"/>
     <meta property="og:image:height" content="${imageHeight}"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-ui.min.js"/>
@@ -97,6 +96,7 @@
     <template:addResources type="javascript" resources="ekko-lightbox.min.js"/>
     <template:addResources type="javascript" resources="headroom.min.js"/>
     <template:addResources type="javascript" resources="jQuery.headroom.js"/>
+    <template:addResources type="javascript" resources="readingTime.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
     <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
     <template:addResources type="css" resources="bootstrapXl.css" media="screen,print"/>
@@ -108,10 +108,26 @@
     <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>
     </c:if>
+    <link rel="shortcut icon" href="${url.currentModule}/img/favicon/favicon.ico" type="image/x-icon">
 
+    <link rel="apple-touch-icon" sizes="57x57" href="${url.currentModule}/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${url.currentModule}/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${url.currentModule}/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${url.currentModule}/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${url.currentModule}/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${url.currentModule}/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${url.currentModule}/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${url.currentModule}/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${url.currentModule}/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="${url.currentModule}/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="${url.currentModule}/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="${url.currentModule}/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${url.currentModule}/img/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="${url.currentModule}/img/favicon/ms-icon-144x144.png"/>
 </head>
-<c:set var="homeCss"><c:if test="${mainResourceNode.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
-<body data-spy="scroll" data-target="#sidebar" data-offset="180"${homeCss}><a id="top"></a>
+<c:set var="homeCss"><c:if
+        test="${mainResourceNode.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
+<body data-spy="scroll" data-target="#sidebar" data-offset="180" ${homeCss}><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
 </body>

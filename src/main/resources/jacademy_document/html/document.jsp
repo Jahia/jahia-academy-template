@@ -56,5 +56,13 @@
 
     </c:if>
 </div>
-
-
+<c:if test="${! empty textContent}">
+    <script>
+    $('.document-content').readingTime({
+        lang: '${renderContext.mainResourceLocale.language}',
+        round: true,
+        remoteTarget: '.readingTime'
+    });
+    $('.readTime').show();
+</script>
+</c:if>

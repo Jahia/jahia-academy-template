@@ -34,14 +34,14 @@
         <c:if test="${currentPageIndex - 1 >= 0}">
             <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
             <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
-            <a class="btn btn-link pull-left" href="${previousPageUrl}" type="button"><span
-                    class="fa fa-arrow-left fa-fw"></span>Previous: ${previousPageNode.displayableName}</a>
+            <a class="btn btn-link pull-left" href="${previousPageUrl}" ><i
+                    class="fa fa-arrow-left fa-fw"></i>Previous: ${previousPageNode.displayableName}</a>
         </c:if>
         <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
             <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
             <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
-            <a class="btn btn-link pull-right" href="${nextPageUrl}" type="button">Next: ${nextPageNode.displayableName}&nbsp;<span
-                    class="fa fa-arrow-right"></span></a>
+            <a class="btn btn-link pull-right" href="${nextPageUrl}" >Next: ${nextPageNode.displayableName}&nbsp;<i
+                    class="fa fa-arrow-right"></i></a>
         </c:if>
 
     </c:if>

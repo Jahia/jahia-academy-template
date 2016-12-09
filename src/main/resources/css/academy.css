@@ -661,7 +661,7 @@ ul.minor-version-tabs {
 /*--------*/
 
 .role-wrapper{
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .role-wrapper div{
@@ -677,7 +677,14 @@ ul.minor-version-tabs {
     margin-right: 0;
     margin-left: 2px;
 }
-
+.documentation-header .readingTime {
+    font-size: 14px;
+    color: #ccc;
+    display: none;
+}
+.documentation-header .readingTime .eta {
+    display: inline;
+}
 .role {
     background: #54b1ed;
     border-radius: 2px;

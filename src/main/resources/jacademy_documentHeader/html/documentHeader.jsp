@@ -55,7 +55,9 @@
                         </c:forEach>
                     </div>
                 </c:if>
-
+                <span class="readTime">
+                    Estimated reading time: <span class="eta"></span>
+                </span>
             </div>
             <div class="col-md-5 col-sm-12 action-wrapper hidden-print">
                 <div class="version-switcher">

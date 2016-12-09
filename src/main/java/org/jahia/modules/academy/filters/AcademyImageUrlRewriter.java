@@ -37,6 +37,10 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 		for (StartTag imgTag : imgTags) {
 			String srcValue = imgTag.getAttributeValue("src");
 			String imgClass = imgTag.getAttributeValue("class");
+			String imgAlt = imgTag.getAttributeValue("alt");
+			if (imgAlt == null) {
+				imgAlt = "";
+			}
 			if (srcValue.startsWith(context + PATH_TOWARD_IMG)) {
 				logger.debug("SRC value to rewrite : " + srcValue);
 				StringBuilder sbSrcValue = new StringBuilder(srcValue);
@@ -57,7 +61,8 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 				*/
 				StringBuilder newImgTag = new StringBuilder("<a href=\"").append(srcValue).append("\" data-toggle=\"lightbox\" data-gallery=\"doc-images\">");
 				newImgTag.append("<img src=\"").append(sbSrcValue.toString()).append("\"");
-				if (! "".equals(imgClass)){
+				newImgTag.append(" alt=\"" + imgAlt + "\"");
+				if (imgClass != null && ! "".equals(imgClass)){
 					newImgTag.append(" class=\""+ imgClass + "\"");
 				}
 				newImgTag.append("></a>");
