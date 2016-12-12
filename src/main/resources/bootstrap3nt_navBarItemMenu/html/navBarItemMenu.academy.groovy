@@ -116,7 +116,11 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                                 cssClassActive = " class=\"active\""
                                             }
                                             print "<li" + cssClassActive + ">";
-                                            print "<a href=\"" + node.url + "\">";
+                                            if (node.primaryNodeTypeName == "jnt:page") {
+                                                print "<a href=\"" + node.url + "\">";
+                                            } else {
+                                                print "<a href=\"#\">";
+                                            }
                                             //if (node.isNodeType("jacademix:faIcon")) {
                                             //    print "<i class=\"fa fa-fw " + node.getProperty("faIcon").getString() + "\"aria-hidden=\"true\"></i>&nbsp;";
                                             //}
