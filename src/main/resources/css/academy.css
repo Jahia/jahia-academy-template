@@ -1283,6 +1283,15 @@ pre, pre code {
     font-weight: 900;
     color: #999;
 }
+a.back-to-top.sister {
+    font-size: inherit;
+    line-height: initial;
+    font-size:smaller;
+}
+.bs-docs-sidenav.sister > li > a,.bs-docs-sidenav.sister > li > a:hover {
+    padding-left: 35px;
+}
+
 .back-to-top:hover,
 .bs-docs-theme-toggle:hover {
     color: #333333;
@@ -1344,7 +1353,7 @@ pre, pre code {
     /* Widen the fixed sidebar */
     .bs-docs-sidebar.affix,
     .bs-docs-sidebar.affix-bottom {
-        width: 213px;
+        width: 323px;
     }
     .bs-docs-sidebar.affix {
         position: fixed; /* Undo the static from mobile first approach */
@@ -1363,7 +1372,7 @@ pre, pre code {
     /* Widen the fixed sidebar again */
     .bs-docs-sidebar.affix-bottom,
     .bs-docs-sidebar.affix {
-        width: 263px;
+        width: 292px;
     }
 }
 

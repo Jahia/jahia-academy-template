@@ -64,6 +64,11 @@
  itemtype = content
  - version (string) = '7.2' mandatory
 
+[jacademix:isMultiplePageDoc] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - isMultiplePageDoc (string) = 'This doc is a multiple page doc' protected
+
 [jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
 [jacademy:embedVideo] > jnt:content, jacademix:document, jacademix:embedVideo

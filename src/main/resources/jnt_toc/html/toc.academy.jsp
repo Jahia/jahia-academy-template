@@ -77,32 +77,52 @@
     <c:otherwise>
         <c:set var="toc" value="div#toc_${bindedComponent.identifier}"/>
     </c:otherwise>
-
 </c:choose>
+<c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
+<c:set var="isMultiplePageDoc" value="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc')}"/>
+
 
 <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
-    <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
     <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
     <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jnt:page')}"/>
     <c:set var="currentPageIndex" value="0"/>
 
-    <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
-        <c:if test="${currentPageNode.path eq sisterPage.path}">
-            <c:set var="currentPageIndex" value="${status.index}"/>
-        </c:if>
-    </c:forEach>
-    <c:if test="${currentPageIndex - 1 >= 0}">
-        <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
-        <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
-        <a href="${previousPageUrl}" class="text-success back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
-    </c:if>
-    <a href="#top" data-scrollto="#top"><strong>${currentPageNode.displayableName}</strong></a>
-    <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
-    <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
-        <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
-        <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
-        <a href="${nextPageUrl}" class="text-success back-to-top nobottommargin"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${nextPageNode.displayableName}</a>
-    </c:if>
+    <c:choose>
+        <c:when test="${isMultiplePageDoc}">
+            <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
+                <c:choose>
+                    <c:when test="${currentPageNode.path eq sisterPage.path}">
+                        <a href="#top" data-scrollto="#top"><strong>${currentPageNode.displayableName}</strong></a>
+                        <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav sister" ></ul>
+                    </c:when>
+                    <c:otherwise>
+                        <c:url var="pageUrl" value="${sisterPage.url}"/>
+                        <a href="${pageUrl}" class="sister light back-to-top notopmargin"> ${sisterPage.displayableName}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
+                <c:if test="${currentPageNode.path eq sisterPage.path}">
+                    <c:set var="currentPageIndex" value="${status.index}"/>
+                </c:if>
+            </c:forEach>
+            <c:if test="${currentPageIndex - 1 >= 0}">
+                <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
+                <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
+                <a href="${previousPageUrl}" class="text-success back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
+            </c:if>
+            <a href="#top" data-scrollto="#top"><strong>${currentPageNode.displayableName}</strong></a>
+            <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
+            <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
+                <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
+                <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
+                <a href="${nextPageUrl}" class="text-success back-to-top nobottommargin"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${nextPageNode.displayableName}</a>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
+
     <a href="#top" data-scrollto="#top" class="back-to-top light ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
 
 
