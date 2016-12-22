@@ -64,5 +64,5 @@
         remoteTarget: '.readingTime'
     });
     $('.readTime').show();
-</script>
+    </script>
 </c:if>

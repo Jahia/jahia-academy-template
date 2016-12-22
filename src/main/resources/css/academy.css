@@ -1288,8 +1288,8 @@ a.back-to-top.sister {
     line-height: initial;
     font-size:smaller;
 }
-.bs-docs-sidenav.sister > li > a,.bs-docs-sidenav.sister > li > a:hover {
-    padding-left: 35px;
+.bs-docs-sidenav.sister > li > a,.bs-docs-sidenav.sister > li > a:hover,.bs-docs-sidenav.sister > li.active > a{
+    padding: 0 0 0 35px;
 }
 
 .back-to-top:hover,
@@ -1305,6 +1305,9 @@ a.back-to-top.sister {
 }
 .nobottommargin {
     margin-bottom: 0;
+}
+.bottommargin {
+    margin-bottom: 30px;
 }
 
 @media (min-width: 768px) {
@@ -1372,7 +1375,7 @@ a.back-to-top.sister {
     /* Widen the fixed sidebar again */
     .bs-docs-sidebar.affix-bottom,
     .bs-docs-sidebar.affix {
-        width: 292px;
+        width: 362px;
     }
 }
 
@@ -1601,4 +1604,19 @@ li table,li div  {
 }
 .dropdown-menu {
     min-width: 250px;
+}
+ul.nav.bs-docs-sidenav.sister {
+    padding-bottom: 8px;
+}
+.documentation-header h1 span {
+    display: block;
+    font-size: 0.7em;
+    color: #00a0e3;
+    text-transform: uppercase;
+}
+.control-label {
+    white-space: nowrap;
+}
+#main {
+    margin-top: 126px;
 }

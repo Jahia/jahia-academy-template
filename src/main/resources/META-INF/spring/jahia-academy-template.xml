@@ -30,4 +30,10 @@
                   value="Find URL toward /files images and rewrite them in order to use the community750 thumbnail"/>
         <property name="applyOnNodeTypes" value="jacademix:document,jacademix:content"/>
     </bean>
+    <bean id="SendEmailAction" class="org.jahia.modules.formfactory.actions.SendEmailAction">
+        <property name="mailService" ref="MailService"/>
+        <property name="mailTemplatePath" value="${formFactoryMailTemplatePath:/templates/email/feedback.vm}"/>
+        <property name="templateManagerService" ref="JahiaTemplateManagerService"/>
+    </bean>
+
 </beans>

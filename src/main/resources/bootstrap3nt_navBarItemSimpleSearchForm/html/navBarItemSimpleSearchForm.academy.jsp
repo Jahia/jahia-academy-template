@@ -20,7 +20,6 @@
 <%--
 <div class="hidden-xs hidden-sm navbar-right"><a href="#"><img class="navbar-search" src="<c:url value='${url.currentModule}/img/search.png'/>" alt=""></a></div>
 --%>
-
 <c:if test="${renderContext.loggedIn}">
     <c:set var="firstname" value="${currentUser.properties['j:firstName']}"/>
     <c:set var="lastname" value="${currentUser.properties['j:lastName']}"/>

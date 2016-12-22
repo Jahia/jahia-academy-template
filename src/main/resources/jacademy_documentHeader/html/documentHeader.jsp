@@ -40,7 +40,17 @@
     <c:when test="${documentNode != null}">
         <div class="row documentation-header">
             <div class="col-md-7 col-sm-12">
-                <h1 class="doc-child main-title">${documentNode.properties['jcr:title'].string}</h1>
+
+
+
+                <h1 class="doc-child main-title">
+                    <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
+                    <c:if test="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc')}">
+                        <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
+                        <span class="hidden-xs">${parentPage.displayableName}</span>
+                    </c:if>
+                    ${documentNode.properties['jcr:title'].string}
+                </h1>
                 <h2 class="doc-child author">
                     <fmt:message key="academy.document.writtenBy">
                         <fmt:param value="${documentNode.properties['jcr:createdBy'].string}"/>

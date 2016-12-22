@@ -89,6 +89,7 @@
 
     <c:choose>
         <c:when test="${isMultiplePageDoc}">
+            <a href="#top" data-scrollto="#top"><strong>${parentPage.displayableName}</strong></a>
             <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
                 <c:choose>
                     <c:when test="${currentPageNode.path eq sisterPage.path}">
