@@ -47,11 +47,12 @@ $(document).on('click', 'a[data-scrollto]', function (event) {
     return false;
 });
 
-$('a[href^="http://"]').attr('target','_blank');
-$('a[href^="https://"]').attr('target','_blank');
 
 
 $(document).ready(function ($) {
+    $('a[href^="http://"]').attr('target','_blank');
+    $('a[href^="https://"]').attr('target','_blank');
+
     // delegate calls to data-toggle="lightbox"
     $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
         event.preventDefault();
