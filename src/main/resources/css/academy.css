@@ -1620,3 +1620,13 @@ ul.nav.bs-docs-sidenav.sister {
 #main {
     margin-top: 126px;
 }
+#documentation-level a[href^="http://"]:after, #documentation-level a[href^="https://"]:after {
+    content: '\f08e';
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0px 0px 0px 5px;
+    text-decoration: none;
+    color: #cccccc;
+    font-size: smaller;
+}

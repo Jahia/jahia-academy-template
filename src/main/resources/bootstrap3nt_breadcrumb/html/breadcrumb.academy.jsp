@@ -71,25 +71,49 @@
                                                 <c:set var="active"><c:if
                                                         test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}">active</c:if></c:set>
                                                 <c:set var="subsisterPages"
-                                                       value="${jcr:getChildrenOfType(sisterPage, 'jnt:page')}"/>
-                                                <c:set var="hassubSisterPages" value="${fn:length(subsisterPages) > 1}"/>
+                                                       value="${jcr:getChildrenOfType(sisterPage, 'jmix:navMenuItem')}"/>
+                                                <c:set var="hassubSisterPages" value="${fn:length(subsisterPages) > 0}"/>
                                                 <c:choose>
                                                     <c:when test="${hassubSisterPages}">
-                                                        <li class="dropdown-submenu ${active}">
+                                                        <li class="dropdown-submenu ${active}" >
                                                             <a href="#" class="sub-menu-trigger"
                                                                role="button">${sisterPage.displayableName}</a>
                                                             <ul class="dropdown-menu">
                                                                 <c:forEach items="${subsisterPages}" var="subsisterPage"
                                                                            varStatus="status">
                                                                     <c:if test="${! jcr:isNodeType(subsisterPage, 'jacademix:hidePage')}">
-                                                                        <template:addCacheDependency node="${subsisterPage}"/>
-                                                                        <c:set var="active"><c:if
-                                                                                test="${fn:contains(renderContext.mainResource.path,subsisterPage.path)}"> class="active"</c:if></c:set>
-                                                                        <c:url var="subsisterPageUrl"
-                                                                               value="${subsisterPage.url}"/>
-                                                                        <li ${active}><a
-                                                                                href="${subsisterPageUrl}">${subsisterPage.displayableName}</a>
-                                                                        </li>
+                                                                        <c:choose>
+                                                                            <c:when test="${jcr:isNodeType(subsisterPage, 'jnt:navMenuText')}">
+                                                                                <%-- This is a label -> link to the first page if exist --%>
+                                                                                <template:addCacheDependency node="${subsisterPage}"/>
+                                                                                <c:set var="subsubsisterPages"
+                                                                                       value="${jcr:getChildrenOfType(subsisterPage, 'jnt:page')}"/>
+                                                                                <c:set var="active"><c:if
+                                                                                        test="${fn:contains(renderContext.mainResource.path,subsisterPage.path)}"> class="active"</c:if></c:set>
+                                                                                <c:forEach items="${subsubsisterPages}" var="subsubsisterPage"
+                                                                                           varStatus="substatus">
+                                                                                    <c:if test="${substatus.first}">
+                                                                                        <c:if test="${! jcr:isNodeType(subsubsisterPage, 'jacademix:hidePage')}">
+                                                                                            <c:url var="subsubsisterPageUrl" value="${subsubsisterPage.url}"/>
+                                                                                            <li ${active}><a
+                                                                                                    href="${subsubsisterPageUrl}">${subsisterPage.displayableName}</a>
+                                                                                            </li>
+                                                                                        </c:if>
+                                                                                    </c:if>
+                                                                                </c:forEach>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <template:addCacheDependency node="${subsisterPage}"/>
+                                                                                <c:set var="active"><c:if
+                                                                                        test="${fn:contains(renderContext.mainResource.path,subsisterPage.path)}"> class="active"</c:if></c:set>
+                                                                                <c:url var="subsisterPageUrl"
+                                                                                       value="${subsisterPage.url}"/>
+                                                                                <li ${active}><a
+                                                                                        href="${subsisterPageUrl}">${subsisterPage.displayableName}</a>
+                                                                                </li>
+
+                                                                            </c:otherwise>
+                                                                        </c:choose>
                                                                     </c:if>
                                                                 </c:forEach>
                                                             </ul>

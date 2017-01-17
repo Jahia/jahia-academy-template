@@ -28,15 +28,9 @@ $(document).ready(function(){
 							
 		} else {
 			$(".doc-height").css("height", "auto");
-		};
-		
-	};
-	
-	
-	
-	
-	
-	// FUNCTION CALLS
+        }
+    }
+    // FUNCTION CALLS
 	
 	// on page load
 	setdocheight();

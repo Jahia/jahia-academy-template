@@ -24,6 +24,7 @@
 <c:choose>
     <c:when test="${fn:length(pageNodes) > 0}">
         <c:forEach var="pageNode" items="${pageNodes}" end="0">
+            <template:addCacheDependency path="${pageNode.path}"/>
             <c:url var="currentVersionNodeUrl" value="${pageNode.url}"/>
             <c:set var="currentVersion" value="${pageNode.properties.version.string}"/>
             <c:choose>
@@ -39,6 +40,7 @@
                         <c:set var="versionNodeVersion" value="${versionNode.properties.version.string}"/>
                         <c:if test="${versionNodeVersion eq 'current'}">
                             <jcr:node var="versionDocNode" path="${versionNode.path}${localPathToDoc}"/>
+                            <template:addCacheDependency path="${versionDocNode.path}"/>
                             <c:choose>
                                 <c:when test="${! empty versionDocNode}">
                                     <c:url var="currentVersionNodeUrl" value="${versionDocNode.url}"/>
