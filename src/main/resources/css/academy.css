@@ -354,7 +354,7 @@ ol.breadcrumb.breadcrumb-nav {
         display: none;
     }
     .breadcrumb li:nth-last-child(-n+3){
-        display: inline-block;
+        display: inline;
     }
 }
 .breadcrumb-nav .dropdown:hover > .dropdown-menu {

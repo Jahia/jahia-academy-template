@@ -61,7 +61,7 @@ $(document).ready(function ($) {
         });
     });
     $(".navbar-fixed-top").headroom({
-        "offset": 205,
+        "offset": 180,
         "tolerance": 5
     });
 });

@@ -18,9 +18,13 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <!-- display previous / next buttons -->
+<div class="row navbuttons">
+    <template:include view="flat"/>
+</div>
+<%--
 <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
 <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
-<c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jnt:page')}"/>
+<c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
 <c:set var="currentPageIndex" value="0"/>
 <div class="row navbuttons">
     <c:if test="${fn:length(sisterPages)>1}">
@@ -33,16 +37,49 @@
 
         <c:if test="${currentPageIndex - 1 >= 0}">
             <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
-            <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
-            <a class="btn btn-link pull-left" href="${previousPageUrl}" ><i
-                    class="fa fa-arrow-left fa-fw"></i>Previous: ${previousPageNode.displayableName}</a>
+
+            <c:choose>
+                <c:when test="${jcr:isNodeType(previousPageNode, 'jnt:navMenuText')}">
+                    <c:set var="previousSubPages"
+                           value="${jcr:getChildrenOfType(previousPageNode, 'jnt:page')}"/>
+                    <c:forEach items="${previousSubPages}" var="previousSubPage" varStatus="status">
+                        <c:if test="${status.first}">
+                            <c:url var="previousPageUrl" value="${previousSubPage.url}"/>
+                        </c:if>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${jcr:isNodeType(previousPageNode,'jnt:page' )}">
+                    <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
+                </c:when>
+            </c:choose>
+            <c:if test="${! empty previousPageUrl}">
+                <a class="btn btn-link pull-left" href="${previousPageUrl}" ><i
+                        class="fa fa-arrow-left fa-fw"></i>Previous: ${previousPageNode.displayableName}</a>
+            </c:if>
         </c:if>
         <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
             <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
-            <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
-            <a class="btn btn-link pull-right" href="${nextPageUrl}" >Next: ${nextPageNode.displayableName}&nbsp;<i
-                    class="fa fa-arrow-right"></i></a>
+
+            <c:choose>
+                <c:when test="${jcr:isNodeType(nextPageNode, 'jnt:navMenuText')}">
+                    <c:set var="nextSubPages"
+                           value="${jcr:getChildrenOfType(nextPageNode, 'jnt:page')}"/>
+                    <c:forEach items="${nextSubPages}" var="nextSubPage" varStatus="status">
+                        <c:if test="${status.first}">
+                            <c:url var="nextPageUrl" value="${nextSubPage.url}"/>
+                        </c:if>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${jcr:isNodeType(nextPageNode,'jnt:page' )}">
+                    <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
+                </c:when>
+            </c:choose>
+            <c:if test="${! empty nextPageUrl}">
+                <a class="btn btn-link pull-right" href="${nextPageUrl}" >Next: ${nextPageNode.displayableName}&nbsp;<i
+                        class="fa fa-arrow-right"></i></a>
+            </c:if>
         </c:if>
 
     </c:if>
 </div>
+--%>
