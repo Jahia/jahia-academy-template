@@ -39,8 +39,8 @@
 [jacademy:footer1] > jnt:content, jacademix:component
 
 [jacademy:footer2] > jnt:content, jmix:droppableContent, jacademix:textContent
-
-[jacademy:productList] > jnt:contentList, jacademix:component, mix:title orderable
+[jacademix:homeComponent] mixin
+[jacademy:productList] > jnt:contentList, jacademix:component, mix:title, jacademix:homeComponent orderable
  + * (jacademy:productCard)
 
 [jacademy:productCard] > jnt:content, mix:title, jacademix:textContent, jacademix:link
@@ -49,7 +49,7 @@
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
-[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component
+[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component, jacademix:homeComponent
 
 [jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content, jacademix:component
 

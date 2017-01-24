@@ -206,7 +206,7 @@ body.home {
     position: absolute;
     bottom: 0;
     /* Set the fixed height of the footer here */
-    height:100px;
+    height:140px;
     width: 100%;
 
 }
@@ -400,7 +400,7 @@ ol.breadcrumb.breadcrumb-nav {
 
 /*PINTEREST GRID*/
 
-#pinBoot {
+.pinBoot {
     position: relative;
     max-width: 100%;
     width: 100%;
@@ -451,27 +451,27 @@ ol.breadcrumb.breadcrumb-nav {
     font-weight: 400;
 }
 
-#pinBoot ul  {
+.pinBoot ul  {
     list-style: none;
     padding: 15px 0 0 0 ;
     margin: 15px 0 0 0 ;
     border-top: 1px solid #eeeeee;
 }
 
-#pinBoot ul li{
+.pinBoot ul li{
     font-size: 17px;
 }
 
-#pinBoot ul li a{
+.pinBoot ul li a{
     color: #2d3c57;
 }
 
-#pinBoot ul li a:hover{
+.pinBoot ul li a:hover{
     color: #00a0e3;
     text-decoration: none;
 }
 
-#pinBoot ul li ul {
+.pinBoot ul li ul {
     list-style: none;
     border: none;
     margin-top: 5px;
@@ -479,7 +479,7 @@ ol.breadcrumb.breadcrumb-nav {
     padding: 0;
 }
 
-#pinBoot ul li ul li{
+.pinBoot ul li ul li{
     margin: 5px auto;
     font-size: 14px;
     color: #2d3c57;
@@ -488,11 +488,11 @@ ol.breadcrumb.breadcrumb-nav {
     display: block;
 }
 
-#pinBoot ul li ul li a{
+.pinBoot ul li ul li a{
     color: #2d3c57;
 }
 
-#pinBoot ul li ul li a:hover{
+.pinBoot ul li ul li a:hover{
     color: #00a0e3;
 }
 

@@ -24,7 +24,7 @@
 <c:set var="styleC2" value="width: 370px; left: 760px; top: 0px;"/>
 <c:set var="currentStyle" value=""/>
 <div class="row">
-    <div id="pinBoot" style="height: 605px;">
+    <div id="pinBoot" class="pinBoot" style="height: 605px;">
         <c:forEach items="${currentNode.nodes}" var="subchild" varStatus="statusCount">
             <%--<c:if test="${col_number eq 0}">
                 <c:set var="currentStyle" value="${styleC0}"/>
