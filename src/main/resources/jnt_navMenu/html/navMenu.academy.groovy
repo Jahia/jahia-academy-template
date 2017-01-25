@@ -29,8 +29,9 @@ def empty = true
 def printMenu;
 printMenu = { node, navMenuLevel, omitFormatting ->
     if (navMenuLevel == 1) {
-        print("<div class=\"documentation-list-wrapper\" id=\"pinBoot\" style=\"height: 524px;\">")
+        print("<div class=\"documentation-list-wrapper\" id=\"pinBoot\"  class=\"pinBoot\" style=\"height: 524px;\">")
     }
+    // jnt:navMenuText
     firstEntry = true;
     if (node) {
         children = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem")
@@ -73,7 +74,7 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                         }
                     }
                     if (!referenceIsBroken && correctType && (startLevelValue < navMenuLevel || inpath)) {
-                        hasChildren = navMenuLevel < maxDepth.long && JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jmix:sitemap,jnt:nodeLink,jnt:externalLink")
+                        hasChildren = navMenuLevel < maxDepth.long && JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jmix:sitemap,jnt:nodeLink,jnt:externalLink,jnt:navMenuText")
                         if (startLevelValue < navMenuLevel) {
                             //print ("<h1>"+itemPath+closeUl+"</h1>")
                             listItemCssClass = (hasChildren ? "hasChildren" : "noChildren") + (inpath ? " inPath" : "") + (selected ? " selected" : "") + (index == 0 ? " firstInLevel" : "") + (index == nbOfChilds - 1 ? " lastInLevel" : "");

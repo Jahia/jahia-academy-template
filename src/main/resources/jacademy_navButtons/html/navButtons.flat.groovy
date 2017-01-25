@@ -56,7 +56,7 @@ try {
 def mainResourceNode = renderContext.mainResource.node;
 
 // generate a previous/next buttons to link to the previous/next page.
-def flatTree = getFlatTree(mainResourceNode.getParent().getParent(), []);
+def flatTree = getFlatTree(mainResourceNode.getParent().getParent().getParent(), []);
 for (int i = 0; i < flatTree.size(); i++) {
     JCRNodeWrapper currentNode = flatTree.get(i);
     if (mainResourceNode.path == currentNode.path) {
