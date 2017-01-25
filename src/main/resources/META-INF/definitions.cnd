@@ -82,3 +82,6 @@
  extends = jmix:navMenuItem
  itemtype = content
  - value (string) = 'This page will be hidden in the menu.' protected
+
+[jacademy:loginForm] > jnt:content, jacademix:document
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized

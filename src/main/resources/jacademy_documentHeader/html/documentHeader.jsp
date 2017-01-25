@@ -49,7 +49,11 @@
                         <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
                         <span class="hidden-xs">${parentPage.displayableName}</span>
                     </c:if>
-                    ${documentNode.properties['jcr:title'].string}
+                    <c:set var="title" value="${documentNode.properties['jcr:title'].string}"/>
+                    <c:if test="${empty title}">
+                        <c:set var="title" value="${renderContext.mainResource.node.displayableName}"/>
+                    </c:if>
+                    ${title}
                 </h1>
                 <h2 class="doc-child author">
                     <fmt:message key="academy.document.writtenBy">
@@ -65,9 +69,11 @@
                         </c:forEach>
                     </div>
                 </c:if>
-                <span class="readTime">
-                    Estimated reading time: <span class="eta"></span>
-                </span>
+                <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent')}">
+                    <span class="readTime">
+                        Estimated reading time: <span class="eta"></span>
+                    </span>
+                </c:if>
             </div>
             <div class="col-md-5 col-sm-12 action-wrapper hidden-print">
                 <div class="version-switcher">
