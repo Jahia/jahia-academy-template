@@ -56,8 +56,12 @@
                     ${title}
                 </h1>
                 <h2 class="doc-child author">
+                    <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
+                    <c:if test="${creator eq 'root'}">
+                        <c:set var="creator" value="The Jahia Team"/>
+                    </c:if>
                     <fmt:message key="academy.document.writtenBy">
-                        <fmt:param value="${documentNode.properties['jcr:createdBy'].string}"/>
+                        <fmt:param value="${creator}"/>
                     </fmt:message>
                 </h2>
                 <c:set var="audiences" value="${documentNode.properties.audiences}"/>
