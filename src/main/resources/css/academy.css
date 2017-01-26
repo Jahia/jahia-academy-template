@@ -1630,3 +1630,7 @@ ul.nav.bs-docs-sidenav.sister {
     color: #cccccc;
     font-size: smaller;
 }
+#documentation-level a.btn:after {
+    content: '';
+    margin:0;
+}
