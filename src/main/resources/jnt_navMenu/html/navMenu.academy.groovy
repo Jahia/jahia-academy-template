@@ -100,8 +100,12 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                     linkURL = "href=\"" + menuItem.url + "\""
                                 }
                             } else {
-                                linkURL = "href=\"#" + menuItem.identifier + "\""
-                                collapseAttributes = "role=\"button\" data-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\"" + menuItem.identifier + "\""
+                                if (menuItem.primaryNodeTypeName == "jnt:page") {
+                                    linkURL = "href=\"" + menuItem.url + "\""
+                                } else {
+                                    linkURL = "href=\"#" + menuItem.identifier + "\" data-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\"" + menuItem.identifier + "\"";
+                                }
+                                collapseAttributes = "role=\"button\""
                             }
                             if (render != "") {
                                 if (currentMenuLevel == 1) {
