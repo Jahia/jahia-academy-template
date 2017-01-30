@@ -31,6 +31,7 @@
 [jacademix:document] > jmix:droppableContent, mix:title mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - author (string) = 'The Jahia Team'
 
 [jacademix:embedVideo]  mixin
  - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'

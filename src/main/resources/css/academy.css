@@ -1634,3 +1634,15 @@ ul.nav.bs-docs-sidenav.sister {
     content: '';
     margin:0;
 }
+@media (max-height: 900px) {
+    .bs-docs-sidebar.affix {
+        overflow: auto;
+        max-height: 590px;
+    }
+}
+@media (max-height: 768px) {
+    .bs-docs-sidebar.affix {
+        overflow: auto;
+        max-height: 540px;
+    }
+}

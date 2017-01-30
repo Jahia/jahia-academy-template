@@ -55,6 +55,13 @@
                     </c:if>
                     ${title}
                 </h1>
+                <c:set var="author" value="${documentNode.properties.author.string}"/>
+                <h2 class="doc-child author">
+                    <fmt:message key="academy.document.writtenBy">
+                        <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
+                    </fmt:message>
+                </h2>
+                <%--
                 <h2 class="doc-child author">
                     <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
                     <c:if test="${creator eq 'root'}">
@@ -64,6 +71,7 @@
                         <fmt:param value="${creator}"/>
                     </fmt:message>
                 </h2>
+                --%>
                 <c:set var="audiences" value="${documentNode.properties.audiences}"/>
                 <c:if test="${! empty audiences}">
                     <div class="role-wrapper">
