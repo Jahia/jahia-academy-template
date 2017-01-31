@@ -19,53 +19,80 @@ import java.util.List;
  */
 public class AcademyImageUrlRewriter extends AbstractFilter {
 
-	private static final Logger logger = LoggerFactory.getLogger(AcademyImageUrlRewriter.class);
+    private static final Logger logger = LoggerFactory.getLogger(AcademyImageUrlRewriter.class);
 
-	private static final String PATH_TOWARD_IMG = "/files";
+    private static final String PATH_TOWARD_IMG = "/files";
 
-	private static final String THUMBNAIL_NAME = "community750";
+    private static final String THUMBNAIL_NAME = "community750";
 
-	@Override
-	public String execute(String previousOut, RenderContext renderContext, Resource resource, RenderChain chain) throws Exception {
-		Source source = new Source(previousOut);
-		OutputDocument out = new OutputDocument(source);
+    @Override
+    public String execute(String previousOut, RenderContext renderContext, Resource resource, RenderChain chain) throws Exception {
+        Source source = new Source(previousOut);
+        OutputDocument out = new OutputDocument(source);
 
-		List<StartTag> imgTags = source.getAllStartTags("img");
+        List<StartTag> imgTags = source.getAllStartTags("img");
 
-		String context = renderContext.getURLGenerator().getContext();
-		logger.debug("Context : " + context);
-		for (StartTag imgTag : imgTags) {
-			String srcValue = imgTag.getAttributeValue("src");
-			String imgClass = imgTag.getAttributeValue("class");
-			String imgAlt = imgTag.getAttributeValue("alt");
-			if (imgAlt == null) {
-				imgAlt = "";
-			}
-			if (srcValue.startsWith(context + PATH_TOWARD_IMG)) {
-				logger.debug("SRC value to rewrite : " + srcValue);
-				StringBuilder sbSrcValue = new StringBuilder(srcValue);
-				if (srcValue.contains("?")) {
-					sbSrcValue.append("&");
-				}
-				else {
-					sbSrcValue.append("?");
-				}
-				sbSrcValue.append("t=" + THUMBNAIL_NAME);
-				logger.debug("New SRC value : " + sbSrcValue.toString());
+        String context = renderContext.getURLGenerator().getContext();
+        logger.debug("Context : " + context);
+        for (StartTag imgTag : imgTags) {
+            String href = imgTag.getAttributeValue("data-href");
+            String gallery = imgTag.getAttributeValue("data-gallery");
+            String src = imgTag.getAttributeValue("src");
+            String imgClass = imgTag.getAttributeValue("class");
+            String imgAlt = imgTag.getAttributeValue("alt");
+            String icon = imgTag.getAttributeValue("data-icon");
+            String disableLightboxValue = imgTag.getAttributeValue("data-disable-lightbox");
+            boolean disableLightbox = false;
+            if (disableLightboxValue != null && "true".equals(disableLightboxValue)) {
+                disableLightbox = true;
+            }
+            logger.debug("disableLightbox is " + disableLightbox);
+            if (imgAlt == null) {
+                imgAlt = "";
+            }
+            if (src.startsWith(context + PATH_TOWARD_IMG)) {
+                logger.debug("SRC value to rewrite : " + src);
+                StringBuilder sbSrcValue = new StringBuilder(src);
+                if (src.contains("?")) {
+                    sbSrcValue.append("&");
+                } else {
+                    sbSrcValue.append("?");
+                }
+                sbSrcValue.append("t=" + THUMBNAIL_NAME);
+                logger.debug("New SRC value : " + sbSrcValue.toString());
 
-				// Rewrite the whole IMG tag
-				/*
+                // Rewrite the whole IMG tag
+                /*
 				 <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4">
                      <img src="//i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-responsive">
                  </a>
 				*/
-				StringBuilder newImgTag = new StringBuilder("<a href=\"").append(srcValue).append("\" data-toggle=\"lightbox\" data-gallery=\"doc-images\">");
-				newImgTag.append("<img src=\"").append(sbSrcValue.toString()).append("\"");
-				newImgTag.append(" alt=\"" + imgAlt + "\"");
-				if (imgClass != null && ! "".equals(imgClass)){
-					newImgTag.append(" class=\""+ imgClass + "\"");
-				}
-				newImgTag.append("></a>");
+                StringBuilder newImgTag = new StringBuilder();
+                if (!disableLightbox) {
+                    if (href != null) {
+                        src = href;
+                    }
+                    if (gallery == null) {
+                        gallery="doc-images";
+                    }
+                    newImgTag.append("<div class=\"image\">");
+                    newImgTag.append("<img src=\"").append(sbSrcValue.toString()).append("\"");
+                    newImgTag.append(" alt=\"" + imgAlt + "\"");
+                    if (imgClass != null && !"".equals(imgClass)) {
+                        newImgTag.append(" class=\"" + imgClass + "\"");
+                    }
+                    newImgTag.append("/>");
+                    newImgTag.append("<a href=\"").append(src).append("\" data-toggle=\"lightbox\" data-gallery=\"" + gallery + "\">");
+                    if (icon == null) {
+                        icon = "fa-search-plus";
+                    }
+                    newImgTag.append("<span class=\"fa fa-2x " + icon + "\"></span>");
+                    newImgTag.append("</a></div>");
+
+                    logger.debug("New IMG tag : " + newImgTag.toString());
+                    out.replace(imgTag, newImgTag.toString());
+                }
+
 				/*
 				StringBuilder newImgTag = new StringBuilder("<img");
 				newImgTag.append(" alt=\"" + imgTag.getAttributeValue("alt") + "\" data-lity");
@@ -73,11 +100,9 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 				newImgTag.append(" src=\"" + sbSrcValue.toString() + "\"/>");
 				 */
 
-				logger.debug("New IMG tag : " + newImgTag.toString());
-				out.replace(imgTag, newImgTag.toString());
-			}
-		}
+            }
+        }
 
-		return out.toString();
-	}
+        return out.toString();
+    }
 }

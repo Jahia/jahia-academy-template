@@ -1646,3 +1646,37 @@ ul.nav.bs-docs-sidenav.sister {
         max-height: 540px;
     }
 }
+div.image {
+    position: relative;
+    display: inline-block; /* added */
+    overflow: hidden; /* added */
+}
+div.image:hover img {
+    opacity: 0.75;
+}
+
+div.image a {
+    display: block;
+    position: absolute;
+    top: -100%;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    color: inherit;
+}
+div.image:hover a {
+    opacity: 1; /* added */
+    top: 0; /* added */
+    z-index: 500;
+}
+div.image:hover a span {
+    top: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-shadow: 1px 0px 8px rgb(0,0,0);
+    color: #fff;
+}

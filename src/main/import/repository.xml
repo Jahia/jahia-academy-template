@@ -123,10 +123,10 @@
                                                            jcr:primaryType="jnt:contentList">
                                         <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                                         jcr:primaryType="jacademy:documentHeader"/>
-                                        <document-buttons jcr:primaryType="jacademy:navButtons" j:view="flat"/>
+                                        <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                         <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
                                         <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
-                                        <document-buttons2 jcr:primaryType="jacademy:navButtons" j:view="flat"/>
+                                        <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
                                         <feedback j:level="0"
                                                   j:limitedAbsoluteAreaEdit="false"
                                                   jcr:primaryType="jnt:absoluteArea"/>

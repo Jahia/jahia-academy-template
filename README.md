@@ -32,7 +32,7 @@ Add this into your `<INSTALL_DIR>/digital-factory-config/jahia/applicationcontex
                 <entry key="img">
                     <set>
                         <value>src</value>
-                        <value>data-lity-target</value>
+                        <value>data-href</value>
                     </set>
                 </entry>
                 <entry key="link">
