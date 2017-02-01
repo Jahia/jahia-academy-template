@@ -24,10 +24,10 @@
     width: 49%;
     height: 100%;
     font-size: 30px;
-    color: #fff;
-    text-shadow: 2px 2px 4px #000;
+    color: #54b1ed;
+    text-shadow: 2px 2px 4px #ccc;
     opacity: 0;
-    filter: dropshadow(color=#000000, offx=2, offy=2);
+    filter: dropshadow(color=#cccccc, offx=2, offy=2);
     -webkit-transition: opacity 0.5s;
     -moz-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;

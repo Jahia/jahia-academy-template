@@ -6,7 +6,7 @@ body {
     font-family: Lato,sans-serif;
     color: #2d3c57;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     /* Margin bottom by footer height */
     margin-bottom: 140px;
@@ -1649,7 +1649,7 @@ ul.nav.bs-docs-sidenav.sister {
 div.image {
     position: relative;
     display: inline-block; /* added */
-    overflow: hidden; /* added */
+    /*overflow: hidden;  removed */
 }
 div.image:hover img {
     opacity: 0.75;
@@ -1658,7 +1658,7 @@ div.image:hover img {
 div.image a {
     display: block;
     position: absolute;
-    top: -100%;
+    /*top: -100%;*/
     opacity: 0;
     left: 0;
     bottom: 0;
