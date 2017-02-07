@@ -2,6 +2,7 @@ package org.jahia.modules.jahiaacademytemplate.rules
 
 // list any import classes here.
 import org.jahia.modules.academy.services.AcademyImageService
+import org.jahia.modules.academy.services.AcademyVanityService
 import org.jahia.services.content.rules.*
 import org.jahia.services.content.JCRContentUtils
 import org.slf4j.Logger
@@ -14,8 +15,7 @@ global Service service
 global Logger logger
 global JCRContentUtils jcrUtils
 global AcademyImageService academyImageService
-
-
+global AcademyVanityService academyVanityService
 
 rule "Update community thumbnail"
     when
@@ -24,4 +24,12 @@ rule "Update community thumbnail"
     then
         Create a thumbnail "community750" of size 750
         Log "Community thumbnail created"
+end
+rule "Create vanity URL on page creation"
+ when
+       A new node is created
+		- the node has the type jnt:page
+    then
+        Create a vanity URL
+        Log "Create a vanity URL"
 end

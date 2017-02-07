@@ -1666,9 +1666,11 @@ div.image a {
     right: 0;
     text-align: center;
     color: inherit;
+    text-shadow: 2px 2px 3px rgb(221, 221, 221);
+    color: #999;
 }
 div.image:hover a {
-    opacity: 1; /* added */
+    opacity: 0.75; /* added */
     top: 0; /* added */
     z-index: 500;
 }
@@ -1678,6 +1680,4 @@ div.image:hover a span {
     left: 0;
     right: 0;
     transform: translateY(-50%);
-    text-shadow: 1px 0px 8px rgb(0,0,0);
-    color: #fff;
 }
