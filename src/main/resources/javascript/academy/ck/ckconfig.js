@@ -39,11 +39,19 @@ CKEDITOR.editorConfig = function (config) {
     config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome,maximize';
     config.codeSnippet_theme = 'googlecode';
     config.codeSnippet_languages = {
-        javascript: 'JavaScript',
-        php: 'PHP',
+        apache: 'Apache conf',
+        bash: 'Bash',
+        css: 'CSS',
+        groovy: 'Groovy',
+        html: 'HTML',
+        ini: 'ini/properties',
         java: 'Java',
-        xml: 'XML',
-        html: 'HTML'
+        javascript: 'JavaScript',
+        json: 'JSON',
+        php: 'PHP',
+        sql:'SQL',
+        xml: 'XML'
+
     };
 
 };
