@@ -135,7 +135,12 @@ if (site != null) {
                                 if(urlMgr.findExistingVanityUrls(url,site.getSiteKey(),session).isEmpty()) {
                                     VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(),locale.toString(),true,true);
                                     if (doIt) {
-                                        urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
+                                        try {
+                                            urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
+                                        } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
+
+                                        }
+
                                     }
                                     logger.info("    [" + locale.toString() + "] [" + contentType + "] " + page.getPath() + " [" + url + "]");
                                     if (hasPendingModification(page)) {
@@ -178,28 +183,33 @@ if (site != null) {
                                             String slugTitle = slugFile(part);
                                             url = url + "/" + slugTitle;
                                         }
-                                        if (urlMgr.findExistingVanityUrls(url, site.getSiteKey(), session).isEmpty()) {
-                                            VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(), locale.toString(), true, true);
-                                            if (doIt) {
-                                                urlMgr.saveVanityUrlMapping(file, vanityUrl, session);
-                                            }
-                                            logger.info("    [" + locale.toString() + "] " + file.getPath() + " [" + url + "]");
-                                            //if (hasPendingModification(file)) {
-                                            //    nodesToManuelPublish.add(file.identifier);
-                                            //} else {
-                                            nodesToAutoPublish.add(file.identifier);
-                                            try {
-                                                JCRNodeWrapper vanityUrlMappingNode = session.getNode(file.getPath() + "/vanityUrlMapping");
-                                                if (vanityUrlMappingNode != null) {
-                                                    for (JCRNodeWrapper vanityURlNode : JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl")) {
-                                                        vanityNodesToAutoPublish.add(vanityURlNode.identifier);
-                                                    }
+                                        try {
+                                            if (urlMgr.findExistingVanityUrls(url, site.getSiteKey(), session).isEmpty()) {
+                                                VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(), locale.toString(), true, true);
+                                                if (doIt) {
+                                                    urlMgr.saveVanityUrlMapping(file, vanityUrl, session);
                                                 }
-                                            } catch (javax.jcr.PathNotFoundException e) {
+                                                logger.info("    [" + locale.toString() + "] " + file.getPath() + " [" + url + "]");
+                                                //if (hasPendingModification(file)) {
+                                                //    nodesToManuelPublish.add(file.identifier);
+                                                //} else {
+                                                nodesToAutoPublish.add(file.identifier);
+                                                try {
+                                                    JCRNodeWrapper vanityUrlMappingNode = session.getNode(file.getPath() + "/vanityUrlMapping");
+                                                    if (vanityUrlMappingNode != null) {
+                                                        for (JCRNodeWrapper vanityURlNode : JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl")) {
+                                                            vanityNodesToAutoPublish.add(vanityURlNode.identifier);
+                                                        }
+                                                    }
+                                                } catch (javax.jcr.PathNotFoundException e) {
 
+                                                }
+                                                //}
                                             }
-                                            //}
+                                        } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException xxx) {
+
                                         }
+
                                     }
                                 }
 
@@ -209,8 +219,8 @@ if (site != null) {
                 }
                 if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
                     if (doIt) {
-                        JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, null)
-                        JCRPublicationService.getInstance().publish(vanityNodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, null)
+                        //JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, null)
+                        //JCRPublicationService.getInstance().publish(vanityNodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, null)
                     };
                     logger.info("");
                     logger.info("Nodes which where republished:")
