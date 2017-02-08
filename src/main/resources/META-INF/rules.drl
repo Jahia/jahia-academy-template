@@ -28,8 +28,6 @@ end
 rule "Create vanity URL on page creation"
  when
        A new node is created
-		- the node has the type jnt:page
     then
         Create a vanity URL
-        Log "Create a vanity URL"
 end

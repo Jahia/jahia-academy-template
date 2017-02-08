@@ -2,11 +2,14 @@ package org.jahia.modules.academy.services;
 
 import org.drools.core.spi.KnowledgeHelper;
 import org.jahia.services.SpringContextSingleton;
-import org.jahia.services.content.*;
+import org.jahia.services.content.JCRContentUtils;
+import org.jahia.services.content.JCRNodeWrapper;
+import org.jahia.services.content.JCRSessionFactory;
+import org.jahia.services.content.JCRSessionWrapper;
 import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.rules.AddedNodeFact;
 
-import org.jahia.services.content.rules.MovedNodeFact;
+import org.jahia.services.render.RenderContext;
 import org.jahia.services.seo.VanityUrl;
 import org.jahia.services.seo.jcr.NonUniqueUrlMappingException;
 import org.jahia.services.seo.jcr.VanityUrlManager;
@@ -14,8 +17,6 @@ import org.jahia.taglibs.jcr.node.JCRTagUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.NodeIterator;
-import javax.jcr.query.Query;
 import java.text.Normalizer;
 import java.util.*;
 
@@ -30,48 +31,57 @@ public class AcademyVanityService {
      * inferior than the thumbnail size, the created thumbnail will have the original width of the image : it will be
      * a duplicate
      *
-     * @param pageNode the AddedNodeFact which called the rule
+     * @param node the AddedNodeFact which called the rule
      * @param drools   drools helper
      * @throws Exception
      */
-    public void addVanity(AddedNodeFact pageNode, KnowledgeHelper drools) throws
+    public void addVanity(AddedNodeFact node, KnowledgeHelper drools) throws
             Exception {
-            createVanity(pageNode.getNode(),pageNode.getLanguage());
+            createVanity(node.getNode(),node.getLanguage());
     }
 
-    private void createVanity(JCRNodeWrapper page, String lang) throws Exception {
-        JCRSiteNode site = page.getResolveSite();
+    private void createVanity(JCRNodeWrapper node, String lang) throws Exception {
+        JCRSiteNode site = node.getResolveSite();
         String siteKey = site.getSiteKey();
-        List<JCRNodeWrapper> parentNodes = JCRTagUtils.getParentsOfType(page, "jmix:navMenuItem");
-        String url = "/" + slug(page.getDisplayableName());
-        Iterator<JCRNodeWrapper> parentNodesIterator = parentNodes.iterator();
-        JCRSessionWrapper session = JCRSessionFactory.getInstance().getCurrentUserSession();
+        RenderContext context = new org.jahia.services.render.RenderContext(null,null,null);
+        context.setSite(site);
+        if (JCRContentUtils.isADisplayableNode(node,context)) {
+            logger.debug("Try to create a vanity for node " + node.getPath());
+            List<JCRNodeWrapper> parentNodes = JCRTagUtils.getParentsOfType(node, "jmix:navMenuItem");
+            String url = "/" + slug(node.getDisplayableName());
+            Iterator<JCRNodeWrapper> parentNodesIterator = parentNodes.iterator();
+            JCRSessionWrapper session = JCRSessionFactory.getInstance().getCurrentUserSession();
 
-        while (parentNodesIterator.hasNext()) {
-            JCRNodeWrapper parentPage = parentNodesIterator.next();
-            // skip the home (the last one)
-            if (parentNodesIterator.hasNext()) {
-                String pageTitle = parentPage.getDisplayableName();
-                String slugTitle = slug(pageTitle);
-                url = "/" + slugTitle + url;
+            while (parentNodesIterator.hasNext()) {
+                JCRNodeWrapper parentPage = parentNodesIterator.next();
+                // skip the home (the last one)
+                if (parentNodesIterator.hasNext()) {
+                    String pageTitle = parentPage.getDisplayableName();
+                    String slugTitle = slug(pageTitle);
+                    url = "/" + slugTitle + url;
+                }
             }
-        }
-        if (!"en".equals(lang)) {
-            url = "/" + lang + url;
+            if (!"en".equals(lang)) {
+                url = "/" + lang + url;
+            }
+
+            VanityUrl vanityUrl = new VanityUrl(url, siteKey, lang, true, true);
+            try {
+                VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
+                if (urlMgr.findExistingVanityUrls(url, siteKey, session).isEmpty()) {
+                    urlMgr.saveVanityUrlMapping(node, vanityUrl, session);
+                    logger.debug("addVanity " + url + " for page " + node.getPath());
+                } else {
+                    logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> already exist");
+                }
+            } catch (NonUniqueUrlMappingException nonUniqueUrlMappingException) {
+                logger.error(nonUniqueUrlMappingException.getMessage(), nonUniqueUrlMappingException);
+            }
+        } else {
+            logger.debug("Could not create a vanity for node " + node.getPath() + " (not a displayableNode)");
         }
 
-        VanityUrl vanityUrl = new VanityUrl(url, siteKey, lang, true, true);
-        try {
-            VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
-            if (urlMgr.findExistingVanityUrls(url, siteKey, session).isEmpty()) {
-                urlMgr.saveVanityUrlMapping(page, vanityUrl, session);
-                logger.debug("addVanity " + url + " for page " + page.getPath());
-            } else {
-                logger.debug("could not add vanity " + url + " for page " + page.getPath() + " -> already exist");
-            }
-        } catch (NonUniqueUrlMappingException nonUniqueUrlMappingException) {
-            logger.error(nonUniqueUrlMappingException.getMessage(), nonUniqueUrlMappingException);
-        }
+
     }
 
     private String slug(final String str) {
