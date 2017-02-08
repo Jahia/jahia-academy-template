@@ -17,8 +17,8 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
     <c:set var="pageTitle"
            value="${mainResourceNode.displayableName}"/>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:alternateTitle')}">
@@ -87,6 +87,16 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
+        body {
+            background-color: white;
+        }
+        amp-img {
+            background-color: gray;
+            border: 1px solid black;
+        }
+    </style>
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-ui.min.js"/>
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
