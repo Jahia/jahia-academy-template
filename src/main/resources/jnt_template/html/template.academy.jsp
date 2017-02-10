@@ -18,6 +18,12 @@
 <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
 <head>
     <meta charset="utf-8">
+    <c:if test="${! renderContext.liveMode}">
+        <meta name="robots" content="noindex">
+    </c:if>
+    <c:if test="${serverName ne 'academy.jahia.com'}">
+        <meta name="robots" content="noindex">
+    </c:if>
     <c:set var="pageTitle"
            value="${mainResourceNode.displayableName}"/>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:alternateTitle')}">
@@ -86,6 +92,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <template:addResources type="css" resources="bootstrap.min.css"/>
+    <template:addResources type="css" resources="bootstrapXl.css"/>
+    <template:addResources type="css" resources="foundation.css"/>
+    <template:addResources type="css" resources="clipboard.css"/>
+    <template:addResources type="css" resources="font-awesome.min.css"/>
+    <template:addResources type="css" resources="academy.css"/>
+
+    <template:addResources type="css" resources="ekko-lightbox.min.css"/>
+    <c:if test="${renderContext.editMode}">
+        <template:addResources type="css" resources="academy.edit.css"/>
+    </c:if>
+
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-ui.min.js"/>
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
@@ -97,16 +116,7 @@
     <template:addResources type="javascript" resources="jQuery.headroom.js"/>
     <template:addResources type="javascript" resources="readingTime.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
-    <template:addResources type="css" resources="bootstrap.min.css" media="screen,print"/>
-    <template:addResources type="css" resources="bootstrapXl.css" media="screen,print"/>
-    <template:addResources type="css" resources="foundation.css" media="screen,print"/>
-    <template:addResources type="css" resources="clipboard.css" media="screen,print"/>
-    <template:addResources type="css" resources="font-awesome.min.css" media="screen,print"/>
-    <template:addResources type="css" resources="academy.css" media="screen,print"/>
-    <template:addResources type="css" resources="ekko-lightbox.min.css" media="screen"/>
-    <c:if test="${renderContext.editMode}">
-        <template:addResources type="css" resources="academy.edit.css"/>
-    </c:if>
+
     <link rel="shortcut icon" href="${url.currentModule}/img/favicon/favicon.ico" type="image/x-icon">
 
     <link rel="apple-touch-icon" sizes="57x57" href="${url.currentModule}/img/favicon/apple-icon-57x57.png">
