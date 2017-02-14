@@ -1703,3 +1703,29 @@ div.image:hover a span {
     float:none;
 }
 
+.alert {
+    padding: 15px 20px;
+    margin: 20px 0;
+    width: 100%;
+    border-radius:0;
+}
+.alert-success {
+    color: #179f24;
+    background: #f5fff8;
+    border: 1px dashed #179f24;
+}
+.alert-info {
+    color: #00a0e3;
+    background: #f5fdff;
+    border: 1px dashed #00a0e3;
+}
+.alert-warning {
+    color: #da9215;
+    background: #fffcf5;
+    border: 1px dashed #da9215;
+}
+.alert-danger {
+    color: #cd3f2f;
+    background: #fff6f5;
+    border: 1px dashed #cd3f2f;
+}
