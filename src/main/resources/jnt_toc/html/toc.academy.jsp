@@ -125,7 +125,22 @@
     </c:choose>
 
     <a href="#top" data-scrollto="#top" class="back-to-top light ${currentPageIndex + 1 < fn:length(sisterPages) ? 'notopmargin' : ''}"> Back to top </a>
-
+    <a href="#" id="incfont">A+</a>
+    <a href="#" id="decfont">A-</a>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#incfont').click(function(){
+                curSize= parseInt($('.document-content').css('font-size')) + 2;
+                if(curSize<=20)
+                    $('.document-content').css('font-size', curSize);
+            });
+            $('#decfont').click(function(){
+                curSize= parseInt($('.document-content').css('font-size')) - 2;
+                if(curSize>=12)
+                    $('.document-content').css('font-size', curSize);
+            });
+        });
+    </script>
 
 </nav>
 

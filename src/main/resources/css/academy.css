@@ -207,7 +207,7 @@ body.home {
     position: absolute;
     bottom: 0;
     /* Set the fixed height of the footer here */
-    height:140px;
+    min-height:140px;
     width: 100%;
     margin-top: 20px;
 }
@@ -1728,4 +1728,15 @@ div.image:hover a span {
     color: #cd3f2f;
     background: #fff6f5;
     border: 1px dashed #cd3f2f;
+}
+a#incfont, a#decfont {
+    color: #ccc;
+    padding-left: 20px;
+    font-size: 22px;
+    font-style: italic;
+    font-family: initial;
+}
+a#decfont {
+    padding-left: 5px;
+    font-size: 16px;
 }
