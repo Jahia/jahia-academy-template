@@ -21,7 +21,7 @@
     <c:if test="${! renderContext.liveMode}">
         <meta name="robots" content="noindex">
     </c:if>
-    <c:if test="${serverName ne 'academy.jahia.com'}">
+    <c:if test="${pageContext.request.serverName ne 'academy.jahia.com'}">
         <meta name="robots" content="noindex">
     </c:if>
     <c:set var="pageTitle"
