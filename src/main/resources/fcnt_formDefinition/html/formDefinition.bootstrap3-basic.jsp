@@ -15,8 +15,18 @@
 <ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && vm.currentForm.progressBar.position === 'top' || vm.currentForm.progressBar.position === 'both'"
                  form="vm.currentForm" current-step="vm.currentStep"></ff-progress-bar>
 
-<div class="row" ng-if="vm.getFormController().$submitted">
-    <div class="col-sm-12 text-center"
+<%--Preload Message--%>
+<div class="" ng-if="vm.showPreloadMessage">
+    <div class=" muted">
+        <strong>
+            {{vm.currentForm.afterSubmissionText}}
+        </strong>
+    </div>
+</div>
+
+<%--After submission callbacks and message--%>
+<div class="" ng-if="vm.getFormController().$submitted">
+    <div class=""
          ng-if="!vm.displaySubmissionText && (!vm.runCallbacks && vm.currentForm.callbacks.displayTemplates)
          || !vm.displaySubmissionText && (vm.runCallbacks && !vm.currentForm.callbacks.displayTemplates)
          || !vm.displaySubmissionText && vm.currentForm.callbacks === null">
@@ -31,10 +41,8 @@
                  display-templates="vm.currentForm.callbacks.displayTemplates">
     </ff-callback>
 
-    <div class="col-sm-12 text-center muted" ng-if="vm.displaySubmissionText && !vm.currentForm.callbacks.displayTemplates">
-        <strong>
-            {{vm.currentForm.afterSubmissionText}}
-        </strong>
+    <div class=" muted" ng-if="vm.displaySubmissionText">
+        <strong ng-bind-html="vm.currentForm.afterSubmissionText"></strong>
     </div>
 </div>
 

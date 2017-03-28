@@ -18,7 +18,7 @@
            id="{{input.name}}"
            ng-model="input.value"
            ng-required="isRequired()"
-           ng-readonly="readOnly"
+           ng-readonly="readOnly()"
            ff-validations
            ff-logic>
 
