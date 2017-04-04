@@ -67,6 +67,11 @@
                                    jcr:primaryType="bootstrap3nt:columns"
                                    sectionElement="div"
                                    sectionId="documentation-header"/>
+                                <feedback j:level="0" j:classname="hidden"
+                                          j:skin="skins.custom"
+                                          jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                          j:limitedAbsoluteAreaEdit="false"
+                                          jcr:primaryType="jnt:absoluteArea"/>
                             </pagecontent>
                         </home>
                         <footer jcr:primaryType="jnt:contentList">
