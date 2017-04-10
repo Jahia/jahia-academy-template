@@ -28,12 +28,10 @@
                         </themes>
                     </files>
                     <contents jcr:primaryType="jnt:contentFolder"/>
-                    <base j:theme="/modules/jahia-academy-template/templates/files/themes/default"
-                  j:view="academy"
+                    <base j:view="academy"
                   jcr:mixinTypes="jmix:theme"
                   jcr:primaryType="jnt:template">
-                        <home j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                     jcr:primaryType="jnt:pageTemplate">
+                        <home jcr:primaryType="jnt:pageTemplate">
                             <j:translation_en jcr:language="en"
                                     jcr:mixinTypes="mix:title"
                                     jcr:primaryType="jnt:translation"
@@ -67,11 +65,12 @@
                                    jcr:primaryType="bootstrap3nt:columns"
                                    sectionElement="div"
                                    sectionId="documentation-header"/>
-                                <feedback j:level="0" j:classname="hidden"
-                                          j:skin="skins.custom"
-                                          jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                          j:limitedAbsoluteAreaEdit="false"
-                                          jcr:primaryType="jnt:absoluteArea"/>
+                                <feedback j:classname="hidden"
+                               j:level="0"
+                               j:limitedAbsoluteAreaEdit="false"
+                               j:skin="skins.custom"
+                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                               jcr:primaryType="jnt:absoluteArea"/>
                             </pagecontent>
                         </home>
                         <footer jcr:primaryType="jnt:contentList">
@@ -89,9 +88,7 @@
                                     jcr:mixinTypes="mix:title"
                                     jcr:primaryType="jnt:translation"
                                     jcr:title="subpage"/>
-                            <documentation j:hiddenTemplate="false"
-                                 j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                                 jcr:primaryType="jnt:pageTemplate">
+                            <documentation j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
                                 <j:translation_en jcr:language="en"
                                        jcr:mixinTypes="mix:title"
                                        jcr:primaryType="jnt:translation"
@@ -107,7 +104,6 @@
                                         <document-content-side jcr:primaryType="jnt:contentList">
                                             <table-of-content depth="2"
                                                 heading="h2"
-                                                j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                                 j:view="academy"
                                                 jcr:mixinTypes="jmix:renderable"
                                                 jcr:primaryType="jnt:toc"/>
@@ -116,8 +112,7 @@
                                                   j:skin="skins.custom"
                                                   jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                   jcr:primaryType="jnt:contentList">
-                                            <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
-                                              jcr:primaryType="jacademy:documentHeader"/>
+                                            <documentheader jcr:primaryType="jacademy:documentHeader"/>
                                             <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
                                             <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
@@ -129,9 +124,7 @@
                                     </document-content>
                                 </pagecontent>
                             </documentation>
-                            <product-home j:hiddenTemplate="false"
-                                j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                                jcr:primaryType="jnt:pageTemplate">
+                            <product-home j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
                                 <j:translation_en jcr:language="en"
                                        jcr:mixinTypes="mix:title"
                                        jcr:primaryType="jnt:translation"
@@ -238,8 +231,7 @@
                                         <main-main jcr:primaryType="jnt:contentList">
                                             <search-form j:view="academy"
                                            jcr:mixinTypes="jmix:renderable"
-                                           jcr:primaryType="jnt:simpleSearchForm"
-                                           result="/modules/jahia-academy-template/home/search">
+                                           jcr:primaryType="jnt:simpleSearchForm">
                                                 <j:translation_en jcr:language="en"
                                                    jcr:mixinTypes="mix:title"
                                                    jcr:primaryType="jnt:translation"
@@ -268,32 +260,29 @@
                             </free>
                         </subpage>
                     </base>
-                    <content-template j:applyOn="jnt:content"
-                              j:hiddenTemplate="true"
-                              j:priority="1"
-                              j:view="jahia-academy-template"
-                              jcr:primaryType="jnt:contentTemplate">
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <documentheader jcr:primaryType="jacademy:documentHeader"/>
-                            <document-area jcr:primaryType="jnt:area"/>
-                        </pagecontent>
-                    </content-template>
-                </templates>
-                
-                <home j:isHomePage="true"
-               j:templateName="home"
-               jcr:primaryType="jnt:page">
-                    <j:translation_en jcr:language="en"
-                              jcr:mixinTypes="mix:title"
-                              jcr:primaryType="jnt:translation"
-                              jcr:title="Home"/>
-                    <search j:templateName="search-results" jcr:primaryType="jnt:page">
+                    <doc j:applyOn="jacademy:document"
+                 j:defaultTemplate="true"
+                 j:hiddenTemplate="false"
+                 j:view="amp"
+                 jcr:mixinTypes="jmix:vanityUrlMapped"
+                 jcr:primaryType="jnt:contentTemplate">
                         <j:translation_en jcr:language="en"
                                  jcr:mixinTypes="mix:title"
                                  jcr:primaryType="jnt:translation"
-                                 jcr:title="Search"/>
-                    </search>
-                </home>
+                                 jcr:title="Document AMP"/>
+                        <vanityUrlMapping jcr:primaryType="jnt:vanityUrls">
+                            <document-amp j:active="true"
+                                j:default="true"
+                                j:url="/document-amp"
+                                jcr:language="en"
+                                jcr:primaryType="jnt:vanityUrl"/>
+                        </vanityUrlMapping>
+                        <pagecontent jcr:primaryType="jnt:contentList">
+                            <main-resource-display j:mainResourceView="amp" jcr:primaryType="jnt:mainResourceDisplay"/>
+                        </pagecontent>
+                    </doc>
+                </templates>
+                
             </jahia-academy-template>
     </modules>
 </content>

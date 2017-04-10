@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import java.text.Normalizer;
 import java.util.*;
-
 /**
  * Service allowing to create a VanityUrl on page creation page
  */
@@ -27,9 +26,7 @@ public class AcademyVanityService {
 
     private static final Logger logger = LoggerFactory.getLogger(AcademyVanityService.class);
     /**
-     * Will create a thumbnail for the giving image and the specified thumbnailSize. If the original image's width is
-     * inferior than the thumbnail size, the created thumbnail will have the original width of the image : it will be
-     * a duplicate
+     * Will create a SEO for the giving path
      *
      * @param node the AddedNodeFact which called the rule
      * @param drools   drools helper
