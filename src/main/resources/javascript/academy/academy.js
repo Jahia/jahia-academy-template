@@ -47,7 +47,10 @@ $(document).on('click', 'a[data-scrollto]', function (event) {
     return false;
 });
 
-
+if(window.location.hash) {
+    var y = $(window).scrollTop();  //your current y position on the page
+    $(window).scrollTop(y-180);
+}
 
 $(document).ready(function ($) {
     $('a[href^="http://"]').attr('target','_blank');
