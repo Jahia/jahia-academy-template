@@ -1385,6 +1385,7 @@ a.back-to-top.sister {
 .btn-clipboard {
     top: 0;
     right: 0;
+    border: 1px solid #ccc;
     background-color: #ccc;
     opacity: .75;
 }
@@ -1719,15 +1720,15 @@ div.image:hover a span {
     background: #f5fdff;
     border: 1px dashed #00a0e3;
 }
-.alert-warning {
-    color: #da9215;
-    background: #fffcf5;
-    border: 1px dashed #da9215;
-}
 .alert-danger {
     color: #cd3f2f;
     background: #fff6f5;
     border: 1px dashed #cd3f2f;
+}
+.alert-warning {
+    color: #da9215;
+    background: #fffcf5;
+    border: 1px dashed #da9215;
 }
 a#incfont, a#decfont {
     color: #ccc;
@@ -1739,4 +1740,24 @@ a#incfont, a#decfont {
 a#decfont {
     padding-left: 5px;
     font-size: 16px;
+}
+
+td.hljs-ln-numbers {
+    border-right: 1px solid #ccc;
+    color: #ccc;
+}
+.hljs-ln-line.hljs-ln-n {
+    padding-right: 8px;
+    text-align: right;
+}
+
+td.hljs-ln-code {
+    padding-left: 10px !important;
+}
+.hljs {
+    padding: 0 0.5em;
+}
+pre {
+    padding:5px;
+    overflow-x: hidden !important;
 }

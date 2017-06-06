@@ -35,9 +35,10 @@
                 target: function (trigger) {
                     return trigger.parentNode.nextElementSibling;
                 }
-            })            //$('code.hljs').each(function(i, block) {
-            //    hljs.lineNumbersBlock(block);
-            //});
+            })
+            $('code.hljs').each(function(i, block) {
+                hljs.lineNumbersBlock(block);
+            });
         });
     </script>
 </template:addResources>
