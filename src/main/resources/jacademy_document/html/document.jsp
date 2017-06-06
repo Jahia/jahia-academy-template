@@ -44,7 +44,7 @@
 </template:addResources>
 <c:set var="textContent" value="${currentNode.properties.textContent.string}"/>
 <div id="toc_${currentNode.identifier}" class="document-content">
-    ${textContent}
+    ${fn:replace(textContent,'<code class="language-','<code class="')}
     <c:if test="${empty textContent}">
         <c:set var="pdfNode" value="${currentNode.properties.pdf.node}"/>
         <c:if test="${! empty pdfNode}">

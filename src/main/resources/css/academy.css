@@ -1753,6 +1753,7 @@ td.hljs-ln-numbers {
 
 td.hljs-ln-code {
     padding-left: 10px !important;
+    width: 100%;
 }
 .hljs {
     padding: 0 0.5em;
@@ -1760,4 +1761,10 @@ td.hljs-ln-code {
 pre {
     padding:5px;
     overflow-x: hidden !important;
+}
+table.hljs-ln {
+    width: 100%;
+}
+.hljs-ln tr:hover {
+    background-color: #e9e9e9;
 }
