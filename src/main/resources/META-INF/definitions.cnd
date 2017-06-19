@@ -47,6 +47,12 @@
 [jacademy:productCard] > jnt:content, mix:title, jacademix:textContent, jacademix:link
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
 
+
+[jacademy:boost] mixin
+ extends = jacademix:document
+ itemtype = metadata
+ - boost (boolean) = false
+
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
 
