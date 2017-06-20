@@ -62,7 +62,7 @@
 </c:choose>
 
 
-<c:if test="${! isAcurrentVersion}">
+<c:if test="${! isAcurrentVersion && hasFindCurrentVersion}">
     <div class="alert alert-warning" role="alert">
         <fmt:message key="jacademy_checkCurrentVersion.alert">
             <fmt:param value="${currentVersionNodeUrl}"/>
