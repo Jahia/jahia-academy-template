@@ -18,7 +18,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
     JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
         @Override
         Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
-            def q = "select * from [jmix:vanityUrlMapped] where isdescendantnode('/sites/academy')";
+            def q = "select * from [jmix:vanityUrlMapped] where isdescendantnode('/sites/academy/home/documentation/marketing-factory/17')";
 
             logger.info("Processing " + q)
             NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
@@ -28,7 +28,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                 node.removeMixin("jmix:vanityUrlMapped");
             }
 
-            q = "select * from [jnt:vanityUrls] where isdescendantnode('/sites/academy')";
+            q = "select * from [jnt:vanityUrls] where isdescendantnode('/sites/academy/home/documentation/marketing-factory/17')";
 
             logger.info("Processing " + q)
             iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();

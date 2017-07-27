@@ -53,8 +53,14 @@
  itemtype = metadata
  - boost (boolean) = false
 
+[jacademix:specificVersion] mixin
+ extends = jacademix:document
+ itemtype = content
+
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
+ - fromVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable
+ - toVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable
 
 [jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component, jacademix:homeComponent
 

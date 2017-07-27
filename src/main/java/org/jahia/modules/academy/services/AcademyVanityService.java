@@ -17,6 +17,7 @@ import org.jahia.taglibs.jcr.node.JCRTagUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.RepositoryException;
 import java.text.Normalizer;
 import java.util.*;
 
@@ -99,8 +100,12 @@ public class AcademyVanityService {
                 try {
                     VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
                     if (urlMgr.findExistingVanityUrls(url, siteKey, session).isEmpty()) {
-                        urlMgr.saveVanityUrlMapping(node, vanityUrl, session);
-                        logger.debug("addVanity " + url + " for page " + node.getPath());
+                        try {
+                            urlMgr.saveVanityUrlMapping(node, vanityUrl, session);
+                            logger.debug("addVanity " + url + " for page " + node.getPath());
+                        } catch (RepositoryException e) {
+                            logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> " + e.getMessage());
+                        }
                     } else {
                         logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> already exist");
                     }

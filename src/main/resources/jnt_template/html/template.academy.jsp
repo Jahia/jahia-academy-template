@@ -90,6 +90,17 @@
     <meta property="og:image:width" content="${imageWidth}"/>
     <meta property="og:image:height" content="${imageHeight}"/>
 
+    <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
+        <c:if test="${mainResourceNode.properties['j:templateName'].string eq 'documentation'}">
+            <c:url var="ampUrl" value="https://mercury.postlight.com/amp">
+                <c:param name="url" value="${serverUrl}${currentPageUrl}"/>
+            </c:url>
+
+            <link rel="amphtml" href="${ampUrl}">
+        </c:if>
+    </c:if>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 

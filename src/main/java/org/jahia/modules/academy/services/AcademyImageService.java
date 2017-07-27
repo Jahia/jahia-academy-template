@@ -68,4 +68,5 @@ public class AcademyImageService {
 			logger.error(e.getMessage(),e);
 		}
 	}
+
 }

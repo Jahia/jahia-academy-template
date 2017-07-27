@@ -123,8 +123,10 @@ if (site != null) {
                                     if (parentPage != null) {
                                         if (index !=  children.size()-1) {
                                             String pageTitle = parentPage.getDisplayableName();
-                                            String slugTitle = slug(pageTitle);
-                                            url = "/" + slugTitle + url;
+                                            if (pageTitle != null) {
+                                                String slugTitle = slug(pageTitle);
+                                                url = "/" + slugTitle + url;
+                                            }
                                         }
                                     }
                                 }

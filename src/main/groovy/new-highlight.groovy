@@ -26,7 +26,8 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                 final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
                 String textContent = node.getPropertyAsString('textContent');
                 if (textContent != null) {
-                    String textContent2 = textContent.replaceAll("<code class=\"language-", "<code class=\"");
+                    //String textContent2 = textContent.replaceAll("<code class=\"language-", "<code class=\"");
+                    String textContent2 = textContent.replaceAll(" dir=\"ltr\"", "");
                     if (!textContent.equals(textContent2)) {
                         log.info(node.path);
                         node.setProperty('textContent', textContent2);
