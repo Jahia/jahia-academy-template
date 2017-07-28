@@ -28,7 +28,7 @@
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
-[jacademix:document] > jmix:droppableContent, mix:title mixin
+[jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category', sort]) multiple facetable
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - author (string) = 'The Jahia Team'

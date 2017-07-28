@@ -1,143 +1,89 @@
 import org.jahia.api.Constants
-import org.jahia.services.SpringContextSingleton
-import org.jahia.services.content.JCRCallback
-import org.jahia.services.content.JCRNodeWrapper
-import org.jahia.services.content.JCRPublicationService
-import org.jahia.services.content.JCRSessionWrapper
-import org.jahia.services.content.JCRTemplate
-import org.jahia.services.content.JCRValueWrapper
-import org.jahia.services.content.PublicationInfo
-import org.jahia.services.seo.VanityUrl
-import org.jahia.services.seo.jcr.VanityUrlManager
+import org.jahia.services.content.*
 import org.jahia.services.sites.JahiaSite
 import org.jahia.taglibs.jcr.node.JCRTagUtils
-import java.text.Normalizer
 
 import javax.jcr.NodeIterator
 import javax.jcr.RepositoryException
 import javax.jcr.query.Query
 
-// set doIt to true to execute (if false, nothing is changed)
-boolean doIt = false;
-
-// enf of configutation
-// ----------------------------------------------------------------------------
-Set<String> nodesToAutoPublish = new HashSet<String>();
-Set<String> nodesToManuelPublish = new HashSet<String>();
-
-Set<String> currentVersionPath = new HashSet<String>();
-
-
-Collection contentTypes = new HashSet<String>();
-
 def logger = log;
 
+boolean doIt = false;
+
+
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("academy");
-if (site != null) {
-    for (Locale locale : site.getLanguagesAsLocales()) {
 
-        if ("en".equals(locale.toString())) {
+Set<String> nodesToAutoPublish = new HashSet<String>();
 
-            JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
-                @Override
-                Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
+for (Locale locale : site.getLanguagesAsLocales()) {
+    JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
+        @Override
+        Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
+            def q = "SELECT * FROM [jacademix:isVersionPage]";
 
-                    // get all current versions;
-                    String stmt = "select * from [jacademix:isVersionPage]";
-                    NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
-                    while (iterator.hasNext()) {
-                        JCRNodeWrapper versionPage = (JCRNodeWrapper) iterator.nextNode();
-                        String version = versionPage.getPropertyAsString("version");
-                        if ("current".equals(version)) {
-                            currentVersionPath.add(versionPage.getPath());
-                        }
-
-
-                    }
-
-                    // get all version page
-                    stmt = "select * from [jacademix:document]";
-                    iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
-                    while (iterator.hasNext()) {
-                        final JCRNodeWrapper documentNode = (JCRNodeWrapper) iterator.nextNode();
-                        boolean isCurrent = false;
-                        Iterator currentVersionPathIterator = currentVersionPath.iterator();
-                        while (currentVersionPathIterator.hasNext()) {
-                            String currentPath = currentVersionPathIterator.next();
-                            if (documentNode.getPath().contains(currentPath)) {
-                                isCurrent = true;
-                            }
-                        }
+            NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
+            while (iterator.hasNext()) {
+                final JCRNodeWrapper versionNode = (JCRNodeWrapper) iterator.nextNode();
+                String version = versionNode.getPropertyAsString("version");
+                boolean isCurrent = "current".equals(version);
+                def q2 = "SELECT * FROM [jacademix:document] WHERE ISDESCENDANTNODE ('" + versionNode.getPath() + "')";
+                NodeIterator iterator2 = session.getWorkspace().getQueryManager().createQuery(q2, Query.JCR_SQL2).execute().getNodes();
+                while (iterator2.hasNext()) {
+                    final JCRNodeWrapper documentNode = (JCRNodeWrapper) iterator2.nextNode();
+                    boolean canPublish = hasPendingModification(documentNode);
+                    if (JCRTagUtils.isNodeType(documentNode, 'jacademy:boost')) {
                         if (isCurrent) {
-                            if (documentNode.isNodeType("jacademy:boost")) {
-                                boolean boost = documentNode.getProperty("boost").getBoolean();
-                                if (!boost) {
-                                    if (hasPendingModification(documentNode)) {
-                                        nodesToManuelPublish.add(documentNode.identifier);
-                                    } else {
-                                        nodesToAutoPublish.add(documentNode.identifier);
-                                    }
-                                    logger.info("+ " + documentNode.getPath());
-                                    documentNode.setProperty("boost", true);
-                                }
-                            } else {
-                                if (hasPendingModification(documentNode)) {
-                                    nodesToManuelPublish.add(documentNode.identifier);
-                                } else {
-                                    nodesToAutoPublish.add(documentNode.identifier);
-                                }
-                                logger.info("+ " + documentNode.getPath());
-                                documentNode.addMixin("jacademy:boost");
+                            boolean boost = false;
+                            JCRPropertyWrapper property = documentNode.getProperty("boost");
+                            if (property != null) {
+                                boost = property.getBoolean();
+                            }
+                            if (! boost) {
                                 documentNode.setProperty("boost", true);
-
+                                if (canPublish) {
+                                    nodesToAutoPublish.add(documentNode.getIdentifier());
+                                }
+                                logger.info("Add boost for " + documentNode.getPath());
                             }
                         } else {
-                            if (documentNode.isNodeType("jacademy:boost")) {
-                                if (hasPendingModification(documentNode)) {
-                                    nodesToManuelPublish.add(documentNode.identifier);
-                                } else {
-                                    nodesToAutoPublish.add(documentNode.identifier);
-                                }
-                                logger.info("- " + documentNode.getPath());
-                                documentNode.removeMixin("jacademy:boost");
+                            documentNode.removeMixin('jacademy:boost');
+                            if (canPublish) {
+                                nodesToAutoPublish.add(documentNode.getIdentifier());
                             }
-
+                            logger.info("Remove boost for " + documentNode.getPath());
                         }
-
-                    }
-                    if (doIt) {
-                        session.save();
-                    }
-
-
-                    if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
-                        if (doIt) {
-                            JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, "Change boost status")
-                        };
-                        logger.info("");
-                        logger.info("Nodes which where republished:")
-                        for (String identifier : nodesToAutoPublish) {
-                            logger.warn("   " + session.getNodeByIdentifier(identifier).getPath());
+                    } else {
+                        if (isCurrent) {
+                            documentNode.addMixin('jacademy:boost');
+                            documentNode.setProperty("boost", true);
+                            if (canPublish) {
+                                nodesToAutoPublish.add(documentNode.getIdentifier());
+                            }
+                            logger.info("Add boost + mixin for " + documentNode.getPath());
                         }
                     }
-                    if (CollectionUtils.isNotEmpty(nodesToManuelPublish)) {
-
-                        logger.info("");
-                        logger.info("Nodes publish manually:")
-                        for (String identifier : nodesToManuelPublish) {
-                            logger.warn("   " + identifier + " " + session.getNodeByIdentifier(identifier).getPath()) + "/vanityUrlMapping/*";
-                        }
-                    }
-                    if (doIt) {
-                        session.save();
-                    }
-                    return null;
                 }
-            });
+            }
+            if (doIt) {
+                session.save();
+            }
+            if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
+                if (doIt) {
+                    JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, false, "Change boost value")
+                };
+                logger.info("");
+                logger.info("Nodes which where republished:")
+                for (String identifier : nodesToAutoPublish) {
+                    logger.warn("   " + session.getNodeByIdentifier(identifier).getPath());
+                }
+            }
+            return null;
         }
     }
+    );
 }
-logger.info("End of set-boost script");
+
 
 public boolean hasPendingModification(final JCRNodeWrapper node) throws RepositoryException {
     try {
