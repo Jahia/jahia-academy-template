@@ -59,8 +59,8 @@
 
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
  - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
- - fromVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable
- - toVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable
+ - fromVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable hidden
+ - toVersion (weakreference,choicelist[script=getVersions.groovy]) multiple facetable hidden
 
 [jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component, jacademix:homeComponent
 

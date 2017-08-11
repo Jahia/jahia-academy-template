@@ -15,6 +15,37 @@ CKEDITOR.addTemplates('default',
                 image: 'jacademix_component.png',
                 description: 'This template can be used to add a button',
                 html: '<p><a class="btn btn-primary" href="#" title="Continue reading">Continue reading&nbsp;<span class="fa fa-arrow-right"></span></a></p>'
+            },
+            {
+                title: 'Stack table',
+                image: 'jacademix_component.png',
+                description: 'This template can be used to add a stackable table',
+                html: '<table class="table stack">\n' +
+                '    <thead>\n' +
+                '        <tr>\n' +
+                '            <th>Col 1</th>\n' +
+                '            <th>Col 2</th>\n' +
+                '            <th>Col 3</th>\n' +
+                '        </tr>\n' +
+                '    </thead>\n' +
+                '    <tbody>\n' +
+                '        <tr>\n' +
+                '            <td><strong>Value 1.1</strong></td>\n' +
+                '            <td>Value 1.2</td>\n' +
+                '            <td>Value 1.3</td>\n' +
+                '        </tr>\n' +
+                '        <tr>\n' +
+                '            <td><strong>Value 2.1</strong></td>\n' +
+                '            <td>Value 2.2</td>\n' +
+                '            <td>Value 2.3</td>\n' +
+                '        </tr>\n' +
+                '        <tr>\n' +
+                '            <td><strong>Value 3.1</strong></td>\n' +
+                '            <td>Value 3.2</td>\n' +
+                '            <td>Value 3.3</td>\n' +
+                '        </tr>\n' +
+                '    </tbody>\n' +
+                '</table>'
             }
         ]
     });

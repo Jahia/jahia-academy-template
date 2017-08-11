@@ -68,5 +68,26 @@ $(document).ready(function ($) {
         "offset": 180,
         "tolerance": 5
     });
+    /*var stretchCounter = 0;
+    $( "table.stack" ).each(function( index ) {
+        stretchCounter++;
+        var id = 'stack'+stretchCounter;
+        var dashId = '#stack'+stretchCounter;
+        $( this ).attr('id',id);
+        var headertext = [];
+        var headers = document.querySelectorAll(dashId+" th");
+        var tablebody = document.querySelector(dashId+" tbody");
+
+        for(var i = 0; i < headers.length; i++) {
+            var current = headers[i];
+            headertext.push(current.textContent.replace(/\r?\n|\r/,""));
+        }
+        for (var i = 0, row; row = tablebody.rows[i]; i++) {
+            for (var j = 0, col; col = row.cells[j]; j++) {
+                col.setAttribute("data-th", headertext[j]);
+            }
+        }
+    });*/
+    $('table.stack').cardtable();
 });
 

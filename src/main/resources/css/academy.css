@@ -1768,3 +1768,22 @@ table.hljs-ln {
 .hljs-ln tr:hover {
     background-color: #e9e9e9;
 }
+
+
+.stacktable {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-bottom:0;
+}
+div.stacktables :last-child  {
+    border-bottom-width:0;
+}
+.stacktable .st-key,.stacktable .st-val,.stacktable .st-head-row-main { border-top-width:0; }
+
+.stacktable.large-only { display: table; }
+.stacktable.small-only { display: none; }
+
+@media (max-width: 800px) {
+    .stacktable.large-only { display: none; }
+    .stacktable.small-only { display: table; }
+}

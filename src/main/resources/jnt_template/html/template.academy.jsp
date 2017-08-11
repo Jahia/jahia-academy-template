@@ -127,6 +127,7 @@
     <template:addResources type="javascript" resources="headroom.min.js"/>
     <template:addResources type="javascript" resources="jQuery.headroom.js"/>
     <template:addResources type="javascript" resources="readingTime.js"/>
+    <template:addResources type="javascript" resources="stacktable.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
 
     <link rel="shortcut icon" href="${url.currentModule}/img/favicon/favicon.ico" type="image/x-icon">
