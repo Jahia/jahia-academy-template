@@ -60,6 +60,14 @@
                         <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
                     </fmt:message>
                 </h2>
+                <c:if test="${jcr:isNodeType(documentNode, 'jmix:tagged')}">
+                    <c:set var="tags" value="${documentNode.properties['j:tagList']}"/>
+
+                    <c:forEach items="${tags}" var="tag" varStatus="status">
+                        <c:if test="${status.first}"><i class="fa fa-tags fa-fw" aria-hidden="true"></i>&nbsp;</c:if>${tag.string}
+                        <c:if test="${! status.last}">, </c:if>
+                    </c:forEach>
+                </c:if>
                     <%--
                     <h2 class="doc-child author">
                         <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
