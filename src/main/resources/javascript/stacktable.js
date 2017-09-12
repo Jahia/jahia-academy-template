@@ -59,7 +59,7 @@
             bodyMarkup += '<tr class="' + tr_class +'">';
             thValue = $topRow.find('>td,>th').eq(cellIndex).html().trim();
             if (thValue) {
-                bodyMarkup += '<td class="st-key col-xs-2">'+thValue +'</td>';
+                bodyMarkup += '<td class="st-key col-xs-4">'+thValue +'</td>';
                 bodyMarkup += '<td class="st-val '+$(this).prop('class')  +'">'+$(this).html()+'</td>';
             } else {
                 //bodyMarkup += '<td class="st-key"></td>';

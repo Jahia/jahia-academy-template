@@ -59,3 +59,4 @@ CKEDITOR.config.toolbar = 'Tiny';
 
 CKEDITOR.dtd.$removeEmpty['i'] = 0;
 CKEDITOR.dtd.$removeEmpty['span'] = 0;
+CKEDITOR.dtd.$removeEmpty['th'] = 0;
