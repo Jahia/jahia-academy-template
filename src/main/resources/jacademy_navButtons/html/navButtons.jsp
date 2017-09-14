@@ -18,8 +18,10 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <!-- display previous / next buttons -->
-<div class="row navbuttons">
-    <template:include view="flat"/>
+<div class="navbuttons">
+    <ul class="pager">
+        <template:include view="flat"/>
+    </ul>
 </div>
 <%--
 <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>

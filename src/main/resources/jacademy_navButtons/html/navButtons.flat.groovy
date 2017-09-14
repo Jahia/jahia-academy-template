@@ -64,12 +64,12 @@ for (int i = 0; i < flatTree.size(); i++) {
             JCRNodeWrapper previousNode = flatTree.get(i - 1);
             if (previousNode.isNodeType("jacademix:isMultiplePageDoc") &&
                     previousNode.getParent().getPath() != mainResourceNode.getParent().getPath()) {
-                print("<a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
-                        " class=\"fa fa-arrow-left fa-fw\"></i>Previous: ${previousNode.getParent().displayableName} / ${previousNode.displayableName}</a>")
+                print("<li class=\"previous\"><a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
+                        " class=\"fa fa-long-arrow-left fa-fw\"></i>Previous: ${previousNode.getParent().displayableName} / ${previousNode.displayableName}</a></li>")
 
             } else {
-                print("<a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
-                        " class=\"fa fa-arrow-left fa-fw\"></i>Previous: ${previousNode.displayableName}</a>")
+                print("<li class=\"previous\"><a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
+                        " class=\"fa fa-long-arrow-left fa-fw\"></i>Previous: ${previousNode.displayableName}</a></li>")
             }
         }
         //print("--- C " + currentNode.path + " " + currentNode.getDisplayableName() + " * <br/>")
@@ -77,11 +77,11 @@ for (int i = 0; i < flatTree.size(); i++) {
             JCRNodeWrapper nextNode = flatTree.get(i + 1);
             if (nextNode.isNodeType("jacademix:isMultiplePageDoc") &&
                     nextNode.getParent().getPath() != mainResourceNode.getParent().getPath()) {
-                print("<a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.getParent().displayableName} / ${nextNode.displayableName}&nbsp;<i\n" +
-                        " class=\"fa fa-arrow-right\"></i></a>")
+                print("<li class=\"next\"><a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.getParent().displayableName} / ${nextNode.displayableName}&nbsp;<i\n" +
+                        " class=\"fa fa-long-arrow-right\"></i></a></li>")
             } else {
-                print("<a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.displayableName}&nbsp;<i\n" +
-                        " class=\"fa fa-arrow-right\"></i></a>")
+                print("<li class=\"next\"><a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.displayableName}&nbsp;<i\n" +
+                        " class=\"fa fa-long-arrow-right\"></i></a></li>")
             }
         }
         break;
