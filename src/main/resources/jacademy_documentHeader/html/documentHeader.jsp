@@ -73,11 +73,25 @@
                         </c:forEach>
                     </c:if>
                     <c:set var="tagList" value="${documentNode.properties['j:tagList']}"/>
-                        <c:forEach items="${tagList}" var="tag" varStatus="status">
-                            <c:if test="${status.first}"><div class="role-wrapper"><i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
-                            <span class="label label-info">${tag.string}</span>
-                            <c:if test="${status.last}"></div></c:if>
-                        </c:forEach>
+                        <c:if test="${! empty tagList}">
+                            <%-- FIXME: This is hardcoded path... --%>
+                            <jcr:node var="searchPage" path="/sites/academy/home/search"/>
+
+                            <c:forEach items="${tagList}" var="tag" varStatus="status">
+                                <c:if test="${status.first}"><div class="role-wrapper"><i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                                <c:if test="${! empty searchPage}">
+                                    <c:url var="searchTagUrl" value="${searchPage.url}">
+                                        <c:param name="src_terms[0].term" value="${tag.string}"/>
+                                        <c:param name="src_terms[0].fields.tags" value="true"/>
+                                        <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>
+                                        <c:param name="autoSuggest" value="false"/>
+                                    </c:url>
+                                </c:if>
+                                <a class="label label-info" href="${searchTagUrl}">${tag.string}</a>
+                                <c:if test="${status.last}"></div></c:if>
+                                <c:remove var="searchTagUrl"/>
+                            </c:forEach>
+                            </c:if>
                         <%--
                         <h2 class="doc-child author">
                             <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
