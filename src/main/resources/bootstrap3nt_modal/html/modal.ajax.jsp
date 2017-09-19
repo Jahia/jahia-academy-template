@@ -23,19 +23,9 @@
 <c:set var="title" value="${currentNode.properties['jcr:title'].string}"/>
 
 <!-- Button trigger modal -->
-<c:choose>
-    <c:when test="${renderContext.editMode}">
-        <button type="button" class="btn btn-${state} btn-lg" data-toggle="modal" data-target="#modal_${currentNode.identifier}">
-                ${currentNode.properties.openText.string}
-        </button>
-    </c:when>
-    <c:otherwise>
-        <c:url var="ajaxUrl" value="${url.base}${currentNode.path}.hidden.ajax.html.ajax"/>
-        <a class="btn btn-${state} btn-lg" data-toggle="modal" data-target="#modal_${currentNode.identifier}"  href="${ajaxUrl}">
-                ${currentNode.properties.openText.string}
-        </a>
-    </c:otherwise>
-</c:choose>
+<button type="button" class="btn btn-${state} btn-lg" data-toggle="modal" data-target="#modal_${currentNode.identifier}">
+    ${currentNode.properties.openText.string}
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modal_${currentNode.identifier}" tabindex="-1" role="dialog" aria-labelledby="modalLabel_${currentNode.identifier}" aria-hidden="${renderContext.editMode ? 'false' : 'true'}">
@@ -61,3 +51,20 @@
         </div>
     </div>
 </div>
+
+<c:if test="${!renderContext.editMode}">
+<script>
+    $('#modal_${currentNode.identifier}').on('shown.bs.modal', function() {
+        $(".modal-body").html("Loading...");
+        $.ajax({
+            url: "<c:url value='${url.base}${currentNode.path}.hidden.ajax.html.ajax'/>",
+            data: {
+                'includeJavascripts':'true'
+            },
+            success: function(data) {
+                $(".modal-body").html(data);
+            }
+        })
+    });
+</script>
+</c:if>

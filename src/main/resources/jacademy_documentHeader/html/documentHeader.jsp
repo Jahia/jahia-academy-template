@@ -35,6 +35,7 @@
         </c:otherwise>
     </c:choose>
 </c:if>
+
 <%-- Then display the document Header --%>
 <c:choose>
     <c:when test="${documentNode != null}">

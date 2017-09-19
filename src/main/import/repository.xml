@@ -1,299 +1,300 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
-        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default font-awesome form-factory-core highlightjs jquery search toc"
-                                j:installedModules="jahia-academy-template"
-                                j:modulePriority="0"
-                                j:moduleType="templatesSet"
-                                j:title="Jahia Academy Template"
-                                jcr:primaryType="jnt:module">
-
-            <portlets jcr:primaryType="jnt:portletFolder"/>
-            <files jcr:primaryType="jnt:folder"/>
-            <contents jcr:primaryType="jnt:contentFolder"/>
-            <templates jcr:primaryType="jnt:templatesFolder">
-                <files jcr:primaryType="jnt:folder">
-                    <themes jcr:primaryType="jnt:folder">
-                        <default jcr:primaryType="jnt:folder">
-                            <academy_icon_16_16.png j:height="16"
-                                                    j:width="16"
-                                                    jcr:mixinTypes="jmix:image"
-                                                    jcr:primaryType="jnt:file">
-                                <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
-                                <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
-                                <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
-                                <community750 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
-                            </academy_icon_16_16.png>
-                        </default>
-                    </themes>
-                </files>
+        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default font-awesome form-factory-core highlightjs jquery search tags toc"
+                              j:installedModules="jahia-academy-template"
+                              j:modulePriority="0"
+                              j:moduleType="templatesSet"
+                              j:title="Jahia Academy Template"
+                              jcr:primaryType="jnt:module">
+                
+                <portlets jcr:primaryType="jnt:portletFolder"/>
+                <files jcr:primaryType="jnt:folder"/>
                 <contents jcr:primaryType="jnt:contentFolder"/>
-                <base j:theme="/modules/jahia-academy-template/templates/files/themes/default"
-                      j:view="academy"
-                      jcr:mixinTypes="jmix:theme"
-                      jcr:primaryType="jnt:template">
-                    <home j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                          jcr:primaryType="jnt:pageTemplate">
-                        <j:translation_en jcr:language="en"
+                <templates jcr:primaryType="jnt:templatesFolder">
+                    <files jcr:primaryType="jnt:folder">
+                        <themes jcr:primaryType="jnt:folder">
+                            <default jcr:primaryType="jnt:folder">
+                                <academy_icon_16_16.png j:height="16"
+                                             j:width="16"
+                                             jcr:mixinTypes="jmix:image"
+                                             jcr:primaryType="jnt:file">
+                                    <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                                    <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                                    <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                                    <community750 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                                </academy_icon_16_16.png>
+                            </default>
+                        </themes>
+                    </files>
+                    <contents jcr:primaryType="jnt:contentFolder"/>
+                    <base j:theme="/modules/jahia-academy-template/templates/files/themes/default"
+                  j:view="academy"
+                  jcr:mixinTypes="jmix:theme"
+                  jcr:primaryType="jnt:template">
+                        <home j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
+                     jcr:primaryType="jnt:pageTemplate">
+                            <j:translation_en jcr:language="en"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="Academy Home Page"/>
+                            <pagecontent jcr:primaryType="jnt:contentList">
+                                <navigation-bar fluid="true"
+                                     inverse="false"
+                                     j:styleName="navbar navbar-fixed-top hidden-print"
+                                     j:view="academy"
+                                     jcr:mixinTypes="jmix:renderable"
+                                     jcr:primaryType="bootstrap3nt:enhancedNavBar">
+                                    <j:translation_en jcr:language="en"
                                           jcr:mixinTypes="mix:title"
                                           jcr:primaryType="jnt:translation"
-                                          jcr:title="Academy Home Page"/>
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <navigation-bar fluid="true"
-                                            inverse="false"
-                                            j:styleName="navbar navbar-fixed-top hidden-print"
-                                            j:view="academy"
-                                            jcr:mixinTypes="jmix:renderable"
-                                            jcr:primaryType="bootstrap3nt:enhancedNavBar">
+                                          jcr:title="Navigation-bar"/>
+                                    <search-form j:view="academy"
+                                     jcr:mixinTypes="jmix:renderable"
+                                     jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
+                                     position="right"/>
+                                    <navigation-menu j:baselineNode="home"
+                                         j:maxDepth="4"
+                                         j:startLevel="0"
+                                         j:view="academy"
+                                         jcr:mixinTypes="jmix:renderable"
+                                         jcr:primaryType="bootstrap3nt:navBarItemMenu"
+                                         position="right"/>
+                                </navigation-bar>
+                                <home-content columnsType="nogrid"
+                                   gridLayout="fixed-width"
+                                   jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createSection"
+                                   jcr:primaryType="bootstrap3nt:columns"
+                                   sectionElement="div"
+                                   sectionId="documentation-header"/>
+                                <feedback j:classname="hidden"
+                               j:level="0"
+                               j:limitedAbsoluteAreaEdit="false"
+                               j:skin="skins.custom"
+                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                               jcr:primaryType="jnt:absoluteArea"/>
+                            </pagecontent>
+                        </home>
+                        <footer jcr:primaryType="jnt:contentList">
+                            <copyright columnsType="predefinedColumns"
+                             grid="6_6"
+                             gridLayout="fixed-width"
+                             jcr:mixinTypes="bootstrap3mix:createAbsoluteAreas bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                             jcr:primaryType="bootstrap3nt:columns"
+                             level="0"
+                             sectionCssClass="footer-2"
+                             sectionElement="div"/>
+                        </footer>
+                        <subpage j:hiddenTemplate="false" jcr:primaryType="jnt:template">
+                            <j:translation_en jcr:language="en"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="subpage"/>
+                            <documentation j:hiddenTemplate="false"
+                                 j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
+                                 jcr:primaryType="jnt:pageTemplate">
                                 <j:translation_en jcr:language="en"
-                                                  jcr:mixinTypes="mix:title"
-                                                  jcr:primaryType="jnt:translation"
-                                                  jcr:title="Navigation-bar"/>
-                                <search-form j:view="academy"
-                                             jcr:mixinTypes="jmix:renderable"
-                                             jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
-                                             position="right"/>
-                                <navigation-menu j:baselineNode="home"
-                                                 j:maxDepth="4"
-                                                 j:startLevel="0"
-                                                 j:view="academy"
-                                                 jcr:mixinTypes="jmix:renderable"
-                                                 jcr:primaryType="bootstrap3nt:navBarItemMenu"
-                                                 position="right"/>
-                            </navigation-bar>
-                            <home-content columnsType="nogrid"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Documentation"/>
+                                <pagecontent jcr:primaryType="jnt:contentList">
+                                    <document-content columnsType="predefinedColumns"
+                                          grid="4_8"
                                           gridLayout="fixed-width"
-                                          jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createSection"
+                                          jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
                                           jcr:primaryType="bootstrap3nt:columns"
                                           sectionElement="div"
-                                          sectionId="documentation-header"/>
-                            <feedback j:level="0" j:classname="hidden"
-                                      j:skin="skins.custom"
-                                      jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                      j:limitedAbsoluteAreaEdit="false"
-                                      jcr:primaryType="jnt:absoluteArea"/>
-                        </pagecontent>
-                    </home>
-                    <footer jcr:primaryType="jnt:contentList">
-                        <copyright columnsType="predefinedColumns"
-                                   grid="6_6"
-                                   gridLayout="fixed-width"
-                                   jcr:mixinTypes="bootstrap3mix:createAbsoluteAreas bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
-                                   jcr:primaryType="bootstrap3nt:columns"
-                                   level="0"
-                                   sectionCssClass="footer-2"
-                                   sectionElement="div"/>
-                    </footer>
-                    <subpage j:hiddenTemplate="false" jcr:primaryType="jnt:template">
-                        <j:translation_en jcr:language="en"
-                                          jcr:mixinTypes="mix:title"
-                                          jcr:primaryType="jnt:translation"
-                                          jcr:title="subpage"/>
-                        <documentation j:hiddenTemplate="false"
-                                       j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                                       jcr:primaryType="jnt:pageTemplate">
-                            <j:translation_en jcr:language="en"
-                                              jcr:mixinTypes="mix:title"
-                                              jcr:primaryType="jnt:translation"
-                                              jcr:title="Documentation"/>
-                            <pagecontent jcr:primaryType="jnt:contentList">
-                                <document-content columnsType="predefinedColumns"
-                                                  grid="4_8"
-                                                  gridLayout="fixed-width"
-                                                  jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
-                                                  jcr:primaryType="bootstrap3nt:columns"
-                                                  sectionElement="div"
-                                                  sectionId="documentation-level">
-                                    <document-content-side jcr:primaryType="jnt:contentList">
-                                        <table-of-content depth="2"
-                                                          heading="h2"
-                                                          j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
-                                                          j:view="academy"
-                                                          jcr:mixinTypes="jmix:renderable"
-                                                          jcr:primaryType="jnt:toc"/>
-                                    </document-content-side>
-                                    <document-content-main j:id="documentation-child-content"
-                                                           j:skin="skins.custom"
-                                                           jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                                           jcr:primaryType="jnt:contentList">
-                                        <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
-                                                        jcr:primaryType="jacademy:documentHeader"/>
-                                        <document-buttons jcr:primaryType="jacademy:navButtons"/>
-                                        <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                        <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
-                                        <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
-                                        <feedback j:level="0"
-                                                  j:limitedAbsoluteAreaEdit="false"
-                                                  jcr:primaryType="jnt:absoluteArea"/>
-                                    </document-content-main>
-                                </document-content>
-                            </pagecontent>
-                        </documentation>
-                        <product-home j:hiddenTemplate="false"
-                                      j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
-                                      jcr:primaryType="jnt:pageTemplate">
-                            <j:translation_en jcr:language="en"
-                                              jcr:mixinTypes="mix:title"
-                                              jcr:primaryType="jnt:translation"
-                                              jcr:title="Product Home"/>
-                            <pagecontent jcr:primaryType="jnt:contentList">
-                                <product-intro columnsType="predefinedColumns"
-                                               containerCssClass="doc-description"
-                                               grid="8_4"
-                                               gridLayout="fixed-width"
-                                               jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
-                                               jcr:primaryType="bootstrap3nt:columns">
-                                    <product-intro-main j:classname="doc-info doc-height"
-                                                        j:skin="skins.custom"
-                                                        jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                                        jcr:primaryType="jnt:contentList">
-                                        <main j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
-                                    </product-intro-main>
-                                    <product-intro-side j:classname="doc-panel doc-height"
-                                                        j:skin="skins.custom"
-                                                        jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                                        jcr:primaryType="jnt:contentList">
-                                        <side j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
-                                    </product-intro-side>
-                                </product-intro>
-                                <product-topics columnsType="predefinedColumns"
-                                                grid="12"
-                                                gridLayout="fixed-width"
-                                                jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
-                                                jcr:primaryType="bootstrap3nt:columns">
-                                    <product-topics-main jcr:primaryType="jnt:contentList">
-                                        <navigation-menu j:baselineNode="currentPage"
-                                                         j:maxDepth="10"
-                                                         j:menuItemView="menuElement"
-                                                         j:startLevel="0"
-                                                         j:view="academy"
-                                                         jcr:mixinTypes="jmix:renderable"
-                                                         jcr:primaryType="jnt:navMenu"/>
-                                    </product-topics-main>
-                                </product-topics>
-                            </pagecontent>
-                        </product-home>
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <header j:classname="navbar navbar-fixed-top hidden-print"
-                                    j:skin="skins.custom"
-                                    jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                    jcr:primaryType="jnt:contentList">
-                                <j:translation_en jcr:language="en"
-                                                  jcr:mixinTypes="mix:title"
-                                                  jcr:primaryType="jnt:translation"
-                                                  jcr:title="header"/>
-                                <navigation-bar fluid="true"
-                                                inverse="false"
-                                                j:styleName="navbar navbar-fixed-top hidden-print"
+                                          sectionId="documentation-level">
+                                        <document-content-side jcr:primaryType="jnt:contentList">
+                                            <table-of-content depth="2"
+                                                heading="h2"
+                                                j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
                                                 j:view="academy"
                                                 jcr:mixinTypes="jmix:renderable"
-                                                jcr:primaryType="bootstrap3nt:enhancedNavBar">
-                                    <j:translation_en jcr:language="en"
-                                                      jcr:mixinTypes="mix:title"
-                                                      jcr:primaryType="jnt:translation"
-                                                      jcr:title="Navigation-bar"/>
-                                    <search-form j:view="academy"
-                                                 jcr:mixinTypes="jmix:renderable"
-                                                 jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
-                                                 position="right"/>
-                                    <navigation-menu j:baselineNode="home"
-                                                     j:maxDepth="4"
-                                                     j:startLevel="0"
-                                                     j:view="academy"
-                                                     jcr:mixinTypes="jmix:renderable"
-                                                     jcr:primaryType="bootstrap3nt:navBarItemMenu"
-                                                     position="right"/>
-                                </navigation-bar>
-                                <breadcrumb columnsType="predefinedColumns"
-                                            grid="12"
-                                            gridLayout="fixed-width"
-                                            jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
-                                            jcr:primaryType="bootstrap3nt:columns"
-                                            sectionCssClass="hidden-print"
-                                            sectionElement="div"
-                                            sectionId="academy-breadcrumb">
-                                    <breadcrumb-main jcr:primaryType="jnt:contentList">
-                                        <breadcrumb-display cssClass="breadcrumb-nav"
-                                                            j:view="academy"
-                                                            jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb jmix:renderable"
-                                                            jcr:primaryType="bootstrap3nt:breadcrumb"/>
-                                    </breadcrumb-main>
-                                </breadcrumb>
-                            </header>
-                            <pagecontent jcr:primaryType="jnt:area"/>
-                        </pagecontent>
-                        <search-results j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
-                            <j:translation_en jcr:language="en"
-                                              jcr:mixinTypes="mix:title"
-                                              jcr:primaryType="jnt:translation"
-                                              jcr:title="Search results"/>
+                                                jcr:primaryType="jnt:toc"/>
+                                        </document-content-side>
+                                        <document-content-main j:id="documentation-child-content"
+                                                  j:skin="skins.custom"
+                                                  jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                                  jcr:primaryType="jnt:contentList">
+                                            <documentheader j:bindedComponent="/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/document-content/document-content-main/document-area"
+                                              jcr:primaryType="jacademy:documentHeader"/>
+                                            <document-buttons jcr:primaryType="jacademy:navButtons"/>
+                                            <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
+                                            <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
+                                            <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
+                                            <feedback j:level="0"
+                                        j:limitedAbsoluteAreaEdit="false"
+                                        jcr:primaryType="jnt:absoluteArea"/>
+                                        </document-content-main>
+                                    </document-content>
+                                </pagecontent>
+                            </documentation>
+                            <product-home j:hiddenTemplate="false"
+                                j:icon="/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
+                                jcr:primaryType="jnt:pageTemplate">
+                                <j:translation_en jcr:language="en"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Product Home"/>
+                                <pagecontent jcr:primaryType="jnt:contentList">
+                                    <product-intro columnsType="predefinedColumns"
+                                       containerCssClass="doc-description"
+                                       grid="8_4"
+                                       gridLayout="fixed-width"
+                                       jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                       jcr:primaryType="bootstrap3nt:columns">
+                                        <product-intro-main j:classname="doc-info doc-height"
+                                               j:skin="skins.custom"
+                                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                               jcr:primaryType="jnt:contentList">
+                                            <main j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
+                                        </product-intro-main>
+                                        <product-intro-side j:classname="doc-panel doc-height"
+                                               j:skin="skins.custom"
+                                               jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                               jcr:primaryType="jnt:contentList">
+                                            <side j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
+                                        </product-intro-side>
+                                    </product-intro>
+                                    <product-topics columnsType="predefinedColumns"
+                                        grid="12"
+                                        gridLayout="fixed-width"
+                                        jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                        jcr:primaryType="bootstrap3nt:columns">
+                                        <product-topics-main jcr:primaryType="jnt:contentList">
+                                            <navigation-menu j:baselineNode="currentPage"
+                                               j:maxDepth="10"
+                                               j:menuItemView="menuElement"
+                                               j:startLevel="0"
+                                               j:view="academy"
+                                               jcr:mixinTypes="jmix:renderable"
+                                               jcr:primaryType="jnt:navMenu"/>
+                                        </product-topics-main>
+                                    </product-topics>
+                                </pagecontent>
+                            </product-home>
                             <pagecontent jcr:primaryType="jnt:contentList">
-                                <main columnsType="predefinedColumns"
-                                      grid="12"
-                                      gridLayout="fixed-width"
-                                      jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
-                                      jcr:primaryType="bootstrap3nt:columns"
-                                      sectionCssClass="margintop"
-                                      sectionElement="div">
-                                    <main-main jcr:primaryType="jnt:contentList">
+                                <header j:classname="navbar navbar-fixed-top hidden-print"
+                             j:skin="skins.custom"
+                             jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                             jcr:primaryType="jnt:contentList">
+                                    <j:translation_en jcr:language="en"
+                                          jcr:mixinTypes="mix:title"
+                                          jcr:primaryType="jnt:translation"
+                                          jcr:title="header"/>
+                                    <navigation-bar fluid="true"
+                                        inverse="false"
+                                        j:styleName="navbar navbar-fixed-top hidden-print"
+                                        j:view="academy"
+                                        jcr:mixinTypes="jmix:renderable"
+                                        jcr:primaryType="bootstrap3nt:enhancedNavBar">
+                                        <j:translation_en jcr:language="en"
+                                             jcr:mixinTypes="mix:title"
+                                             jcr:primaryType="jnt:translation"
+                                             jcr:title="Navigation-bar"/>
                                         <search-form j:view="academy"
-                                                     jcr:mixinTypes="jmix:renderable"
-                                                     jcr:primaryType="jnt:simpleSearchForm"
-                                                     result="/modules/jahia-academy-template/home/search">
-                                            <j:translation_en jcr:language="en"
-                                                              jcr:mixinTypes="mix:title"
-                                                              jcr:primaryType="jnt:translation"
-                                                              jcr:title="Search form"/>
-                                        </search-form>
-                                        <search-results autoSuggest="true"
-                                                        autoSuggestHitCount="2"
-                                                        autoSuggestMaxTermCount="1"
-                                                        autoSuggestMinimumHitCount="2"
-                                                        jcr:primaryType="jnt:searchResults"/>
-                                    </main-main>
-                                </main>
-                            </pagecontent>
-                        </search-results>
-                        <free j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
-                            <j:translation_en jcr:language="en"
-                                              jcr:mixinTypes="mix:title"
-                                              jcr:primaryType="jnt:translation"
-                                              jcr:title="Free"/>
-                            <pagecontent j:id="main"
-                                         j:skin="skins.custom"
-                                         jcr:mixinTypes="jmix:customSkin jmix:skinnable"
-                                         jcr:primaryType="jnt:contentList">
+                                        jcr:mixinTypes="jmix:renderable"
+                                        jcr:primaryType="bootstrap3nt:navBarItemSimpleSearchForm"
+                                        position="right"/>
+                                        <navigation-menu j:baselineNode="home"
+                                            j:maxDepth="4"
+                                            j:startLevel="0"
+                                            j:view="academy"
+                                            jcr:mixinTypes="jmix:renderable"
+                                            jcr:primaryType="bootstrap3nt:navBarItemMenu"
+                                            position="right"/>
+                                    </navigation-bar>
+                                    <breadcrumb columnsType="predefinedColumns"
+                                    grid="12"
+                                    gridLayout="fixed-width"
+                                    jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                    jcr:primaryType="bootstrap3nt:columns"
+                                    sectionCssClass="hidden-print"
+                                    sectionElement="div"
+                                    sectionId="academy-breadcrumb">
+                                        <breadcrumb-main jcr:primaryType="jnt:contentList">
+                                            <breadcrumb-display cssClass="breadcrumb-nav"
+                                                  j:view="academy"
+                                                  jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb jmix:renderable"
+                                                  jcr:primaryType="bootstrap3nt:breadcrumb"/>
+                                        </breadcrumb-main>
+                                    </breadcrumb>
+                                </header>
                                 <pagecontent jcr:primaryType="jnt:area"/>
                             </pagecontent>
-                        </free>
-                    </subpage>
-                </base>
-                <content-template j:applyOn="jnt:content"
-                                  j:hiddenTemplate="true"
-                                  j:priority="1"
-                                  j:view="jahia-academy-template"
-                                  jcr:primaryType="jnt:contentTemplate">
-                    <pagecontent jcr:primaryType="jnt:contentList">
-                        <documentheader jcr:primaryType="jacademy:documentHeader"/>
-                        <document-area jcr:primaryType="jnt:area"/>
-                    </pagecontent>
-                </content-template>
-            </templates>
-
-            <home j:isHomePage="true"
-                  j:templateName="home"
-                  jcr:primaryType="jnt:page">
-                <j:translation_en jcr:language="en"
-                                  jcr:mixinTypes="mix:title"
-                                  jcr:primaryType="jnt:translation"
-                                  jcr:title="Home"/>
-                <search j:templateName="search-results" jcr:primaryType="jnt:page">
+                            <search-results j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
+                                <j:translation_en jcr:language="en"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Search results"/>
+                                <pagecontent jcr:primaryType="jnt:contentList">
+                                    <main columnsType="predefinedColumns"
+                              grid="12"
+                              gridLayout="fixed-width"
+                              jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                              jcr:primaryType="bootstrap3nt:columns"
+                              sectionCssClass="margintop"
+                              sectionElement="div">
+                                        <main-main jcr:primaryType="jnt:contentList">
+                                            <search-form j:view="academy"
+                                           jcr:mixinTypes="jmix:renderable"
+                                           jcr:primaryType="jnt:simpleSearchForm"
+                                           result="/modules/jahia-academy-template/home/search">
+                                                <j:translation_en jcr:language="en"
+                                                   jcr:mixinTypes="mix:title"
+                                                   jcr:primaryType="jnt:translation"
+                                                   jcr:title="Search form"/>
+                                            </search-form>
+                                            <search-results autoSuggest="true"
+                                              autoSuggestHitCount="2"
+                                              autoSuggestMaxTermCount="1"
+                                              autoSuggestMinimumHitCount="2"
+                                              jcr:primaryType="jnt:searchResults"/>
+                                        </main-main>
+                                    </main>
+                                </pagecontent>
+                            </search-results>
+                            <free j:hiddenTemplate="false" jcr:primaryType="jnt:pageTemplate">
+                                <j:translation_en jcr:language="en"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="Free"/>
+                                <pagecontent j:id="main"
+                                  j:skin="skins.custom"
+                                  jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                  jcr:primaryType="jnt:contentList">
+                                    <pagecontent jcr:primaryType="jnt:area"/>
+                                </pagecontent>
+                            </free>
+                        </subpage>
+                    </base>
+                    <content-template j:applyOn="jnt:content"
+                              j:hiddenTemplate="true"
+                              j:priority="1"
+                              j:view="jahia-academy-template"
+                              jcr:primaryType="jnt:contentTemplate">
+                        <pagecontent jcr:primaryType="jnt:contentList">
+                            <documentheader jcr:primaryType="jacademy:documentHeader"/>
+                            <document-area jcr:primaryType="jnt:area"/>
+                        </pagecontent>
+                    </content-template>
+                </templates>
+                
+                <home j:isHomePage="true"
+               j:templateName="home"
+               jcr:primaryType="jnt:page">
                     <j:translation_en jcr:language="en"
-                                      jcr:mixinTypes="mix:title"
-                                      jcr:primaryType="jnt:translation"
-                                      jcr:title="Search"/>
-                </search>
-            </home>
-        </jahia-academy-template>
+                              jcr:mixinTypes="mix:title"
+                              jcr:primaryType="jnt:translation"
+                              jcr:title="Home"/>
+                    <search j:templateName="search-results" jcr:primaryType="jnt:page">
+                        <j:translation_en jcr:language="en"
+                                 jcr:mixinTypes="mix:title"
+                                 jcr:primaryType="jnt:translation"
+                                 jcr:title="Search"/>
+                    </search>
+                </home>
+            </jahia-academy-template>
     </modules>
 </content>

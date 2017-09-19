@@ -1773,6 +1773,7 @@ table.hljs-ln {
     color: #777;
     background: rgba(229, 229, 229, 0.1);
     border: 1px dashed #e5e5e5;
+    border-radius:6px;
 }
 .alert-version .smaller {
     font-size: smaller;
@@ -1800,6 +1801,9 @@ div.stacktables :last-child  {
         border-radius: 3px;
     }
     .alert-version {
+        color: #777;
+        background: rgba(229,229,229,0.1);
+        border: 1px dashed #e5e5e5;
         padding: 10px 10px;
     }
 }
