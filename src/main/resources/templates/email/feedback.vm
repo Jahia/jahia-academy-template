@@ -601,11 +601,14 @@
 
                                                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                                                            <b>Feedback from $formDatas.get("First Name") $formDatas.get("Last Name") &lt;$formDatas.get("Email")&gt;</b><br/>
+                                                            <b>Feedback from $formDatas.get("First Name") $formDatas.get("Last name") &lt;$formDatas.get("Email")&gt;</b> / $formDatas.get("Company")<br/>
                                                             Doc: $headers.get("referer")<br/>
                                                             <br/>
                                                             <br/>
-                                                            <p style="white-space: pre-line">$formDatas.get("Comment")</p>
+                                                            <br/>
+                                                            <p><b>$formDatas.get("Summary")</b></p>
+                                                            <br/>
+                                                            <p style="white-space: pre-line">$formDatas.get("Description")</p>
                                                         </td>
                                                     </tr>
                                                     </tbody></table>
