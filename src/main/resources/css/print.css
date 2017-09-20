@@ -1,0 +1,239 @@
+@media print {
+    /*
+    Description: Foundation 4 docs style for highlight.js
+    Author: Dan Allen <dan.j.allen@gmail.com>
+    Website: http://foundation.zurb.com/docs/
+    Version: 1.0
+    Date: 2013-04-02
+    */
+
+    .hljs {
+        display: block; padding: 0.5em;
+        background: rgba(238, 238, 238, 0.75);
+    }
+
+    .hljs-header,
+    .hljs-decorator,
+    .hljs-annotation {
+        color: #000077;
+    }
+
+    .hljs-horizontal_rule,
+    .hljs-link_url,
+    .hljs-emphasis,
+    .hljs-attribute {
+        color: #070;
+    }
+
+    .hljs-emphasis {
+        font-style: italic;
+    }
+
+    .hljs-link_label,
+    .hljs-strong,
+    .hljs-value,
+    .hljs-string,
+    .scss .hljs-value .hljs-string {
+        color: #d14;
+    }
+
+    .hljs-strong {
+        font-weight: bold;
+    }
+
+    .hljs-blockquote,
+    .hljs-comment {
+        color: #998;
+        font-style: italic;
+    }
+
+    .asciidoc .hljs-title,
+    .hljs-function .hljs-title {
+        color: #900;
+    }
+
+    .hljs-class {
+        color: #458;
+    }
+
+    .hljs-id,
+    .hljs-pseudo,
+    .hljs-constant,
+    .hljs-hexcolor {
+        color: teal;
+    }
+
+    .hljs-variable {
+        color: #336699;
+    }
+
+    .hljs-bullet,
+    .hljs-javadoc {
+        color: #997700;
+    }
+
+    .hljs-pi,
+    .hljs-doctype {
+        color: #3344bb;
+    }
+
+    .hljs-code,
+    .hljs-number {
+        color: #099;
+    }
+
+    .hljs-important {
+        color: #f00;
+    }
+
+    .smartquote,
+    .hljs-label {
+        color: #970;
+    }
+
+    .hljs-preprocessor,
+    .hljs-pragma {
+        color: #579;
+    }
+
+    .hljs-reserved,
+    .hljs-keyword,
+    .scss .hljs-value {
+        color: #000;
+    }
+
+    .hljs-regexp {
+        background-color: #fff0ff;
+        color: #880088;
+    }
+
+    .hljs-symbol {
+        color: #990073;
+    }
+
+    .hljs-symbol .hljs-string {
+        color: #a60;
+    }
+
+    .hljs-tag {
+        color: #007700;
+    }
+
+    .hljs-at_rule,
+    .hljs-at_rule .hljs-keyword {
+        color: #088;
+    }
+
+    .hljs-at_rule .hljs-preprocessor {
+        color: #808;
+    }
+
+    .scss .hljs-tag,
+    .scss .hljs-attribute {
+        color: #339;
+    }
+
+    .hidden-print,.hljs-ln-numbers,.bd-clipboard,.navbuttons,.modal,.readTime,.footer-2 .text-right {
+        display: none !important;
+    }
+    body {
+        font-family: Lato,sans-serif;
+        font-size: 120%;
+        line-height: 130%;
+        margin: .5in .6in;
+    }
+    pre {
+        margin-left: .5in;
+    }
+    h2,h3 {
+        color:#00a0e3
+    }
+    table {
+        background-color: transparent;
+    }
+    caption {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color: #777777;
+        text-align: left;
+    }
+    th {
+        text-align: left;
+    }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    .table > thead > tr > th,
+    .table > tbody > tr > th,
+    .table > tfoot > tr > th,
+    .table > thead > tr > td,
+    .table > tbody > tr > td,
+    .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #dddddd;
+    }
+    .table > thead > tr > th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dddddd;
+    }
+    .table > caption + thead > tr:first-child > th,
+    .table > colgroup + thead > tr:first-child > th,
+    .table > thead:first-child > tr:first-child > th,
+    .table > caption + thead > tr:first-child > td,
+    .table > colgroup + thead > tr:first-child > td,
+    .table > thead:first-child > tr:first-child > td {
+        border-top: 0;
+    }
+    .table > tbody + tbody {
+        border-top: 2px solid #dddddd;
+    }
+    .table .table {
+        background-color: #ffffff;
+    }
+    .table-condensed > thead > tr > th,
+    .table-condensed > tbody > tr > th,
+    .table-condensed > tfoot > tr > th,
+    .table-condensed > thead > tr > td,
+    .table-condensed > tbody > tr > td,
+    .table-condensed > tfoot > tr > td {
+        padding: 5px;
+    }
+    .table-bordered {
+        border: 1px solid #dddddd;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 1px solid #dddddd;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+        border-bottom-width: 2px;
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+    table col[class*="col-"] {
+        position: static;
+        float: none;
+        display: table-column;
+    }
+    table td[class*="col-"],
+    table th[class*="col-"] {
+        position: static;
+        float: none;
+        display: table-cell;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        min-height: 0.01%;
+    }
+}

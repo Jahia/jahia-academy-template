@@ -1842,9 +1842,3 @@ nav.bs-docs-sidebar > ul > li > a:hover,nav.bs-docs-sidebar > ul > li > a:focus 
 .mt20 {
     margin-top:20px;
 }
-@media print {
-    .hidden-print {
-        display: none !important;
-
-    }
-}
