@@ -33,7 +33,6 @@ window.onresize = function (event) {
     setdocheight();
 };
 
-
 $(document).on('click', 'a[data-scrollto]', function (event) {
     event.preventDefault();
     scrollto = $.attr(this, 'data-scrollto');
@@ -47,12 +46,16 @@ $(document).on('click', 'a[data-scrollto]', function (event) {
     return false;
 });
 
-if(window.location.hash) {
-    var y = $(window).scrollTop();  //your current y position on the page
-    $(window).scrollTop(y-180);
-}
-
 $(document).ready(function ($) {
+
+    $("h1,h2,h3,h4,h5,h6").each(function() {
+        var id = this.id;
+        if (id) {
+            $("<a></a>").attr({"id":id,"class":"anchor"}).insertBefore(this);
+            $(this).attr("id","scroll" + id);
+        }
+    });
+
     $('a[href^="http://"]').attr('target','_blank');
     $('a[href^="https://"]').attr('target','_blank');
     $("a[href$='.pdf']").attr("target", "_blank");
@@ -88,6 +91,23 @@ $(document).ready(function ($) {
             }
         }
     });*/
+    $('#incfont').click(function(){
+        curSize= parseInt($('.document-content').css('font-size')) + 2;
+        if(curSize<=20)
+            $('.document-content').css('font-size', curSize);
+    });
+    $('#decfont').click(function(){
+        curSize= parseInt($('.document-content').css('font-size')) - 2;
+        if(curSize>=12)
+            $('.document-content').css('font-size', curSize);
+    });
+
     $('table.stack').cardtable();
+
+    $("table.sticky").stickyTableHeaders({fixedOffset: 135});
+    $('.bg-light.sameheight').matchHeight();
+    $('.bg-dark.sameheight').matchHeight();
+    $('.sameheight .col-md-4 .product').matchHeight();
+
 });
 

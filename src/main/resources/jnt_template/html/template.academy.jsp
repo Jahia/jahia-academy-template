@@ -131,6 +131,9 @@
     <template:addResources type="javascript" resources="jQuery.headroom.js"/>
     <template:addResources type="javascript" resources="readingTime.js"/>
     <template:addResources type="javascript" resources="stacktable.js"/>
+    <template:addResources type="javascript" resources="jquery.stickytableheaders.min.js"/>
+    <template:addResources type="javascript" resources="jquery.toc.js"/>
+    <template:addResources type="javascript" resources="jquery.matchHeight-min.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
 
     <template:addResources type="javascript" resources="i18n/form-factory-core-i18n_en.js,lib/_ff2Live.js,lib/jasny-bootstrap.fileinput.js,lib/_ff-rendering.min.js,lib/angular-i18n/angular-locale_en.js"/>
@@ -154,7 +157,7 @@
     <meta name="msapplication-TileImage" content="${url.currentModule}/img/favicon/ms-icon-144x144.png"/>
 </head>
 <c:set var="homeCss"><c:if
-        test="${mainResourceNode.path eq renderContext.site.home.path}">${' class="home"'}</c:if></c:set>
+        test="${renderContext.mainResource.node.properties['j:templateName'].string eq 'home'}">${' class="home"'}</c:if></c:set>
 <body data-spy="scroll" data-target="#sidebar" data-offset="180" ${homeCss}><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>

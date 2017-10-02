@@ -97,3 +97,13 @@
 
 [jacademy:loginForm] > jnt:content, jacademix:document
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
+
+
+[jacademix:advancedCard] mixin
+ extends = jacademy:card
+ itemtype = content
+ - backgroundImage (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - backgroundColor (string) = "#00a0e3"
+ - textColor (string) = "#ffffff"
+
+[jacademy:card] > jnt:content, mix:title, jacademix:textContent, jacademix:component

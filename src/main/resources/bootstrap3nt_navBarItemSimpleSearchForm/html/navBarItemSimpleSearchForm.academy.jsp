@@ -79,29 +79,3 @@
         </li>
     </ul>
 </c:if>
-<ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search <b class="caret"></b></a>
-        <div class="dropdown-menu">
-            <%-- FIXME. Ho ho ho... there is an hardcoded path... Very very bad... --%>
-            <jcr:node var="searchNode" path="/sites/academy/home/search"/>
-            <template:addCacheDependency uuid="${currentNode.properties.result.string}"/>
-            <c:if test="${not empty searchNode}">
-                <c:url var="searchUrl" value='${searchNode.url}' context="/"/>
-                <s:form method="post" action="${searchUrl}" style="margin:20px;width:300px;" accept-charset="utf-8" id="custom-search-input">
-                    <s:site value="${renderContext.site.name}" includeReferencesFrom="systemsite" display="false"/>
-                    <s:language value="${renderContext.mainResource.locale}" display="false"/>
-                    <div class="input-group col-md-12">
-                            <%--<s:term match="all_words" id="searchTerm" placeholder="Type any terms" searchIn="siteContent,tags,files" class="form-control"/>--%>
-                        <s:term match="all_words" id="searchTerm" placeholder="Search" searchIn="siteContent,tags" class="form-control input-lg"/>
-                                <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                    </div>
-                </s:form>
-            </c:if>
-        </div>
-    </li>
-</ul>

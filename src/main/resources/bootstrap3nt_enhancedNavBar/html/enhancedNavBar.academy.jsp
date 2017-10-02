@@ -56,6 +56,7 @@
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
+            <template:area path="navbarNext"/>
         </nav>
     </c:otherwise>
 </c:choose>

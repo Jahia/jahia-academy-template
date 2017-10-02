@@ -67,7 +67,7 @@
                     <c:if test="${! empty audiences}">
 
                         <c:forEach items="${audiences}" var="audience" varStatus="status">
-                            <c:if test="${status.first}"><div class="role-wrapper"><i class="fa fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                            <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fa fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
                             <c:set var="audienceNode" value="${audience.node}"/>
                             <div class="label label-success">${audienceNode.displayableName}</div>
                             <c:if test="${status.last}"></div></c:if>
@@ -79,7 +79,7 @@
                             <jcr:node var="searchPage" path="/sites/academy/home/search"/>
 
                             <c:forEach items="${tagList}" var="tag" varStatus="status">
-                                <c:if test="${status.first}"><div class="role-wrapper"><i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
                                 <c:if test="${! empty searchPage}">
                                     <c:url var="searchTagUrl" value="${searchPage.url}">
                                         <c:param name="src_terms[0].term" value="${tag.string}"/>
@@ -106,7 +106,7 @@
                         --%>
 
                     <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent')}">
-                    <div class="role-wrapper smaller">
+                    <div class="role-wrapper hidden-print smaller">
                         <span class="readTime">
                             <i class="fa fa-clock-o fa-fw " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Estimated reading time: <span
                                 class="eta"></span>
@@ -174,7 +174,7 @@
                         <c:if test="${jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
                             <c:set var="specificVersions" value="${documentNode.properties.specificVersions}"/>
                             <c:forEach items="${specificVersions}" var="specificVersion" varStatus="status">
-                                <c:if test="${status.first}"><div class="role-wrapper"></c:if>
+                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"></c:if>
                                 <span class="label label-default">${specificVersion.string}</span>
                                 <c:if test="${status.last}"></div></c:if>
                             </c:forEach>
