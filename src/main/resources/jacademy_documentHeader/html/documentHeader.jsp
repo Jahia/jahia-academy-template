@@ -119,6 +119,7 @@
                 <c:if test="${! empty pdfNode}">
                     <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
                 </c:if>
+                <c:set var="isTechwiki" value="${fn:contains(fn:toLowerCase(documentNode.path),'/techwiki/')}"/>
                 <c:set var="pageNodes"
                        value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
                 <c:set var="pageNodesSize"
@@ -126,7 +127,7 @@
 
                 <c:if test="${! empty pdfUrl or pageNodesSize > 0 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
                     <div class="col-xs-4 hidden-print text-right">
-                        <c:if test="${pageNodesSize > 0}">
+                        <c:if test="${pageNodesSize > 0 && ! isTechwiki}">
 
                             <c:forEach var="pageNode" items="${pageNodes}" varStatus="status">
                                 <c:if test="${status.first}">

@@ -103,8 +103,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <%--link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'--%>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Varela+Round" rel="stylesheet">
-
 
     <template:addResources type="css" resources="bootstrap.min.css"/>
     <template:addResources type="css" resources="bootstrapXl.css"/>

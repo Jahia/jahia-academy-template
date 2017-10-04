@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <c:url var="logoUrl" value="${url.currentModule}/img/academy_logo.png"/>
+                    <c:url var="logoUrl" value="${url.currentModule}/img/jahia-academy.svg"/>
                     <a class="navbar-brand" href="${renderContext.site.home.url}"><img class="logo" src="${logoUrl}" alt=""></a>
                 </div>
 
