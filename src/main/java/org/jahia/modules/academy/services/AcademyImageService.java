@@ -43,30 +43,35 @@ public class AcademyImageService {
 	 */
 	public void addThumbnail(AddedNodeFact imageNode, String name, int thumbnailSize, KnowledgeHelper drools) throws
 			Exception {
-		logger.debug("addThumbnail called for the name '" + name + "' and the size '" + thumbnailSize);
 
-		Image image;
-		try {
-			image = jahiaImageService.getImage(imageNode.getNode());
+		String path = imageNode.getPath();
+		if (! path.endsWith(".svg")) {
+			logger.debug("addThumbnail called for the name '" + name + "' and the size '" + thumbnailSize);
 
-			int originalWidth = jahiaImageService.getWidth(image);
-			logger.debug("Original width : " + originalWidth);
+			Image image;
+			try {
+				image = jahiaImageService.getImage(imageNode.getNode());
 
-			// We create the thumbnail with the expected size
-			if (originalWidth >= thumbnailSize) {
-				logger.info("Creating thumbnail image with size : " + thumbnailSize);
-				rulesImageService.addThumbnail(imageNode, name, thumbnailSize, drools);
+				int originalWidth = jahiaImageService.getWidth(image);
+				logger.debug("Original width : " + originalWidth);
+
+				// We create the thumbnail with the expected size
+				if (originalWidth >= thumbnailSize) {
+					logger.info("Creating thumbnail image with size : " + thumbnailSize);
+					rulesImageService.addThumbnail(imageNode, name, thumbnailSize, drools);
+				}
+				// We create a thumbnail with the original size : it is a duplicate of the original image
+				else {
+					logger.info("Creating thumbnail image with original size : " + originalWidth);
+					rulesImageService.addThumbnail(imageNode, name, originalWidth, drools);
+				}
+			} catch (RepositoryException e) {
+				logger.error(e.getMessage(),e);
+			} catch (IOException e) {
+				logger.error(e.getMessage(),e);
 			}
-			// We create a thumbnail with the original size : it is a duplicate of the original image
-			else {
-				logger.info("Creating thumbnail image with original size : " + originalWidth);
-				rulesImageService.addThumbnail(imageNode, name, originalWidth, drools);
-			}
-		} catch (RepositoryException e) {
-			logger.error(e.getMessage(),e);
-		} catch (IOException e) {
-			logger.error(e.getMessage(),e);
 		}
+
 	}
 
 }
