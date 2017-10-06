@@ -102,7 +102,6 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <%--link href='//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'--%>
 
     <template:addResources type="css" resources="bootstrap.min.css"/>
     <template:addResources type="css" resources="bootstrapXl.css"/>
@@ -111,6 +110,7 @@
     <template:addResources type="css" resources="font-awesome.min.css"/>
     <template:addResources type="css" resources="highlightjs-line-numbers.css"/>
     <template:addResources type="css" resources="ekko-lightbox.min.css"/>
+    <template:addResources type="css" resources="jquery-ui.min.css,jquery-ui.structure.min.css, jquery-ui.theme.min.css, autoCompleteSearch.css" />
     <template:addResources type="css" resources="academy.css"/>
     <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>

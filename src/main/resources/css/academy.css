@@ -1924,18 +1924,12 @@ nav.bs-docs-sidebar > ul > li > a:hover,nav.bs-docs-sidebar > ul > li > a:focus 
 .col-md-4 .product:hover {
     background: #fafafa;
 }
-#row1 .product {
-    height: 275px;
-}
-#row1 .col-md-8 .product {
-    height: 580px;
-}
 .product .bg {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 .product .content {
-    padding:40px;
+    padding:38px;
 }
 .product .content, .product .content a {
     color: #2d3c57;
@@ -1943,6 +1937,7 @@ nav.bs-docs-sidebar > ul > li > a:hover,nav.bs-docs-sidebar > ul > li > a:focus 
 .product ul {
     list-style-type: none;
     padding-left: 0;
+    margin-bottom: 0;
 }
 .btn-primary {
     color: #fff;

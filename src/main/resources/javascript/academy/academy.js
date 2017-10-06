@@ -104,7 +104,7 @@ $(document).ready(function ($) {
 
     $('table.stack').cardtable();
 
-    $("table.sticky").stickyTableHeaders({fixedOffset: 135});
+    $("table.sticky").stickyTableHeaders({fixedOffset: 124});
     $('.bg-light.sameheight').matchHeight();
     $('.bg-dark.sameheight').matchHeight();
     $('.sameheight .col-md-4 .product').matchHeight();
