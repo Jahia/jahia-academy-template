@@ -1,0 +1,103 @@
+
+<c:set var="hitPath" value="${hit.rawHit.path}"/>
+<c:set var="productUrl"/>
+<c:set var="versionUrl"/>
+<c:url var="hitUrl" value="${hit.link}"/>
+<jcr:node var="hitNode" path="${hitPath}"/>
+<c:if test="${! empty hitNode}">
+    <c:if test="${jcr:isNodeType(hitNode, 'jacademy:document')}">
+        <c:set var="versionNode" value="${jcr:getParentOfType(hitNode, 'jacademix:isVersionPage')}"/>
+        <c:if test="${! empty versionNode}">
+            <c:url var="versionUrl" value="${versionNode.url}"/>
+            <c:if test="${versionNode.name ne 'Techwiki'}">
+                <c:set var="version" value="${versionNode.displayableName}"/>
+                <c:set var="productNode" value="${jcr:getParentOfType(versionNode, 'jnt:page')}"/>
+                <c:url var="productUrl" value="${productNode.url}"/>
+                <c:set var="product" value="${productNode.displayableName}"/>
+            </c:if>
+        </c:if>
+    </c:if>
+</c:if>
+<h4><a href="${hitUrl}">${hit.title}</a>
+    <c:if test="${! empty product}">
+        <span class="small">${product}&nbsp;${version}</span>
+    </c:if>
+</h4>
+<div class="resultslistDesc">${hit.excerpt}</div>
+<%--
+<div class="resultsListFileType">${hit.contentType}</div>
+<div class="resultsListDate"><fmt:formatDate value="${hit.lastModified}" pattern="dd.MM.yyyy HH:mm"/></div>
+--%>
+<%--
+<div class="resultsListUsages">
+    <c:forEach items="${hit.usages}" var="usage" varStatus="loopStatus">
+        <c:if test="${loopStatus.first}">Also used in:&nbsp;</c:if>
+        <c:if test="${not loopStatus.first}">,&nbsp;</c:if>
+        <a href="${usage.link}">${fn:escapeXml(usage.title)}</a>
+    </c:forEach>
+</div>
+--%>
+<c:if test="${! empty hitNode}">
+    <c:set var="pageNode" value="${jcr:getParentOfType(hitNode, 'jnt:page')}"/>
+    <c:set var="localPathToDoc" value="${fn:replace(pageNode.path, versionNode.path, '')}"/>
+    <c:set var="versionNodes" value="${jcr:getChildrenOfType(productNode, 'jacademix:isVersionPage')}"/>
+    <c:set var="hasVersion" value="false"/>
+    <c:if test="${fn:length(versionNodes)>1}">
+        <c:forEach var="otherVersionNode" items="${versionNodes}" varStatus="varStatus">
+            <c:set var="otherVersionValue" value="${otherVersionNode.properties.version.string}"/>
+            <jcr:node var="otherVersionPageNode" path="${otherVersionNode.path}${localPathToDoc}"/>
+            <c:if test="${! empty otherVersionPageNode}">
+                <c:if test="${! hasVersion}">
+                    <i class="fa fa-code-fork fa-fw text-muted" aria-hidden="true"></i>
+                </c:if>
+                <c:set var="hasVersion" value="true"/>
+                <template:addCacheDependency path="${otherVersionPageNode.path}"/>
+                <c:url var="otherVersionUrl" value="${otherVersionPageNode.url}"/>
+                <a class="label label-${otherVersionValue eq 'current' ? 'warning' : 'info'}" href="${otherVersionUrl}">${otherVersionNode.displayableName}</a>
+            </c:if>
+            <c:remove var="otherVersionPageNode"/>
+        </c:forEach>
+        <c:if test="${hasVersion}">
+            <br/>
+        </c:if>
+    </c:if>
+    <c:remove var="hasVersion"/>
+    <c:remove var="versionNodes"/>
+
+    <c:if test="${jcr:isNodeType(hitNode, 'jacademix:specificVersions')}">
+        <c:set var="specificVersions" value="${hitNode.properties.specificVersions}"/>
+        <c:forEach items="${specificVersions}" var="specificVersion" varStatus="status">
+            <c:if test="${status.first}"><i class="fa fa-code-fork fa-fw text-muted" aria-hidden="true"></i></c:if>
+            <a class="label label-info" href="${hitUrl}">${specificVersion.string}</a>
+            <c:if test="${status.last}"><br/></c:if>
+        </c:forEach>
+    </c:if>
+
+    <c:set var="tagList" value="${hitNode.properties['j:tagList']}"/>
+    <c:if test="${! empty tagList}">
+        <c:forEach items="${tagList}" var="tag" varStatus="status">
+            <c:if test="${! empty searchPage}">
+                <c:url var="searchTagUrl" value="${searchPage.url}">
+                    <c:param name="src_terms[0].term" value="${tag.string}"/>
+                    <c:param name="src_terms[0].fields.tags" value="true"/>
+                    <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>
+                    <c:param name="autoSuggest" value="false"/>
+                </c:url>
+                <c:if test="${status.first}">
+                    <i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>
+                </c:if>
+                <a class="label label-info" href="${searchTagUrl}">${tag.string}</a>
+                <c:if test="${status.last}">
+                    <br/>
+                </c:if>
+            </c:if>
+        </c:forEach>
+    </c:if>
+</c:if>
+<a href="${hitUrl}" class="small">${serverUrl}${hitUrl}</a>
+<c:remove var="productUrl"/>
+<c:remove var="versionUrl"/>
+<c:remove var="productNode"/>
+<c:remove var="versionNode"/>
+<c:remove var="product"/>
+<c:remove var="version"/>

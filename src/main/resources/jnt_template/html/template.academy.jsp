@@ -45,7 +45,7 @@
             <c:forEach var="pageNode" items="${pageNodes}" end="0">
                 <c:set var="versionNode" value="${pageNode}"/>
                 <c:set var="productNode" value="${versionNode.parent}"/>
-                <c:set var="productInfo">${' '}|${' '}${productNode.displayableName}${' '}(${versionNode.displayableName})</c:set>
+                <c:set var="productInfo">${' | '}${productNode.displayableName}${' '}(${versionNode.displayableName})</c:set>
             </c:forEach>
         </c:if>
     </c:if>
