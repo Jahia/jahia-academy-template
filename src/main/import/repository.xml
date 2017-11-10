@@ -176,7 +176,7 @@
                                 </pagecontent>
                             </product-home>
                             <pagecontent jcr:primaryType="jnt:contentList">
-                                <header j:classname="navbar navbar-fixed-top hidden-print"
+                                <header j:classname="navbar navbar-fixed-top headroom hidden-print"
                              j:skin="skins.custom"
                              jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                              jcr:primaryType="jnt:contentList">
@@ -186,7 +186,7 @@
                                           jcr:title="header"/>
                                     <navigation-bar fluid="true"
                                         inverse="false"
-                                        j:styleName="navbar navbar-fixed-top hidden-print"
+                                        j:styleName=" hidden-print"
                                         j:view="academy"
                                         jcr:mixinTypes="jmix:renderable"
                                         jcr:primaryType="bootstrap3nt:enhancedNavBar">

@@ -67,7 +67,7 @@ $(document).ready(function ($) {
             always_show_close: false
         });
     });
-    $(".navbar-fixed-top").headroom({
+    $(".headroom").headroom({
         "offset": 180,
         "tolerance": 5
     });
