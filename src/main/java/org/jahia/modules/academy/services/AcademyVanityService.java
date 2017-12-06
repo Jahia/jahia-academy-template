@@ -37,7 +37,12 @@ public class AcademyVanityService {
      */
     public void addVanity(AddedNodeFact node, KnowledgeHelper drools) throws
             Exception {
-        createVanity(node.getNode(), node.getLanguage());
+        String lang = node.getLanguage();
+        if (lang != null) {
+            createVanity(node.getNode(), lang);
+        } else {
+            logger.debug("Could not create vanity URL; Lang is null");
+        }
     }
 
     private void createVanity(JCRNodeWrapper node, String lang) throws Exception {
@@ -92,26 +97,28 @@ public class AcademyVanityService {
                         url = "/" + slugTitle + url;
                     }
                 }
-                if (!"en".equals(lang)) {
+                if (lang != null && !"en".equals(lang)) {
                     url = "/" + lang + url;
                 }
-
-                VanityUrl vanityUrl = new VanityUrl(url, siteKey, lang, true, true);
-                try {
-                    VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
-                    if (urlMgr.findExistingVanityUrls(url, siteKey, session).isEmpty()) {
-                        try {
-                            urlMgr.saveVanityUrlMapping(node, vanityUrl, session);
-                            logger.debug("addVanity " + url + " for page " + node.getPath());
-                        } catch (RepositoryException e) {
-                            logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> " + e.getMessage());
+                if (! url.startsWith("/null")) {
+                    try {
+                        VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
+                        if (urlMgr.findExistingVanityUrls(url, siteKey, session) == null || urlMgr.findExistingVanityUrls(url, siteKey, session).isEmpty()) {
+                            try {
+                                VanityUrl vanityUrl = new VanityUrl(url, siteKey, lang, true, true);
+                                urlMgr.saveVanityUrlMapping(node, vanityUrl, session);
+                                logger.debug("addVanity " + url + " for page " + node.getPath());
+                            } catch (RepositoryException e) {
+                                logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> " + e.getMessage());
+                            }
+                        } else {
+                            logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> already exist");
                         }
-                    } else {
-                        logger.debug("could not add vanity " + url + " for page " + node.getPath() + " -> already exist");
+                    } catch (NonUniqueUrlMappingException nonUniqueUrlMappingException) {
+                        logger.error(nonUniqueUrlMappingException.getMessage(), nonUniqueUrlMappingException);
                     }
-                } catch (NonUniqueUrlMappingException nonUniqueUrlMappingException) {
-                    logger.error(nonUniqueUrlMappingException.getMessage(), nonUniqueUrlMappingException);
                 }
+
             } else {
                 logger.debug("Could not create a vanity for node " + node.getPath() + " (not a displayableNode)");
             }
@@ -119,6 +126,11 @@ public class AcademyVanityService {
 
 
     }
+
+    public static boolean isNullOrEmpty( final Collection< ? > c ) {
+        return c == null || c.isEmpty();
+    }
+
 
     private String slug(final String str) {
         if (str == null) {
