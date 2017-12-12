@@ -1,6 +1,7 @@
 package org.jahia.modules.academy.services;
 
 import org.drools.core.spi.KnowledgeHelper;
+import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.rules.AddedNodeFact;
 import org.jahia.services.content.rules.ImageService;
 import org.jahia.services.image.Image;
@@ -50,20 +51,25 @@ public class AcademyImageService {
 
 			Image image;
 			try {
-				image = jahiaImageService.getImage(imageNode.getNode());
+				JCRNodeWrapper theNode = imageNode.getNode();
+				if (theNode != null) {
+					image = jahiaImageService.getImage(theNode);
 
-				int originalWidth = jahiaImageService.getWidth(image);
-				logger.debug("Original width : " + originalWidth);
+					int originalWidth = jahiaImageService.getWidth(image);
+					logger.debug("Original width : " + originalWidth);
 
-				// We create the thumbnail with the expected size
-				if (originalWidth >= thumbnailSize) {
-					logger.info("Creating thumbnail image with size : " + thumbnailSize);
-					rulesImageService.addThumbnail(imageNode, name, thumbnailSize, drools);
-				}
-				// We create a thumbnail with the original size : it is a duplicate of the original image
-				else {
-					logger.info("Creating thumbnail image with original size : " + originalWidth);
-					rulesImageService.addThumbnail(imageNode, name, originalWidth, drools);
+					// We create the thumbnail with the expected size
+					if (originalWidth >= thumbnailSize) {
+						logger.info("Creating thumbnail image with size : " + thumbnailSize);
+						rulesImageService.addThumbnail(imageNode, name, thumbnailSize, drools);
+					}
+					// We create a thumbnail with the original size : it is a duplicate of the original image
+					else {
+						logger.info("Creating thumbnail image with original size : " + originalWidth);
+						rulesImageService.addThumbnail(imageNode, name, originalWidth, drools);
+					}
+				} else {
+					logger.debug("Image node for '" + path + " is null");
 				}
 			} catch (RepositoryException e) {
 				logger.error(e.getMessage(),e);

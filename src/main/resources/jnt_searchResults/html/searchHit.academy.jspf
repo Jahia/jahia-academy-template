@@ -23,7 +23,18 @@
         <span class="small">${product}&nbsp;${version}</span>
     </c:if>
 </h4>
-<div class="resultslistDesc">${hit.excerpt}</div>
+<div class="resultslistDesc">
+    <c:set var="metaDesc"
+           value="${hitNode.properties['jcr:description'].string}"/>
+    <c:choose>
+        <c:when test="${empty metaDesc}">
+            ${hit.excerpt}
+        </c:when>
+        <c:otherwise>
+            ${metaDesc}
+        </c:otherwise>
+    </c:choose>
+</div>
 <%--
 <div class="resultsListFileType">${hit.contentType}</div>
 <div class="resultsListDate"><fmt:formatDate value="${hit.lastModified}" pattern="dd.MM.yyyy HH:mm"/></div>
