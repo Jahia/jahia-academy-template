@@ -12,15 +12,13 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
-<ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && vm.currentForm.progressBar.position === 'top' || vm.currentForm.progressBar.position === 'both'"
+<ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && (vm.currentForm.progressBar.position === 'top' || vm.currentForm.progressBar.position === 'both') && !vm.getFormController().$submitted"
                  form="vm.currentForm" current-step="vm.currentStep"></ff-progress-bar>
 
 <%--Preload Message--%>
 <div class="" ng-if="vm.showPreloadMessage">
     <div class=" muted">
-        <strong>
-            {{vm.currentForm.afterSubmissionText}}
-        </strong>
+        <strong ng-bind-html="vm.currentForm.afterSubmissionText"></strong>
     </div>
 </div>
 
@@ -48,6 +46,6 @@
 
 <template:include view="bootstrap3-basic-formView" templateType="html" />
 
-<ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && vm.currentForm.progressBar.position === 'bottom' || vm.currentForm.progressBar.position === 'both'"
+<ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && (vm.currentForm.progressBar.position === 'bottom' || vm.currentForm.progressBar.position === 'both') && !vm.getFormController().$submitted"
                  form="vm.currentForm" current-step="vm.currentStep"></ff-progress-bar>
 

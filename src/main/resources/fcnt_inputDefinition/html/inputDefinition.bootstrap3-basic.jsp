@@ -5,7 +5,7 @@
     <label class="control-label" for="{{input.name}}">
         {{input.label}}
         <span ng-if="isRequired()"
-              ng-show="form.$dirty">
+              ng-show="asteriskResolver()">
             <sup>&nbsp;<i class="fa fa-asterisk fa-sm"></i></sup>
         </span>
     </label>
@@ -19,15 +19,18 @@
            ng-model="input.value"
            ng-required="isRequired()"
            ng-readonly="readOnly"
+           ng-blur="dispatchActiveInputEvent({type: 'blur'})"
+           ng-focus="dispatchActiveInputEvent({type: 'focus'})"
            ff-validations
-           ff-logic>
+           ff-logic
+           ff-focus-tracker="{{input.name}}">
     <span class="help-block"
           ng-show="input.helptext != undefined">
             {{input.helptext}}
         </span>
     <span class="help-block"
           ng-repeat="(validationName, validation) in input.validations"
-          ng-show="form[input.name].$error[(validationName | normalize)]&&form[input.name].$dirty">
+          ng-show="showErrorMessage(validationName)">
             {{validation.message}}
     </span>
 </div>

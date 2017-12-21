@@ -2,7 +2,7 @@
      ng-class="{'has-error': form[input.name].$invalid&&form[input.name].$dirty}"
      ng-show="resolveLogic()">
     <label class="control-label" for="{{input.name}}">
-        {{input.label}}<span ng-if="isRequired()" ng-show="form.$dirty"><sup>&nbsp;<i class="fa fa-asterisk fa-sm"></i></sup></span>
+        {{input.label}}<span ng-if="isRequired()" ng-show="asteriskResolver()"><sup>&nbsp;<i class="fa fa-asterisk fa-sm"></i></sup></span>
     </label>
 
     <input type="hidden"
@@ -18,14 +18,15 @@
           role="slider"
           aria-valuemin="0"
           aria-valuemax="{{range.length}}"
-          aria-valuenow="{{value}}">
+          aria-valuenow="{{value}}" class="noOutline">
           <span ng-repeat-start="r in range track by $index" class="sr-only"></span>
-            <i ng-repeat-end
-               ng-mouseenter="enter($index + 1)"
-               ng-click="rate($index + 1)"
-               class="fa {{r.iconSize}}"
-               ng-class="$index < value && (r.stateOn || 'fa-star') || (r.stateOff || 'fa-star-o')">
+            <span ng-repeat-end
+                  ng-mouseenter="enter($index + 1)"
+                  ng-click="rate($index + 1)"
+                  class="fa-stack {{r.iconSize}}">
+                <i class="fa {{resolveClass(r)}} {{r.stateHover}} pointer">
             </i>
+                <strong ng-if="r.type == 'variable'" class="fa-stack-1x text-primary pointer">{{r.value}}</strong>
            </span>
     </span>
     <span class="help-block"
@@ -34,7 +35,7 @@
         </span>
     <span class="help-block"
           ng-repeat="(validationName, validation) in input.validations"
-          ng-show="form[input.name].$error[(validationName | normalize)]&&form[input.name].$dirty">
+          ng-show="showErrorMessage(validationName)">
             {{validation.message}}
         </span>
 

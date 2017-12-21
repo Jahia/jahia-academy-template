@@ -5,15 +5,17 @@
 <template:addResources type="css" resources="jquery-ui.smoothness-jahia.css"/>
 <script>
     (function(){
+        <!--Configure the ffFormControlProvider-->
+        angular.module('formFactory').config(['ffFormControlProvider', function(ffFormControlProvider) {
+            ffFormControlProvider.setErrorMessageDisplayBehaviour('${errorMessageDisplayBehaviour}');
+        }]);
         var datePickerJqueryUI = function($log, i18n, ffCommonUseFactory) {
             var directive = {
                 restrict: 'A',
                 require : ['^ngModel'],
                 link    : linkFunction
             };
-
             return directive;
-
             function linkFunction(scope, el, attr, ctrl) {
                 var pickerScope = scope;
                 $(el).datepicker({
@@ -31,7 +33,6 @@
                         return null;
                     }
                 });
-
                 function normalizeFormat(format) {
                     if (format == null || format.trim().length == 0) {
                         format = 'yy-mm-dd';
@@ -60,7 +61,6 @@
                 }
             }
         };
-
         angular.module('formFactory').directive('ffDatePickerUi', ['$log', 'i18nService', 'ffCommonUseFactory', datePickerJqueryUI]);
     })();
 </script>
