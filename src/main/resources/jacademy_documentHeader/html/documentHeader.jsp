@@ -154,12 +154,19 @@
                                                           path="${versionNode.path}${localPathToDoc}"/>
                                                 <c:set var="isCurrent"
                                                        value="${fn:contains(renderContext.mainResource.node.path, versionNode.path)}"/>
-                                                <c:if test="${! empty versionDocNode }">
-                                                    <c:url var="versionUrl"
-                                                           value="${isCurrent?'#' : versionDocNode.url}"/>
-                                                    <li${isCurrent?' class="active"':''}><a
-                                                            href="${versionUrl}">${versionNode.displayableName}</a></li>
-                                                </c:if>
+                                                <c:choose>
+                                                    <c:when test="${! empty versionDocNode }">
+                                                        <c:url var="versionUrl"
+                                                               value="${isCurrent?'#' : versionDocNode.url}"/>
+                                                        <li${isCurrent?' class="active"':''}><a
+                                                                href="${versionUrl}">${versionNode.displayableName}</a></li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:url var="versionPageUrl" value="${versionNode.url}"/>
+                                                        <li${isCurrent?' class="active"':''}><a
+                                                                href="${versionPageUrl}">${versionNode.displayableName}</a></li>
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 <c:remove var="versionDocNode"/>
                                                 <c:if test="${vStatus.last}">
                                                     </ul>
