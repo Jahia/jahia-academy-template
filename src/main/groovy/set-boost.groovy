@@ -70,7 +70,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
             }
             if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
                 if (doIt) {
-                    JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE);
+                    JCRPublicationService.getInstance().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE,null);
                 };
                 logger.info("");
                 logger.info("Nodes which where republished:")

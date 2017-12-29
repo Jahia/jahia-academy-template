@@ -1693,7 +1693,7 @@ ul.nav.bs-docs-sidenav.sister {
     text-transform: uppercase;
 }
 .control-label {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 #main {
     margin-top: 126px;

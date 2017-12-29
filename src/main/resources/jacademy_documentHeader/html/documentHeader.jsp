@@ -125,9 +125,9 @@
                 <c:set var="pageNodesSize"
                        value="${fn:length(pageNodes)}"/>
 
-                <c:if test="${! empty pdfUrl or pageNodesSize > 0 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
+                <c:if test="${! empty pdfUrl or pageNodesSize > 1 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
                     <div class="col-xs-4 hidden-print text-right">
-                        <c:if test="${pageNodesSize > 0 && ! isTechwiki}">
+                        <c:if test="${pageNodesSize > 1 && ! isTechwiki}">
 
                             <c:forEach var="pageNode" items="${pageNodes}" varStatus="status">
                                 <c:if test="${status.first}">

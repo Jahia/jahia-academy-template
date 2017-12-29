@@ -122,7 +122,7 @@
                                               jcr:primaryType="jacademy:documentHeader"/>
                                             <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                            <document-area j:allowedTypes="jacademix:document" jcr:primaryType="jnt:area"/>
+                                            <document-area j:allowedTypes="jacademix:document jnt:contentList" jcr:primaryType="jnt:area"/>
                                             <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
                                             <feedback j:level="0"
                                         j:limitedAbsoluteAreaEdit="false"
@@ -149,13 +149,13 @@
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <main j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
+                                            <main j:allowedTypes="jacademix:content jnt:contentList" jcr:primaryType="jnt:area"/>
                                         </product-intro-main>
                                         <product-intro-side j:classname="doc-panel doc-height"
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <side j:allowedTypes="jacademix:content" jcr:primaryType="jnt:area"/>
+                                            <side j:allowedTypes="jacademix:content jnt:contentList" jcr:primaryType="jnt:area"/>
                                         </product-intro-side>
                                     </product-intro>
                                     <product-topics columnsType="predefinedColumns"

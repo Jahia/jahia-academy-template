@@ -109,5 +109,8 @@ $(document).ready(function ($) {
     $('.bg-dark.sameheight').matchHeight();
     $('.sameheight .col-md-4 .product').matchHeight();
 
+    $('button').click( function(e) {
+        $('.collapse').collapse('hide');
+    });
 });
 

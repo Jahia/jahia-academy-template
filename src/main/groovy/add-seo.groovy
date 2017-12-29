@@ -141,6 +141,8 @@ if (site != null) {
                                             urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
                                         } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
 
+                                        } catch (java.lang.NullPointerException npe) {
+
                                         }
 
                                     }
