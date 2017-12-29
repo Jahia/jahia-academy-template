@@ -125,9 +125,9 @@
                 <c:set var="pageNodesSize"
                        value="${fn:length(pageNodes)}"/>
 
-                <c:if test="${! empty pdfUrl or pageNodesSize > 1 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
+                <c:if test="${! empty pdfUrl or pageNodesSize > 0 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
                     <div class="col-xs-4 hidden-print text-right">
-                        <c:if test="${pageNodesSize > 1 && ! isTechwiki}">
+                        <c:if test="${pageNodesSize > 0 && ! isTechwiki}">
 
                             <c:forEach var="pageNode" items="${pageNodes}" varStatus="status">
                                 <c:if test="${status.first}">
@@ -139,13 +139,13 @@
 
                                     <div class="btn-group">
                                         <c:set var="hasOtherVersions" value="${fn:length(versionNodes)>1}"/>
-                                        <button class="btn btn-default btn-lg dropdown-toggle version" type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-code-fork text-muted" aria-hidden="true"></i>
-                                                ${pageNode.displayableName}
-                                            <c:if test="${hasOtherVersions}">&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></c:if>
-                                        </button>
                                         <c:if test="${hasOtherVersions}">
+                                            <button class="btn btn-default btn-lg dropdown-toggle version" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-code-fork text-muted" aria-hidden="true"></i>
+                                                    ${pageNode.displayableName}
+                                                <c:if test="${hasOtherVersions}">&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></c:if>
+                                            </button>
                                             <c:forEach var="versionNode" items="${versionNodes}" varStatus="vStatus">
                                                 <c:if test="${vStatus.first}">
                                                     <ul class="dropdown-menu">
