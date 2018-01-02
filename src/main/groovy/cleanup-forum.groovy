@@ -15,43 +15,72 @@ boolean doIt = false;
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("jahiacom");
 
 
-for (Locale locale : site.getLanguagesAsLocales()) {
-    if ('en'.equals(locale.toString())) {
-        JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSPACE, locale, new JCRCallback() {
-            @Override
-            Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
-                def q = "select * from [jmix:spamFilteringSpamDetected]";
+JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSPACE, new JCRCallback() {
+    @Override
+    Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
+        def q = "select * from [jmix:spamFilteringSpamDetected]";
 
-                logger.info("Processing " + q)
-                NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
-                while (iterator.hasNext()) {
-                    final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-                    logger.info("Remove spam " + node.getPath() + " [" + node.getDisplayableName() + "]");
-                    node.remove();
-                }
-                if (doIt) {
-                    session.save();
-                }
+        logger.info("Remove spam");
+        NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
+        while (iterator.hasNext()) {
+            final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
+            logger.info("Remove spam " + node.getPath() + " [" + node.getDisplayableName() + "]");
+            node.remove();
+        }
+        if (doIt) {
+            session.save();
+        }
 
 
-                q = "select * from [jnt:topic]";
-                logger.info("Processing " + q)
-                iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
-                while (iterator.hasNext()) {
-                    final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-                    List<JCRNodeWrapper> posts = JCRTagUtils.getChildrenOfType(node,'jnt:post');
-                    if (posts.size() == 0) {
-                        logger.info("Could not find posts for " + node.getPath() + " [" + node.getDisplayableName() + "]");
-                        node.remove();
-                    }
-                    //log.info(node.path);
-                }
-                if (doIt) {
-                    session.save();
-                }
-                return null;
+        q = "select * from [jnt:topic]";
+        logger.info("Remove empty topics");
+        iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
+        while (iterator.hasNext()) {
+            final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
+            List<JCRNodeWrapper> posts = JCRTagUtils.getChildrenOfType(node,'jnt:post');
+            if (posts.size() == 0) {
+                logger.info("Remove empty posts " + node.getPath() + " [" + node.getDisplayableName() + "]");
+                node.remove();
             }
-        });
-    }
+            //log.info(node.path);
+       }
+        if (doIt) {
+            session.save();
+        }
+        q = "select * from [jnt:topic]";
+        logger.info("Fix Topic Last Contribution Date")
+        iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
+        while (iterator.hasNext()) {
+            final JCRNodeWrapper topic = (JCRNodeWrapper) iterator.nextNode();
+            try {
+                long currentTopicTime = topic.getProperty("topicLastContributionDate").getDate().getTimeInMillis();
+                java.util.GregorianCalendar latestCal = null;
+                long latestTime = -1;
+                List<JCRNodeWrapper> posts = JCRContentUtils.getChildrenOfType(topic, "jnt:post")
+                if (posts != null) {
+                    for (int i = 0; i < posts.size(); i++) {
+                        JCRNodeWrapper post = posts.get(i);
+                        if (!post.isNodeType("jmix:spamFilteringSpamDetected")) {
+                            java.util.GregorianCalendar cal = post.getProperty("jcr:created").getDate();
+                            long time = cal.getTimeInMillis();
+                            if (time > latestTime) {
+                                latestTime = time;
+                                latestCal = cal;
+                            }
+                        }
+                    }
+                }
+                if (latestTime != -1 && Math.abs(latestTime - currentTopicTime) > 1000) {
+                    topic.setProperty("topicLastContributionDate", latestCal)
+                    long diff = (latestTime - currentTopicTime) / 1000;
+                    logger.info("Reset Last Contribution Date for " + topic.getPath() + " -> diff " + diff.toString() + "s");
+                }
+            } catch (javax.jcr.PathNotFoundException e) {
+                e.getMessage();
+            }
+        }
+        return null;
 
-}
+    }
+});
+
