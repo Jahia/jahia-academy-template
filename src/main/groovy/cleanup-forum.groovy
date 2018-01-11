@@ -1,4 +1,7 @@
 import org.jahia.api.Constants
+import org.jahia.services.SpringContextSingleton
+import org.jahia.services.cache.Cache
+import org.jahia.services.cache.CacheService
 import org.jahia.services.content.*
 import org.jahia.services.sites.JahiaSite
 import org.jahia.taglibs.jcr.node.JCRTagUtils
@@ -24,7 +27,7 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
         NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
         while (iterator.hasNext()) {
             final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-            logger.info("Remove spam " + node.getPath() + " [" + node.getDisplayableName() + "]");
+            logger.info("Remove spam " + node.getPath() + " [" + node.getDisplayableName().trim() + "]");
             node.remove();
         }
         if (doIt) {
@@ -39,7 +42,7 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
             final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
             List<JCRNodeWrapper> posts = JCRTagUtils.getChildrenOfType(node,'jnt:post');
             if (posts.size() == 0) {
-                logger.info("Remove empty posts " + node.getPath() + " [" + node.getDisplayableName() + "]");
+                logger.info("Remove empty posts " + node.getPath() + " [" + node.getDisplayableName().trim() + "]");
                 node.remove();
             }
             //log.info(node.path);
@@ -79,6 +82,18 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
                 e.getMessage();
             }
         }
+        if (doIt) {
+            session.save();
+        }
+        logger.info("Flush cache");
+        if (doIt) {
+            CacheService cacheService = (CacheService) SpringContextSingleton.getBean("JahiaCacheService");
+            Cache autoCompleteSearchCache = cacheService.getCache("HTMLCache", true);
+            logger.info("Flushing " + autoCompleteSearchCache.size() + " HTMLCache entries...");
+            autoCompleteSearchCache.flush();
+        }
+
+
         return null;
 
     }
