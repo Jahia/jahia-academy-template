@@ -24,9 +24,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
             NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
             while (iterator.hasNext()) {
                 final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-                if (node.hasProperty('fromVersion')) {
-                    log.info(node.path);
-                }
+
                 log.info(node.path);
             }
             if (doIt) {

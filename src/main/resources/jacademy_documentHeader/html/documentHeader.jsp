@@ -188,9 +188,13 @@
                             </c:forEach>
                         </c:if>
                         <c:if test="${! empty pdfUrl}">
+                            <c:set var="pdfTitle" value="${documentNode.properties.pdfTitle.string}"/>
+                            <c:if test="${empty pdfTitle}">
+                                <fmt:message key="academy.document.download" var="pdfTitle"/>
+                            </c:if>
+
                             <div><a href="${pdfUrl}" class="text-muted"><i class="fa fa-file-pdf-o text-muted fa-fw"
-                                                                               aria-hidden="true"></i>&nbsp;<fmt:message
-                                    key="academy.document.download"/></a></div>
+                                                                               aria-hidden="true"></i>&nbsp;${pdfTitle}</a></div>
                         </c:if>
                     </div>
                 </c:if>
