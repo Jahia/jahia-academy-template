@@ -17,6 +17,7 @@ boolean doIt = false;
 
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("jahiacom");
 
+boolean needToFlush = false;
 
 JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSPACE, new JCRCallback() {
     @Override
@@ -28,6 +29,7 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
         while (iterator.hasNext()) {
             final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
             logger.info("Remove spam " + node.getPath() + " [" + node.getDisplayableName().trim() + "]");
+            needToFlush = true;
             node.remove();
         }
         if (doIt) {
@@ -43,10 +45,11 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
             List<JCRNodeWrapper> posts = JCRTagUtils.getChildrenOfType(node,'jnt:post');
             if (posts.size() == 0) {
                 logger.info("Remove empty posts " + node.getPath() + " [" + node.getDisplayableName().trim() + "]");
+                needToFlush = true;
                 node.remove();
             }
             //log.info(node.path);
-       }
+        }
         if (doIt) {
             session.save();
         }
@@ -74,9 +77,10 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
                     }
                 }
                 if (latestTime != -1 && Math.abs(latestTime - currentTopicTime) > 1000) {
-                    topic.setProperty("topicLastContributionDate", latestCal)
+                    topic.setProperty("topicLastContributionDate", latestCal);
                     long diff = (latestTime - currentTopicTime) / 1000;
                     logger.info("Reset Last Contribution Date for " + topic.getPath() + " -> diff " + diff.toString() + "s");
+                    needToFlush = true;
                 }
             } catch (javax.jcr.PathNotFoundException e) {
                 e.getMessage();
@@ -86,7 +90,7 @@ JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSP
             session.save();
         }
         logger.info("Flush cache");
-        if (doIt) {
+        if (doIt && needToFlush) {
             CacheService cacheService = (CacheService) SpringContextSingleton.getBean("JahiaCacheService");
             Cache autoCompleteSearchCache = cacheService.getCache("HTMLCache", true);
             logger.info("Flushing " + autoCompleteSearchCache.size() + " HTMLCache entries...");
