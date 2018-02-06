@@ -59,8 +59,9 @@
   <name>Jahia Academy Template</name>
   <description>This is the custom profile module (Jahia Academy Template) for running on a Digital Experience Manager server.</description>
   <scm>
-    <connection>scm:dummy:uri</connection>
-    <developerConnection>scm:dummy:uri</developerConnection>
+    <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
+    <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
+    <url>https://github.com/Jahia/jahia-academy-template</url>
   </scm>
   <properties>
     <Jahia-Module-Priority>1</Jahia-Module-Priority>
