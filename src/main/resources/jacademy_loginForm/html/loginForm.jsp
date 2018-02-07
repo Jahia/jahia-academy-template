@@ -18,7 +18,7 @@
     <ui:loginArea class="form-inline">
         <c:if test="${not empty param['loginError']}">
             <div class="alert alert-danger" role="alert">
-                <strong><i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>&nbsp;Error:</strong>
+                <strong><i class="fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>&nbsp;Error:</strong>
                 <fmt:message
                         key="${loginResult == 'account_locked' ? 'message.accountLocked' : 'message.invalidUsernamePassword'}"/>
             </div>

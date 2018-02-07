@@ -28,7 +28,7 @@
          ng-if="!vm.displaySubmissionText && (!vm.runCallbacks && vm.currentForm.callbacks.displayTemplates)
          || !vm.displaySubmissionText && (vm.runCallbacks && !vm.currentForm.callbacks.displayTemplates)
          || !vm.displaySubmissionText && vm.currentForm.callbacks === null">
-        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
     </div>
 
     <ff-callback ng-if="vm.runCallbacks"

@@ -8,7 +8,7 @@
         {{input.label}}
         <span ng-if="isRequired()"
               ng-show="asteriskResolver()">
-            <sup>&nbsp;<i class="fa fa-asterisk fa-sm"></i></sup>
+            <sup>&nbsp;<i class="fas fa-asterisk fa-sm"></i></sup>
         </span>
     </label>
 

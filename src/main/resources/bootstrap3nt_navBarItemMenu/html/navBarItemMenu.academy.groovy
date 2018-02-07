@@ -121,9 +121,6 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                             } else {
                                                 print "<a href=\"#\">";
                                             }
-                                            //if (node.isNodeType("jacademix:faIcon")) {
-                                            //    print "<i class=\"fa fa-fw " + node.getProperty("faIcon").getString() + "\"aria-hidden=\"true\"></i>&nbsp;";
-                                            //}
                                             print node.displayableName + "</a></li>"
                                             print "<li role=\"separator\" class=\"divider\"></li>"
                                         }

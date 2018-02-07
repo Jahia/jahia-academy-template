@@ -65,11 +65,11 @@ for (int i = 0; i < flatTree.size(); i++) {
             if (previousNode.isNodeType("jacademix:isMultiplePageDoc") &&
                     previousNode.getParent().getPath() != mainResourceNode.getParent().getPath()) {
                 print("<li class=\"previous\"><a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
-                        " class=\"fa fa-long-arrow-left fa-fw\"></i>Previous: ${previousNode.getParent().displayableName} / ${previousNode.displayableName}</a></li>")
+                        " class=\"fas fa-long-arrow-alt-left fa-fw\"></i>Previous: ${previousNode.getParent().displayableName} / ${previousNode.displayableName}</a></li>")
 
             } else {
                 print("<li class=\"previous\"><a class=\"btn btn-link pull-left\" href=\"${previousNode.url}\" ><i\n" +
-                        " class=\"fa fa-long-arrow-left fa-fw\"></i>Previous: ${previousNode.displayableName}</a></li>")
+                        " class=\"fas fa-long-arrow-alt-left fa-fw\"></i>Previous: ${previousNode.displayableName}</a></li>")
             }
         }
         //print("--- C " + currentNode.path + " " + currentNode.getDisplayableName() + " * <br/>")
@@ -78,10 +78,10 @@ for (int i = 0; i < flatTree.size(); i++) {
             if (nextNode.isNodeType("jacademix:isMultiplePageDoc") &&
                     nextNode.getParent().getPath() != mainResourceNode.getParent().getPath()) {
                 print("<li class=\"next\"><a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.getParent().displayableName} / ${nextNode.displayableName}&nbsp;<i\n" +
-                        " class=\"fa fa-long-arrow-right\"></i></a></li>")
+                        " class=\"fas fa-long-arrow-alt-right\"></i></a></li>")
             } else {
                 print("<li class=\"next\"><a class=\"btn btn-link pull-right\" href=\"${nextNode.url}\" >Next: ${nextNode.displayableName}&nbsp;<i\n" +
-                        " class=\"fa fa-long-arrow-right\"></i></a></li>")
+                        " class=\"fas fa-long-arrow-alt-right\"></i></a></li>")
             }
         }
         break;

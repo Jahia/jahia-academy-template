@@ -93,13 +93,6 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
                     out.replace(imgTag, newImgTag.toString());
                 }
 
-				/*
-				StringBuilder newImgTag = new StringBuilder("<img");
-				newImgTag.append(" alt=\"" + imgTag.getAttributeValue("alt") + "\" data-lity");
-				newImgTag.append(" data-lity-target=\"" + srcValue + "\"");
-				newImgTag.append(" src=\"" + sbSrcValue.toString() + "\"/>");
-				 */
-
             }
         }
 
