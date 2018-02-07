@@ -58,7 +58,7 @@
                 <div class="col-xs-8 ">
                     <c:set var="author" value="${documentNode.properties.author.string}"/>
                     <div class="role-wrapper">
-                        <i class="fas fa-pen-square fa-fw" aria-hidden="true"></i>&nbsp;
+                        <i class="fas fa-edit fa-fw" aria-hidden="true"></i>&nbsp;
                         <fmt:message key="academy.document.writtenBy">
                             <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
                         </fmt:message>
@@ -193,7 +193,7 @@
                                 <fmt:message key="academy.document.download" var="pdfTitle"/>
                             </c:if>
 
-                            <div><a href="${pdfUrl}" class="text-muted"><i class="fas fa-file-pdf text-muted fa-fw"
+                            <div><a href="${pdfUrl}" class="text-muted"><i class="far fa-file-pdf text-muted fa-fw"
                                                                                aria-hidden="true"></i>&nbsp;${pdfTitle}</a></div>
                         </c:if>
                     </div>

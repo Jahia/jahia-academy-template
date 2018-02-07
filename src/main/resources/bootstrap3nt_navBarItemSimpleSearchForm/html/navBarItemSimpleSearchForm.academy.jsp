@@ -36,7 +36,7 @@
             <ul class="dropdown-menu">
                 <c:catch var="errorSwitchToLive">
                     <c:if test="${! renderContext.liveMode}">
-                        <li><a href="<c:url value='${url.live}' context='/'/>"><i class="far fa-check-square fa-fw"></i> Live</a></li>
+                        <li><a href="<c:url value='${url.live}' context='/'/>"><i class="fas fa-check fa-fw"></i> Live</a></li>
                     </c:if>
                 </c:catch>
                 <c:if test="${errorSwitchToLive != null}">
@@ -59,7 +59,7 @@
                 </c:if>
                 <c:catch var="errorSwitchToEdit">
                     <c:if test="${! renderContext.editMode && jcr:hasPermission(renderContext.mainResource.node, 'editModeAccess')}">
-                        <li><a href="<c:url value='${url.edit}' context='/'/>"><i class="fas fa-edit fa-fw"></i> Edit</a></li>
+                        <li><a href="<c:url value='${url.edit}' context='/'/>"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a></li>
                     </c:if>
                 </c:catch>
                 <c:if test="${errorSwitchToEdit != null}">
