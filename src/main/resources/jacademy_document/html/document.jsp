@@ -51,7 +51,7 @@
             <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
             <div class="alert alert-warning">Sorry, there is no HTML version for this document. Get the latest PDF version here <a
                     class="btn btn-danger" href="${pdfUrl}" type="button"><i aria-hidden="true"
-                                                                             class="fa fa-download fa-fw"></i> ${currentNode.displayableName}
+                                                                             class="fas fa-download fa-fw"></i> ${currentNode.displayableName}
             </a></div>
         </c:if>
 

@@ -109,25 +109,11 @@
                     <c:set var="currentPageIndex" value="${status.index}"/>
                 </c:if>
             </c:forEach>
-            <%--
-            <c:if test="${currentPageIndex - 1 >= 0}">
-                <c:set var="previousPageNode" value="${sisterPages[currentPageIndex - 1]}"/>
-                <c:url var="previousPageUrl" value="${previousPageNode.url}"/>
-                <a href="${previousPageUrl}" class="text-success back-to-top notopmargin"> Prev <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${previousPageNode.displayableName}</a>
-            </c:if>
-            --%>
             <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav" ></ul>
-            <%--
-            <c:if test="${currentPageIndex + 1 < fn:length(sisterPages)}">
-                <c:set var="nextPageNode" value="${sisterPages[currentPageIndex + 1]}"/>
-                <c:url var="nextPageUrl" value="${nextPageNode.url}"/>
-                <a href="${nextPageUrl}" class="text-success back-to-top nobottommargin"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i> ${nextPageNode.displayableName}</a>
-            </c:if>
-            --%>
         </c:otherwise>
     </c:choose>
 
-    <a href="#top" data-scrollto="#top" class="back-to-top light mt20"> Back to top <i class="fa fa-level-up" aria-hidden="true"></i></a>
+    <a href="#top" data-scrollto="#top" class="back-to-top light mt20"> Back to top <i class="fas fa-level-up-alt" aria-hidden="true"></i></a>
     <a href="#" id="incfont">A+</a>
     <a href="#" id="decfont">A-</a>
 </nav>

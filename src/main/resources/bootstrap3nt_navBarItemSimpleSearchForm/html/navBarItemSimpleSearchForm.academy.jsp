@@ -32,11 +32,11 @@
     <%-- TODO: find a better place to put this switch mode menu --%>
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> ${userDisplayName} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> ${userDisplayName} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <c:catch var="errorSwitchToLive">
                     <c:if test="${! renderContext.liveMode}">
-                        <li><a href="<c:url value='${url.live}' context='/'/>"><i class="glyphicon glyphicon-ok"></i> Live</a></li>
+                        <li><a href="<c:url value='${url.live}' context='/'/>"><i class="far fa-check-square fa-fw"></i> Live</a></li>
                     </c:if>
                 </c:catch>
                 <c:if test="${errorSwitchToLive != null}">
@@ -48,7 +48,7 @@
                 <c:catch var="errorSwitchToPreview">
                     <c:if test="${! renderContext.previewMode && jcr:hasPermission(renderContext.mainResource.node, 'editModeAccess')}">
                         <c:url value="${url.preview}" var="previewUrl" context='/'/>
-                        <li><a href="${previewUrl}"><i class="glyphicon glyphicon-check"></i> Preview</a></li>
+                        <li><a href="${previewUrl}"><i class="fas fa-eye fa-fw"></i> Preview</a></li>
                     </c:if>
                 </c:catch>
                 <c:if test="${errorSwitchToPreview != null}">
@@ -59,7 +59,7 @@
                 </c:if>
                 <c:catch var="errorSwitchToEdit">
                     <c:if test="${! renderContext.editMode && jcr:hasPermission(renderContext.mainResource.node, 'editModeAccess')}">
-                        <li><a href="<c:url value='${url.edit}' context='/'/>"><i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+                        <li><a href="<c:url value='${url.edit}' context='/'/>"><i class="fas fa-edit fa-fw"></i> Edit</a></li>
                     </c:if>
                 </c:catch>
                 <c:if test="${errorSwitchToEdit != null}">
@@ -73,7 +73,7 @@
                     <c:url value='${url.logout}' var="fullLogoutUrl">
                         <c:param name="redirect" value="${logoutUrl}"/>
                     </c:url>
-                    <a href="${fullLogoutUrl}"><i class="glyphicon glyphicon-minus-sign"></i> Logout</a>
+                    <a href="${fullLogoutUrl}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             </ul>
         </li>

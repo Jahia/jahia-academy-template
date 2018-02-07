@@ -58,7 +58,7 @@
                 <div class="col-xs-8 ">
                     <c:set var="author" value="${documentNode.properties.author.string}"/>
                     <div class="role-wrapper">
-                        <i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i>&nbsp;
+                        <i class="fas fa-pen-square fa-fw" aria-hidden="true"></i>&nbsp;
                         <fmt:message key="academy.document.writtenBy">
                             <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
                         </fmt:message>
@@ -67,7 +67,7 @@
                     <c:if test="${! empty audiences}">
 
                         <c:forEach items="${audiences}" var="audience" varStatus="status">
-                            <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fa fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                            <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
                             <c:set var="audienceNode" value="${audience.node}"/>
                             <div class="label label-success">${audienceNode.displayableName}</div>
                             <c:if test="${status.last}"></div></c:if>
@@ -79,7 +79,7 @@
                             <jcr:node var="searchPage" path="/sites/academy/home/search"/>
 
                             <c:forEach items="${tagList}" var="tag" varStatus="status">
-                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fa fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
                                 <c:if test="${! empty searchPage}">
                                     <c:url var="searchTagUrl" value="${searchPage.url}">
                                         <c:param name="src_terms[0].term" value="${tag.string}"/>
@@ -108,7 +108,7 @@
                     <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent')}">
                     <div class="role-wrapper hidden-print smaller">
                         <span class="readTime">
-                            <i class="fa fa-clock-o fa-fw " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Estimated reading time: <span
+                            <i class="far fa-clock fa-fw " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Estimated reading time: <span
                                 class="eta"></span>
                         </span>
                     </div>
@@ -142,9 +142,9 @@
                                         <c:if test="${hasOtherVersions}">
                                             <button class="btn btn-default btn-lg dropdown-toggle version" type="button"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-code-fork text-muted" aria-hidden="true"></i>
+                                                <i class="fas fa-code-branch text-muted" aria-hidden="true"></i>
                                                     ${pageNode.displayableName}
-                                                <c:if test="${hasOtherVersions}">&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></c:if>
+                                                <c:if test="${hasOtherVersions}">&nbsp;<i class="fas fa-angle-down" aria-hidden="true"></i></c:if>
                                             </button>
                                             <c:forEach var="versionNode" items="${versionNodes}" varStatus="vStatus">
                                                 <c:if test="${vStatus.first}">
@@ -193,7 +193,7 @@
                                 <fmt:message key="academy.document.download" var="pdfTitle"/>
                             </c:if>
 
-                            <div><a href="${pdfUrl}" class="text-muted"><i class="fa fa-file-pdf-o text-muted fa-fw"
+                            <div><a href="${pdfUrl}" class="text-muted"><i class="fas fa-file-pdf text-muted fa-fw"
                                                                                aria-hidden="true"></i>&nbsp;${pdfTitle}</a></div>
                         </c:if>
                     </div>
