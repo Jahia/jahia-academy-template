@@ -1265,7 +1265,7 @@ pre, pre code {
     content: "\f30b";
     font-size: 14px;
     font-family: "Font Awesome 5 Free";
-    padding-top:5px;
+/*    padding-top:5px;*/
     margin-left: -24px;
     float: left;
     animation-name: animarrow;
@@ -1274,7 +1274,7 @@ pre, pre code {
     font-weight:900;
 }
 .bs-docs-sidebar ul ul .active > a:before {
-    padding-top:4px;
+/*    padding-top:4px;*/
 }
 
 /*ul: second level (shown on .active) */
