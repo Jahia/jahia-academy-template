@@ -1262,14 +1262,16 @@ pre, pre code {
 }
 
 .bs-docs-sidebar ul  .active > a:before {
-    content: "\f178";
-    font:normal normal normal 14px/1 FontAwesome;
+    content: "\f30b";
+    font-size: 14px;
+    font-family: "Font Awesome 5 Free";
     padding-top:5px;
     margin-left: -24px;
     float: left;
     animation-name: animarrow;
     animation-duration: 6s;
     color: rgba(119, 119, 119, 0.33);
+    font-weight:900;
 }
 .bs-docs-sidebar ul ul .active > a:before {
     padding-top:4px;
@@ -1651,14 +1653,15 @@ ul.nav.bs-docs-sidenav.sister {
     margin-top: 126px;
 }
 #documentation-level a[href^="http://"]:after, #documentation-level a[href^="https://"]:after {
-    content: '\f08e';
-    font-family: FontAwesome;
+    content: '\f35d';
+    font-family: "Font Awesome 5 Free";
     font-weight: normal;
     font-style: normal;
     margin: 0px 0px 0px 5px;
     text-decoration: none;
     color: #cccccc;
     font-size: smaller;
+    font-weight:900;
 }
 #documentation-level a.btn:after {
     content: '';
@@ -1920,11 +1923,12 @@ nav.bs-docs-sidebar > ul > li > a:hover,nav.bs-docs-sidebar > ul > li > a:focus 
     padding-left: 35px;
 }
 .search:before {
-    font-family: 'FontAwesome';
     position: relative;
     left: 15px;
-    content: "\f002";
     color: rgba(119, 119, 119, 0.75);
+    font-family: "Font Awesome 5 Free";
+    content: "\f002";
+    font-weight:900;
 }
 .search .btn {
     margin-top: -3px;
