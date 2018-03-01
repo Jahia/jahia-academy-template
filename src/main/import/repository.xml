@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
-        <jahia-academy-template j:dependencies="bootstrap3-components bootstrap3-core default font-awesome form-factory-core highlightjs jquery search tags toc academy-autocomplete-search"
+        <jahia-academy-template j:dependencies="academy-autocomplete-search bootstrap3-components bootstrap3-core default font-awesome form-factory-core highlightjs jquery search tags toc"
                               j:installedModules="jahia-academy-template"
                               j:modulePriority="0"
                               j:moduleType="templatesSet"
@@ -122,7 +122,8 @@
                                               jcr:primaryType="jacademy:documentHeader"/>
                                             <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
-                                            <document-area j:allowedTypes="jacademix:document jnt:contentList" jcr:primaryType="jnt:area"/>
+                                            <document-area j:allowedTypes="jacademix:document jnt:contentList"
+                                             jcr:primaryType="jnt:area"/>
                                             <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
                                             <feedback j:level="0"
                                         j:limitedAbsoluteAreaEdit="false"
@@ -149,13 +150,15 @@
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <main j:allowedTypes="jacademix:content jnt:contentList" jcr:primaryType="jnt:area"/>
+                                            <main j:allowedTypes="jacademix:content jnt:contentList"
+                                    jcr:primaryType="jnt:area"/>
                                         </product-intro-main>
                                         <product-intro-side j:classname="doc-panel doc-height"
                                                j:skin="skins.custom"
                                                jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                jcr:primaryType="jnt:contentList">
-                                            <side j:allowedTypes="jacademix:content jnt:contentList" jcr:primaryType="jnt:area"/>
+                                            <side j:allowedTypes="jacademix:content jnt:contentList"
+                                    jcr:primaryType="jnt:area"/>
                                         </product-intro-side>
                                     </product-intro>
                                     <product-topics columnsType="predefinedColumns"
@@ -206,7 +209,6 @@
                                             jcr:primaryType="bootstrap3nt:navBarItemMenu"
                                             position="right"/>
                                     </navigation-bar>
-
                                 </header>
                                 <pagecontent jcr:primaryType="jnt:area"/>
                             </pagecontent>
@@ -256,10 +258,61 @@
                             </free>
                             <navbarNext jcr:primaryType="jnt:contentList">
                                 <breadcrumb-display cssClass="breadcrumb-nav"
-                                                    j:view="academy"
-                                                    jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb jmix:renderable"
-                                                    jcr:primaryType="bootstrap3nt:breadcrumb"/>
+                                         j:view="academy"
+                                         jcr:mixinTypes="bootstrap3mix:advancedBreadcrumb jmix:renderable"
+                                         jcr:primaryType="bootstrap3nt:breadcrumb"/>
                             </navbarNext>
+                            <kb j:applyOn="jacademy:kbEntry"
+                      j:defaultTemplate="true"
+                      j:hiddenTemplate="false"
+                      jcr:mixinTypes="jmix:vanityUrlMapped"
+                      jcr:primaryType="jnt:contentTemplate">
+                                <j:translation_en jcr:language="en"
+                                       jcr:mixinTypes="mix:title"
+                                       jcr:primaryType="jnt:translation"
+                                       jcr:title="KB"/>
+                                <vanityUrlMapping jcr:primaryType="jnt:vanityUrls">
+                                    <kb j:active="true"
+                            j:default="true"
+                            j:url="/kb"
+                            jcr:language="en"
+                            jcr:primaryType="jnt:vanityUrl"/>
+                                </vanityUrlMapping>
+                                <pagecontent jcr:primaryType="jnt:contentList">
+                                    <document-content columnsType="predefinedColumns"
+                                          grid="4_8"
+                                          gridLayout="fixed-width"
+                                          jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                          jcr:primaryType="bootstrap3nt:columns"
+                                          sectionElement="div"
+                                          sectionId="documentation-level">
+                                        <document-content-side jcr:primaryType="jnt:contentList">
+                                            <table-of-content depth="4"
+                                                heading="h2"
+                                                j:view="academy"
+                                                jcr:mixinTypes="jmix:renderable"
+                                                jcr:primaryType="jnt:toc"/>
+                                        </document-content-side>
+                                        <document-content-main j:id="documentation-child-content"
+                                                  j:skin="skins.custom"
+                                                  jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                                  jcr:primaryType="jnt:contentList">
+                                            <documentheader jcr:primaryType="jacademy:documentHeader"/>
+                                            <document-buttons jcr:primaryType="jacademy:navButtons"/>
+                                            <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
+                                            <document-area jcr:primaryType="jnt:area">
+                                                <document-area jcr:primaryType="jnt:contentList">
+                                                    <main-resource-display j:mainResourceView="detail" jcr:primaryType="jnt:mainResourceDisplay"/>
+                                                </document-area>
+                                            </document-area>
+                                            <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
+                                            <feedback j:level="0"
+                                        j:limitedAbsoluteAreaEdit="false"
+                                        jcr:primaryType="jnt:absoluteArea"/>
+                                        </document-content-main>
+                                    </document-content>
+                                </pagecontent>
+                            </kb>
                         </subpage>
                     </base>
                     <content-template j:applyOn="jnt:content"

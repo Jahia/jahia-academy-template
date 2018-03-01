@@ -23,14 +23,16 @@ will generate an array with [A, B, C1, C2, C3, D, E, F]
 def getFlatTree;
 getFlatTree = { node, list ->
     if (node) {
-        menuItems = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem")
+        menuItems = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem,jacademy:kbEntry")
         menuItems.eachWithIndex() { menuItem, index ->
             try {
                 if (!menuItem.isNodeType("jacademix:hidePage")) {
-                    hasChildren = JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jnt:navMenuText")
+                    hasChildren = JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jnt:navMenuText,jacademy:kbEntry")
                     if (menuItem.isNodeType("jnt:page")) {
                         list.add(menuItem);
-                        //print("${menuItem.path} <br/>")
+                    }
+                    if (menuItem.isNodeType("jacademy:kbEntry")) {
+                        list.add(menuItem);
                     }
                     try {
                         currentResource.dependencies.add(menuItem.getCanonicalPath());
@@ -56,7 +58,10 @@ try {
 def mainResourceNode = renderContext.mainResource.node;
 
 // generate a previous/next buttons to link to the previous/next page.
-def flatTree = getFlatTree(mainResourceNode.getParent().getParent().getParent(), []);
+
+JCRNodeWrapper startNode = mainResourceNode.isNodeType("jacademy:kbEntry") ? mainResourceNode.getParent() : mainResourceNode.getParent().getParent().getParent();
+
+def flatTree = getFlatTree(startNode, []);
 for (int i = 0; i < flatTree.size(); i++) {
     JCRNodeWrapper currentNode = flatTree.get(i);
     if (mainResourceNode.path == currentNode.path) {

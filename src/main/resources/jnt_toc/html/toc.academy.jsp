@@ -62,14 +62,15 @@
 </c:choose>
 <c:set var="bindedComponent" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 <c:if test="${bindedComponent != null}">
-    <c:if test="${!(bindedComponent.primaryNodeType eq 'jacademy:document')}">
+    <c:if test="${! jcr:isNodeType(bindedComponent, 'jacademix:document')}">
         <%-- If bound component  is not a document search for a document in its children --%>
-        <c:set var="documentChildren" value="${jcr:getChildrenOfType(bindedComponent,'jacademy:document')}"/>
+        <c:set var="documentChildren" value="${jcr:getChildrenOfType(bindedComponent,'jacademix:document')}"/>
         <c:if test="${fn:length(documentChildren)>0}">
             <c:set var="bindedComponent" value="${documentChildren[0]}"/>
         </c:if>
     </c:if>
 </c:if>
+
 <c:choose>
     <c:when test="${bindedComponent.path eq renderContext.mainResource.node.path}">
         <c:set var="toc" value="body"/>

@@ -1655,7 +1655,6 @@ ul.nav.bs-docs-sidenav.sister {
 #documentation-level a[href^="http://"]:after, #documentation-level a[href^="https://"]:after {
     content: '\f35d';
     font-family: "Font Awesome 5 Free";
-    font-weight: normal;
     font-style: normal;
     margin: 0px 0px 0px 5px;
     text-decoration: none;

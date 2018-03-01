@@ -22,7 +22,7 @@
 <%-- Check for a document Node to bind --%>
 <c:if test="${boundComponent != null}">
     <c:choose>
-        <c:when test="${boundComponent.primaryNodeType eq 'jacademix:document'}">
+        <c:when test="${jcr:isNodeType(boundComponent, 'jacademix:document')}">
             <%-- If bound component is not a document search for a document in its children --%>
             <c:set var="documentNode" value="${boundComponent}"/>
         </c:when>
@@ -104,8 +104,14 @@
                             </fmt:message>
                         </h2>
                         --%>
+                    <c:if test="${jcr:hasPermission(documentNode, 'editModeAccess') && jcr:isNodeType(documentNode, 'jacademy:kbEntry')}">
+                        <div class="role-wrapper hidden-print smaller">
+                            <c:set var="key" value="${documentNode.properties.jiraKey.string}"/>
+                            <i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<a href="https://support.jahia.com/browse/${key}">${key}</a>
+                        </div>
+                    </c:if>
 
-                    <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent')}">
+                    <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent,jacademy:kbEntry')}">
                     <div class="role-wrapper hidden-print smaller">
                         <span class="readTime">
                             <i class="far fa-clock fa-fw " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Estimated reading time: <span
@@ -113,6 +119,7 @@
                         </span>
                     </div>
                     </c:if>
+
                 </div>
 
                 <c:set var="pdfNode" value="${documentNode.properties.pdf.node}"/>

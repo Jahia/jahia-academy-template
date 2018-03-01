@@ -41,12 +41,12 @@
 
 [jacademy:footer2] > jnt:content, jmix:droppableContent, jacademix:textContent
 [jacademix:homeComponent] mixin
+
 [jacademy:productList] > jnt:contentList, jacademix:component, mix:title, jacademix:homeComponent orderable
  + * (jacademy:productCard)
 
 [jacademy:productCard] > jnt:content, mix:title, jacademix:textContent, jacademix:link
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
-
 
 [jacademy:boost] mixin
  extends = jacademix:document
@@ -99,6 +99,20 @@
 [jacademy:loginForm] > jnt:content, jacademix:document
  - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
 
+[jacademix:kbQa] > jmix:templateMixin mixin
+ extends = jacademy:kbEntry
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+
+[jacademix:kbUseCase] > jmix:templateMixin mixin
+ extends = jacademy:kbEntry
+ - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - cause (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+
+[jacademy:kbEntry] > jnt:content, jacademix:component, jacademix:document
+ - kbType (string, choicelist[kbInitializer, resourceBundle]) = 'qa' autocreated facetable < 'qa', 'useCase'
+ - jiraKey (string)
 
 [jacademix:advancedCard] mixin
  extends = jacademy:card
