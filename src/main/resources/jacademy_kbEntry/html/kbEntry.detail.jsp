@@ -17,6 +17,27 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+
+<template:addResources type="inline">
+    <script>
+        $(document).ready(function () {
+            $('pre code').each(function (i, block) {
+                hljs.highlightBlock(block);
+                var copybutton = '<div class="bd-clipboard"><span class="btn-clipboard" title="Copy to clipboard">Copy</span></div>';
+                $(this).before(copybutton);
+            });
+            var clipboard = new Clipboard('.btn-clipboard', {
+                target: function (trigger) {
+                    return trigger.parentNode.nextElementSibling;
+                }
+            })
+            $('code.hljs').each(function(i, block) {
+                hljs.lineNumbersBlock(block);
+            });
+        });
+    </script>
+</template:addResources>
+
 <div id="toc_${currentNode.identifier}" class="document-content">
     <div class="lead">${currentNode.properties.textContent.string}</div>
 <c:if test="${jcr:isNodeType(currentNode, 'jacademix:kbUseCase')}">
