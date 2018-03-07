@@ -1996,3 +1996,6 @@ span.searchHighlightedText {
 .resultsList ul {
     padding:0 !important;
 }
+.kb .tags {
+    font-size:smaller;
+}
