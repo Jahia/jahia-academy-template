@@ -17,9 +17,6 @@ import javax.jcr.NodeIterator
 import javax.jcr.RepositoryException
 import javax.jcr.query.Query
 
-// set doIt to true to execute (if false, nothing is changed)
-boolean doIt = false;
-
 // set to true to run this script to add vanityUrls on files
 boolean executeOnFiles = false;
 
