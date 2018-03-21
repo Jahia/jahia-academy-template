@@ -8,9 +8,6 @@ import javax.jcr.query.Query
 
 def logger = log;
 
-boolean doIt = false;
-
-
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("academy");
 
 
@@ -18,15 +15,29 @@ for (Locale locale : site.getLanguagesAsLocales()) {
     JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
         @Override
         Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
-            def q = "select * from [jacademy:document]";
+            def q = "select * from [jmix:vanityUrlMapped] where isdescendantnode('" + descendantnode + "')";
 
             logger.info("Processing " + q)
             NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
             while (iterator.hasNext()) {
                 final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-
                 log.info(node.path);
+                node.removeMixin("jmix:vanityUrlMapped");
             }
+
+            q = "select * from [jnt:vanityUrls] where isdescendantnode('" + descendantnode + "')";
+
+            logger.info("Processing " + q)
+            iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
+            while (iterator.hasNext()) {
+                final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
+                log.info(node.path);
+                node.remove();
+            }
+            if (doIt) {
+                session.save();
+            }
+
             if (doIt) {
                 session.save();
             }

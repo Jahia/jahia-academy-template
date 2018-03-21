@@ -12,11 +12,6 @@ import javax.jcr.query.Query
 
 def logger = log;
 
-boolean doIt = false;
-
-
-def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("jahiacom");
-
 boolean needToFlush = false;
 
 JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.LIVE_WORKSPACE, new JCRCallback() {

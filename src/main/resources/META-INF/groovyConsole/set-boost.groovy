@@ -9,9 +9,6 @@ import javax.jcr.query.Query
 
 def logger = log;
 
-boolean doIt = false;
-
-
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("academy");
 
 Set<String> nodesToAutoPublish = new HashSet<String>();

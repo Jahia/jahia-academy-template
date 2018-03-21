@@ -39,7 +39,7 @@
 </template:addResources>
 
 <div id="toc_${currentNode.identifier}" class="document-content">
-    <div class="lead">${currentNode.properties.textContent.string}</div>
+    <div class="alert alert-info">${currentNode.properties.textContent.string}</div>
 <c:if test="${jcr:isNodeType(currentNode, 'jacademix:kbUseCase')}">
     <c:set var="cause" value="${currentNode.properties.cause.string}"/>
     <c:if test="${! empty cause}">
