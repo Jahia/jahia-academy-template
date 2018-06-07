@@ -141,8 +141,8 @@
     <template:addResources type="javascript" resources="jquery.matchHeight-min.js"/>
     <template:addResources type="javascript" resources="academy/academy.js"/>
 
-    <template:addResources type="javascript" resources="i18n/form-factory-core-i18n_en.js,lib/_ff2Live.js,lib/jasny-bootstrap.fileinput.js,lib/_ff-rendering.min.js,lib/angular-i18n/angular-locale_en.js"/>
-    
+    <%--<template:addResources type="javascript" resources="i18n/form-factory-core-i18n_en.js,lib/_ff2Live.js,lib/jasny-bootstrap.fileinput.js,lib/_ff-rendering.min.js,lib/angular-i18n/angular-locale_en.js"/>--%>
+
 
     <link rel="shortcut icon" href="${url.currentModule}/img/favicon/favicon.ico" type="image/x-icon">
 
