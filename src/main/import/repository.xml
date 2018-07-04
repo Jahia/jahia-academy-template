@@ -8,7 +8,7 @@
                               j:title="Jahia Academy Template"
                               jcr:mixinTypes="jmix:hasExternalProviderExtension"
                               jcr:primaryType="jnt:module">
-                
+
                 <portlets jcr:primaryType="jnt:portletFolder"/>
                 <files jcr:primaryType="jnt:folder"/>
                 <contents jcr:primaryType="jnt:contentFolder"/>
@@ -298,14 +298,12 @@
                                                   jcr:mixinTypes="jmix:customSkin jmix:skinnable"
                                                   jcr:primaryType="jnt:contentList">
                                             <documentheader jcr:primaryType="jacademy:documentHeader"/>
-                                            <document-buttons jcr:primaryType="jacademy:navButtons"/>
                                             <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
                                             <document-area jcr:primaryType="jnt:area">
                                                 <document-area jcr:primaryType="jnt:contentList">
                                                     <main-resource-display j:mainResourceView="detail" jcr:primaryType="jnt:mainResourceDisplay"/>
                                                 </document-area>
                                             </document-area>
-                                            <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
                                             <feedback j:level="0"
                                         j:limitedAbsoluteAreaEdit="false"
                                         jcr:primaryType="jnt:absoluteArea"/>
@@ -326,7 +324,7 @@
                         </pagecontent>
                     </content-template>
                 </templates>
-                
+
                 <home j:isHomePage="true"
                j:templateName="home"
                jcr:primaryType="jnt:page">

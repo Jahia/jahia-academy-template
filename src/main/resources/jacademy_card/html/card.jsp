@@ -28,7 +28,6 @@
 </c:if>
 
 
-
 <div class="product" style="${backgroundColor}${textColor}" id="${currentNode.identifier}">
     <c:if test="${! empty backgroundImageNode}">
         <div class="bg"

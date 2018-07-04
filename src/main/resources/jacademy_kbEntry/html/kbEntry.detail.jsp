@@ -56,7 +56,6 @@
     </c:otherwise>
 </c:choose>
 ${currentNode.properties.answer.string}
-
 </div>
 
 <script>
@@ -67,3 +66,5 @@ ${currentNode.properties.answer.string}
     });
     $('.readTime').show();
 </script>
+
+

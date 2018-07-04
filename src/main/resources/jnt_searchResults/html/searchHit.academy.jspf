@@ -1,9 +1,21 @@
+<c:choose>
+    <c:when test="${provider eq 'Elasticsearch search provider'}">
+        <c:set var="rawHit" value="${hit.rawHit}"/>
+        <c:set var="hitPath" value="${rawHit.fields['jfs:nodePath'].value}"/>
+    </c:when>
+    <c:otherwise>
+        <c:set var="hitPath" value="${hit.rawHit.path}"/>
+    </c:otherwise>
+</c:choose>
 
-<c:set var="hitPath" value="${hit.rawHit.path}"/>
 <c:set var="productUrl"/>
 <c:set var="versionUrl"/>
 <c:url var="hitUrl" value="${hit.link}"/>
 <jcr:node var="hitNode" path="${hitPath}"/>
+<c:if test="${jcr:isNodeType(hitNode, 'jnt:page')}">
+    <jcr:node var="hitNode" path="${hitPath}/document-area/text"/>
+    ${jcr:getChildrenOfType(hitNode, 'jacademy:document')}
+</c:if>
 <c:if test="${! empty hitNode}">
     <c:if test="${jcr:isNodeType(hitNode, 'jacademy:document')}">
         <c:set var="versionNode" value="${jcr:getParentOfType(hitNode, 'jacademix:isVersionPage')}"/>
@@ -17,6 +29,9 @@
             </c:if>
         </c:if>
     </c:if>
+</c:if>
+<c:if test="${empty hitNode}">
+    Could not load node with path ${hitPath}
 </c:if>
 <h4><a href="${hitUrl}">${hit.title}</a>
     <c:if test="${! empty product}">
@@ -35,6 +50,8 @@
         </c:otherwise>
     </c:choose>
 </div>
+
+
 <%--
 <div class="resultsListFileType">${hit.contentType}</div>
 <div class="resultsListDate"><fmt:formatDate value="${hit.lastModified}" pattern="dd.MM.yyyy HH:mm"/></div>

@@ -18,6 +18,13 @@
 <%--@elvariable id="hit" type="org.jahia.services.search.Hit"--%>
 <template:addResources type="css" resources="searchresults.css"/>
 
+<c:set var="provider" value="Elasticsearch search provider"/>
+<jcr:node var="searchSettingsNode" path="/settings/search-settings"/>
+<c:if test="${! empty searchSettingsNode}">
+    <c:if test="${jcr:isNodeType(searchSettingsNode, 'jnt:searchServerSettings')}">
+        <c:set var="provider" value="${searchSettingsNode.properties['j:provider'].string}"/>
+    </c:if>
+</c:if>
 <c:if test="${renderContext.editMode}">
 	<fieldset>
 		<legend>${fn:escapeXml(jcr:label(currentNode.primaryNodeType,currentResource.locale))}</legend>

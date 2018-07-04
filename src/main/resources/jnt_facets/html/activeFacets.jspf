@@ -1,0 +1,55 @@
+<%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<%@ taglib prefix="facet" uri="http://www.jahia.org/tags/facetLib" %>
+<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
+<%--@elvariable id="out" type="java.io.PrintWriter"--%>
+<%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
+<%--@elvariable id="scriptInfo" type="java.lang.String"--%>
+<%--@elvariable id="workspace" type="java.lang.String"--%>
+<%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
+<%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
+<%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<%--@elvariable id="acl" type="java.lang.String"--%>
+
+<c:if test="${!empty activeFacetsVars[activeFacetMapVarName]}">
+    <div>
+
+</c:if>
+<c:forEach items="${activeFacetsVars[activeFacetMapVarName]}" var="facet" varStatus="activeFacetStat">
+    <c:forEach items="${facet.value}" var="facetValue">
+        <c:set var="facetParam" value="${facet:getDeleteFacetUrl(facet, facetValue, activeFacetsVars[facetParamVarName])}"/>
+        <c:url var="facetUrl" value="${url.mainResource}" context="/">
+            <c:if test="${not empty facetParam}">
+                <c:param name="${facetParamVarName}" value="${functions:encodeUrlParam(facetParam)}"/>
+            </c:if>
+        </c:url>
+        <c:choose>
+            <%--hack to avoid url rewriting from filters--%>
+            <c:when test="${empty facetParam}">
+                <a href="${facetUrl}#${currentNode.name}"><facet:facetValueLabel currentActiveFacet="${facet}" currentActiveFacetValue="${facetValue}" facetValueLabels="${facetValueLabels}"/> <span class="badge">x</span></a>
+
+                    <%--
+                    <span class="label label-facet">
+                       <button type="button" class="close button-close-facet" data-dismiss="alert" onclick="window.location='${facetUrl}'">&times;</button>
+                <facet:facetValueLabel currentActiveFacet="${facet}" currentActiveFacetValue="${facetValue}" facetValueLabels="${facetValueLabels}"/>
+                    </span>
+                    --%>
+            </c:when>
+            <c:otherwise>
+                <a href="${facetUrl}#${currentNode.name}"><facet:facetValueLabel currentActiveFacet="${facet}" currentActiveFacetValue="${facetValue}" facetValueLabels="${facetValueLabels}"/> <span class="badge">x</span></a>
+                    <%--
+                    <span class="label label-facet">
+                       <button type="button" class="close button-close-facet" data-dismiss="alert" onclick="window.location='${facetUrl}'">&times;</button>
+                        <facet:facetValueLabel currentActiveFacet="${facet}" currentActiveFacetValue="${facetValue}" facetValueLabels="${facetValueLabels}"/>
+                    </span>
+                    --%>
+          </c:otherwise>
+        </c:choose>
+    </c:forEach>
+</c:forEach>
+<c:if test="${!empty activeFacetsVars[activeFacetMapVarName]}">
+    </div>
+</c:if>

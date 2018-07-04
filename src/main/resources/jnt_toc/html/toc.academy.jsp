@@ -115,6 +115,13 @@
     </c:choose>
 
     <a href="#top" data-scrollto="#top" class="back-to-top light mt20"> Back to top <i class="fas fa-level-up-alt" aria-hidden="true"></i></a>
+
+    <c:if test="${jcr:isNodeType(currentPageNode,'jacademy:kbEntry' )}">
+        <c:set var="parentUrl">javascript:history.back()</c:set>
+        <a href="${parentUrl}" class="back-to-top"><i class="fas fa-long-arrow-alt-left fa-fw"></i> <fmt:message
+                key="jacademy_kbEntry.back"/></a>
+    </c:if>
+
     <a href="#" id="incfont">A+</a>
     <a href="#" id="decfont">A-</a>
 </nav>
