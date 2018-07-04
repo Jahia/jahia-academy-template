@@ -51,5 +51,8 @@
     </c:forEach>
 </c:forEach>
 <c:if test="${!empty activeFacetsVars[activeFacetMapVarName]}">
+    <br/>
+    <c:url var="pageUrl" value="${renderContext.mainResource.node.url}"/>
+    <a href="${pageUrl}" class="back-to-top light"><i class="fas fa-filter"></i> Clear filter</a>
     </div>
 </c:if>
