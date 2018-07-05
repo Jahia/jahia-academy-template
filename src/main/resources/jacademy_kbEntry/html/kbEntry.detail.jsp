@@ -58,6 +58,19 @@
 ${currentNode.properties.answer.string}
 </div>
 
+
+
+<jcr:node var="relatedLinksNode" path="${currentNode.path}/relatedlinks"/>
+
+<c:if test="${! empty relatedLinksNode || renderContext.editMode}">
+    <div class="alert alert-version">
+        <h4>Related links</h4>
+        <c:if test="${!renderContext.editMode}"><ul class="fa-ul"></c:if>
+        <template:area path="relatedlinks" nodeTypes="jacademy:relatedLink" areaAsSubNode="true"/>
+            <c:if test="${!renderContext.editMode}"></ul></c:if>
+    </div>
+</c:if>
+
 <script>
     $('.document-content').readingTime({
         lang: '${renderContext.mainResourceLocale.language}',
