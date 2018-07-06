@@ -18,7 +18,7 @@
 <%--@elvariable id="hit" type="org.jahia.services.search.Hit"--%>
 <template:addResources type="css" resources="searchresults.css"/>
 
-<c:set var="provider" value="Elasticsearch search provider"/>
+<c:set var="provider" value="Default JCR search provider"/>
 <jcr:node var="searchSettingsNode" path="/settings/search-settings"/>
 <c:if test="${! empty searchSettingsNode}">
     <c:if test="${jcr:isNodeType(searchSettingsNode, 'jnt:searchServerSettings')}">
@@ -70,7 +70,7 @@
    	<%-- spelling auto suggestions are enabled --%>
         <jcr:nodeProperty name="autoSuggestMinimumHitCount" node="${currentNode}" var="autoSuggestMinimumHitCount"/>
         <jcr:nodeProperty name="autoSuggestHitCount" node="${currentNode}" var="autoSuggestHitCount"/>
-        <jcr:nodeProperty name="autoSuggestMaxTermCount" node="${currentNode}" var="autoSuggestMaxTermCount"/>        
+        <jcr:nodeProperty name="autoSuggestMaxTermCount" node="${currentNode}" var="autoSuggestMaxTermCount"/>
         <c:if test="${moduleMap['listTotalSize'] <= functions:default(autoSuggestMinimumHitCount.long, 2)}">
             <%-- the number of original results is less than the configured threshold, we can start auto-suggest  --%>
 	        <s:suggestions runQuery="${autoSuggestHitCount.long > 0}" maxTermsToSuggest="${autoSuggestMaxTermCount.long}">
@@ -81,8 +81,8 @@
 						<fmt:message key="search.results.didYouMean" />:&nbsp;
                         <c:forEach var="suggestion" items="${suggestion.allSuggestions}" varStatus="status">
                             <a href="<s:suggestedSearchUrl suggestion="${suggestion}"/>"><em>${fn:escapeXml(suggestion)}</em></a>
-                            <c:if test="${not status.last}">, </c:if>                            
-                        </c:forEach>                        
+                            <c:if test="${not status.last}">, </c:if>
+                        </c:forEach>
                         <br/><fmt:message key="search.results.didYouMean.topResults"><fmt:param value="${functions:min(functions:default(autoSuggestHitCount.long, 2), suggestedCount)}" /></fmt:message>
 					</h4>
 					<ul>
@@ -100,10 +100,10 @@
                         <fmt:message key="search.results.didYouMean" />:&nbsp;
                         <c:forEach var="suggestion" items="${suggestion.allSuggestions}" varStatus="status">
                             <a href="<s:suggestedSearchUrl suggestion="${suggestion}"/>"><em>${fn:escapeXml(suggestion)}</em></a>
-                            <c:if test="${not status.last}">, </c:if>                            
+                            <c:if test="${not status.last}">, </c:if>
                         </c:forEach>
-                    </h4>                    
-                </c:if>		        
+                    </h4>
+                </c:if>
         	</s:suggestions>
        	</c:if>
     </c:if>
@@ -116,7 +116,7 @@
         	<c:set var="messKey" value="search.results.found" />
         	<c:if test="${searchMap['listApproxSize'] > 0}">
         		<c:set var="messKey" value="search.results.sizeNotExact.found" />
-        	</c:if>	
+        	</c:if>
         <h3><fmt:message key="${messKey}"><fmt:param value="${fn:escapeXml(param[termKey])}"/><fmt:param value="${searchMap['listApproxSize'] > 0 ? searchMap['listApproxSize'] : moduleMap['listTotalSize']}"/></fmt:message></h3>
         </c:if>
         <c:set var="beginName" value="begin_${currentNode.identifier}"/>
