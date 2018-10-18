@@ -113,8 +113,8 @@
     <template:addResources type="css" resources="bootstrapXl.css"/>
     <template:addResources type="css" resources="github.css"/>
     <template:addResources type="css" resources="clipboard.css"/>
-    <template:addResources type="javascript" resources="fa-v4-shims.min.js"/>
-    <template:addResources type="javascript" resources="fontawesome-all.min.js"/>
+    <template:addResources type="css" resources="all.min.css"/>
+    <template:addResources type="css" resources="v4-shims.min.css"/>
     <template:addResources type="css" resources="highlightjs-line-numbers.css"/>
     <template:addResources type="css" resources="ekko-lightbox.min.css"/>
     <template:addResources type="css" resources="jquery-ui.min.css,jquery-ui.structure.min.css, jquery-ui.theme.min.css, autoCompleteSearch.css" />
