@@ -127,6 +127,6 @@
 
 [jacademy:card] > jnt:content, mix:title, jacademix:textContent, jacademix:component
 
-[jacademy:listSubPages] > jmix:templateMixin mixin
+[jacademy:listSubPages] >  jnt:content, jacademix:component
  extends = jacademix:link
- - parentPage (weakreference,picker[type='editoriallink']) < jmix:droppableContent, jmix:navMenuItem
+ - parentPage (weakreference) < jmix:droppableContent, jmix:navMenuItem, jnt:navMenuText, jnt:page

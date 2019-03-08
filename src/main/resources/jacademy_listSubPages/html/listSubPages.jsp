@@ -15,7 +15,7 @@
 <c:choose>
     <c:when test="${! empty parentPage}">
         <ul class="book">
-            <c:set var="pages" value="${jcr:getChildrenOfType(startPage, 'jmix:navMenuItem')}"/>
+            <c:set var="pages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
 
             <c:forEach items="${pages}" var="page" varStatus="status">
                 <template:addCacheDependency node="${page}"/>
