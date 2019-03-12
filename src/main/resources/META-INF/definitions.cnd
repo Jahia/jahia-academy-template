@@ -130,3 +130,4 @@
 [jacademy:listSubPages] >  jnt:content, jacademix:component
  extends = jacademix:link
  - parentPage (weakreference) < jmix:droppableContent, jmix:navMenuItem, jnt:navMenuText, jnt:page
+ - depth (string, choicelist[resourceBundle]) = '1-level' autocreated < '1-level', '2-level', '2-level-accordion'
