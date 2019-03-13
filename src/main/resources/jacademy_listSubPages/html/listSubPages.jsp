@@ -11,6 +11,16 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<template:addResources type="inline" targetTag="head">
+    <style>
+        a[aria-expanded=true] .fa-angle-down {
+            display: none;
+        }
+        a[aria-expanded=false] .fa-angle-up {
+            display: none;
+        }
+    </style>
+</template:addResources>
 
 <c:set var="parentPage" value="${currentNode.properties['parentPage'].node}"/>
 <c:choose>
@@ -19,12 +29,12 @@
         <c:if test="${empty depth}">
             <c:set var="depth" value="1-level"/>
         </c:if>
-        <ul class="book">
+        <ul class="book fa-ul">
             <c:set var="pages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
 
             <c:forEach items="${pages}" var="page" varStatus="status">
                 <template:addCacheDependency node="${page}"/>
-                <li>
+                <li><span class="fa-li" ><i class="fas fa-chevron-right"></i></span>
                     <c:set var="pageTitle" value="${page.displayableName}"/>
                     <c:choose>
                         <c:when test="${jcr:isNodeType(page, 'jnt:navMenuText')}">
@@ -72,7 +82,7 @@
 
                     <c:choose>
                         <c:when test="${depth eq '2-level-accordion' && hasSubpages}">
-                            <a data-toggle="collapse" href="#ul${page.identifier}">${pageTitle}</a>
+                            <a data-toggle="collapse" aria-expanded="false" aria-controls="ul${page.identifier}" href="#ul${page.identifier}">${pageTitle} <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></a>
                         </c:when>
                         <c:otherwise>
                             <a href="${pageUrl}">${pageTitle}</a>
@@ -83,9 +93,9 @@
                     <c:if test="${depth ne '1-level'}">
                         <c:if test="${hasSubpages}">
                             <div id="ul${page.identifier}" class="${depth eq '2-level-accordion' ? 'collapse' : ''}">
-                                <ul>
+                                <ul class="fa-ul">
                                     <c:if test="${depth eq '2-level-accordion' && ! jcr:isNodeType(page, 'jnt:navMenuText')}">
-                                        <li><a href="${pageUrl}">${pageTitle}</a></li>
+                                        <li><span class="fa-li" ><i class="fas fa-chevron-right"></i></span><a href="${pageUrl}">${pageTitle}</a></li>
                                     </c:if>
                                     <c:forEach items="${subpages}" var="subpage" varStatus="status">
                                         <c:set var="subpageTitle" value="${subpage.displayableName}"/>
@@ -107,7 +117,7 @@
                                                 </c:if>
                                             </c:when>
                                         </c:choose>
-                                        <li><a href="${subpageUrl}">${subpageTitle}</a></li>
+                                        <li><span class="fa-li" ><i class="fas fa-chevron-right"></i></span><a href="${subpageUrl}">${subpageTitle}</a></li>
                                     </c:forEach>
                                 </ul>
                             </div>
