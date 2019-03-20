@@ -91,7 +91,16 @@
 
     <c:choose>
         <c:when test="${isMultiplePageDoc}">
-            <a href="#top" data-scrollto="#top"><strong>${parentPage.displayableName}</strong></a>
+            <c:choose>
+                <c:when test="${jcr:isNodeType(currentPageNode, 'jnt:fixApplier')}">
+                    <c:url var="parentPageUrl" value="${parentPage.url}"/>
+                    <a href="${parentPageUrl}" data-scrollto="#top"><strong>${parentPage.displayableName}</strong></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="#top" data-scrollto="#top"><strong>${parentPage.displayableName}</strong></a>
+                </c:otherwise>
+            </c:choose>
+
             <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
                 <c:choose>
                     <c:when test="${currentPageNode.path eq sisterPage.path}">
