@@ -116,6 +116,12 @@ if (site != null) {
                             if (! pathToIgnore.contains(page.getPath())) {
                                 children = JCRTagUtils.getParentsOfType(page,'jmix:navMenuItem');
                                 String url = "/" + slug(page.getDisplayableName());
+                                if (page.isNodeType('jnt:fixApplier')) {
+                                    String fromVersion = page.getPropertyAsString('from');
+                                    String toVersion = page.getPropertyAsString('to');
+                                    url = "/" + slug(fromVersion + "_" + toVersion);
+                                }
+                                String url = "/" + slug(page.getDisplayableName());
                                 children.eachWithIndex() { parentPage, index ->
                                     if (parentPage != null) {
                                         if (index !=  children.size()-1) {

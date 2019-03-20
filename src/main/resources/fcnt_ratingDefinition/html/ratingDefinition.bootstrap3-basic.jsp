@@ -2,7 +2,7 @@
      ng-class="{'has-error': form[input.name].$invalid&&form[input.name].$dirty}"
      ng-show="resolveLogic()">
     <label class="control-label" for="{{input.name}}">
-        {{input.label}}<span ng-if="isRequired()" ng-show="asteriskResolver()"><sup>&nbsp;<i class="fas fa-asterisk fa-sm"></i></sup></span>
+        {{input.label}}<span ng-if="isRequired()" ng-show="asteriskResolver()"><sup>&nbsp;<i class="fa fa-asterisk fa-sm"></i></sup></span>
     </label>
 
     <input type="hidden"
@@ -38,5 +38,4 @@
           ng-show="showErrorMessage(validationName)">
             {{validation.message}}
         </span>
-
 </div>

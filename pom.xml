@@ -65,7 +65,7 @@
   </scm>
   <properties>
     <Jahia-Module-Priority>1</Jahia-Module-Priority>
-    <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,form-factory-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search</jahia-depends>
+    <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,form-factory-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table</jahia-depends>
   </properties>
   <dependencies>
     <dependency>

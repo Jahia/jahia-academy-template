@@ -80,12 +80,13 @@
     </c:otherwise>
 </c:choose>
 <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
-<c:set var="isMultiplePageDoc" value="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc')}"/>
+<c:set var="isMultiplePageDoc" value="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc') || jcr:isNodeType(currentPageNode, 'jnt:fixApplier')}"/>
 
 
 <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
+
     <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
-    <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jnt:page')}"/>
+    <c:set var="sisterPages" value="${jcr:getChildrenOfType(currentPageNode.parent, 'jnt:page,jnt:fixApplier')}"/>
     <c:set var="currentPageIndex" value="0"/>
 
     <c:choose>
@@ -94,12 +95,36 @@
             <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
                 <c:choose>
                     <c:when test="${currentPageNode.path eq sisterPage.path}">
-                        <a href="#top" data-scrollto="#top"><strong>${currentPageNode.displayableName}</strong></a>
+                        <c:choose>
+                            <c:when test="${jcr:isNodeType(sisterPage, 'jnt:fixApplier')}">
+                                <c:set var="fromVersion" value="${sisterPage.properties.from.string}"/>
+                                <c:set var="toVersion" value="${sisterPage.properties.to.string}"/>
+                                <c:set var="pageTitle" value="From ${fromVersion} to ${toVersion}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="pageTitle" value="${currentPageNode.displayableName}"/>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <a href="#top" data-scrollto="#top"><strong>${pageTitle}</strong></a>
+                        <c:remove var="pageTitle"/>
                         <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav sister" ></ul>
                     </c:when>
                     <c:otherwise>
                         <c:url var="pageUrl" value="${sisterPage.url}"/>
-                        <a href="${pageUrl}" class="sister light back-to-top notopmargin"> ${sisterPage.displayableName}</a>
+                        <c:choose>
+                            <c:when test="${jcr:isNodeType(sisterPage, 'jnt:fixApplier')}">
+                                <c:set var="fromVersion" value="${sisterPage.properties.from.string}"/>
+                                <c:set var="toVersion" value="${sisterPage.properties.to.string}"/>
+                                <c:set var="sisterPageTitle" value="From ${fromVersion} to ${toVersion}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="sisterPageTitle" value="${sisterPage.displayableName}"/>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <a href="${pageUrl}" class="sister light back-to-top notopmargin"> ${sisterPageTitle}</a>
+                        <c:remove var="sisterPageTitle"/>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

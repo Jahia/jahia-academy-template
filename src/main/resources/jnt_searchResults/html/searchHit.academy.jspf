@@ -1,7 +1,7 @@
 <c:choose>
     <c:when test="${provider eq 'Elasticsearch search provider'}">
         <c:set var="rawHit" value="${hit.rawHit}"/>
-        <c:set var="hitPath" value="${rawHit.fields['jfs:nodePath'].value}"/>
+        <c:set var="hitPath" value="${rawHit.getField(ESConstants.NODE_PATH_KEY)}"/>
     </c:when>
     <c:otherwise>
         <c:set var="hitPath" value="${hit.rawHit.path}"/>
