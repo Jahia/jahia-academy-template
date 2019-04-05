@@ -472,7 +472,7 @@ ol.breadcrumb.breadcrumb-nav {
 }
 
 .pinBoot ul li,.white-panel ul li{
-    font-size: 17px;
+    font-size: 17px;colla
 }
 
 .pinBoot ul li a,.white-panel ul li a{
@@ -2019,4 +2019,21 @@ a[aria-expanded=true] .fa-angle-down {
 }
 a[aria-expanded=false] .fa-angle-up {
     display: none;
+}
+.nav-tabs {
+    border-width: 0;
+}
+.nav-tabs li {
+    margin-right: 15px;
+}
+.nav-tabs a{
+    border-radius: 2px;
+    box-shadow: 2px 2px 0 0 rgba(0, 73, 103, 0.2);
+    color:rgba(0, 73, 103, 0.5);
+    background: #fff
+}
+
+.nav-tabs li.active a {
+    border: 1px solid #00a0e3;
+    color: #2d3c57;
 }
