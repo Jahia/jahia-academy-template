@@ -135,3 +135,6 @@
 [jacademy:collabse] >  jnt:content, jacademix:component, mix:title, jacademix:textContent
  - heading (string, choicelist[resourceBundle]) = 'h3' autocreated < 'h1', 'h2', 'h3', 'h4'
  - expanded (string, choicelist[resourceBundle]) = 'false' autocreated < 'false', 'true'
+
+[jacademy:latestDoc] >  jnt:content, jacademix:component, mix:title
+
