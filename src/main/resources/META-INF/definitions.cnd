@@ -3,6 +3,7 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <mix = 'http://www.jcp.org/jcr/mix/1.0'>
+<cmix = 'http://www.jahia.org/canavas/mix/1.0'>
 
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
@@ -138,3 +139,6 @@
 
 [jacademy:latestDoc] >  jnt:content, jacademix:component, mix:title
 
+[jacademy:latestBlogs] >  jnt:content, jacademix:component, mix:title
+ - nbPosts (long) = '3' mandatory indexed=no
+ - postType (string, choicelist[nodetypes='cmix:blogEntry']) multiple
