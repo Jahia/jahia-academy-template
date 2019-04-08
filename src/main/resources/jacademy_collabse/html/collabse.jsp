@@ -16,8 +16,15 @@
 <c:set var="heading" value="${currentNode.properties.heading.string}"/>
 <c:set var="expanded" value="${currentNode.properties.expanded.string}"/>
 
-<${heading}><a data-toggle="collapse" data-target="#collapse${currentNode.identifier}" aria-expanded="${expanded}">${currentNode.displayableName} <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></a></${heading}>
+<${heading}><a data-toggle="collapse" data-target="#collapse${currentNode.identifier}" aria-expanded="${expanded}">${currentNode.displayableName}
+<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></a></${heading}>
 
-<div class="collapse${expanded eq 'true' ? ' in':''}" id="collapse${currentNode.identifier}" >
+<div class="collapse${expanded eq 'true' ? ' in':''}" id="collapse${currentNode.identifier}">
     ${currentNode.properties.textContent.string}
+    <c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">
+        <template:module node="${droppableContent}" editable="true"/>
+    </c:forEach>
+    <c:if test="${renderContext.editMode}">
+        <template:module path="*" nodeTypes="jmix:droppableContent"/>
+    </c:if>
 </div>
