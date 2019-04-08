@@ -1941,7 +1941,7 @@ a.anchor {
 #academy-navbar-collapse-1 > ul > li > a {
     color:#505050;
     text-transform: uppercase;
-    font-size: .8em;
+    /*font-size: .8em;*/
 }
 .product .fa-li {
     top: .4em;
@@ -2083,10 +2083,12 @@ h4 {
     font-family: 'Lato', sans-serif;
     color: #023951;
 }
-
+.simplebox > h3 > a {
+    color: #023951;
+}
 
 h1 {
-    line-height: 1.6;
+    line-height: 3.6;
     font-size: 2.44em;
     font-weight: 500;
 }
@@ -2105,33 +2107,35 @@ h3 {
 
 h4 {
     line-height: 1.4;
-    font-size: 0.888em;
+    /*font-size: 0.888em;*/
     font-weight: 500;
     margin: 0.888em 0;
 }
 
-
+a{
+    transition-duration: .2s;
+    color: #209FDA;
+}
 p {
     line-height: 1.5;
-    font-size: 0.888em;
+    /*font-size: 0.888em;*/
     font-weight: normal;
     color: #002839;
+    margin-bottom: 0.8em;
 }
-
-
 td {
     line-height: 1.5;
-    font-size: 0.888em;
+    /*font-size: 0.888em;*/
     font-weight: normal;
     color: #002839;
+    margin-bottom: 0.8em;
 }
-
-
 li {
     line-height: 1.5;
-    font-size: 0.888em;
+    /*font-size: 0.888em;*/
     font-weight: normal;
     color: #002839;
+    margin-bottom: 0.8em;
 }
 small {font-size: 0.8em;}
 .text_small {font-size: 0.8em;}
@@ -2140,21 +2144,27 @@ small {font-size: 0.8em;}
 .bluebg {
     background-color: #F6FAFD;
 }
-
+table{
+    margin: 1.8em 0;
+}
+.ghost{
+    color: #8d9fac;
+}
 /* Layout */
 /* Components */
 .btn-link {
-    -webkit-transition-duration: .2s;
-    -o-transition-duration: .2s;
     transition-duration: .2s;
-    font-size: 0.888em;
+    /*font-size: 0.888em;*/
     color: #3BAADE;
 }
 
 .simplebox{
     background: #FFF!important;
-    -webkit-box-shadow: 2px 2px 2px #C4D1D7!important;
     box-shadow: 2px 2px 2px #C4D1D7!important;
+    border: 1px solid rgba(196, 209, 215, 0.3)!important;
+}
+#academy-breadcrumb {
+    background-color: #F6FAFD;
 }
 .logo{
     height: 40px;
@@ -2167,7 +2177,7 @@ small {font-size: 0.8em;}
 }
 .navbar-nav > li > a {
     color: #023951!important;
-    font-size: 0.888em!important;
+    /*font-size: 0.888em!important;*/
     text-transform: capitalize!important;;
 }
 .nav-tabs {
@@ -2177,12 +2187,9 @@ small {font-size: 0.8em;}
     margin-right: 15px;
 }
 .nav-tabs a{
-    -webkit-transition-duration: .2s;
-    -o-transition-duration: .2s;
     transition-duration: .2s;
     border-radius: 3px!important;
     border: 1px solid rgba(196, 209, 215, 0.3)!important;
-    -webkit-box-shadow: 2px 2px 2px #C4D1D7;
     box-shadow: 2px 2px 2px #C4D1D7;
     color: #8d9fac;
     background: #FFF;
@@ -2225,7 +2232,6 @@ button .btn {
     height: 46px;
     color: #FFF;
     background-color: #209FDA;
-    -webkit-box-shadow: 2px 2px 2px #C4D1D7;
     box-shadow: 2px 2px 2px #C4D1D7;
 }
 
