@@ -17,15 +17,20 @@
 <%--@elvariable id="currentUser" type="org.jahia.services.usermanager.JahiaUser"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
+<c:set var="nbPosts" value="${currentNode.properties.nbPosts.long}"/>
+<c:if test="${empty nbPosts}">
+    <c:set var="nbPosts" value="5"/>
+</c:if>
+
 <c:set var="query" value="select * from [jacademy:boost] as doc where ISDESCENDANTNODE(doc, '${renderContext.site.path}/home/documentation') order by 'j:lastPublished' desc"/>
-<jcr:sql var="docs" sql="${query}" limit="10"/>
+<jcr:sql var="docs" sql="${query}" limit="${nbPosts}"/>
 
 <c:set var="title" value="${currentNode.properties['jcr:title'].string}"/>
 <c:if test="${! empty title}">
     <h3>${title}</h3>
 </c:if>
 
-<ul>
+<ul class="lastdoc">
     <c:forEach items="${docs.nodes}" var="doc" varStatus="status">
         <c:set var="pageNodes" value="${jcr:getMeAndParentsOfType(doc,'jmix:navMenuItem')}"/>
         <c:set var="hasFoundDocumentationNode" value="false"/>

@@ -2290,3 +2290,9 @@ button .btn-primary {
 button .btn :hover {
     color: #FFF;
 }
+ul.lastdoc {
+    padding-left: 0;
+}
+ul.lastdoc li {
+    list-style-type: none:
+}

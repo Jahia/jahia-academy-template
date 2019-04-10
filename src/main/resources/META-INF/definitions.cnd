@@ -139,6 +139,7 @@
  + * (jmix:droppableContent)
 
 [jacademy:latestDoc] >  jnt:content, jacademix:component, mix:title
+ - nbPosts (long) = '5' mandatory indexed=no
 
 [jacademy:latestBlogs] >  jnt:content, jacademix:component, mix:title
  - nbPosts (long) = '3' mandatory indexed=no

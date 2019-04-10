@@ -46,22 +46,7 @@ public class AcademyVanityService {
     }
 
     private void createVanity(JCRNodeWrapper node, String lang) throws Exception {
-        /*
-                    contentTypes.remove("jnt:content");
-                    contentTypes.remove("jnt:contentFolder");
-                    contentTypes.remove("jnt:file");
-                    contentTypes.remove("jnt:folder");
-                    contentTypes.remove("jnt:globalSettings");
-                    contentTypes.remove("jnt:module");
-                    contentTypes.remove("jnt:nodeType");
-                    contentTypes.remove("jnt:topic");
-                    contentTypes.remove("jnt:user");
-                    contentTypes.remove("jnt:vfsMountPointFactoryPage");
-                    contentTypes.remove("jnt:virtualsite");
-                    contentTypes.remove("wemnt:optimizationTest");
-                    contentTypes.remove("wemnt:personalizedContent");
 
-         */
         if (! (JCRTagUtils.isNodeType(node, "jnt:content") ||
                 JCRTagUtils.isNodeType(node, "jnt:contentFolder") ||
                 JCRTagUtils.isNodeType(node, "jnt:file") ||
