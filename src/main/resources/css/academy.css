@@ -1844,7 +1844,7 @@ div.stacktables :last-child  {
 .main-title.doc-child {
     color: #00a0e3;
     font-size: 40px;
-    margin-top: 10px;
+    line-height:1.2;
 }
 .h1, .h2, .h3, h1, h2, h3 {
     margin-bottom: 30px;
