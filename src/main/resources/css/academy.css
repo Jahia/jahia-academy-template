@@ -2294,5 +2294,21 @@ ul.lastdoc {
     padding-left: 0;
 }
 ul.lastdoc li {
-    list-style-type: none:
+    list-style-type: none;
+}
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    flex-wrap: wrap;
+}
+
+.row-eq-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-eq-height .simplebox {
+    height:100%;
 }
