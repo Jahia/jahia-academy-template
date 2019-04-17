@@ -20,6 +20,19 @@
         </c:if>
         <ul class="book fa-ul">
             <c:set var="pages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
+            <c:set var="displayParentPage" value="${currentNode.properties.displayParentPage.string}"/>
+            <c:if test="${empty displayParentPage}">
+                <c:set var="displayParentPage" value="false"/>
+            </c:if>
+            <c:if test="${displayParentPage eq 'true'}">
+                <c:if test="${jcr:isNodeType(parentPage, 'jnt:page')}">
+                    <li><span class="fa-li" ><i class="fas fa-chevron-right"></i></span>
+                            <c:set var="pageTitle" value="${parentPage.displayableName}"/>
+                            <c:url var="pageUrl" value="${parentPage.url}"/>
+                        <a href="${pageUrl}">${pageTitle}</a>
+                    </li>
+                </c:if>
+            </c:if>
 
             <c:forEach items="${pages}" var="page" varStatus="status">
                 <template:addCacheDependency node="${page}"/>

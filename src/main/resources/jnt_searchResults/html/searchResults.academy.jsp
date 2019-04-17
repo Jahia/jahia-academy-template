@@ -88,7 +88,9 @@
 					<ul>
 						<s:resultIterator begin="0" end="${functions:default(autoSuggestHitCount.long, 2) - 1}">
 							<li>
+
                                 <%@ include file="searchHit.academy.jspf"%>
+
                             </li>
 						</s:resultIterator>
 					</ul>
