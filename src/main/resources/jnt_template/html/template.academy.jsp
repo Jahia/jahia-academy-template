@@ -122,6 +122,7 @@
     <c:if test="${renderContext.editMode}">
         <template:addResources type="css" resources="academy.edit.css"/>
     </c:if>
+    <template:addResources type="css" resources="spacing.css"/>
     <template:addResources type="css" resources="print.css" media="print"/>
 
     <template:addResources type="javascript" resources="jquery.min.js"/>
