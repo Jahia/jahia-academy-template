@@ -149,3 +149,8 @@
  extends = jmix:navMenuItem
  itemtype = content
  - hideBreadcrumb (string) = 'Hide the breadcrumb on this page.' protected
+
+[jacademix:hideNavbuttons] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - hideNavbuttons (string) = 'Hide the navigation buttons (only for documentation template).' protected

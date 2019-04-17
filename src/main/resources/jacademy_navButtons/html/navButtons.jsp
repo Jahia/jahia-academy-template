@@ -18,8 +18,11 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <!-- display previous / next buttons -->
-<div class="navbuttons">
-    <ul class="pager">
-        <template:include view="flat"/>
-    </ul>
-</div>
+<c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
+<c:if test="${! jcr:isNodeType(renderContext.mainResource.node, 'jacademix:hideNavbuttons')}">
+    <div class="navbuttons">
+        <ul class="pager">
+            <template:include view="flat"/>
+        </ul>
+    </div>
+</c:if>

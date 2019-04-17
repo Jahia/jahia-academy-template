@@ -11,17 +11,6 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<template:addResources type="inline" targetTag="head">
-    <style>
-        a[aria-expanded=true] .fa-angle-down {
-            display: none;
-        }
-        a[aria-expanded=false] .fa-angle-up {
-            display: none;
-        }
-    </style>
-</template:addResources>
-
 <c:set var="parentPage" value="${currentNode.properties['parentPage'].node}"/>
 <c:choose>
     <c:when test="${! empty parentPage}">
