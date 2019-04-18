@@ -49,6 +49,13 @@
                                         <c:choose>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:navMenuText')}">
                                                 <c:set var="pageUrl" value="#"/>
+                                                <c:set var="subsubpages" value="${jcr:getChildrenOfType(subpage, 'jnt:page')}"/>
+                                                <c:forEach items="${subsubpages}" var="subsubpage" varStatus="substatus">
+                                                    <c:if test="${substatus.first}">
+                                                        <c:url var="pageUrl" value="${subsubpage.url}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <c:remove var="subsubpages"/>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:externalLink')}">
                                                 <c:url var="pageUrl" value="${subpage.properties['j:url'].string}"/>
@@ -88,7 +95,7 @@
                         </c:when>
                         <c:otherwise>
                             <a href="${pageUrl}">${pageTitle}</a>
-                        </c:otherwise>
+                    </c:otherwise>
                     </c:choose>
 
 
@@ -104,6 +111,12 @@
                                         <c:choose>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:navMenuText')}">
                                                 <c:set var="subpageUrl" value="#"/>
+                                                <c:set var="subsubpages" value="${jcr:getChildrenOfType(subpage, 'jnt:page')}"/>
+                                                <c:forEach items="${subsubpages}" var="subsubpage" varStatus="substatus">
+                                                    <c:if test="${substatus.first}">
+                                                        <c:url var="subpageUrl" value="${subsubpage.url}"/>
+                                                    </c:if>
+                                                </c:forEach>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:externalLink')}">
                                                 <c:url var="subpageUrl" value="${subpage.properties['j:url'].string}"/>
