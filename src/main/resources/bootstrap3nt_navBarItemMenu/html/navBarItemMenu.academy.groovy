@@ -77,6 +77,23 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                             // Here we check that the current nav menu level is less than start + maxDepth so we do not display a dropdown menu entry without any entries in it
                             hasChildren = navMenuLevel < (startLevelValue + maxDepth.long) && JCRTagUtils.hasChildrenOfType(menuItem, "jnt:page,jnt:nodeLink,jnt:externalLink")
 //                System.out.println("Menu for node "+(entries++)+" "+menuItem.path+ " and has children is "+hasChildren);
+                            hasReallyChildren = false;
+                            if (hasChildren) {
+                                subchildren = JCRContentUtils.getChildrenOfType(menuItem, "jmix:navMenuItem", 0)
+                                subchildren.eachWithIndex() { subMenuItem, subindex ->
+                                    try {
+                                        if (subMenuItem != null) {
+                                            if (!subMenuItem.isNodeType("jacademix:hidePage")) {
+                                                hasReallyChildren = true;
+                                            }
+                                        }
+                                    } catch (Exception e) {
+                                        logger = LoggerFactory.getLogger(this.class)
+                                        logger.warn("Error processing nav-menu link with id " + menuItem.identifier, e);
+                                    }
+                                }
+                            }
+                            hasChildren = hasReallyChildren;
                             if (startLevelValue < navMenuLevel) {
                                 def isCurrentMenuTopLevel = navMenuLevel == (startLevelValue + 1)
                                 def elToRender
