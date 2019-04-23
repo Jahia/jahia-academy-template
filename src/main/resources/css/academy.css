@@ -55,79 +55,13 @@ body.home {
 .doc-list ul li a{
     margin: 0;
     padding: 0;
-/*
-    color: #2d3c57;
-    font-size: 18px;
-*/    font-weight: 300;
+    font-weight: 300;
 }
 
-/*.dhtml {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    font-family: Lato, sans-serif;
-    color: #2d3c57;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.8;
-    /* Margin bottom by footer height */
-margin-bottom: 160px;
-width: 100%;
-}
-/* Colors & sizes */
-a {
-    color: #00a0e3;
-}
-
-body.home {
-    background: url('../img/documentation_bg.jpg') no-repeat center top 100px;
-    background-size: cover;
-    background-attachment: fixed;
-}
-.doc-height{
-    height: auto;
-}
-
-.doc-list {
-    padding: 30px;
-    position: absolute;
-    background: rgba(255, 255, 255, .85);
-    text-decoration: none;
-    box-shadow: 0;
-}
-
-.doc-list h3{
-    font-size: 20px;
-    color: #00a0e3;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.doc-list ul{
-    margin: 0;
-    padding-left: 15px;
-}
-
-.doc-list ul li{
-    list-style-image: url("../img/ic_list_1.png");
-    margin-bottom: 5px;
-}
-
-.doc-list ul li a{
-    margin: 0;
-    padding: 0;
-    /*
-        color: #2d3c57;
-        font-size: 18px;
-    */    font-weight: 300;
-}
-
-/*.doc-list ul li a:hover{
+.doc-list ul li a:hover{
     color: #00a0e3;
     text-decoration: none;
-}*/
+}
 
 
 .doc-description .doc-panel{
@@ -3730,7 +3664,7 @@ pre, pre code {
     content: "\f30b";
     font-size: 14px;
     font-family: "Font Awesome 5 Free";
-/*    padding-top:5px;*/
+    /*    padding-top:5px;*/
     margin-left: -24px;
     float: left;
     animation-name: animarrow;
@@ -3739,7 +3673,7 @@ pre, pre code {
     font-weight:900;
 }
 .bs-docs-sidebar ul ul .active > a:before {
-/*    padding-top:4px;*/
+    /*    padding-top:4px;*/
 }
 
 /*ul: second level (shown on .active) */
@@ -3885,7 +3819,7 @@ pre {
     padding: 5px;
 }
 .navbar-toggle .icon-bar {
-     background-color: #2d3c57;
+    background-color: #2d3c57;
 }
 .bs-docs-nav .navbar-toggle .icon-bar {
     color: #333333;
@@ -4666,11 +4600,7 @@ table{
     box-shadow: 2px 2px 2px #C4D1D7!important;
     border: 1px solid rgba(196, 209, 215, 0.3)!important;
 }
-/*
-#academy-breadcrumb {
-    background-color: #F6FAFD;
-}
- */
+
 .logo{
     height: 40px;
 }
@@ -4761,22 +4691,6 @@ ul.lastdoc {
 }
 ul.lastdoc li {
     list-style-type: none;
-}
-.row-eq-height {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
-    flex-wrap: wrap;
-}
-
-.row-eq-height > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-}
-
-.row-eq-height .simplebox {
-    height:100%;
 }
 
 #documentation-level .row {
