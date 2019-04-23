@@ -39,174 +39,161 @@
 <%-- Then display the document Header --%>
 <c:choose>
     <c:when test="${documentNode != null}">
-        <div class="documentation-header">
-            <h1 class="doc-child main-title">
-                <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
-                <c:if test="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc')}">
-                    <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
-                    <span class="hidden-xs">${parentPage.displayableName}</span>
+        <div class="row">
+            <div class="col-xs-8 ">
+                <c:set var="author" value="${documentNode.properties.author.string}"/>
+                <div class="role-wrapper">
+                    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>&nbsp;
+                    <fmt:message key="academy.document.writtenBy">
+                        <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
+                    </fmt:message>
+                </div>
+                <c:set var="audiences" value="${documentNode.properties.audiences}"/>
+                <c:if test="${! empty audiences}">
+
+                    <c:forEach items="${audiences}" var="audience" varStatus="status">
+                        <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                        <c:set var="audienceNode" value="${audience.node}"/>
+                        <div class="label label-success">${audienceNode.displayableName}</div>
+                        <c:if test="${status.last}"></div></c:if>
+                    </c:forEach>
                 </c:if>
-                <c:set var="title" value="${documentNode.properties['jcr:title'].string}"/>
-                <c:if test="${empty title}">
-                    <c:set var="title" value="${renderContext.mainResource.node.displayableName}"/>
+                <c:set var="tagList" value="${documentNode.properties['j:tagList']}"/>
+                <c:if test="${! empty tagList}">
+                    <%-- FIXME: This is hardcoded path... --%>
+                    <jcr:node var="searchPage" path="/sites/academy/home/search"/>
+
+                    <c:forEach items="${tagList}" var="tag" varStatus="status">
+                        <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
+                        <c:if test="${! empty searchPage}">
+                            <c:url var="searchTagUrl" value="${searchPage.url}">
+                                <c:param name="src_terms[0].term" value="${tag.string}"/>
+                                <c:param name="src_terms[0].fields.tags" value="true"/>
+                                <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>
+                                <c:param name="autoSuggest" value="false"/>
+                            </c:url>
+                        </c:if>
+                        <a class="label label-info" href="${searchTagUrl}">${tag.string}</a>
+                        <c:if test="${status.last}"></div></c:if>
+                        <c:remove var="searchTagUrl"/>
+                    </c:forEach>
                 </c:if>
-                    ${title}
-            </h1>
-        </div>
-        <div class="alert alert-version">
-            <div class="row">
-                <div class="col-xs-8 ">
-                    <c:set var="author" value="${documentNode.properties.author.string}"/>
-                    <div class="role-wrapper">
-                        <i class="fas fa-edit fa-fw" aria-hidden="true"></i>&nbsp;
+                    <%--
+                    <h2 class="doc-child author">
+                        <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
+                        <c:if test="${creator eq 'root'}">
+                            <c:set var="creator" value="The Jahia Team"/>
+                        </c:if>
                         <fmt:message key="academy.document.writtenBy">
-                            <fmt:param value="${empty author ? 'The Jahia Team' : author}"/>
+                            <fmt:param value="${creator}"/>
                         </fmt:message>
+                    </h2>
+                    --%>
+                <c:if test="${jcr:hasPermission(documentNode, 'editModeAccess') && jcr:isNodeType(documentNode, 'jacademy:kbEntry')}">
+                    <div class="role-wrapper hidden-print smaller">
+                        <c:set var="key" value="${documentNode.properties.jiraKey.string}"/>
+                        <i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<a
+                            href="https://support.jahia.com/browse/${key}">${key}</a>
                     </div>
-                    <c:set var="audiences" value="${documentNode.properties.audiences}"/>
-                    <c:if test="${! empty audiences}">
+                </c:if>
 
-                        <c:forEach items="${audiences}" var="audience" varStatus="status">
-                            <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-users fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
-                            <c:set var="audienceNode" value="${audience.node}"/>
-                            <div class="label label-success">${audienceNode.displayableName}</div>
-                            <c:if test="${status.last}"></div></c:if>
-                        </c:forEach>
-                    </c:if>
-                    <c:set var="tagList" value="${documentNode.properties['j:tagList']}"/>
-                        <c:if test="${! empty tagList}">
-                            <%-- FIXME: This is hardcoded path... --%>
-                            <jcr:node var="searchPage" path="/sites/academy/home/search"/>
-
-                            <c:forEach items="${tagList}" var="tag" varStatus="status">
-                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
-                                <c:if test="${! empty searchPage}">
-                                    <c:url var="searchTagUrl" value="${searchPage.url}">
-                                        <c:param name="src_terms[0].term" value="${tag.string}"/>
-                                        <c:param name="src_terms[0].fields.tags" value="true"/>
-                                        <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>
-                                        <c:param name="autoSuggest" value="false"/>
-                                    </c:url>
-                                </c:if>
-                                <a class="label label-info" href="${searchTagUrl}">${tag.string}</a>
-                                <c:if test="${status.last}"></div></c:if>
-                                <c:remove var="searchTagUrl"/>
-                            </c:forEach>
-                            </c:if>
-                        <%--
-                        <h2 class="doc-child author">
-                            <c:set var="creator" value="${documentNode.properties['jcr:createdBy'].string}"/>
-                            <c:if test="${creator eq 'root'}">
-                                <c:set var="creator" value="The Jahia Team"/>
-                            </c:if>
-                            <fmt:message key="academy.document.writtenBy">
-                                <fmt:param value="${creator}"/>
-                            </fmt:message>
-                        </h2>
-                        --%>
-                    <c:if test="${jcr:hasPermission(documentNode, 'editModeAccess') && jcr:isNodeType(documentNode, 'jacademy:kbEntry')}">
-                        <div class="role-wrapper hidden-print smaller">
-                            <c:set var="key" value="${documentNode.properties.jiraKey.string}"/>
-                            <i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<a href="https://support.jahia.com/browse/${key}">${key}</a>
-                        </div>
-                    </c:if>
-
-                    <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent,jacademy:kbEntry')}">
+                <c:if test="${jcr:isNodeType(documentNode, 'jacademix:textContent,jacademy:kbEntry')}">
                     <div class="role-wrapper hidden-print smaller">
                         <span class="readTime">
                             <i class="far fa-clock fa-fw " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Estimated reading time: <span
                                 class="eta"></span>
                         </span>
                     </div>
-                    </c:if>
-
-                </div>
-
-                <c:set var="pdfNode" value="${documentNode.properties.pdf.node}"/>
-                <c:if test="${! empty pdfNode}">
-                    <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
                 </c:if>
-                <c:set var="isTechwiki" value="${fn:contains(fn:toLowerCase(documentNode.path),'/techwiki/')}"/>
-                <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/how-to/')}"/>
-                <c:set var="pageNodes"
-                       value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
-                <c:set var="pageNodesSize"
-                       value="${fn:length(pageNodes)}"/>
 
-                <c:if test="${! empty pdfUrl or pageNodesSize > 0 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
-                    <div class="col-xs-4 hidden-print text-right">
-                        <c:if test="${pageNodesSize > 0 && ! isTechwiki && ! ishowTo}">
-
-                            <c:forEach var="pageNode" items="${pageNodes}" varStatus="status">
-                                <c:if test="${status.first}">
-                                    <c:set var="localPathToDoc"
-                                           value="${fn:replace(renderContext.mainResource.node.path, pageNode.path, '')}"/>
-                                    <c:set var="versionNodes"
-                                           value="${jcr:getChildrenOfType(pageNode.parent, 'jacademix:isVersionPage')}"/>
-
-
-                                    <div class="btn-group">
-                                        <c:set var="hasOtherVersions" value="${fn:length(versionNodes)>1}"/>
-                                        <c:if test="${hasOtherVersions}">
-                                            <button class="btn btn-default btn-lg dropdown-toggle version" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-code-branch text-muted" aria-hidden="true"></i>
-                                                    ${pageNode.displayableName}
-                                                <c:if test="${hasOtherVersions}">&nbsp;<i class="fas fa-angle-down" aria-hidden="true"></i></c:if>
-                                            </button>
-                                            <c:forEach var="versionNode" items="${versionNodes}" varStatus="vStatus">
-                                                <c:if test="${vStatus.first}">
-                                                    <ul class="dropdown-menu">
-                                                </c:if>
-                                                <jcr:node var="versionDocNode"
-                                                          path="${versionNode.path}${localPathToDoc}"/>
-                                                <c:set var="isCurrent"
-                                                       value="${fn:contains(renderContext.mainResource.node.path, versionNode.path)}"/>
-                                                <c:choose>
-                                                    <c:when test="${! empty versionDocNode }">
-                                                        <c:url var="versionUrl"
-                                                               value="${isCurrent?'#' : versionDocNode.url}"/>
-                                                        <li${isCurrent?' class="active"':''}><a
-                                                                href="${versionUrl}">${versionNode.displayableName}</a></li>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:url var="versionPageUrl" value="${versionNode.url}"/>
-                                                        <li${isCurrent?' class="active"':''}><a
-                                                                href="${versionPageUrl}">${versionNode.displayableName}</a></li>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <c:remove var="versionDocNode"/>
-                                                <c:if test="${vStatus.last}">
-                                                    </ul>
-                                                </c:if>
-                                            </c:forEach>
-                                        </c:if>
-                                    </div>
-                                </c:if>
-                                <c:remove var="versionNodes"/>
-                                <c:remove var="hasOtherVersions"/>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
-                            <c:set var="specificVersions" value="${documentNode.properties.specificVersions}"/>
-                            <c:forEach items="${specificVersions}" var="specificVersion" varStatus="status">
-                                <c:if test="${status.first}"><div class="role-wrapper hidden-print"></c:if>
-                                <span class="label label-default">${specificVersion.string}</span>
-                                <c:if test="${status.last}"></div></c:if>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${! empty pdfUrl}">
-                            <c:set var="pdfTitle" value="${documentNode.properties.pdfTitle.string}"/>
-                            <c:if test="${empty pdfTitle}">
-                                <fmt:message key="academy.document.download" var="pdfTitle"/>
-                            </c:if>
-
-                            <div><a href="${pdfUrl}" class="text-muted"><i class="far fa-file-pdf text-muted fa-fw"
-                                                                               aria-hidden="true"></i>&nbsp;${pdfTitle}</a></div>
-                        </c:if>
-                    </div>
-                </c:if>
             </div>
+
+            <c:set var="pdfNode" value="${documentNode.properties.pdf.node}"/>
+            <c:if test="${! empty pdfNode}">
+                <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
+            </c:if>
+            <c:set var="isTechwiki" value="${fn:contains(fn:toLowerCase(documentNode.path),'/techwiki/')}"/>
+            <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/how-to/')}"/>
+            <c:set var="pageNodes"
+                   value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
+            <c:set var="pageNodesSize"
+                   value="${fn:length(pageNodes)}"/>
+
+            <c:if test="${! empty pdfUrl or pageNodesSize > 0 or jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
+                <div class="col-xs-4 hidden-print text-right">
+                    <c:if test="${pageNodesSize > 0 && ! isTechwiki && ! ishowTo}">
+
+                        <c:forEach var="pageNode" items="${pageNodes}" varStatus="status">
+                            <c:if test="${status.first}">
+                                <c:set var="localPathToDoc"
+                                       value="${fn:replace(renderContext.mainResource.node.path, pageNode.path, '')}"/>
+                                <c:set var="versionNodes"
+                                       value="${jcr:getChildrenOfType(pageNode.parent, 'jacademix:isVersionPage')}"/>
+
+
+                                <div class="btn-group">
+                                    <c:set var="hasOtherVersions" value="${fn:length(versionNodes)>1}"/>
+                                    <c:if test="${hasOtherVersions}">
+                                        <button class="btn btn-default btn-lg dropdown-toggle version" type="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-code-branch text-muted" aria-hidden="true"></i>
+                                                ${pageNode.displayableName}
+                                            <c:if test="${hasOtherVersions}">&nbsp;<i class="fas fa-angle-down" aria-hidden="true"></i></c:if>
+                                        </button>
+                                        <c:forEach var="versionNode" items="${versionNodes}" varStatus="vStatus">
+                                            <c:if test="${vStatus.first}">
+                                                <ul class="dropdown-menu">
+                                            </c:if>
+                                            <jcr:node var="versionDocNode"
+                                                      path="${versionNode.path}${localPathToDoc}"/>
+                                            <c:set var="isCurrent"
+                                                   value="${fn:contains(renderContext.mainResource.node.path, versionNode.path)}"/>
+                                            <c:choose>
+                                                <c:when test="${! empty versionDocNode }">
+                                                    <c:url var="versionUrl"
+                                                           value="${isCurrent?'#' : versionDocNode.url}"/>
+                                                    <li${isCurrent?' class="active"':''}><a
+                                                            href="${versionUrl}">${versionNode.displayableName}</a></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:url var="versionPageUrl" value="${versionNode.url}"/>
+                                                    <li${isCurrent?' class="active"':''}><a
+                                                            href="${versionPageUrl}">${versionNode.displayableName}</a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:remove var="versionDocNode"/>
+                                            <c:if test="${vStatus.last}">
+                                                </ul>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
+                                </div>
+                            </c:if>
+                            <c:remove var="versionNodes"/>
+                            <c:remove var="hasOtherVersions"/>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${jcr:isNodeType(documentNode, 'jacademix:specificVersions')}">
+                        <c:set var="specificVersions" value="${documentNode.properties.specificVersions}"/>
+                        <c:forEach items="${specificVersions}" var="specificVersion" varStatus="status">
+                            <c:if test="${status.first}"><div class="role-wrapper hidden-print"></c:if>
+                            <span class="label label-default">${specificVersion.string}</span>
+                            <c:if test="${status.last}"></div></c:if>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${! empty pdfUrl}">
+                        <c:set var="pdfTitle" value="${documentNode.properties.pdfTitle.string}"/>
+                        <c:if test="${empty pdfTitle}">
+                            <fmt:message key="academy.document.download" var="pdfTitle"/>
+                        </c:if>
+
+                        <div><a href="${pdfUrl}" class="text-muted"><i class="far fa-file-pdf text-muted fa-fw"
+                                                                       aria-hidden="true"></i>&nbsp;${pdfTitle}</a>
+                        </div>
+                    </c:if>
+                </div>
+            </c:if>
         </div>
     </c:when>
     <c:otherwise>

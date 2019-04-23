@@ -20,18 +20,13 @@
 <c:set var="webappURL" value="${currentNode.properties.webappURL.string}"/>
 <c:set var="webappMD5" value="${currentNode.properties.webappMD5.string}"/>
 
-
-<c:set var="howToUpgrade" value="${currentNode.properties.howToUpgrade.string}"/>
-<c:set var="howToUrl" value="#"/>
-<c:choose>
-    <c:when test="${empty howToUpgrade}">
-        <c:set var="howToNode" value="${currentNode.properties.howTo.node}"/>
-        <c:if test="${! empty howToNode}">
-            <c:url var="howToUrl" value="${howToNode.url}"/>
-            <a href="${howToUrl}">How to upgrade</a>
-        </c:if>
-    </c:when>
-    <c:otherwise>
-        ${howToUpgrade}
-    </c:otherwise>
-</c:choose>
+<c:if test="${! empty webappURL}">
+    <a href="${webappURL}"><i class="fas fa-download fa-fw"></i> Webapp</a> <span class="smaller">(MD5: ${webappMD5})</span>
+</c:if>
+<c:if test="${jcr:isNodeType(currentNode, 'jnt:fixApplierTomcat')}">
+    <c:set var="webappAndTomcatURL" value="${currentNode.properties.webappAndTomcatURL.string}"/>
+    <c:set var="webappAndTomcatMD5" value="${currentNode.properties.webappAndTomcatMD5.string}"/>
+    <c:if test="${! empty webappAndTomcatURL}">
+        <br/><a href="${webappAndTomcatURL}"><i class="fas fa-download fa-fw"></i> Webapp + Tomcat</a> <span class="smaller">(MD5: ${webappAndTomcatMD5})</span>
+    </c:if>
+</c:if>

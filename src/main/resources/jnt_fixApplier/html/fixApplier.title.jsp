@@ -17,21 +17,6 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<c:set var="webappURL" value="${currentNode.properties.webappURL.string}"/>
-<c:set var="webappMD5" value="${currentNode.properties.webappMD5.string}"/>
 
+<h1>From ${currentNode.properties.from.string} to ${currentNode.properties.to.string}</h1>
 
-<c:set var="howToUpgrade" value="${currentNode.properties.howToUpgrade.string}"/>
-<c:set var="howToUrl" value="#"/>
-<c:choose>
-    <c:when test="${empty howToUpgrade}">
-        <c:set var="howToNode" value="${currentNode.properties.howTo.node}"/>
-        <c:if test="${! empty howToNode}">
-            <c:url var="howToUrl" value="${howToNode.url}"/>
-            <a href="${howToUrl}">How to upgrade</a>
-        </c:if>
-    </c:when>
-    <c:otherwise>
-        ${howToUpgrade}
-    </c:otherwise>
-</c:choose>

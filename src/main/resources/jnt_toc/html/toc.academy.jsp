@@ -83,7 +83,7 @@
 <c:set var="isMultiplePageDoc" value="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc') || jcr:isNodeType(currentPageNode, 'jnt:fixApplier')}"/>
 
 
-<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">affix</c:if>" id="sidebar" >
+<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs hidden-print <c:if test="${!renderContext.editMode}">xxx</c:if>" id="sidebar" data-spy="affix" data-offset-top="195">
 
     <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
     <c:set var="sisterPages" value="${jcr:getChildrenOfType(currentPageNode.parent, 'jnt:page,jnt:fixApplier')}"/>
