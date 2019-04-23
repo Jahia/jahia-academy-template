@@ -2105,7 +2105,7 @@ h4 {
 }
 
 h1 {
-    line-height: 3.6;
+    /*line-height: 3.6;*/
     font-size: 2.44em;
     font-weight: 500;
 }
