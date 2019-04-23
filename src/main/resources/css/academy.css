@@ -1941,7 +1941,7 @@ a.anchor {
 }
 #academy-navbar-collapse-1 > ul > li > a {
     color:#505050;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     /*font-size: .8em;*/
 }
 .product .fa-li {
@@ -2217,7 +2217,7 @@ table{
 .navbar-nav > li > a {
     color: #023951!important;
     /*font-size: 0.888em!important;*/
-    text-transform: capitalize!important;;
+    /*text-transform: capitalize!important;*/
 }
 .nav-tabs {
     border-width: 0;
