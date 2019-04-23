@@ -2362,7 +2362,7 @@ ul.lastdoc li {
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
 }
 
 .row-eq-height > [class*='col-'] {
