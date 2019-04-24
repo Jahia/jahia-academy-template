@@ -780,6 +780,21 @@ ul.doc-child li:before {
         display: block;
         width: 100%;
     }
+    .row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .row-eq-height > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row-eq-height .simplebox {
+        height: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1988,22 +2003,6 @@ ul.lastdoc {
 
 ul.lastdoc li {
     list-style-type: none;
-}
-
-.row-eq-height {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.row-eq-height > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-}
-
-.row-eq-height .simplebox {
-    height: 100%;
 }
 
 #documentation-level .row {
