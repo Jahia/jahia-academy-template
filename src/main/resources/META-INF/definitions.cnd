@@ -133,7 +133,7 @@
  - depth (string, choicelist[resourceBundle]) = '1-level' autocreated < '1-level', '2-level', '2-level-accordion'
  - displayParentPage (string, choicelist[resourceBundle]) = 'false' autocreated < 'false', 'true'
 
-[jacademy:collabse] > jnt:content, jacademix:component, mix:title, jacademix:textContent, jmix:droppableContent, jmix:manuallyOrderable, jmix:list orderable
+[jacademy:collabse] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent, jmix:droppableContent, jmix:manuallyOrderable, jmix:editorialContent orderable
  - heading (string, choicelist[resourceBundle]) = 'h3' autocreated < 'h1', 'h2', 'h3', 'h4'
  - expanded (string, choicelist[resourceBundle]) = 'false' autocreated < 'false', 'true'
  + * (jmix:droppableContent)
