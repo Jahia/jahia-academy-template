@@ -7,7 +7,6 @@
     </c:otherwise>
 </c:choose>
 
-<c:set var="productUrl"/>
 <c:set var="versionUrl"/>
 <c:url var="hitUrl" value="${hit.link}"/>
 <jcr:node var="hitNode" path="${hitPath}"/>
@@ -22,8 +21,7 @@
             <c:url var="versionUrl" value="${versionNode.url}"/>
             <c:if test="${versionNode.name ne 'Techwiki'}">
                 <c:set var="version" value="${versionNode.displayableName}"/>
-                <c:set var="productNode" value="${jcr:getParentOfType(versionNode, 'jnt:page')}"/>
-                <c:url var="productUrl" value="${productNode.url}"/>
+                <c:set var="productNode" value="${jcr:getParentOfType(versionNode, 'jmix:navMenuItem')}"/>
                 <c:set var="product" value="${productNode.displayableName}"/>
             </c:if>
         </c:if>
@@ -122,7 +120,6 @@
     </c:if>
 </c:if>
 <a href="${hitUrl}" class="small">${serverUrl}${hitUrl}</a>
-<c:remove var="productUrl"/>
 <c:remove var="versionUrl"/>
 <c:remove var="productNode"/>
 <c:remove var="versionNode"/>
