@@ -18,10 +18,7 @@
 <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
 <head>
     <meta charset="utf-8">
-    <c:if test="${! renderContext.liveMode}">
-        <meta name="robots" content="noindex">
-    </c:if>
-    <c:if test="${pageContext.request.serverName ne 'academy.jahia.com'}">
+    <c:if test="${! renderContext.liveMode || (pageContext.request.serverName ne 'academy.jahia.com')}">
         <meta name="robots" content="noindex">
     </c:if>
     <c:set var="pageTitle"
@@ -39,17 +36,22 @@
             <c:set var="pageNodes"
                    value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
             <%--
-            we try to get the parent page with a jacademix:isVersionPage mixin. This will be the current version
-            of the page.
+            we try to get the parent page with a jacademix:isVersionPage mixin. This will be the product name & version of the page (stored in alt name)
             --%>
-            <c:forEach var="pageNode" items="${pageNodes}" end="0">
-                <c:set var="versionNode" value="${pageNode}"/>
-                <c:set var="productNode" value="${versionNode.parent}"/>
-                <c:set var="productInfo">${' | '}${productNode.displayableName}${' '}(${versionNode.displayableName})</c:set>
-            </c:forEach>
+            <c:if test="${fn:length(pageNodes)>0}">
+                <c:forEach var="pageNode" items="${pageNodes}" end="0">
+                    <c:if test="${jcr:isNodeType(pageNode, 'jacademix:alternateTitle')}">
+                        <c:set var="productTitle" value="${pageNode.properties.alternateTitle.string}"/>
+                    </c:if>
+                    <c:if test="${empty productTitle}">
+                        <c:set var="productTitle" value="${pageNode.displayableName}"/>
+                    </c:if>
+                    <c:set var="productInfo">${' | '}${productTitle}</c:set>
+                </c:forEach>
+            </c:if>
         </c:if>
     </c:if>
-    <title>${fn:escapeXml(pageTitle)}${fn:escapeXml(productInfo)}</title>
+    <title>${fn:escapeXml(pageTitle)}${empty productInfo ? '' : ' '}${fn:escapeXml(productInfo)}</title>
     <c:if test="${not empty mainResourceNode.properties['jcr:description'].string}">
         <c:set var="pageDescription"
                value="${fn:substring(mainResourceNode.properties['jcr:description'].string,0,160)}"/>
@@ -71,7 +73,7 @@
             <meta property="og:locale" content="${currentLang}"/>
         </c:otherwise>
     </c:choose>
-    <meta property="og:title" content="${fn:escapeXml(pageTitle)}${fn:escapeXml(productInfo)}"/>
+    <meta property="og:title" content="${fn:escapeXml(pageTitle)}${empty productInfo ? '' : ' '}${fn:escapeXml(productInfo)}"/>
     <c:choose>
         <c:when test="${pageContext.request.serverPort == 80 || pageContext.request.serverPort == 443}">
             <c:set var="serverUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}"/>
