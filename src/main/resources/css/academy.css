@@ -268,10 +268,14 @@ body {
     background-color: transparent;
     padding: 0;
     margin: 0;
-    text-transform: uppercase;
     font-size: .7rem;
 }
-
+.breadcrumb > li {
+    text-transform: uppercase;
+}
+breadcrumb > li li {
+    text-transform: initial;
+}
 .breadcrumb li {
     display: inline-block;
 }
@@ -1524,6 +1528,7 @@ span.searchHighlightedText {
 
 .nav-tabs li {
     margin-right: 15px;
+    margin-bottom: 15px;
 }
 
 .nav-tabs a {

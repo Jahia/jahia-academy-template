@@ -32,6 +32,9 @@
                     <c:set var="isAcurrentVersion" value="true"/>
                     <c:set var="hasFindCurrentVersion" value="true"/>
                 </c:when>
+                <c:when test="${fn:startsWith(currentVersion, 'current')}">
+                    <c:set var="isAcurrentVersion" value="true"/>
+                </c:when>
                 <c:otherwise>
                     <%-- try to finf the sbinding page with current version --%>
                     <c:set var="localPathToDoc" value="${fn:replace(renderContext.mainResource.node.path, pageNode.path, '')}"/>

@@ -7,7 +7,6 @@
     </c:otherwise>
 </c:choose>
 
-<c:set var="versionUrl"/>
 <c:url var="hitUrl" value="${hit.link}"/>
 <jcr:node var="hitNode" path="${hitPath}"/>
 <c:if test="${! empty hitNode}">
@@ -18,11 +17,14 @@
     <c:if test="${jcr:isNodeType(hitNode, 'jacademy:document')}">
         <c:set var="versionNode" value="${jcr:getParentOfType(hitNode, 'jacademix:isVersionPage')}"/>
         <c:if test="${! empty versionNode}">
-            <c:url var="versionUrl" value="${versionNode.url}"/>
             <c:if test="${versionNode.name ne 'Techwiki'}">
                 <c:set var="version" value="${versionNode.displayableName}"/>
-                <c:set var="productNode" value="${jcr:getParentOfType(versionNode, 'jmix:navMenuItem')}"/>
-                <c:set var="product" value="${productNode.displayableName}"/>
+                <c:if test="${jcr:isNodeType(versionNode, 'jacademix:alternateTitle')}">
+                    <c:set var="product" value="${versionNode.properties.alternateTitle.string}"/>
+                </c:if>
+                <c:if test="${empty product}">
+                    <c:set var="product" value="${versionNode.displayableName}"/>
+                </c:if>
             </c:if>
         </c:if>
     </c:if>
@@ -120,7 +122,6 @@
     </c:if>
 </c:if>
 <a href="${hitUrl}" class="small">${serverUrl}${hitUrl}</a>
-<c:remove var="versionUrl"/>
 <c:remove var="productNode"/>
 <c:remove var="versionNode"/>
 <c:remove var="product"/>
