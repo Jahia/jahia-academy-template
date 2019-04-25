@@ -273,7 +273,7 @@ body {
 .breadcrumb > li {
     text-transform: uppercase;
 }
-breadcrumb > li li {
+.breadcrumb > li li {
     text-transform: initial;
 }
 .breadcrumb li {
