@@ -1686,8 +1686,8 @@ a[aria-expanded=false] .fa-angle-up, a[aria-expanded=true] .fa-angle-down {
 }
 
 li, p, td {
-    line-height: 1.5;
-    font-weight: 400;
+    line-height: 1.4;
+    font-weight: 300;
     color: #002839;
     margin-bottom: .8em;
 }
