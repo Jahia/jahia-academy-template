@@ -270,7 +270,7 @@ body {
     margin: 0;
     font-size: .7rem;
 }
-.breadcrumb > li {
+.breadcrumb > li > a {
     text-transform: uppercase;
 }
 .breadcrumb > li li {
