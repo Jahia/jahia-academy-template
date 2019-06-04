@@ -35,3 +35,4 @@
         ${howToUpgrade}
     </c:otherwise>
 </c:choose>
+<template:area path="free"/>
