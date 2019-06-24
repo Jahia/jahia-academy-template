@@ -47,7 +47,7 @@
         <property name="priority" value="22"/>
         <property name="description" value="Add accronym tags for glossary terms"/>
         <property name="applyOnTemplates" value="default"/>
-        <property name="applyOnNodeTypes" value="jacademy:textContent"/>
+        <property name="applyOnNodeTypes" value="jacademy:document"/>
     </bean>
 
 </beans>
