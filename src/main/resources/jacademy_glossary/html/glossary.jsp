@@ -23,4 +23,4 @@
 <c:forEach items="${moduleMap.currentList}" var="item" begin="${moduleMap.begin}" end="${moduleMap.end}">
     <template:module node="${item}"/>
 </c:forEach>
-<template:module path="*" nodeTypes="academy:glossaryTerm"/>
+<template:module path="*" nodeTypes="jacademy:glossaryTerm"/>

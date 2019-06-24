@@ -56,13 +56,6 @@ public class GlossaryFilter extends AbstractFilter {
         }
         Trie trie = trieBuilder.build();
 
-        /*Trie trie = Trie.builder().ignoreOverlaps().onlyWholeWords().ignoreCase()
-                .addKeyword("toto")
-                .addKeyword("salope")
-                .addKeyword("simone")
-                .addKeyword("Digital Experience Manager")
-                .build();
-*/
         Collection<Token> tokens = trie.tokenize(previousOut);
 
         StringBuffer html = new StringBuffer();
