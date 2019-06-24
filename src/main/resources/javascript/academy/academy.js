@@ -112,5 +112,6 @@ $(document).ready(function ($) {
     $('button').click( function(e) {
         $('.collapse').collapse('hide');
     });
+    $('.glossTerm').popover({container: 'body', html: true, trigger: 'hover'});
 });
 

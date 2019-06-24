@@ -155,3 +155,8 @@
  itemtype = content
  - hideNavbuttons (string) = 'Hide the navigation buttons (only for documentation template).' protected
 
+[jacademy:glossaryTerm] > jnt:content, mix:title
+ - glossaryDefinition   (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+
+[jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
+ + * (jacademy:glossaryTerm)
