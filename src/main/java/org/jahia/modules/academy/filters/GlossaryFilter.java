@@ -43,7 +43,7 @@ public class GlossaryFilter extends AbstractFilter {
         QueryResultWrapper queryResult = (QueryResultWrapper) query.execute();
         JCRNodeIteratorWrapper nodes = queryResult.getNodes();
 
-        Trie.TrieBuilder trieBuilder = Trie.builder().ignoreOverlaps().onlyWholeWords().ignoreCase();
+        Trie.TrieBuilder trieBuilder = Trie.builder().ignoreOverlaps().onlyWholeWordsWhiteSpaceSeparated().ignoreCase();
         HashMap glossary = new HashMap<String,String>();
 
         while (nodes.hasNext()) {
