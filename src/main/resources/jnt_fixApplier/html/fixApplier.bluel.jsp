@@ -19,6 +19,9 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <c:set var="webappURL" value="${currentNode.properties.webappURL.string}"/>
 <c:set var="webappMD5" value="${currentNode.properties.webappMD5.string}"/>
+<c:set var="releaseNotesNode" value="${currentNode.properties.releaseNotes.node}"/>
+<c:set var="toVerstion" value="${currentNode.properties.to.string}"/>
+
 
 <c:if test="${! empty webappURL}">
     <a href="${webappURL}"><i class="fas fa-download fa-fw"></i> Webapp</a> <span class="smaller">(MD5: ${webappMD5})</span>
@@ -29,4 +32,8 @@
     <c:if test="${! empty webappAndTomcatURL}">
         <br/><a href="${webappAndTomcatURL}"><i class="fas fa-download fa-fw"></i> Webapp + Tomcat</a> <span class="smaller">(MD5: ${webappAndTomcatMD5})</span>
     </c:if>
+</c:if>
+<c:if test="${! empty releaseNotesNode}">
+    <c:url var="releaseNotesUrl" value="${releaseNotesNode.url}"/>
+    <br/><a href="${releaseNotesUrl}"><i class="far fa-sticky-note fa-fw"></i> What's new on ${toVerstion}?</a>
 </c:if>
