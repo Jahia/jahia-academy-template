@@ -40,10 +40,12 @@
 <c:if test="${documentNode != null}">
     <h1>
         <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
+        <%--
         <c:if test="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc')}">
             <c:set var="parentPage" value="${jcr:getParentOfType(currentPageNode, 'jmix:navMenuItem')}"/>
             <span class="hidden-xs">${parentPage.displayableName}</span>
         </c:if>
+        --%>
         <c:set var="title" value="${documentNode.properties['jcr:title'].string}"/>
         <c:if test="${empty title}">
             <c:set var="title" value="${renderContext.mainResource.node.displayableName}"/>
