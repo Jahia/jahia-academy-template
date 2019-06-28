@@ -21,14 +21,16 @@
     <c:if test="${! renderContext.liveMode || (pageContext.request.serverName ne 'academy.jahia.com')}">
         <meta name="robots" content="noindex">
     </c:if>
-    <c:set var="pageTitle"
-           value="${mainResourceNode.displayableName}"/>
+    <c:set var="pageTitle" value="${mainResourceNode.displayableName}"/>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:alternateTitle')}">
         <c:set var="alternateTitle" value="${mainResourceNode.properties.alternateTitle.string}"/>
         <c:if test="${not empty alternateTitle}">
             <c:set var="pageTitle"
                    value="${alternateTitle}"/>
         </c:if>
+    </c:if>
+    <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:fixApplier')}">
+        <c:set var="pageTitle" value="From ${mainResourceNode.properties.from.string} to ${mainResourceNode.properties.to.string}"/>
     </c:if>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
         <c:if test="${mainResourceNode.properties['j:templateName'].string eq 'documentation'}">
