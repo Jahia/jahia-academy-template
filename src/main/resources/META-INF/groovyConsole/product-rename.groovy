@@ -13,6 +13,7 @@ boolean doIt = false;
 String siteKey = "academy";
 
 /* limit the search/replace to a certain path */
+//String descendentnode = "/sites/academy/home/training--kb/how-to";
 String descendentnode = "/sites/academy/home/documentation";
 //String descendentnode = "/sites/academy/home/documentation/end-user";
 //String descendentnode = "/sites/academy/home/documentation/developer";
@@ -42,15 +43,16 @@ def searchReplace = new LinkedHashMap<String, String>();
 //searchReplace.put("files/default/sites","files/live/sites");
 searchReplace.put("Jahia Digital Experience Manager", "Jahia");
 searchReplace.put("Digital Experience Manager", "Jahia");
+searchReplace.put("DXM", "Jahia");
 searchReplace.put("Jahia DX Manager", "Jahia");
 searchReplace.put("Jahia DX", "Jahia");
 searchReplace.put(" DX", " Jahia");
 searchReplace.put("DX ", "Jahia ");
 searchReplace.put(" JahiaP", " DXP"); // to prevent DXP -> JahiaP...
-searchReplace.put("Marketing Factory (MF)", "JExperience");
-searchReplace.put("Marketing Factory", "JExperience");
-searchReplace.put(" MF", " JExperience");
-searchReplace.put("MF ", "JExperience ");
+searchReplace.put("Marketing Factory (MF)", "jExperience");
+searchReplace.put("Marketing Factory", "jExperience");
+searchReplace.put(" MF", " jExperience");
+searchReplace.put("MF ", "jExperience ");
 searchReplace.put("Form Factory (FF)", "Forms");
 searchReplace.put("Form Factory", "Forms");
 searchReplace.put(" FF", " Forms");
@@ -61,14 +63,23 @@ searchReplace.put("Jahia 7.3.1", "DX 7.3.1");
 searchReplace.put("Jahia 7.3.0", "DX 7.3.0");
 searchReplace.put("Jahia 7.2", "DX 7.2");
 searchReplace.put("Jahia 7.1", "DX 7.1");
-searchReplace.put("JExperience 1.9", "Marketing Factory 1.9");
-searchReplace.put("JExperience 1.8", "Marketing Factory 1.8");
-searchReplace.put("JExperience 1.7", "Marketing Factory 1.7");
-searchReplace.put("JExperience 1.6", "Marketing Factory 1.6");
+searchReplace.put("Jahia 7.0", "DX 7.0");
+searchReplace.put("jExperience 1.9", "Marketing Factory 1.9");
+searchReplace.put("jExperience 1.8", "Marketing Factory 1.8");
+searchReplace.put("jExperience 1.7", "Marketing Factory 1.7");
+searchReplace.put("jExperience 1.6", "Marketing Factory 1.6");
 searchReplace.put("Forms 2.2", "Form Factory 2.2");
 searchReplace.put("Forms 2.1", "Form Factory 2.1");
 searchReplace.put("JahiaGraphQLExtensionsProvider", "DXGraphQLExtensionsProvider");
-searchReplace.put("MANIFEST.JExperience", "MANIFEST.MF");
+searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
+searchReplace.put(" Unomi", " Apache Unomi");
+searchReplace.put("Unomi ", "Apache Unomi ");
+searchReplace.put("Apache Apache Unomi", "Apache Unomi");
+searchReplace.put("Apache Unomi", "jCustomer");
+searchReplace.put("Apache jCustomer", "jCustomer");
+searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
+searchReplace.put("JExperience", "jExperience");
+
 
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey(siteKey);
 for (Locale locale : site.getLanguagesAsLocales()) {
