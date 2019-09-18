@@ -17,41 +17,15 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<c:set var="webappURL" value="${currentNode.properties.webappURL.string}"/>
-<c:set var="webappMD5" value="${currentNode.properties.webappMD5.string}"/>
-
-
-<c:set var="howToUpgrade" value="${currentNode.properties.howToUpgrade.string}"/>
-<c:set var="howToUrl" value="#"/>
+<template:addResources type="javascript" resources="jquery.min.js,version_compare.js"/>
+<c:set var="currentVersion" value="${param.dxversion}"/>
 <c:choose>
-    <c:when test="${empty howToUpgrade}">
-        <c:set var="howToNode" value="${currentNode.properties.howTo.node}"/>
-        <c:if test="${! empty howToNode}">
-            <c:url var="howToUrl" value="${howToNode.url}"/>
-            <a href="${howToUrl}">How to upgrade</a>
-        </c:if>
+    <c:when test="${! empty currentVersion}">
+        <h4 class="running">${currentNode.properties['jcr:title'].string}${' '}${fn:escapeXml(currentVersion)}</h4>
     </c:when>
     <c:otherwise>
-        ${howToUpgrade}
+        <c:if test="${renderContext.editMode}">
+            <h4 class="running">${currentNode.properties['jcr:title'].string} x.y.z</h4>
+        </c:if>
     </c:otherwise>
 </c:choose>
-<template:area path="free"/>
-<template:addResources type="inline">
-    <script>
-        $(document).ready(function () {
-            $('pre code').each(function (i, block) {
-                hljs.highlightBlock(block);
-                var copybutton = '<div class="bd-clipboard"><span class="btn-clipboard" title="Copy to clipboard">Copy</span></div>';
-                $(this).before(copybutton);
-            });
-            var clipboard = new ClipboardJS('.btn-clipboard', {
-                target: function (trigger) {
-                    return trigger.parentNode.nextElementSibling;
-                }
-            })
-            $('code.hljs').each(function(i, block) {
-                hljs.lineNumbersBlock(block);
-            });
-        });
-    </script>
-</template:addResources>
