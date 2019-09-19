@@ -55,7 +55,7 @@
 
 <div class="whatsnew module" data-dependency="${currentNode.properties.versionDependency.string}">
     <h4>${currentNode.properties['jcr:title'].string}${' '}${currentNode.properties.version.string} <span><fmt:message key="cnt_whatsNewModule.required"/> ${currentNode.properties.versionDependency.string}</span></h4>
-    <div class="description">${currentNode.properties.text.string}</div>
+    <div class="description">${currentNode.properties.textContent.string}</div>
     <div class="releaseDate">${formatedReleaseDate}</div>
     <c:if test="${! empty academyNode}">
         <c:url var="academyNodeUrl" value="${academyNode.url}"/>

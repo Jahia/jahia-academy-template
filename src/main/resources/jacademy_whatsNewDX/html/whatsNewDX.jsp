@@ -41,7 +41,7 @@
 
 <div class="whatsnew dx" data-version="${currentNode.properties.version.string}">
     <h4>${currentNode.properties['jcr:title'].string}</h4>
-    <div class="description">${currentNode.properties.text.string}</div>
+    <div class="description">${currentNode.properties.textContent.string}</div>
     <div class="releaseDate">${formatedReleaseDate}</div>
     <c:if test="${! empty releaseNotesNode}">
         <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}"/>
