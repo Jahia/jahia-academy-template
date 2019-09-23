@@ -171,5 +171,6 @@
 <body data-spy="scroll" data-target="#sidebar" data-offset="522" ${homeCss}><a id="top"></a>
 <template:area path="pagecontent"/>
 <template:area path="footer"/>
+<template:area path="footerAbs" moduleType="absoluteArea" level="0"/>
 </body>
 </html>

@@ -177,3 +177,11 @@
  - academy (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
  - store (string) = 'http://'
  + * (jmix:droppableContent)
+
+[jacademy:popup] > jnt:content, jacademix:component, mix:title
+ - closeText (string) = 'Close' internationalized
+ - delay (long) = '3000' mandatory indexed=no
+ - expires (long) = '365' indexed=no
+ - size (string, choicelist[resourceBundle]) = 'default' autocreated indexed=no < 'default', 'lg', 'sm'
+ - displayOnlyOnce (boolean) = 'true'
+ + * (jmix:droppableContent) = jmix:droppableContent
