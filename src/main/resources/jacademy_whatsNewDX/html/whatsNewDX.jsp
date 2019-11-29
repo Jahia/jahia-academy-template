@@ -46,7 +46,7 @@
     <c:if test="${! empty releaseNotesNode}">
         <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}"/>
         <div class="releaseNotes">
-            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="cnt_whatsNewDX.releaseNotes"/></a>
+            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
         </div>
     </c:if>
     <c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">
