@@ -54,18 +54,18 @@
 </style>
 
 <div class="whatsnew module" data-dependency="${currentNode.properties.versionDependency.string}">
-    <h4>${currentNode.properties['jcr:title'].string}${' '}${currentNode.properties.version.string} <span><fmt:message key="cnt_whatsNewModule.required"/> ${currentNode.properties.versionDependency.string}</span></h4>
+    <h4>${currentNode.properties['jcr:title'].string}${' '}${currentNode.properties.version.string} <span><fmt:message key="jacademy_whatsNewModule.required"/> ${currentNode.properties.versionDependency.string}</span></h4>
     <div class="description">${currentNode.properties.textContent.string}</div>
     <div class="releaseDate">${formatedReleaseDate}</div>
     <c:if test="${! empty academyNode}">
         <c:url var="academyNodeUrl" value="${academyNode.url}"/>
         <div class="academy">
-            <a href="${academyNodeUrl}" title="${fn:escapeXml(academyNode.displayableName)}"><span><fmt:message key="cnt_whatsNewModule.academy"/></span></a>
+            <a href="${academyNodeUrl}" title="${fn:escapeXml(academyNode.displayableName)}"><span><fmt:message key="jacademy_whatsNewModule.academy"/></span></a>
         </div>
     </c:if>
     <c:if test="${! empty store}">
         <div class="store">
-            <a href="${store}"><span><fmt:message key="cnt_whatsNewModule.store"/></span></a>
+            <a href="${store}"><span><fmt:message key="jacademy_whatsNewModule.store"/></span></a>
         </div>
     </c:if>
     <c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">
