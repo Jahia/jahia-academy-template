@@ -33,7 +33,7 @@
         <c:set var="pageTitle" value="From ${mainResourceNode.properties.from.string} to ${mainResourceNode.properties.to.string}"/>
     </c:if>
     <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
-        <c:if test="${mainResourceNode.properties['j:templateName'].string eq 'documentation'}">
+        <c:if test="${fn:startsWith(mainResourceNode.properties['j:templateName'].string,'documentation')}">
             <%-- This is a doc -> try to get the product name --%>
             <c:set var="pageNodes"
                    value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
@@ -100,7 +100,7 @@
 
     <c:choose>
         <c:when test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
-            <c:if test="${mainResourceNode.properties['j:templateName'].string eq 'documentation'}">
+            <c:if test="${fn:startsWith(mainResourceNode.properties['j:templateName'].string,'documentation')}">
             <link rel="amphtml" href="${ampUrl}">
         </c:if>
         </c:when>

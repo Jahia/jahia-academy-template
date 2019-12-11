@@ -167,7 +167,74 @@
                                     </section>
                                 </pagecontent>
                             </documentation>
-                            <product-home j:hiddenTemplate="false"
+                            <documentationFullWidth j:hiddenTemplate="false"
+                                                    j:icon="#/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
+                                                    jcr:primaryType="jnt:pageTemplate">
+                                <j:translation_en jcr:language="en"
+                                                  jcr:mixinTypes="mix:title"
+                                                  jcr:primaryType="jnt:translation"
+                                                  jcr:title="Documentation full width"/>
+                                <pagecontent jcr:primaryType="jnt:contentList">
+                                    <section columnsType="nogrid"
+                                             jcr:mixinTypes="bootstrap3mix:createSection"
+                                             jcr:primaryType="bootstrap3nt:columns"
+                                             sectionElement="div"
+                                             sectionId="documentation-level">
+                                        <section jcr:primaryType="jnt:contentList">
+                                            <title columnsType="predefinedColumns"
+                                                   grid="12"
+                                                   gridLayout="fixed-width"
+                                                   jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                                   jcr:primaryType="bootstrap3nt:columns">
+                                                <title-main jcr:primaryType="jnt:contentList">
+                                                    <breadcrumb-display j:view="academy"
+                                                                        jcr:mixinTypes="jmix:renderable"
+                                                                        jcr:primaryType="bootstrap3nt:breadcrumb"/>
+                                                    <documentheader j:bindedComponent="#/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/section/section/document-content/document-content-main/document-area"
+                                                                    j:view="title"
+                                                                    jcr:mixinTypes="jmix:renderable"
+                                                                    jcr:primaryType="jacademy:documentHeader"/>
+                                                </title-main>
+                                            </title>
+                                            <blue-header columnsType="predefinedColumns"
+                                                         grid="12"
+                                                         gridLayout="fixed-width"
+                                                         jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:createSection bootstrap3mix:predefinedColumns"
+                                                         jcr:primaryType="bootstrap3nt:columns"
+                                                         sectionCssClass="bluebg"
+                                                         sectionElement="div">
+                                                <blue-header jcr:primaryType="jnt:contentList">
+                                                    <documentheader j:bindedComponent="#/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/section/section/document-content/document-content-main/document-area"
+                                                                    jcr:primaryType="jacademy:documentHeader"/>
+                                                </blue-header>
+                                                <blue-header-main jcr:primaryType="jnt:contentList">
+                                                    <documentheader j:bindedComponent="#/modules/jahia-academy-template/templates/base/subpage/documentation/pagecontent/section/section/document-content/document-content-main/document-area"
+                                                                    jcr:primaryType="jacademy:documentHeader"/>
+                                                </blue-header-main>
+                                            </blue-header>
+                                            <document-content columnsType="predefinedColumns"
+                                                              grid="12"
+                                                              gridLayout="fixed-width"
+                                                              jcr:mixinTypes="bootstrap3mix:createContainer bootstrap3mix:createRow bootstrap3mix:predefinedColumns"
+                                                              jcr:primaryType="bootstrap3nt:columns">
+                                                <document-content-main j:id="documentation-child-content"
+                                                                       j:skin="skins.custom"
+                                                                       jcr:mixinTypes="jmix:customSkin jmix:skinnable"
+                                                                       jcr:primaryType="jnt:contentList">
+                                                    <document-buttons jcr:primaryType="jacademy:navButtons"/>
+                                                    <check-version jcr:primaryType="jacademy:checkCurrentVersion"/>
+                                                    <document-area j:allowedTypes="jacademix:document jnt:contentList"
+                                                                   jcr:primaryType="jnt:area"/>
+                                                    <document-buttons2 jcr:primaryType="jacademy:navButtons"/>
+                                                    <feedback j:level="0"
+                                                              j:limitedAbsoluteAreaEdit="false"
+                                                              jcr:primaryType="jnt:absoluteArea"/>
+                                                </document-content-main>
+                                            </document-content>
+                                        </section>
+                                    </section>
+                                </pagecontent>
+                            </documentationFullWidth>                            <product-home j:hiddenTemplate="false"
                                 j:icon="#/modules/jahia-academy-template/templates/files/themes/default/academy_icon_16_16.png"
                                 jcr:primaryType="jnt:pageTemplate">
                                 <j:translation_en jcr:language="en"
