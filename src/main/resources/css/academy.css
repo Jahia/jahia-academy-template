@@ -1808,6 +1808,10 @@ ul.topPages {
     list-style-type: none
 }
 
+ul.topPages li a {
+    padding-left: 0 !important;
+}
+
 ul.topPages li a:after {
     content: "\f061";
     font-weight: 900;
