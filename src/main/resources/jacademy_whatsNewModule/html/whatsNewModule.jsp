@@ -30,6 +30,7 @@
  - store (string) = 'http://'
 
 --%>
+<template:include view="hidden.header"/>
 <c:set var="currentVersion" value="${param.dxversion}"/>
 
 <c:set var="language" value="${currentResource.locale.language}"/>
@@ -68,7 +69,8 @@
             <a href="${store}"><span><fmt:message key="jacademy_whatsNewModule.store"/></span></a>
         </div>
     </c:if>
-    <c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">
+    <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
+    <c:forEach items="${moduleMap.currentList}" var="droppableContent" begin="${moduleMap.begin}" end="${moduleMap.end}" varStatus="item">
         <template:module node="${droppableContent}" editable="true"/>
     </c:forEach>
     <c:if test="${renderContext.editMode}">

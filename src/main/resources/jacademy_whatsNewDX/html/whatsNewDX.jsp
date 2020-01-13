@@ -37,7 +37,7 @@
     }
 </style>
 
-
+<template:include view="hidden.header"/>
 
 <div class="whatsnew dx" data-version="${currentNode.properties.version.string}">
     <h4>${currentNode.properties['jcr:title'].string}</h4>
@@ -49,7 +49,8 @@
             <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
         </div>
     </c:if>
-    <c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">
+    <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
+    <c:forEach items="${moduleMap.currentList}" var="droppableContent" begin="${moduleMap.begin}" end="${moduleMap.end}" varStatus="item">
         <template:module node="${droppableContent}" editable="true"/>
     </c:forEach>
     <c:if test="${renderContext.editMode}">

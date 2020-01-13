@@ -146,7 +146,8 @@
 
 [jacademy:latestBlogs] > jnt:content, jacademix:component, mix:title
  - nbPosts (long) = '3' mandatory indexed=no
- - postType (string, choicelist[nodetypes='cmix:blogEntry']) multiple
+ - postType (string) multiple
+// - postType (string, choicelist[nodetypes='jcnt:blogEntry']) multiple
 
 [jacademix:hideBreadcrumb] mixin
  extends = jmix:navMenuItem
@@ -164,7 +165,7 @@
 [jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
  + * (jacademy:glossaryTerm)
 
-[jacademy:whatsNewDX] > jnt:content, jacademix:component, mix:title, jacademix:textContent
+[jacademy:whatsNewDX] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent
  - version (string) mandatory
  - releaseDate (date) mandatory
  - releaseNotes (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
@@ -173,7 +174,7 @@
 [jacademy:whatsNewYouAreRunning] > jnt:content, jacademix:component, mix:title
  - jcr:title (string) = 'You are running DX' primary internationalized
 
-[jacademy:whatsNewModule] > jnt:content, jacademix:component, mix:title, jacademix:textContent
+[jacademy:whatsNewModule] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent
  - version (string) mandatory
  - releaseDate (date) mandatory
  - versionDependency (string) = '7.2.0.0'
