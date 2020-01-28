@@ -70,7 +70,7 @@
                 setTimeout(function () {
                     console.log("Open modal #myModal${currentNode.name} and set cookie popup-${currentNode.identifier}");
                     $('#myModal${currentNode.name}').modal('show');
-                    <c:url var="u" value="${renderContext.mainResource.node.url}"/>
+                    <c:url var="u" value="${renderContext.mainResource.node.url}" context="/"/>
                     $.cookie('popup-${currentNode.identifier}', '${fn:replace(u,'/','_')}', { expires: ${expires}, raw: true });
                 }, ${currentNode.properties.delay.long});
             }

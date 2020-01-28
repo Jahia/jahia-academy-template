@@ -23,7 +23,7 @@
 <c:if test="${empty linkTitle}">
     <c:set var="linkTitle" value="${currentNode.properties['jcr:title'].string}"/>
 </c:if>
-<c:url var="linkUrl" value="${currentNode.url}"/>
+<c:url var="linkUrl" value="${currentNode.url}" context="/"/>
 <c:choose>
     <c:when test="${linkType == 'internal'}">
         <c:set var="linkNode" value="${currentNode.properties.internalLink.node}"/>

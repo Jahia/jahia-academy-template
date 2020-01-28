@@ -102,6 +102,9 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
+            <_dsannotations>
+              org.jahia.modules.components.initializers.*
+            </_dsannotations>
             <Jahia-Module-Type>templatesSet</Jahia-Module-Type>
           </instructions>
         </configuration>

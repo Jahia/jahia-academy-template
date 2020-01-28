@@ -48,7 +48,7 @@
         <c:if test="${! jcr:isNodeType(doc, 'jnt:page')}">
             <c:set var="doc" value="${jcr:getParentOfType(doc, 'jnt:page')}"/>
         </c:if>
-        <c:url var="docUrl" value="${doc.url}"/>
+        <c:url var="docUrl" value="${doc.url}" context="/"/>
         <li><a href="${docUrl}">${titlePath}</a></li>
     </c:forEach>
 </ul>

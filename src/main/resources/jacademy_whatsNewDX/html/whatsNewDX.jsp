@@ -44,7 +44,7 @@
     <div class="description">${currentNode.properties.textContent.string}</div>
     <div class="releaseDate">${formatedReleaseDate}</div>
     <c:if test="${! empty releaseNotesNode}">
-        <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}"/>
+        <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}" context="/"/>
         <div class="releaseNotes">
             <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
         </div>

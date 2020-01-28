@@ -17,7 +17,7 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<c:url var="detailView" value="${currentNode.url}"/>
+<c:url var="detailView" value="${currentNode.url}" context="/"/>
 <c:set var="tagList" value="${currentNode.properties['j:tagList']}"/>
 <jcr:node var="searchPage" path="/sites/academy/home/search"/>
 <c:set var="title" value="${currentNode.displayableName}"/>
@@ -59,7 +59,7 @@
             <c:if test="${! empty tagList}">
                 <c:forEach items="${tagList}" var="tag" varStatus="status">
                     <c:if test="${! empty searchPage}">
-                        <c:url var="searchTagUrl" value="${searchPage.url}">
+                        <c:url var="searchTagUrl" value="${searchPage.url}" context="/">
                             <c:param name="src_terms[0].term" value="${tag.string}"/>
                             <c:param name="src_terms[0].fields.tags" value="true"/>
                             <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>

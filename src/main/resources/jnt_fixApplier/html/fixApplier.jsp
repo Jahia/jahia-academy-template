@@ -46,11 +46,11 @@
         <c:when test="${empty howToUpgrade}">
             <c:set var="howToNode" value="${currentNode.properties.howTo.node}"/>
             <c:if test="${! empty howToNode}">
-                <c:url var="howToUrl" value="${howToNode.url}"/>
+                <c:url var="howToUrl" value="${howToNode.url}" context="/"/>
             </c:if>
         </c:when>
         <c:otherwise>
-            <c:url var="howToUrl" value="${currentNode.url}"/>
+            <c:url var="howToUrl" value="${currentNode.url}" context="/"/>
         </c:otherwise>
     </c:choose>
 

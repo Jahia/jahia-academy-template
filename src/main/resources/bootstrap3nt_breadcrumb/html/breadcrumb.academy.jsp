@@ -63,7 +63,7 @@
                                                     class="caret"></span></a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="<c:url value='${pageNode.url}'/>" class="dropdown-toggle"
+                                            <a href="<c:url value='${pageNode.url}' context='/'/>" class="dropdown-toggle"
                                                data-toggle="dropdown"
                                                role="button" aria-haspopup="true" aria-expanded="false"><c:out
                                                     value="${pageNode.displayableName}"/> <span
@@ -144,7 +144,7 @@
                                                         </c:choose>
                                                     </c:when>
                                                     <c:when test="${jcr:isNodeType(sisterPage, 'jnt:page')}">
-                                                        <c:url var="sisterPageUrl" value="${sisterPage.url}"/>
+                                                        <c:url var="sisterPageUrl" value="${sisterPage.url}" context="/"/>
                                                         <c:set var="active"><c:if
                                                                 test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}"> class="active"</c:if></c:set>
                                                         <li ${active}><a
@@ -166,7 +166,7 @@
                                             <a href="#"><c:out value="${pageNode.displayableName}"/></a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="<c:url value='${pageNode.url}'/>"><c:out
+                                            <a href="<c:url value='${pageNode.url}' context='/'/>"><c:out
                                                     value="${pageNode.displayableName}"/></a>
                                         </c:otherwise>
                                     </c:choose>

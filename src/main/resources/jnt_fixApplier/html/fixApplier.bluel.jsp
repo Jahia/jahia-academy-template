@@ -34,6 +34,6 @@
     </c:if>
 </c:if>
 <c:if test="${! empty releaseNotesNode}">
-    <c:url var="releaseNotesUrl" value="${releaseNotesNode.url}"/>
+    <c:url var="releaseNotesUrl" value="${releaseNotesNode.url}" context="/"/>
     <br/><a href="${releaseNotesUrl}"><i class="far fa-sticky-note fa-fw"></i> What's new on ${toVerstion}?</a>
 </c:if>

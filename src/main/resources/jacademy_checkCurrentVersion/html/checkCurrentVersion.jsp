@@ -25,7 +25,7 @@
     <c:when test="${fn:length(pageNodes) > 0}">
         <c:forEach var="pageNode" items="${pageNodes}" end="0">
             <template:addCacheDependency path="${pageNode.path}"/>
-            <c:url var="currentVersionNodeUrl" value="${pageNode.url}"/>
+            <c:url var="currentVersionNodeUrl" value="${pageNode.url}" context="/"/>
             <c:set var="currentVersion" value="${pageNode.properties.version.string}"/>
             <c:choose>
                 <c:when test="${currentVersion eq 'current'}">
@@ -46,10 +46,10 @@
                             <template:addCacheDependency path="${versionDocNode.path}"/>
                             <c:choose>
                                 <c:when test="${! empty versionDocNode}">
-                                    <c:url var="currentVersionNodeUrl" value="${versionDocNode.url}"/>
+                                    <c:url var="currentVersionNodeUrl" value="${versionDocNode.url}" context="/"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:url var="currentVersionNodeUrl" value="${versionNode.url}"/>
+                                    <c:url var="currentVersionNodeUrl" value="${versionNode.url}" context="/"/>
                                 </c:otherwise>
                             </c:choose>
                             <c:set var="hasFindCurrentVersion" value="true"/>
@@ -60,7 +60,7 @@
         </c:forEach>
     </c:when>
     <c:otherwise>
-        <c:url var="currentVersionNodeUrl" value="${renderContext.site.home.url}"/>
+        <c:url var="currentVersionNodeUrl" value="${renderContext.site.home.url}" context="/"/>
     </c:otherwise>
 </c:choose>
 
