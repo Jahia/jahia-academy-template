@@ -93,7 +93,7 @@
         <c:when test="${isMultiplePageDoc}">
             <c:choose>
                 <c:when test="${jcr:isNodeType(currentPageNode, 'jnt:fixApplier')}">
-                    <c:url var="parentPageUrl" value="${parentPage.url}"/>
+                    <c:url var="parentPageUrl" value="${parentPage.url}" context="/"/>
                     <a href="${parentPageUrl}" data-scrollto="#top"><strong>${parentPage.displayableName}</strong></a>
                 </c:when>
                 <c:otherwise>
@@ -120,7 +120,7 @@
                         <ul data-toc="${toc}" data-toc-headings="${tocHeadings}" class="nav bs-docs-sidenav sister" ></ul>
                     </c:when>
                     <c:otherwise>
-                        <c:url var="pageUrl" value="${sisterPage.url}"/>
+                        <c:url var="pageUrl" value="${sisterPage.url}" context="/"/>
                         <c:choose>
                             <c:when test="${jcr:isNodeType(sisterPage, 'jnt:fixApplier')}">
                                 <c:set var="fromVersion" value="${sisterPage.properties.from.string}"/>

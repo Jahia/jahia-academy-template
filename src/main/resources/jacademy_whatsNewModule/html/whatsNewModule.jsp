@@ -59,7 +59,7 @@
     <div class="description">${currentNode.properties.textContent.string}</div>
     <div class="releaseDate">${formatedReleaseDate}</div>
     <c:if test="${! empty academyNode}">
-        <c:url var="academyNodeUrl" value="${academyNode.url}"/>
+        <c:url var="academyNodeUrl" value="${academyNode.url}" context="/"/>
         <div class="academy">
             <a href="${academyNodeUrl}" title="${fn:escapeXml(academyNode.displayableName)}"><span><fmt:message key="jacademy_whatsNewModule.academy"/></span></a>
         </div>

@@ -85,7 +85,7 @@
                    value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
         </c:otherwise>
     </c:choose>
-    <c:url var="currentPageUrl" value="${mainResourceNode.url}"/>
+    <c:url var="currentPageUrl" value="${mainResourceNode.url}" context="/"/>
     <meta property="og:url" content="${serverUrl}${currentPageUrl}"/>
     <c:set var="imageUrl" value="${url.currentModule}/img/logo.png"/>
     <c:set var="imageWidth" value="250"/>

@@ -28,7 +28,7 @@
                 <c:if test="${jcr:isNodeType(parentPage, 'jnt:page')}">
                     <li><span class="fa-li" ><i class="fas fa-chevron-right"></i></span>
                             <c:set var="pageTitle" value="${parentPage.displayableName}"/>
-                            <c:url var="pageUrl" value="${parentPage.url}"/>
+                            <c:url var="pageUrl" value="${parentPage.url}" context="/"/>
                         <a href="${pageUrl}">${pageTitle}</a>
                     </li>
                 </c:if>
@@ -52,7 +52,7 @@
                                                 <c:set var="subsubpages" value="${jcr:getChildrenOfType(subpage, 'jnt:page')}"/>
                                                 <c:forEach items="${subsubpages}" var="subsubpage" varStatus="substatus">
                                                     <c:if test="${substatus.first}">
-                                                        <c:url var="pageUrl" value="${subsubpage.url}"/>
+                                                        <c:url var="pageUrl" value="${subsubpage.url}" context="/"/>
                                                     </c:if>
                                                 </c:forEach>
                                                 <c:remove var="subsubpages"/>
@@ -61,10 +61,10 @@
                                                 <c:url var="pageUrl" value="${subpage.properties['j:url'].string}"/>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:page')}">
-                                                <c:url var="pageUrl" value="${subpage.url}"/>
+                                                <c:url var="pageUrl" value="${subpage.url}" context="/"/>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:nodeLink')}">
-                                                <c:url var="pageUrl" value="${subpage.properties['j:node'].node.url}"/>
+                                                <c:url var="pageUrl" value="${subpage.properties['j:node'].node.url}" context="/"/>
                                             </c:when>
                                         </c:choose>
                                     </c:if>
@@ -75,10 +75,10 @@
                             <c:url var="pageUrl" value="${page.properties['j:url'].string}"/>
                         </c:when>
                         <c:when test="${jcr:isNodeType(page, 'jnt:page')}">
-                            <c:url var="pageUrl" value="${page.url}"/>
+                            <c:url var="pageUrl" value="${page.url}" context="/"/>
                         </c:when>
                         <c:when test="${jcr:isNodeType(page, 'jnt:nodeLink')}">
-                            <c:url var="pageUrl" value="${page.properties['j:node'].node.url}"/>
+                            <c:url var="pageUrl" value="${page.properties['j:node'].node.url}" context="/"/>
                             <c:if test="${empty pageTitle}">
                                 <c:set var="pageTitle"
                                        value="${page.properties['j:node'].node.displayableName}"/>
@@ -114,7 +114,7 @@
                                                 <c:set var="subsubpages" value="${jcr:getChildrenOfType(subpage, 'jnt:page')}"/>
                                                 <c:forEach items="${subsubpages}" var="subsubpage" varStatus="substatus">
                                                     <c:if test="${substatus.first}">
-                                                        <c:url var="subpageUrl" value="${subsubpage.url}"/>
+                                                        <c:url var="subpageUrl" value="${subsubpage.url}" context="/"/>
                                                     </c:if>
                                                 </c:forEach>
                                             </c:when>
@@ -122,10 +122,10 @@
                                                 <c:url var="subpageUrl" value="${subpage.properties['j:url'].string}"/>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:page')}">
-                                                <c:url var="subpageUrl" value="${subpage.url}"/>
+                                                <c:url var="subpageUrl" value="${subpage.url}" context="/"/>
                                             </c:when>
                                             <c:when test="${jcr:isNodeType(subpage, 'jnt:nodeLink')}">
-                                                <c:url var="subpageUrl" value="${subpage.properties['j:node'].node.url}"/>
+                                                <c:url var="subpageUrl" value="${subpage.properties['j:node'].node.url}" context="/"/>
                                                 <c:if test="${empty subpageTitle}">
                                                     <c:set var="subpageTitle"
                                                            value="${subpage.properties['j:node'].node.displayableName}"/>

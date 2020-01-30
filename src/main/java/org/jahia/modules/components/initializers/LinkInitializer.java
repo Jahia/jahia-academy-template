@@ -8,6 +8,7 @@ import org.jahia.services.content.nodetypes.initializers.ModuleChoiceListInitial
 import org.jahia.services.content.nodetypes.renderer.AbstractChoiceListRenderer;
 import org.jahia.services.content.nodetypes.renderer.ModuleChoiceListRenderer;
 import org.jahia.services.render.RenderContext;
+import org.osgi.service.component.annotations.Component;
 
 import javax.jcr.PropertyType;
 import javax.jcr.RepositoryException;
@@ -18,10 +19,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
+@Component(name = "linkInitializer", service = ModuleChoiceListInitializer.class, immediate = true)
 public class LinkInitializer extends AbstractChoiceListRenderer implements ModuleChoiceListInitializer, ModuleChoiceListRenderer {
 
-    private String key;
+    private String key = "linkInitializer";
 
     /**
      * {@inheritDoc}

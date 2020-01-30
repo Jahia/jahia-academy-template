@@ -66,7 +66,7 @@
                     <c:forEach items="${tagList}" var="tag" varStatus="status">
                         <c:if test="${status.first}"><div class="role-wrapper hidden-print"><i class="fas fa-tags fa-fw text-muted" aria-hidden="true"></i>&nbsp;</c:if>
                         <c:if test="${! empty searchPage}">
-                            <c:url var="searchTagUrl" value="${searchPage.url}">
+                            <c:url var="searchTagUrl" value="${searchPage.url}" context="/">
                                 <c:param name="src_terms[0].term" value="${tag.string}"/>
                                 <c:param name="src_terms[0].fields.tags" value="true"/>
                                 <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>

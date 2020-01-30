@@ -27,7 +27,7 @@
 <c:set var="startNodePath" value="/sites/jahiacom/home"/>
 
 <c:set var="statement"
-       value="select * from [cmix:blogEntry] as blog where ISDESCENDANTNODE(blog, '${startNodePath}') "/>
+       value="select * from [jcnt:blogEntry] as blog where ISDESCENDANTNODE(blog, '${startNodePath}') "/>
 
 <c:set var="postTypes" value="${currentNode.properties['postType']}"/>
 <c:set var="postsCount" value="${fn:length(postTypes)}"/>
@@ -52,7 +52,7 @@
 
 <ul>
     <c:forEach items="${blogs.nodes}" var="blog" varStatus="status">
-        <c:url var="blogUrl" value="${blog.url}"/>
+        <c:url var="blogUrl" value="${blog.url}" context="/"/>
         <li><a href="${blogUrl}">${blog.displayableName}</a></li>
     </c:forEach>
 </ul>
