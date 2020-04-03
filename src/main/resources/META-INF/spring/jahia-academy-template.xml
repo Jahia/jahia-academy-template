@@ -29,7 +29,7 @@
         <property name="applyOnNodeTypes" value="jacademix:document,jacademix:content"/>
         <property name="applyOnTemplates" value="default"/>
     </bean>
-    <bean id="SendEmailAction" class="org.jahia.modules.formfactory.actions.SendEmailAction">
+    <bean id="SendEmailAction" class="org.jahia.modules.forms.actions.SendEmailAction">
         <property name="mailService" ref="MailService"/>
         <property name="mailTemplatePath" value="${formFactoryMailTemplatePath:/templates/email/feedback.vm}"/>
         <property name="templateManagerService" ref="JahiaTemplateManagerService"/>
