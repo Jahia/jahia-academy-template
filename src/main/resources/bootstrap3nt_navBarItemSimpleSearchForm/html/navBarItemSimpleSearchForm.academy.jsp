@@ -46,7 +46,7 @@
                     -->
                 </c:if>
                 <c:catch var="errorSwitchToPreview">
-                    <c:if test="${! renderContext.previewMode && jcr:hasPermission(renderContext.mainResource.node, 'editModeAccess')}">
+                    <c:if test="${! renderContext.previewMode && jcr:hasPermission(renderContext.mainResource.node, 'jContentAccess')}">
                         <c:url value="${url.preview}" var="previewUrl" context='/'/>
                         <li><a href="${previewUrl}"><i class="fas fa-eye fa-fw"></i> Preview</a></li>
                     </c:if>
@@ -58,7 +58,7 @@
                     -->
                 </c:if>
                 <c:catch var="errorSwitchToEdit">
-                    <c:if test="${! renderContext.editMode && jcr:hasPermission(renderContext.mainResource.node, 'editModeAccess')}">
+                    <c:if test="${! renderContext.editMode && jcr:hasPermission(renderContext.mainResource.node, 'jContentAccess')}">
                         <li><a href="<c:url value='${url.edit}' context='/'/>"><i class="fas fa-pencil-alt fa-fw"></i> Edit</a></li>
                     </c:if>
                 </c:catch>
