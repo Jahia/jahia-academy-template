@@ -46,6 +46,25 @@ CKEDITOR.addTemplates('default',
                 '        </tr>\n' +
                 '    </tbody>\n' +
                 '</table>'
+            },
+            {
+                title: '2 Columns',
+                image: 'jacademix_component.png',
+                description: 'This template generate 2 bootstrap columns',
+                html: '<div class="row">\n' +
+                    '    <div class="col-md-4">Column 1</div>\n' +
+                    '    <div class="col-md-4">Column 2</div>\n' +
+                    '</div>'
+            },
+            {
+                title: '3 Columns',
+                image: 'jacademix_component.png',
+                description: 'This template generate 3 bootstrap columns',
+                html: '<div class="row">\n' +
+                    '    <div class="col-md-4">Column 1</div>\n' +
+                    '    <div class="col-md-4">Column 2</div>\n' +
+                    '    <div class="col-md-4">Column 3</div>\n' +
+                    '</div>'
             }
         ]
     });

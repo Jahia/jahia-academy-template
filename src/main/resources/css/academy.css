@@ -1650,11 +1650,6 @@ ul.lastdoc li {
     position: relative
 }
 
-#documentation-level .col-md-4 {
-    position: absolute;
-    right: 0
-}
-
 .sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -1809,7 +1804,7 @@ ul.topPages {
 }
 
 ul.topPages li a {
-    padding-left: 0 !important;
+    padding-left: 0 !important
 }
 
 ul.topPages li a:after {
