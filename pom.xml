@@ -65,13 +65,13 @@
   </scm>
   <properties>
     <Jahia-Module-Priority>1</Jahia-Module-Priority>
-    <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,forms-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table,robotsnoindex,sitemap</jahia-depends>
+    <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,form-factory-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table,robotsnoindex,sitemap</jahia-depends>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.jahia.modules</groupId>
-      <artifactId>forms-core</artifactId>
-      <version>2.4.0</version>
+      <artifactId>form-factory-core</artifactId>
+      <version>2.3.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
