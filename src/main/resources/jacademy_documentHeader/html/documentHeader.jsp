@@ -89,7 +89,7 @@
                         </fmt:message>
                     </h2>
                     --%>
-                <c:if test="${jcr:hasPermission(documentNode, 'editModeAccess') && jcr:isNodeType(documentNode, 'jacademy:kbEntry')}">
+                <c:if test="${jcr:hasPermission(documentNode, 'jContentAccess') && jcr:isNodeType(documentNode, 'jacademy:kbEntry')}">
                     <div class="role-wrapper hidden-print smaller">
                         <c:set var="key" value="${documentNode.properties.jiraKey.string}"/>
                         <i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;&nbsp;<a
