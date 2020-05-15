@@ -113,7 +113,7 @@
                 <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
             </c:if>
             <c:set var="isTechwiki" value="${fn:contains(fn:toLowerCase(documentNode.path),'/techwiki/')}"/>
-            <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/how-to/')}"/>
+            <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/training--kb/')}"/>
             <c:set var="pageNodes"
                    value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
             <c:set var="pageNodesSize"
