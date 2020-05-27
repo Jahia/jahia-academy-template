@@ -29,7 +29,7 @@
  - linkType (string, choicelist[linkInitializer,resourceBundle]) = 'noLink' autocreated < 'internal', 'external', 'file', 'noLink'
 
 [jacademix:textContent] mixin
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 [jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
@@ -101,18 +101,18 @@
  - value (string) = 'This page will be hidden in the menu.' protected
 
 [jacademy:loginForm] > jnt:content, jacademix:document
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
 
 [jacademix:kbQa] > jmix:templateMixin mixin
  extends = jacademy:kbEntry
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - answer (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 [jacademix:kbUseCase] > jmix:templateMixin mixin
  extends = jacademy:kbEntry
- - textContent (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - answer (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - cause (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - cause (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 [jacademy:kbEntry] > jnt:content, jacademix:component, jacademix:document
  - kbType (string, choicelist[kbInitializer,resourceBundle]) = 'qa' autocreated facetable < 'qa', 'useCase'
@@ -160,7 +160,7 @@
  - hideNavbuttons (string) = 'Hide the navigation buttons (only for documentation template).' protected
 
 [jacademy:glossaryTerm] > jnt:content, mix:title
- - glossaryDefinition   (string, richtext[ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - glossaryDefinition   (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
 [jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
  + * (jacademy:glossaryTerm)
