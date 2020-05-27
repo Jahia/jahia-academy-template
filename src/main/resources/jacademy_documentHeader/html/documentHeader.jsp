@@ -150,16 +150,25 @@
                                                    value="${fn:contains(renderContext.mainResource.node.path, versionNode.path)}"/>
                                             <c:choose>
                                                 <c:when test="${! empty versionDocNode }">
-                                                    <c:url var="versionUrl"
-                                                           value="${isCurrent?'#' : versionDocNode.url}" context="/"/>
+                                                    <c:choose>
+                                                        <c:when test="${isCurrent}">
+                                                            <c:set var="versionUrl" value="#" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:url var="versionUrl" value="${versionDocNode.url}" context="/"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
                                                     <li${isCurrent?' class="active"':''}><a
                                                             href="${versionUrl}">${versionNode.displayableName}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <c:url var="versionPageUrl" value="${versionNode.url}" context="/"/>
-                                                    <li${isCurrent?' class="active"':''}><a
-                                                            href="${versionPageUrl}">${versionNode.displayableName}</a>
-                                                    </li>
+                                                    <c:if test="${! empty versionNode}">
+                                                        <c:url var="versionPageUrl" value="${versionNode.url}" context="/"/>
+                                                        <li${isCurrent?' class="active"':''}><a
+                                                                href="${versionPageUrl}">${versionNode.displayableName}</a>
+                                                        </li>
+                                                    </c:if>
                                                 </c:otherwise>
                                             </c:choose>
                                             <c:remove var="versionDocNode"/>
