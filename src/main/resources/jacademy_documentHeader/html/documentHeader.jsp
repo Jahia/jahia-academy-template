@@ -113,7 +113,7 @@
                 <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
             </c:if>
             <c:set var="isTechwiki" value="${fn:contains(fn:toLowerCase(documentNode.path),'/techwiki/')}"/>
-            <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/how-to/')}"/>
+            <c:set var="ishowTo" value="${fn:contains(fn:toLowerCase(documentNode.path),'/training--kb/')}"/>
             <c:set var="pageNodes"
                    value="${jcr:getMeAndParentsOfType(renderContext.mainResource.node, 'jacademix:isVersionPage')}"/>
             <c:set var="pageNodesSize"
@@ -151,12 +151,12 @@
                                             <c:choose>
                                                 <c:when test="${! empty versionDocNode }">
                                                     <c:url var="versionUrl"
-                                                           value="${isCurrent?'#' : versionDocNode.url}"/>
+                                                           value="${isCurrent?'#' : versionDocNode.url}" context="/"/>
                                                     <li${isCurrent?' class="active"':''}><a
                                                             href="${versionUrl}">${versionNode.displayableName}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <c:url var="versionPageUrl" value="${versionNode.url}"/>
+                                                    <c:url var="versionPageUrl" value="${versionNode.url}" context="/"/>
                                                     <li${isCurrent?' class="active"':''}><a
                                                             href="${versionPageUrl}">${versionNode.displayableName}</a>
                                                     </li>

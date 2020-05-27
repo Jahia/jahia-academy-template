@@ -49,11 +49,11 @@
   <parent>
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-modules</artifactId>
-    <version>7.3.4.0</version>
+    <version>8.0.0.0</version>
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>jahia-academy-template</artifactId>
-  <version>3.3.2-SNAPSHOT</version>
+  <version>3.4.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Jahia Academy Template</name>
   <description>This is the custom profile module (Jahia Academy Template) for running on a Digital Experience Manager server.</description>
@@ -66,6 +66,7 @@
   <properties>
     <Jahia-Module-Priority>1</Jahia-Module-Priority>
     <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,forms-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table,robotsnoindex,sitemap</jahia-depends>
+    <jahia-module-signature>MCwCFC2Fa6EmQjKuK2nrM4XDVQ0bjv/OAhR8mdRmPmNRGBDBhLMWEqgexIKJAQ==</jahia-module-signature>
   </properties>
   <dependencies>
     <dependency>
