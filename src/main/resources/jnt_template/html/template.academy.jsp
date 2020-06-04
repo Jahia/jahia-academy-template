@@ -87,7 +87,16 @@
     </c:choose>
     <c:url var="currentPageUrl" value="${mainResourceNode.url}" context="/"/>
     <meta property="og:url" content="${serverUrl}${currentPageUrl}"/>
-    <c:set var="imageUrl" value="${url.currentModule}/img/logo.png"/>
+    <c:set var="siteNode" value="${renderContext.site}"/>
+    <c:if test="${jcr:isNodeType(siteNode, 'bootstrap3mix:siteLogo')}">
+        <c:set var="siteLogo" value="${siteNode.properties.siteLogo.node}"/>
+        <c:if test="${! empty siteLogo}">
+            <c:url var="imageUrl" value="${siteLogo.url}" context="/"/>
+        </c:if>
+    </c:if>
+    <c:if test="${empty imageUrl}">
+        <c:set var="imageUrl" value="${url.currentModule}/img/logo.png"/>
+    </c:if>
     <c:set var="imageWidth" value="250"/>
     <c:set var="imageHeight" value="120"/>
     <meta property="og:image" content="${serverUrl}${imageUrl}"/>
