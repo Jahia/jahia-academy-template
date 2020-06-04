@@ -39,7 +39,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <c:url var="logoUrl" value="${url.currentModule}/img/jahia-ressource-center.svg"/>
+                    <c:set var="siteNode" value="${renderContext.site}"/>
+                    <c:if test="${jcr:isNodeType(siteNode, 'bootstrap3mix:siteLogo')}">
+                        <c:set var="siteLogo" value="${siteNode.properties.siteLogo.node}"/>
+                        <c:if test="${! empty siteLogo}">
+                            <c:url var="logoUrl" value="${siteLogo.url}" context="/"/>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${empty logoUrl}">
+                        <c:url var="logoUrl" value="${url.currentModule}/img/jahia-ressource-center.svg"/>
+                    </c:if>
                     <a class="navbar-brand" href="${renderContext.site.home.url}"><img class="logo" src="${logoUrl}" alt=""></a>
                 </div>
 
