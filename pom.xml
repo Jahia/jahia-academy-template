@@ -73,7 +73,7 @@
     <dependency>
       <groupId>org.jahia.modules</groupId>
       <artifactId>forms-core</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -100,6 +100,18 @@
       <id>jahia-public</id>
       <name>Jahia Public Repository</name>
       <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>form-factory</id>
+      <name>Form Factory Repository</name>
+      <url>https://devtools.jahia.com/nexus/content/repositories/form-factory-releases</url>
     </repository>
   </repositories>
   <build>
