@@ -2,7 +2,7 @@ package org.jahia.modules.academy.filters;
 
 import org.ahocorasick.trie.Token;
 import org.ahocorasick.trie.Trie;
-import org.apache.taglibs.standard.tag.common.core.Util;
+import org.apache.taglibs.standard.functions.Functions;
 import org.jahia.services.content.JCRNodeIteratorWrapper;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.JCRSessionWrapper;
@@ -63,7 +63,7 @@ public class GlossaryFilter extends AbstractFilter {
         for (Token token : tokens) {
             if (token.isMatch()) {
                 logger.debug(("Found term [" + token.getFragment() + "] that match [" + token.getEmit().getKeyword() + "]"));
-                html.append("<acronym class=\"glossTerm\" title=\"" + Util.escapeXml(token.getFragment()) + "\" data-content=\"" + Util.escapeXml((String)glossary.get(token.getEmit().getKeyword())).replaceAll("(\\r|\\n)", "")+ "\">");
+                html.append("<acronym class=\"glossTerm\" title=\"" + Functions.escapeXml(token.getFragment()) + "\" data-content=\"" + Functions.escapeXml((String)glossary.get(token.getEmit().getKeyword())).replaceAll("(\\r|\\n)", "")+ "\">");
             }
             html.append(token.getFragment());
             if (token.isMatch()) {
