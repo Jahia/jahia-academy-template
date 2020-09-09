@@ -31,8 +31,15 @@
 [jacademix:textContent] mixin
  - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
 
+[jacademix:metadatas] mixin
+ extends = jnt:page, jacademy:kbEntry
+ itemtype = metadata
+ - persona (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
+ - product (weakreference, choicelist[nodes='/sites/systemsite/categories/products;jnt:category',sort]) multiple facetable
+ - version (weakreference, choicelist[nodes='/sites/systemsite/categories/versions;jnt:category',sort]) multiple facetable
+
 [jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
- - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
+ - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable hidden
  - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
  - author (string) = 'The Jahia Team'
 
