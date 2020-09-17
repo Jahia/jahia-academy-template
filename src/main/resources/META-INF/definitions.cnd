@@ -34,9 +34,10 @@
 [jacademix:metadatas] mixin
  extends = jnt:page, jacademy:kbEntry
  itemtype = metadata
- - persona (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
- - product (weakreference, choicelist[nodes='/sites/systemsite/categories/products;jnt:category',sort]) multiple facetable
- - version (weakreference, choicelist[nodes='/sites/systemsite/categories/versions;jnt:category',sort]) multiple facetable
+ - personas (weakreference, choicelist[nodes='/sites/systemsite/categories/personas;jnt:category',sort]) multiple facetable
+ - products (weakreference, choicelist[nodes='/sites/systemsite/categories/products;jnt:category',sort]) multiple facetable
+ - versions (weakreference, choicelist[nodes='/sites/systemsite/categories/versions;jnt:category',sort]) multiple facetable
+ - latestVersion (boolean) = false
 
 [jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable hidden
