@@ -36,7 +36,7 @@ CKEDITOR.editorConfig = function (config) {
         ['RemoveFormat', 'HorizontalRule', 'CodeSnippet'],
         ['Maximize']
     ];
-    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome,maximize';
+    config.extraPlugins = 'acheck,wsc,scayt,macrosdropdown,codesnippet,fontawesome,maximize,autogrow';
     config.codeSnippet_theme = 'googlecode';
     config.codeSnippet_languages = {
         apache: 'Apache conf',
@@ -56,7 +56,9 @@ CKEDITOR.editorConfig = function (config) {
 
 };
 CKEDITOR.config.toolbar = 'Tiny';
-
+CKEDITOR.config.autoGrow_minHeight = 200;
+CKEDITOR.config.autoGrow_maxHeight = 768;
+CKEDITOR.config.autoGrow_bottomSpace = 50;
 CKEDITOR.dtd.$removeEmpty['i'] = 0;
 CKEDITOR.dtd.$removeEmpty['span'] = 0;
 CKEDITOR.dtd.$removeEmpty['th'] = 0;
