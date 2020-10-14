@@ -64,7 +64,6 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <Jahia-Module-Priority>1</Jahia-Module-Priority>
     <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,forms-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table,robotsnoindex,sitemap</jahia-depends>
     <jahia-module-signature>MCwCFC2Fa6EmQjKuK2nrM4XDVQ0bjv/OAhR8mdRmPmNRGBDBhLMWEqgexIKJAQ==</jahia-module-signature>
     <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
@@ -122,6 +121,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
+            <Jahia-Module-Priority>1</Jahia-Module-Priority>
             <_dsannotations>
               org.jahia.modules.components.initializers.*
             </_dsannotations>
