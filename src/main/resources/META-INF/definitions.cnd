@@ -8,7 +8,7 @@
 
 
 
-[jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
+[jacademix:component] > jmix:droppableContent, jmix:editorialContent, jmix:browsableInEditorialPicker mixin
 
 [jacademix:content] mixin
 
@@ -169,6 +169,11 @@
 
 [jacademy:glossaryTerm] > jnt:content, mix:title
  - glossaryDefinition   (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+
+[jacademix:embedThisTerm] mixin
+ extends = jacademy:glossaryTerm
+ itemtype = content
+ - embedThisTerm (string) = 'Embed this term automatically' protected
 
 [jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
  + * (jacademy:glossaryTerm)
