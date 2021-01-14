@@ -40,7 +40,7 @@
  - latestVersion (boolean) = false
 
 [jacademix:publishForVersion] mixin
- extends = jnt:page, jacademy:kbEntry
+ extends = jnt:page, jacademy:kbEntry, jnt:fixApplier
  itemtype = metadata
  - targetVersion (string, choicelist[versionsInitializer])
  - comment (string)
