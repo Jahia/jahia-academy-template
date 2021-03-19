@@ -1046,7 +1046,7 @@ code {
     font-size: 80%
 }
 
-#documentation-child-content img, .doc-description img {
+#documentation-child-content img, .doc-description img, .simplebox img {
     max-width: 100%;
     height: auto
 }
