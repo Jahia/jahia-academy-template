@@ -107,66 +107,73 @@ if (site != null) {
                     while(contentTypeIterator.hasNext()){
                         String contentType = contentTypeIterator.next();
                         logger.info(contentType);
-
-
-                        stmt = "select * from [" + contentType + "] where isdescendantnode('" + site.getJCRLocalPath() + "/home')";
-                        iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
-                        while (iterator.hasNext()) {
-                            final JCRNodeWrapper page = (JCRNodeWrapper) iterator.nextNode();
-                            if (! pathToIgnore.contains(page.getPath())) {
-                                children = JCRTagUtils.getParentsOfType(page,'jmix:navMenuItem');
-                                String url = "/" + slug(page.getDisplayableName());
-                                if (page.isNodeType('jnt:fixApplier')) {
-                                    String fromVersion = page.getPropertyAsString('from');
-                                    String toVersion = page.getPropertyAsString('to');
-                                    url = "/" + slug(fromVersion + "_" + toVersion);
-                                }
-                                children.eachWithIndex() { parentPage, index ->
-                                    if (parentPage != null) {
-                                        if (index !=  children.size()-1) {
-                                            String pageTitle = parentPage.getDisplayableName();
-                                            if (pageTitle != null) {
-                                                String slugTitle = slug(pageTitle);
-                                                url = "/" + slugTitle + url;
-                                            }
-                                        }
+                        try {
+                            stmt = "select * from [" + contentType + "] where isdescendantnode('" + site.getJCRLocalPath() + "/home')";
+                            iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
+                            while (iterator.hasNext()) {
+                                final JCRNodeWrapper page = (JCRNodeWrapper) iterator.nextNode();
+                                if (! pathToIgnore.contains(page.getPath())) {
+                                    children = JCRTagUtils.getParentsOfType(page,'jmix:navMenuItem');
+                                    String url = "/" + slug(page.getDisplayableName());
+                                    if (page.isNodeType('jnt:fixApplier')) {
+                                        String fromVersion = page.getPropertyAsString('from');
+                                        String toVersion = page.getPropertyAsString('to');
+                                        url = "/" + slug(fromVersion + "_" + toVersion);
                                     }
-                                }
-                                if (! "en".equals(locale.toString())) {
-                                    url = "/${locale.toString()}${url}"
-                                }
-
-                                if(urlMgr.findExistingVanityUrls(url,site.getSiteKey(),session).isEmpty()) {
-                                    VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(),locale.toString(),true,true);
-                                    if (doIt) {
-                                        try {
-                                            urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
-                                        } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
-
-                                        } catch (java.lang.NullPointerException npe) {
-
-                                        }
-
-                                    }
-                                    logger.info("    [" + locale.toString() + "] [" + contentType + "] " + page.getPath() + " [" + url + "]");
-                                    if (hasPendingModification(page)) {
-                                        nodesToManuelPublish.add(page.identifier);
-                                    } else {
-                                        nodesToAutoPublish.add(page.identifier);
-                                        try {
-                                            JCRNodeWrapper vanityUrlMappingNode = session.getNode(page.getPath() + "/vanityUrlMapping");
-                                            if (vanityUrlMappingNode != null) {
-                                                for (JCRNodeWrapper vanityURlNode : JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl")) {
-                                                    vanityNodesToAutoPublish.add(vanityURlNode.identifier);
+                                    children.eachWithIndex() { parentPage, index ->
+                                        if (parentPage != null) {
+                                            if (index !=  children.size()-1) {
+                                                String pageTitle = parentPage.getDisplayableName();
+                                                if (pageTitle != null) {
+                                                    String slugTitle = slug(pageTitle);
+                                                    url = "/" + slugTitle + url;
                                                 }
                                             }
-                                        } catch (javax.jcr.PathNotFoundException e) {
+                                        }
+                                    }
+                                    if (! "en".equals(locale.toString())) {
+                                        url = "/${locale.toString()}${url}"
+                                    }
 
+                                    if(urlMgr.findExistingVanityUrls(url,site.getSiteKey(),session).isEmpty()) {
+                                        VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(),locale.toString(),true,true);
+                                        if (doIt) {
+                                            try {
+                                                urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
+                                            } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
+
+                                            } catch (java.lang.NullPointerException npe) {
+
+                                            }
+
+                                        }
+                                        logger.info("    [" + locale.toString() + "] [" + contentType + "] " + page.getPath() + " [" + url + "]");
+                                        if (hasPendingModification(page)) {
+                                            nodesToManuelPublish.add(page.identifier);
+                                        } else {
+                                            nodesToAutoPublish.add(page.identifier);
+                                            try {
+                                                JCRNodeWrapper vanityUrlMappingNode = session.getNode(page.getPath() + "/vanityUrlMapping");
+                                                if (vanityUrlMappingNode != null) {
+                                                    for (JCRNodeWrapper vanityURlNode : JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl")) {
+                                                        vanityNodesToAutoPublish.add(vanityURlNode.identifier);
+                                                    }
+                                                }
+                                            } catch (javax.jcr.PathNotFoundException e) {
+
+                                            }
                                         }
                                     }
                                 }
                             }
+                        } catch (javax.jcr.nodetype.NoSuchNodeTypeException e2) {
+                            logger.error(e2.getMessage());
+                        } catch (javax.jcr.query.InvalidQueryException e) {
+                            logger.error(e.getMessage());
+                        } catch (RepositoryException e1 ) {
+                            logger.error(e1.getMessage());
                         }
+
                     }
 
                 }
