@@ -11,9 +11,6 @@
                         <property name="rulesImageService" ref="rulesImageService" />
                     </bean>
                 </entry>
-                <entry key="academyVanityService">
-                    <bean class="org.jahia.modules.academy.services.AcademyVanityService"/>
-                </entry>
             </map>
         </property>
     </bean>
