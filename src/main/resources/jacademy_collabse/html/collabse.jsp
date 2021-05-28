@@ -17,7 +17,7 @@
 <c:set var="expanded" value="${currentNode.properties.expanded.string}"/>
 
 <${heading}><a data-toggle="collapse" data-target="#collapse${currentNode.identifier}" aria-expanded="${expanded}">${currentNode.displayableName}
-<i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></a></${heading}>
+<i class="fas fa-fw fa-angle-down"></i><i class="fas fa-fw fa-angle-up"></i></a></${heading}>
 
 <div class="collapse${expanded eq 'true' ? ' in':''}" id="collapse${currentNode.identifier}">
     ${currentNode.properties.textContent.string}

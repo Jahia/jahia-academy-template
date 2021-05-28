@@ -91,7 +91,7 @@
 
                     <c:choose>
                         <c:when test="${depth eq '2-level-accordion' && hasSubpages}">
-                            <a data-toggle="collapse" aria-expanded="false" aria-controls="ul${page.identifier}" href="#ul${page.identifier}">${pageTitle} <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></a>
+                            <a data-toggle="collapse" aria-expanded="false" aria-controls="ul${page.identifier}" href="#ul${page.identifier}">${pageTitle} <i class="fas fa-fw fa-angle-down"></i><i class="fas fa-fw fa-angle-up"></i></a>
                         </c:when>
                         <c:otherwise>
                             <a href="${pageUrl}">${pageTitle}</a>
