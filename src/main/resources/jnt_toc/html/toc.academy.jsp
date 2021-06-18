@@ -79,6 +79,11 @@
         <c:set var="toc" value="div#toc_${bindedComponent.identifier}"/>
     </c:otherwise>
 </c:choose>
+<%--
+force the main doc area
+--%>
+<c:set var="toc" value="div#documentation-child-content"/>
+
 <c:set var="currentPageNode" value="${renderContext.mainResource.node}"/>
 <c:set var="isMultiplePageDoc" value="${jcr:isNodeType(currentPageNode, 'jacademix:isMultiplePageDoc') || jcr:isNodeType(currentPageNode, 'jnt:fixApplier')}"/>
 
