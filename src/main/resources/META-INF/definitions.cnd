@@ -42,8 +42,8 @@
 [jacademix:publishForVersion] mixin
  extends = jnt:page, jacademy:kbEntry, jnt:fixApplier
  itemtype = metadata
- - targetVersion (string, choicelist[versionsInitializer])
- - comment (string)
+ - targetVersion (string, choicelist[versionsInitializer]) indexed=no
+ - comment (string) indexed=no
 
 [jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
