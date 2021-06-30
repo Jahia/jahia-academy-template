@@ -19,7 +19,7 @@ Simply enable the mixin *Animate on scroll* on your content and choose your anim
 | **Duration of animation (ms)** | `aosDuration` | Set the duration of animation, for instance `600` st set an animation of 600 ms | `400` | 
 | **Choose timing function to ease elements** | `aosEasing` | You can choose one of these timing function to animate elements nicely. See the list below. | `ease` | 
 | **Delay animation (ms)** | `aosDelay` | Set the aelay animation, for instance `300` to start the animation after 300 ms | `0` | 
-| **Anchor element, whose offset will be counted to trigger animation instead of actual elements offset** | `aosAnchor` | You can set an ID such #mylink | | 
+| **Anchor element, whose offset will be counted to trigger animation instead of actual elements offset** | `aosAnchor` | You can set an ID such as `#mylink` | | 
 | **Anchor placement** | `aosAnchorPlacement`  | Which one position of element on the screen should trigger animation | bottom-top'
 | **Animation should happen only once** | `aosOnce` | Choose wheter animation should fire once, or every time you scroll up/down to element | `false` |
 
