@@ -18,6 +18,7 @@ global AcademyImageService academyImageService
 rule "Update community thumbnail"
     when
         A file content has been modified
+        - not in operation import
             - the mimetype matches image/.*
     then
         Create a thumbnail "community750" of size 750
