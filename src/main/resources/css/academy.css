@@ -1,23 +1,23 @@
 html {
-    position: relative;
-    min-height: 100%
+    min-height: 100%;
+    position: relative
 }
 
 body {
-    font-family: Lato, sans-serif;
     color: #2d3c57;
+    font-family: Lato, sans-serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 1.8;
     margin-bottom: 160px;
-    width: 100%;
-    overflow: auto !important
+    overflow: auto !important;
+    width: 100%
 }
 
 body.home {
     background: url(../img/documentation_bg.jpg) no-repeat center top 100px;
-    background-size: cover;
-    background-attachment: fixed
+    background-attachment: fixed;
+    background-size: cover
 }
 
 .doc-height {
@@ -25,25 +25,25 @@ body.home {
 }
 
 .doc-list {
+    background: hsla(0, 0%, 100%, .85);
+    box-shadow: 0;
     padding: 30px;
     position: absolute;
-    background: hsla(0, 0%, 100%, .85);
-    text-decoration: none;
-    box-shadow: 0
+    text-decoration: none
 }
 
 .doc-list h3 {
-    font-size: 20px;
     color: #00a0e3;
+    font-size: 20px;
     font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    margin-top: 0
 }
 
 .doc-list ul li a {
+    font-weight: 300;
     margin: 0;
-    padding: 0;
-    font-weight: 300
+    padding: 0
 }
 
 .breadcrumb li:first-child {
@@ -76,34 +76,33 @@ body.home {
 }
 
 .navbar {
-    height: 90px;
-    padding: 20px 0;
     background: #fff !important;
     border: none !important;
-    margin: 0
+    height: 90px;
+    margin: 0;
+    padding: 20px 0
 }
 
-.footer {
+.footer, .footer-2 {
     background-color: #002839
 }
 
 .footer-2 {
-    background-color: #002839;
     background: #282928;
+    bottom: 0;
+    color: hsla(0, 0%, 100%, .25);
     font-size: 14px;
     line-height: 1.8;
-    color: hsla(0, 0%, 100%, .25);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
-    position: absolute;
-    bottom: 0;
+    margin-top: 20px;
     min-height: 140px;
-    width: 100%;
-    margin-top: 20px
+    position: absolute;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+    width: 100%
 }
 
 .doc-description .doc-panel {
-    padding: 25px 35px;
-    margin: 0 -15px 0 -30px
+    margin: 0 -15px 0 -30px;
+    padding: 25px 35px
 }
 
 .doc-description .doc-panel ul {
@@ -117,37 +116,37 @@ body.home {
 }
 
 .doc-description .doc-panel ul li a {
-    margin: 0;
-    padding: 0;
     color: #2d3c57;
     font-size: 18px;
-    font-weight: 300
+    font-weight: 300;
+    margin: 0;
+    padding: 0
 }
 
 .doc-description .doc-panel h2 {
-    text-transform: uppercase;
-    font-size: 22px;
     color: #00a0e3;
+    font-size: 22px;
     font-weight: 700;
+    margin-bottom: 20px;
     margin-top: 0;
-    margin-bottom: 20px
+    text-transform: uppercase
 }
 
 .doc-description h1 {
+    color: #2d3c57;
     font-size: 24px;
     font-weight: 500;
-    color: #2d3c57;
-    padding: 0;
     margin-bottom: 15px;
-    margin-top: 0
+    margin-top: 0;
+    padding: 0
 }
 
 .doc-description p {
+    color: #2d3c57;
     font-size: 18px;
     font-weight: 300;
-    color: #2d3c57;
-    padding: 0;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    padding: 0
 }
 
 .doc-description .doc-info {
@@ -156,11 +155,11 @@ body.home {
 }
 
 .doc-description {
-    margin-top: 200px;
+    background: #fff;
+    border: 1px solid #dadde4;
     font-size: 18px;
     font-weight: lighter;
-    background: #fff;
-    border: 1px solid #dadde4
+    margin-top: 200px
 }
 
 .doc-description .btn-wrapper {
@@ -173,13 +172,13 @@ body.home {
 }
 
 .btn-blue {
-    text-align: center;
     background: #00a0e3;
     border-radius: 3px;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    font-weight: 700;
     font-size: 14px;
+    font-weight: 700;
+    padding: 10px 15px;
+    text-align: center;
+    text-transform: uppercase;
     transition: background .5s
 }
 
@@ -202,21 +201,21 @@ body.home {
 
 .stuck-sidebar {
     background: green;
+    display: block;
     position: fixed;
-    width: 200px;
     top: 300px;
-    display: block
+    width: 200px
 }
 
 .stuck-breadcrumb {
-    padding: 9px 0;
     background: #f3f5f9 !important;
     border-bottom: 1px solid #dadde4;
     border-top: 1px solid #dadde4;
-    position: fixed;
-    top: 90px;
     left: 0;
+    padding: 9px 0;
+    position: fixed;
     right: 0;
+    top: 90px;
     z-index: 3
 }
 
@@ -244,9 +243,9 @@ body.home {
 
 .navbarul li a {
     color: #2d3c57 !important;
+    font-size: 14px;
     font-weight: 500;
-    text-transform: uppercase;
-    font-size: 14px
+    text-transform: uppercase
 }
 
 .navbarul li.active a, .navbarul li a:hover {
@@ -267,9 +266,9 @@ body.home {
 
 .breadcrumb {
     background-color: transparent;
-    padding: 0;
+    font-size: .7rem;
     margin: 0;
-    font-size: .7rem
+    padding: 0
 }
 
 .breadcrumb > li > a {
@@ -319,8 +318,8 @@ body.home {
 
 .breadcrumb li.dropdown:before {
     content: none;
-    padding: 0;
-    display: none
+    display: none;
+    padding: 0
 }
 
 .breadcrumb li:first-child, a[aria-expanded=false] .fa-angle-up, a[aria-expanded=true] .fa-angle-down {
@@ -337,35 +336,35 @@ body.home {
 }
 
 .documentation-main-title {
-    padding-top: 100px;
-    text-align: center;
     color: #2d3c57;
-    margin-bottom: 70px
+    margin-bottom: 70px;
+    padding-top: 100px;
+    text-align: center
 }
 
 .pinBoot {
-    position: relative;
     max-width: 100%;
+    position: relative;
     width: 100%
 }
 
 .white-panel img {
     display: block;
-    margin: 0 auto 30px;
-    height: auto
+    height: auto;
+    margin: 0 auto 30px
 }
 
 .white-panel {
-    padding: 30px;
     background: hsla(0, 0%, 100%, .85);
-    text-decoration: none;
+    border: 1px solid #e4e6eb;
     box-shadow: 0;
     -webkit-box-shadow: 0;
     -moz-box-shadow: 0;
-    border: 1px solid #e4e6eb;
-    transition: box-shadow .25s;
+    display: block;
+    padding: 30px;
     position: relative;
-    display: block
+    text-decoration: none;
+    transition: box-shadow .25s
 }
 
 .white-panel:hover {
@@ -384,16 +383,16 @@ body.home {
 }
 
 .white-panel ul li {
+    font-weight: 400;
     list-style: none;
-    padding: 0;
-    font-weight: 400
+    padding: 0
 }
 
 .pinBoot ul, .white-panel ul {
+    border-top: 1px solid #eee;
     list-style: none;
-    padding: 15px 0 0;
     margin: 15px 0 0;
-    border-top: 1px solid #eee
+    padding: 15px 0 0
 }
 
 .pinBoot ul li, .white-panel ul li {
@@ -406,20 +405,20 @@ body.home {
 }
 
 .pinBoot ul li ul, .white-panel ul li ul {
-    list-style: none;
     border: none;
-    margin-top: 5px;
+    list-style: none;
     margin-bottom: 10px;
+    margin-top: 5px;
     padding: 0
 }
 
 .pinBoot ul li ul li, .white-panel ul li ul li {
-    margin: 5px auto;
-    font-size: 14px;
     color: #2d3c57;
+    display: block;
+    font-size: 14px;
     font-weight: 300;
-    position: relative;
-    display: block
+    margin: 5px auto;
+    position: relative
 }
 
 .pinBoot ul li ul li a:hover, .white-panel ul li ul li a:hover {
@@ -427,9 +426,9 @@ body.home {
 }
 
 #main-card-segmented li a {
-    padding: 5px;
+    color: #2d3c57;
     font-size: 14px;
-    color: #2d3c57
+    padding: 5px
 }
 
 #main-card-segmented {
@@ -443,50 +442,50 @@ body.home {
 
 .navbar-fixed-top {
     background-color: #fff;
-    height: 90px;
-    box-shadow: 0 2px 0 0 hsla(0, 0%, 86.3%, .1)
+    box-shadow: 0 2px 0 0 hsla(0, 0%, 86%, .1);
+    height: 90px
 }
 
 .version-switcher label {
-    text-transform: uppercase;
     color: #00a0e3;
-    margin: 0
+    margin: 0;
+    text-transform: uppercase
 }
 
 .version-switcher select {
-    padding-right: 20px;
-    text-decoration: none;
-    outline: none;
     -moz-appearance: none;
     appearance: none;
     -webkit-appearance: none;
+    background: url(../img/version_dropdown.png) no-repeat 0 0;
+    background-position: 100%;
     border: none;
-    font-size: 26px;
     color: #2d3c57;
     display: block;
+    font-size: 26px;
     margin: 0;
+    outline: none;
+    padding-right: 20px;
     position: relative;
-    background: url(../img/version_dropdown.png) no-repeat 0 0;
-    background-position: 100%
+    text-decoration: none
 }
 
 .version-switcher {
-    padding: 10px 20px;
-    display: inline-block
+    display: inline-block;
+    padding: 10px 20px
 }
 
 .action-wrapper {
     border: 1px solid #dadde4;
+    float: right;
     margin: 0 0 10px;
     padding: 0;
-    width: auto;
-    float: right
+    width: auto
 }
 
 .action-buttons {
+    border-left: 1px dashed #dadde4;
     display: inline-block;
-    text-align: center;
-    border-left: 1px dashed #dadde4
+    text-align: center
 }
 
 .action-buttons i {
@@ -498,8 +497,8 @@ body.home {
 }
 
 .action-btn span {
-    font-size: 13px;
-    color: #606060
+    color: #606060;
+    font-size: 13px
 }
 
 .action-btn:hover span {
@@ -508,8 +507,8 @@ body.home {
 }
 
 .action-btn {
-    width: 100%;
-    padding: 10px
+    padding: 10px;
+    width: 100%
 }
 
 .minor-version-tabs li {
@@ -526,13 +525,13 @@ ul.minor-version-tabs {
 }
 
 .minor-version-tabs li a {
+    background: url(../img/pattern1.png) repeat 0 0;
+    border: 1px solid #dadde4;
+    border-bottom: none;
+    border-radius: 0;
     color: #2d3c57;
     font-size: 14px;
     padding: 5px 15px;
-    border-radius: 0;
-    border: 1px solid #dadde4;
-    border-bottom: none;
-    background: url(../img/pattern1.png) repeat 0 0;
     transition: background .3s
 }
 
@@ -552,19 +551,19 @@ ul.minor-version-tabs {
 }
 
 .role-wrapper div:first-child {
-    margin-right: 2px;
-    margin-left: 0
+    margin-left: 0;
+    margin-right: 2px
 }
 
 .role-wrapper div:last-child {
-    margin-right: 0;
-    margin-left: 2px
+    margin-left: 2px;
+    margin-right: 0
 }
 
 .documentation-header .readingTime {
-    font-size: 14px;
     color: #ccc;
-    display: none
+    display: none;
+    font-size: 14px
 }
 
 .documentation-header .readingTime .eta {
@@ -573,17 +572,17 @@ ul.minor-version-tabs {
 
 .role {
     border-radius: 2px;
-    text-transform: uppercase;
-    font-size: 12px;
     display: inline-block;
+    font-size: 12px;
+    padding: 0 5px;
     text-align: center;
-    padding: 0 5px
+    text-transform: uppercase
 }
 
 .role, .role-marketers {
     background: #54b1ed;
-    color: #fff;
-    border: 1px solid #0d6ca9
+    border: 1px solid #0d6ca9;
+    color: #fff
 }
 
 .documentation-header {
@@ -639,136 +638,136 @@ p.doc-child {
 }
 
 ol.doc-child {
-    padding: 0;
     list-style: none;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    padding: 0
 }
 
 ol.doc-child li {
     color: #2d3c57;
+    counter-increment: a;
     font-size: 18px;
     font-weight: 300;
     margin: 10px 0 10px 50px;
-    counter-increment: a;
     text-indent: -50px
 }
 
 ol.doc-child li:before {
-    content: counter(a);
-    margin-right: 25px;
     background-color: #00a0e3;
+    border-radius: 20px;
     color: #fff;
+    content: counter(a);
     font-size: 15px;
     font-weight: 300;
-    padding: 3px 8px;
-    border-radius: 20px
+    margin-right: 25px;
+    padding: 3px 8px
 }
 
 ul.doc-child {
     list-style: none;
-    padding: 0;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    padding: 0
 }
 
 ul.doc-child li {
     color: #2d3c57;
     font-size: 18px;
     font-weight: 300;
-    text-indent: -14px;
-    margin: 10px 0 10px 15px
+    margin: 10px 0 10px 15px;
+    text-indent: -14px
 }
 
 ul.doc-child li:before {
+    background: url(../img/ic_list_1.png) no-repeat 0 0;
     content: "";
     display: inline-block;
-    margin-right: 10px;
     height: 10px;
-    width: 5px;
-    background: url(../img/ic_list_1.png) no-repeat 0 0
+    margin-right: 10px;
+    width: 5px
 }
 
 .block-caution.doc-child {
-    width: 100%;
     background: #fff6f5;
     border: 1px dashed #cd3f2f;
+    margin: 20px 0;
     padding: 15px 20px;
-    margin: 20px 0
+    width: 100%
 }
 
 .block-caution.doc-child .title {
     color: #cd3f2f;
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase
 }
 
 .block-caution.doc-child p {
     color: #cd3f2f;
-    font-weight: 300;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 300
 }
 
 .block-reference.doc-child {
-    width: 100%;
     background: #f5fdff;
     border: 1px dashed #00a0e3;
+    margin: 20px 0;
     padding: 15px 20px;
-    margin: 20px 0
+    width: 100%
 }
 
 .block-reference.doc-child .title {
     color: #00a0e3;
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase
 }
 
 .block-reference.doc-child p {
     color: #00a0e3;
-    font-weight: 300;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 300
 }
 
 .block-info.doc-child {
-    width: 100%;
     background: #fffcf5;
     border: 1px dashed #da9215;
+    margin: 20px 0;
     padding: 15px 20px;
-    margin: 20px 0
+    width: 100%
 }
 
 .block-info.doc-child .title {
     color: #da9215;
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase
 }
 
 .doc-child.block-info p {
     color: #da9215;
-    font-weight: 300;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 300
 }
 
 .block-important.doc-child {
-    width: 100%;
     background: #f5fff8;
     border: 1px dashed #179f24;
+    margin: 20px 0;
     padding: 15px 20px;
-    margin: 20px 0
+    width: 100%
 }
 
 .block-important.doc-child .title {
     color: #179f24;
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase
 }
 
 .block-important.doc-child p {
     color: #179f24;
-    font-weight: 300;
-    font-size: 16px
+    font-size: 16px;
+    font-weight: 300
 }
 
 .pinBoot ul li a, .pinBoot ul li ul li a, .version-switcher span, .white-panel ul li a, .white-panel ul li ul li a {
@@ -786,8 +785,8 @@ ul.doc-child li:before {
 
 .role-developers, .role-sysadmin {
     background: #33cc6a;
-    color: #fff;
-    border: 1px solid #139541
+    border: 1px solid #139541;
+    color: #fff
 }
 
 code, pre {
@@ -795,14 +794,14 @@ code, pre {
 }
 
 pre, pre code {
-    white-space: pre !important;
-    text-indent: 0
+    text-indent: 0;
+    white-space: pre !important
 }
 
 .hljs {
+    background-color: transparent;
     overflow-x: auto !important;
-    width: 100% !important;
-    background-color: transparent
+    width: 100% !important
 }
 
 .bs-docs-sidebar.affix {
@@ -810,16 +809,16 @@ pre, pre code {
 }
 
 .bs-docs-sidul {
-    margin-top: 20px;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    margin-top: 20px
 }
 
 .bs-docs-sidebar ul > li > a {
+    color: #767676;
     display: block;
-    padding: 4px 0 4px 20px;
     font-size: 13px;
     font-weight: 500;
-    color: #767676
+    padding: 4px 0 4px 20px
 }
 
 .bs-docs-sidebar ul > li > a:focus, .bs-docs-sidebar ul > li > a:hover {
@@ -828,9 +827,9 @@ pre, pre code {
 }
 
 .bs-docs-sidebar ul > .active {
-    font-weight: 700;
+    background-color: transparent;
     color: #333;
-    background-color: transparent
+    font-weight: 700
 }
 
 .bs-docs-sidebar ul .active li {
@@ -842,7 +841,7 @@ pre, pre code {
         color: #777
     }
     to {
-        color: hsla(0, 0%, 46.7%, .33)
+        color: hsla(0, 0%, 47%, .33)
     }
 }
 
@@ -851,22 +850,22 @@ pre, pre code {
         color: #777
     }
     to {
-        color: hsla(0, 0%, 46.7%, .33)
+        color: hsla(0, 0%, 47%, .33)
     }
 }
 
 .bs-docs-sidebar ul .active > a:before {
-    content: "\f30b";
-    font-size: 14px;
-    font-family: Font Awesome\ 5 Free;
-    margin-left: -24px;
-    float: left;
-    -webkit-animation-name: a;
-    animation-name: a;
     -webkit-animation-duration: 6s;
     animation-duration: 6s;
-    color: hsla(0, 0%, 46.7%, .33);
-    font-weight: 900
+    -webkit-animation-name: a;
+    animation-name: a;
+    color: hsla(0, 0%, 47%, .33);
+    content: "\f30b";
+    float: left;
+    font-family: Font Awesome\ 5 Free;
+    font-size: 14px;
+    font-weight: 900;
+    margin-left: -24px
 }
 
 .bs-docs-sidebar ul ul {
@@ -875,12 +874,12 @@ pre, pre code {
 }
 
 .bs-docs-sidebar ul ul > li > a {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 10px;
+    color: #767676;
     font-size: 13px;
     font-weight: 400;
-    color: #767676
+    padding-bottom: 1px;
+    padding-left: 10px;
+    padding-top: 1px
 }
 
 .bs-docs-sidebar ul ul > .active > a {
@@ -889,23 +888,23 @@ pre, pre code {
 
 .back-to-top, .bs-docs-theme-toggle {
     display: none;
-    padding: 0 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
     font-size: 12px;
-    font-weight: 900
+    font-weight: 900;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 0 10px
 }
 
 .back-to-top.light {
-    font-weight: 400;
-    color: #999
+    color: #999;
+    font-weight: 400
 }
 
 a.back-to-top.sister {
     font-size: inherit;
-    line-height: normal;
-    font-size: smaller
+    font-size: smaller;
+    line-height: normal
 }
 
 .bs-docs-sidenav.sister > li.active > a, .bs-docs-sidenav.sister > li > a, .bs-docs-sidenav.sister > li > a:hover {
@@ -930,11 +929,11 @@ a.back-to-top.sister {
 }
 
 .btn-clipboard {
-    top: 0;
-    right: 0;
-    border: 1px solid #ccc;
     background-color: #ccc;
-    opacity: .75
+    border: 1px solid #ccc;
+    opacity: .75;
+    right: 0;
+    top: 0
 }
 
 .navbar-toggle .icon-bar {
@@ -959,22 +958,22 @@ a.back-to-top.sister {
 .document-content h4 {
     color: #00a0e3;
     font-size: 20px;
+    font-weight: 900;
     margin-bottom: 10px;
-    margin-top: 20px;
-    font-weight: 900
+    margin-top: 20px
 }
 
 .document-content h5 {
     font-size: 18px;
-    margin-bottom: 10px;
-    font-weight: 900
+    font-weight: 900;
+    margin-bottom: 10px
 }
 
 .document-content ol {
-    padding: 0;
+    counter-reset: b;
     list-style: none;
     margin-bottom: 30px;
-    counter-reset: b
+    padding: 0
 }
 
 .document-content ol li {
@@ -984,51 +983,51 @@ a.back-to-top.sister {
 
 .document-content ol.doc-child li {
     color: #2d3c57;
+    counter-increment: a;
     font-size: 18px;
     font-weight: 300;
-    margin: 10px 0;
-    counter-increment: a
+    margin: 10px 0
 }
 
 .document-content ol > li:before {
-    margin-right: 15px;
     background-color: #00a0e3;
+    border-radius: 20px;
     color: #fff;
+    content: counters(b, ".");
+    counter-increment: b;
     font-size: 15px;
     font-weight: 300;
-    padding: 3px 8px;
-    border-radius: 20px;
-    counter-increment: b;
-    content: counters(b, ".")
+    margin-right: 15px;
+    padding: 3px 8px
 }
 
 .document-content ul {
     list-style: none;
-    padding: 0;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    padding: 0
 }
 
 .document-content ul li {
     color: #2d3c57;
-    text-indent: -14px;
-    margin: 0 0 5px 15px
+    margin: 0 0 5px 15px;
+    text-indent: -14px
 }
 
 .document-content ul li:before {
+    background: url(../img/ic_list_1.png) no-repeat 0 0;
     content: "";
     display: inline-block;
-    margin-right: 10px;
     height: 10px;
-    width: 5px;
-    background: url(../img/ic_list_1.png) no-repeat 0 0
+    margin-right: 10px;
+    width: 5px
 }
 
 hr {
     background: none;
-    position: relative;
     border: 0;
     height: 1px;
-    margin: 44px 0
+    margin: 44px 0;
+    position: relative
 }
 
 hr:after {
@@ -1036,9 +1035,9 @@ hr:after {
     content: "";
     display: block;
     height: 0;
+    margin-top: -1px;
     position: absolute;
     top: 50%;
-    margin-top: -1px;
     width: 100%
 }
 
@@ -1047,8 +1046,8 @@ code {
 }
 
 #documentation-child-content img, .doc-description img, .simplebox img {
-    max-width: 100%;
-    height: auto
+    height: auto;
+    max-width: 100%
 }
 
 #documentation-child-content .action-btn img {
@@ -1056,8 +1055,8 @@ code {
 }
 
 div#documentation-level {
-    margin-top: 180px;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    margin-top: 180px
 }
 
 .navbar-collapse {
@@ -1069,10 +1068,10 @@ div#documentation-level {
 }
 
 .bs-docs-sidebar strong {
-    margin-left: 20px;
     display: block;
     line-height: normal;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    margin-left: 20px
 }
 
 li div, li table, ol li code, ol li span.btn-clipboard {
@@ -1100,10 +1099,10 @@ li div, li table, ol li code, ol li span.btn-clipboard {
 }
 
 #custom-search-input {
-    padding: 3px;
+    background-color: #fff;
     border: 1px solid #e4e4e4;
     border-radius: 6px;
-    background-color: #fff
+    padding: 3px
 }
 
 #custom-search-input input {
@@ -1112,16 +1111,16 @@ li div, li table, ol li code, ol li span.btn-clipboard {
 }
 
 #custom-search-input button {
-    margin: 2px 0 0;
     background: none;
     color: #666;
+    margin: 2px 0 0;
     padding: 0 8px 0 10px
 }
 
 #custom-search-input button, #custom-search-input button:hover {
-    box-shadow: none;
     border: 0;
-    border-left: 1px solid #ccc
+    border-left: 1px solid #ccc;
+    box-shadow: none
 }
 
 #custom-search-input .glyphicon-search {
@@ -1137,9 +1136,9 @@ ul.nav.bs-docs-sidenav.sister {
 }
 
 .documentation-header h1 span {
+    color: #2d3c57;
     display: block;
     font-size: .6em;
-    color: #2d3c57;
     text-transform: uppercase
 }
 
@@ -1148,14 +1147,14 @@ ul.nav.bs-docs-sidenav.sister {
 }
 
 #documentation-level a[href^="http://"]:after, #documentation-level a[href^="https://"]:after {
+    color: #ccc;
     content: "\f35d";
     font-family: Font Awesome\ 5 Free;
-    font-style: normal;
-    margin: 0 0 0 5px;
-    text-decoration: none;
-    color: #ccc;
     font-size: smaller;
-    font-weight: 900
+    font-style: normal;
+    font-weight: 900;
+    margin: 0 0 0 5px;
+    text-decoration: none
 }
 
 #documentation-level a.btn:after {
@@ -1164,8 +1163,8 @@ ul.nav.bs-docs-sidenav.sister {
 }
 
 div.image {
-    position: relative;
-    display: inline-block
+    display: inline-block;
+    position: relative
 }
 
 div.image:hover img {
@@ -1173,16 +1172,16 @@ div.image:hover img {
 }
 
 div.image a {
-    display: block;
-    position: absolute;
-    opacity: 0;
-    left: 0;
     bottom: 0;
+    color: inherit;
+    color: #999;
+    display: block;
+    left: 0;
+    opacity: 0;
+    position: absolute;
     right: 0;
     text-align: center;
-    color: inherit;
-    text-shadow: 2px 2px 3px #ddd;
-    color: #999
+    text-shadow: 2px 2px 3px #ddd
 }
 
 div.image:hover a {
@@ -1192,10 +1191,10 @@ div.image:hover a {
 }
 
 div.image:hover a span {
-    top: 50%;
-    position: absolute;
     left: 0;
+    position: absolute;
     right: 0;
+    top: 50%;
     transform: translateY(-50%)
 }
 
@@ -1204,62 +1203,62 @@ div.image:hover a span {
 }
 
 .row.masonry {
-    -moz-column-width: 20em;
-    -webkit-column-width: 20em;
     -moz-column-gap: 4px;
-    -webkit-column-gap: 4px
+    -webkit-column-gap: 4px;
+    -moz-column-width: 20em;
+    -webkit-column-width: 20em
 }
 
 .row.masonry > .col-md-4, .row.masonry > .col-sm-6, .row.masonry > .col-xs-12 {
     display: inline-block;
-    padding: 0;
+    float: none;
     margin: 5px 5px 0;
-    width: 100%;
-    float: none
+    padding: 0;
+    width: 100%
 }
 
 .alert {
-    padding: 15px 20px;
+    border-radius: 0;
     margin: 20px 0;
-    width: 100%;
-    border-radius: 0
+    padding: 15px 20px;
+    width: 100%
 }
 
 .alert-success {
-    color: #179f24;
     background: #f5fff8;
-    border: 1px dashed #179f24
+    border: 1px dashed #179f24;
+    color: #179f24
 }
 
 .alert-info {
-    color: #00a0e3;
     background: #f5fdff;
-    border: 1px dashed #00a0e3
+    border: 1px dashed #00a0e3;
+    color: #00a0e3
 }
 
 .alert-danger {
-    color: #cd3f2f;
     background: #fff6f5;
-    border: 1px dashed #cd3f2f
+    border: 1px dashed #cd3f2f;
+    color: #cd3f2f
 }
 
 .alert-warning {
-    color: #da9215;
     background: #fffcf5;
-    border: 1px dashed #da9215
+    border: 1px dashed #da9215;
+    color: #da9215
 }
 
 a#decfont, a#incfont {
     color: #ccc;
-    padding-left: 20px;
+    font-family: initial;
     font-size: 22px;
     font-style: italic;
-    font-family: initial
+    padding-left: 20px
 }
 
 a#decfont {
-    padding-left: 5px;
-    font-size: 16px
+    font-size: 16px;
+    padding-left: 5px
 }
 
 td.hljs-ln-numbers {
@@ -1282,8 +1281,8 @@ td.hljs-ln-code {
 }
 
 pre {
-    padding: 5px;
-    overflow-x: hidden !important
+    overflow-x: hidden !important;
+    padding: 5px
 }
 
 table.hljs-ln {
@@ -1295,10 +1294,10 @@ table.hljs-ln {
 }
 
 .alert-version {
-    color: #777;
-    background: hsla(0, 0%, 89.8%, .1);
+    background: hsla(0, 0%, 90%, .1);
     border: 1px dashed #e5e5e5;
-    border-radius: 6px
+    border-radius: 6px;
+    color: #777
 }
 
 .alert-version .smaller {
@@ -1306,9 +1305,9 @@ table.hljs-ln {
 }
 
 .stacktable {
-    width: 100%;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 0
+    margin-bottom: 0;
+    width: 100%
 }
 
 div.stacktables :last-child {
@@ -1338,12 +1337,12 @@ div.stacktables :last-child {
 }
 
 .h1, .h2, .h3, h1, h2, h3 {
-    margin-bottom: 30px;
-    color: #00a0e3
+    color: #00a0e3;
+    margin-bottom: 30px
 }
 
 .btn-link {
-    color: hsla(0, 0%, 46.7%, .75)
+    color: hsla(0, 0%, 47%, .75)
 }
 
 nav.bs-docs-sidebar > ul > li > a:focus, nav.bs-docs-sidebar > ul > li > a:hover {
@@ -1407,15 +1406,15 @@ nav.bs-docs-sidebar > ul > li > a:focus, nav.bs-docs-sidebar > ul > li > a:hover
 
 .product ul {
     list-style-type: none;
-    padding-left: 0;
-    margin-bottom: 0
+    margin-bottom: 0;
+    padding-left: 0
 }
 
 .btn-primary {
-    color: #fff;
     background-color: #00a0e3;
     border-color: #0090cc;
-    border-radius: 2px
+    border-radius: 2px;
+    color: #fff
 }
 
 .search {
@@ -1428,12 +1427,12 @@ nav.bs-docs-sidebar > ul > li > a:focus, nav.bs-docs-sidebar > ul > li > a:hover
 }
 
 .search:before {
-    position: relative;
-    left: 15px;
-    color: hsla(0, 0%, 46.7%, .75);
-    font-family: Font Awesome\ 5 Free;
+    color: hsla(0, 0%, 47%, .75);
     content: "\f002";
-    font-weight: 900
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    left: 15px;
+    position: relative
 }
 
 .search .btn {
@@ -1477,13 +1476,13 @@ a.anchor {
 
 .breadcrumb-nav li.dropdown:before {
     content: "";
-    padding: 0;
-    display: none
+    display: none;
+    padding: 0
 }
 
 .product img {
-    max-height: 80px;
-    height: 80px
+    height: 80px;
+    max-height: 80px
 }
 
 span.searchHighlightedText {
@@ -1509,20 +1508,20 @@ span.searchHighlightedText {
 }
 
 .simplebox {
+    background-color: #fff;
+    background: #fff !important;
+    border: 1px solid rgba(196, 209, 215, .3) !important;
     border-radius: 2px;
     box-shadow: 2px 2px 0 0 rgba(0, 73, 103, .2);
-    background-color: #fff;
-    padding: 35px;
-    margin-top: 30px;
-    background: #fff !important;
     box-shadow: 2px 2px 2px #c4d1d7 !important;
-    border: 1px solid rgba(196, 209, 215, .3) !important
+    margin-top: 30px;
+    padding: 35px
 }
 
 .bluebg {
     background-color: #f6fafc;
-    padding: 30px 0;
-    background-color: #f6fafd
+    background-color: #f6fafd;
+    padding: 30px 0
 }
 
 .nav-tabs {
@@ -1530,31 +1529,32 @@ span.searchHighlightedText {
 }
 
 .nav-tabs li {
-    margin-right: 15px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    margin-right: 15px
 }
 
 .nav-tabs a {
-    border-radius: 2px;
-    box-shadow: 2px 2px 0 0 rgba(0, 73, 103, .2);
-    color: rgba(0, 73, 103, .5);
-    transition-duration: .2s;
-    border-radius: 3px !important;
+    background: #fff;
     border: 1px solid rgba(196, 209, 215, .3) !important;
+    border-radius: 2px;
+    border-radius: 3px !important;
+    box-shadow: 2px 2px 0 0 rgba(0, 73, 103, .2);
     box-shadow: 2px 2px 2px #c4d1d7;
+    color: rgba(0, 73, 103, .5);
     color: #8d9fac;
-    background: #fff
+    transition-duration: .2s
 }
 
 .nav-tabs li.active a {
     border: 1px solid #00a0e3;
-    color: #2d3c57;
     border: 1px solid #209fda !important;
+    color: #2d3c57;
     color: #002839
 }
 
 html {
-    font-size: 18px !important
+    font-family: Lato, sans-serif !important;
+    font-size: 18px
 }
 
 h1 {
@@ -1562,14 +1562,14 @@ h1 {
 }
 
 h1, h2 {
-    font-family: Lato, sans-serif;
     color: #023951 !important;
+    font-family: Lato, sans-serif;
     font-weight: 500
 }
 
 h2 {
-    line-height: 1.5;
-    font-size: 1.944em
+    font-size: 1.944em;
+    line-height: 1.5
 }
 
 h3 {
@@ -1578,10 +1578,10 @@ h3 {
 }
 
 h3, h4 {
-    font-family: Lato, sans-serif;
     color: #023951 !important;
-    line-height: 1.4;
-    font-weight: 500
+    font-family: Lato, sans-serif;
+    font-weight: 500;
+    line-height: 1.4
 }
 
 h4 {
@@ -1589,20 +1589,20 @@ h4 {
 }
 
 .doc-child .main-title {
-    line-height: 3.6;
     font-size: 2.44em;
-    font-weight: 500
+    font-weight: 500;
+    line-height: 3.6
 }
 
 h5 {
-    line-height: 1.4;
     font-weight: 500;
+    line-height: 1.4;
     margin: .666em 0
 }
 
 a {
-    transition-duration: .2s;
-    color: #209fda
+    color: #209fda;
+    transition-duration: .2s
 }
 
 table {
@@ -1614,8 +1614,8 @@ table {
 }
 
 .btn-link {
-    transition-duration: .2s;
-    color: #3baade
+    color: #3baade;
+    transition-duration: .2s
 }
 
 .logo {
@@ -1675,8 +1675,8 @@ a[aria-expanded=false] .fa-angle-up, a[aria-expanded=true] .fa-angle-down {
 }
 
 .h1, .h2, .h3, .h4, .h5, .main-title. doc-child {
-    font-family: Lato, sans-serif;
-    color: #023951 !important
+    color: #023951 !important;
+    font-family: Lato, sans-serif
 }
 
 .navbar-nav > li > a, .simplebox > h1 > a, .simplebox > h2 > a, .simplebox > h3 > a, .simplebox > h4 > a, .simplebox > h5 > a {
@@ -1684,9 +1684,9 @@ a[aria-expanded=false] .fa-angle-up, a[aria-expanded=true] .fa-angle-down {
 }
 
 li, p, td {
-    line-height: 1.4;
-    font-weight: 300;
     color: #002839;
+    font-weight: 300;
+    line-height: 1.4;
     margin-bottom: .8em
 }
 
@@ -1707,40 +1707,40 @@ li, p, td {
 }
 
 button .btn, button .btn-primary {
-    height: 46px;
-    color: #fff;
     background-color: #209fda !important;
-    box-shadow: 2px 2px 2px #c4d1d7 !important
+    box-shadow: 2px 2px 2px #c4d1d7 !important;
+    color: #fff;
+    height: 46px
 }
 
 h4.running {
     color: #00a0e3;
+    font-size: 17px;
     font-weight: 600;
     margin-bottom: 24px;
-    font-size: 17px;
     margin-top: 16px
 }
 
 .whatsnew h4 {
-    color: #000 !important;
     background: #eaedef;
-    display: inline-block;
-    padding: 6px 14px;
     border-radius: 50px;
-    position: relative;
-    margin-top: 4px
+    color: #000 !important;
+    display: inline-block;
+    margin-top: 4px;
+    padding: 6px 14px;
+    position: relative
 }
 
 .whatsnew.new:not(.module) h4:after {
     background: #ffc107;
+    border-radius: 2px;
     content: "New";
-    position: absolute;
-    right: -45px;
-    padding: 2px 5px;
-    top: 0;
     font-size: 11px;
     font-weight: 780;
-    border-radius: 2px;
+    padding: 2px 5px;
+    position: absolute;
+    right: -45px;
+    top: 0;
     visibility: visible
 }
 
@@ -1754,16 +1754,16 @@ h4.running {
 }
 
 .whatsnew.module.new h4 span {
-    position: absolute;
     background: #f44336;
-    right: -120px;
-    padding: 2px 5px;
-    top: 0;
-    font-size: 11px;
-    font-weight: 600;
     border-radius: 2px;
     color: #fff;
-    display: inline
+    display: inline;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 5px;
+    position: absolute;
+    right: -120px;
+    top: 0
 }
 
 .whatsnew.module h4 span {
@@ -1773,10 +1773,10 @@ h4.running {
 .whatsnew h5 {
     border-bottom: 1px dashed #ddd;
     font-size: 16px;
-    margin-top: 22px;
+    font-weight: 600;
     margin-bottom: 14px;
-    text-transform: uppercase;
-    font-weight: 600
+    margin-top: 22px;
+    text-transform: uppercase
 }
 
 .col_full .whatsnew li:before, .portfolio-single-content .whatsnew li:before {
@@ -1784,10 +1784,10 @@ h4.running {
 }
 
 .whatsnew {
-    padding: 12px;
-    border-radius: 3px;
     border: 1px solid #ddd;
-    margin: 10px 0
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 12px
 }
 
 .whatsnew.current {
@@ -1800,8 +1800,8 @@ h4.running {
 }
 
 ul.topPages {
-    padding-left: 0;
-    list-style-type: none
+    list-style-type: none;
+    padding-left: 0
 }
 
 ul.topPages li a {
@@ -1810,9 +1810,9 @@ ul.topPages li a {
 
 ul.topPages li a:after {
     content: "\f061" !important;
+    font-family: Font Awesome\ 5 Free;
     font-weight: 900;
-    padding-left: 5px;
-    font-family: Font Awesome\ 5 Free
+    padding-left: 5px
 }
 
 @media (max-width: 1200px) {
@@ -1821,24 +1821,24 @@ ul.topPages li a:after {
     }
 
     #left-toc-sidebar ul {
-        padding: 4px 20px 20px;
-        margin-top: 80px;
         border: 1px solid #dadde4;
-        width: 290px;
-        position: relative
+        margin-top: 80px;
+        padding: 4px 20px 20px;
+        position: relative;
+        width: 290px
     }
 
     .action-wrapper {
         border: 1px solid #dadde4;
+        float: right;
         margin: 0;
         padding: 0;
-        width: 100%;
-        float: right
+        width: 100%
     }
 
     .action-buttons {
-        width: 100% !important;
-        border-top: 1px solid #dadde4
+        border-top: 1px solid #dadde4;
+        width: 100% !important
     }
 
     .documentation-header {
@@ -1894,8 +1894,8 @@ ul.topPages li a:after {
     }
 
     .bs-docs-sidebar.affix-bottom .bs-docs-sidul, .bs-docs-sidebar.affix .bs-docs-sidul {
-        margin-top: 0;
-        margin-bottom: 0
+        margin-bottom: 0;
+        margin-top: 0
     }
 }
 
@@ -1931,8 +1931,8 @@ ul.topPages li a:after {
     }
 
     .navbar-shadow {
-        box-shadow: none;
         background: #f5f5f5;
+        box-shadow: none;
         -webkit-transition: all .75s;
         -moz-transition: all .75s;
         -ms-transition: all .75s;
@@ -1960,16 +1960,16 @@ ul.topPages li a:after {
     }
 
     .version {
-        padding: 5px 10px;
+        border-radius: 3px;
         font-size: 12px;
         line-height: 1.5;
-        border-radius: 3px
+        padding: 5px 10px
     }
 
     .alert-version {
-        color: #777;
-        background: hsla(0, 0%, 89.8%, .1);
+        background: hsla(0, 0%, 90%, .1);
         border: 1px dashed #e5e5e5;
+        color: #777;
         padding: 10px
     }
 }
@@ -2000,8 +2000,8 @@ ul.topPages li a:after {
     }
 
     .card, .card:hover {
-        margin-top: 100px;
-        box-shadow: none
+        box-shadow: none;
+        margin-top: 100px
     }
 
     ul.documentation {
@@ -2014,24 +2014,24 @@ ul.topPages li a:after {
     }
 
     #home-grid-row a.home-grid-element {
-        width: 45%;
         background: hsla(0, 0%, 100%, .85);
         border-radius: 3px;
-        padding: 50px 30px;
-        position: relative;
-        text-decoration: none;
         box-shadow: 0;
         -webkit-box-shadow: 0;
         -moz-box-shadow: 0;
+        margin: 11px;
+        padding: 50px 30px;
+        position: relative;
+        text-decoration: none;
         transition: all .75s;
-        margin: 11px
+        width: 45%
     }
 }
 
 @media (max-width: 900px) {
     #documentation-level {
-        padding-top: 0;
-        padding-bottom: 80px
+        padding-bottom: 80px;
+        padding-top: 0
     }
 }
 
@@ -2047,16 +2047,16 @@ ul.topPages li a:after {
     }
 
     .headroom {
-        will-change: transform;
-        transition: transform .2s linear
+        transition: transform .2s linear;
+        will-change: transform
     }
 }
 
 @media screen and (max-width: 768px) {
     ul.minor-version-tabs {
+        float: none;
         padding-right: 0;
-        text-align: center;
-        float: none
+        text-align: center
     }
 
     ul.minor-version-tabs li {
@@ -2111,28 +2111,28 @@ ul.topPages li a:after {
 
 @media (max-height: 900px) {
     .bs-docs-sidebar.affix {
-        overflow: auto;
-        max-height: 590px
+        max-height: 590px;
+        overflow: auto
     }
 }
 
 @media (max-height: 768px) {
     .bs-docs-sidebar.affix {
-        overflow: auto;
-        max-height: 540px
+        max-height: 540px;
+        overflow: auto
     }
 }
 
 @media screen and (max-width: 1600px) {
     .product img {
-        max-height: 60px;
-        height: 60px
+        height: 60px;
+        max-height: 60px
     }
 }
 
 @media screen and (max-width: 1200px) {
     .product img {
-        max-height: 55px;
-        height: 55px
+        height: 55px;
+        max-height: 55px
     }
 }
