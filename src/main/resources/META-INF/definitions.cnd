@@ -200,8 +200,9 @@
 [jacademy:whatsNewModule] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent, jacademix:whatsNew
  - version (string) mandatory
  - releaseDate (date) mandatory
+ - versionDependency (string) = '8.1.0.0'
  - academy (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
- - store (string) = 'http://'
+ - store (string) = 'https://'
  + * (jmix:droppableContent)
 
 [jacademy:popup] > jnt:content, jacademix:component, mix:title
