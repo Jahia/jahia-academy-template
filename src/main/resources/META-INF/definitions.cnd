@@ -186,19 +186,20 @@
 [jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
  + * (jacademy:glossaryTerm)
 
-[jacademy:whatsNewDX] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent
+[jacademix:whatsNew] mixin
+- releaseDate (date) mandatory
+
+[jacademy:whatsNewDX] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent, jacademix:whatsNew
  - version (string) mandatory
- - releaseDate (date) mandatory
  - releaseNotes (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
  + * (jmix:droppableContent)
 
 [jacademy:whatsNewYouAreRunning] > jnt:content, jacademix:component, mix:title
  - jcr:title (string) = 'You are running DX' primary internationalized
 
-[jacademy:whatsNewModule] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent
+[jacademy:whatsNewModule] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent, jacademix:whatsNew
  - version (string) mandatory
  - releaseDate (date) mandatory
- - versionDependency (string) = '7.2.0.0'
  - academy (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
  - store (string) = 'http://'
  + * (jmix:droppableContent)
