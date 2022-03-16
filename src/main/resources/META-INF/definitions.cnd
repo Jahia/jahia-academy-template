@@ -202,6 +202,7 @@
  - releaseDate (date) mandatory
  - versionDependency (string) = '8.1.0.0'
  - academy (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
+ - releaseNotes (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
  - store (string) = 'https://'
  + * (jmix:droppableContent)
 

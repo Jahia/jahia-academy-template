@@ -69,6 +69,14 @@
             <a href="${store}"><span><fmt:message key="jacademy_whatsNewModule.store"/></span></a>
         </div>
     </c:if>
+    <c:set var="releaseNotesNode" value="${currentNode.properties.releaseNotes.node}"/>
+
+    <c:if test="${! empty releaseNotesNode}">
+        <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}" context="/"/>
+        <div class="releaseNotes">
+            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
+        </div>
+    </c:if>
     <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
     <c:forEach items="${moduleMap.currentList}" var="droppableContent" begin="${moduleMap.begin}" end="${moduleMap.end}" varStatus="item">
         <template:module node="${droppableContent}" editable="true"/>
