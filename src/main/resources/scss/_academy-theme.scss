@@ -1,0 +1,86 @@
+// @import "../../node_modules/bootstrap/scss/variables";
+
+// Bootstrap options
+$variable-prefix: jac-;
+$enable-caret: true !default;
+$enable-rounded: true !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-transitions: true !default;
+$enable-reduced-motion: true !default;
+$enable-smooth-scroll: true !default;
+$enable-grid-classes: true !default;
+$enable-cssgrid: false !default;
+$enable-button-pointers: true !default;
+$enable-rfs: true !default;
+$enable-validation-icons: true !default;
+$enable-negative-margins: false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities: true !default;
+
+// Colors
+$light: #f6fafd;
+$dark: #002839;
+$body-bg: white;
+$body-color: $dark;
+
+// theme
+$blue: #209fda;
+$primary: $blue;
+$green: #5cb85c;
+$success: $green;
+
+// Font
+$font-family-sans-serif: "Lato", sans-serif;
+
+// z-index
+$zindex-sticky: 1000;
+$zindex-fixed: 1000;
+$zindex-modal-backdrop: 1040;
+$zindex-offcanvas: 1050;
+$zindex-popover: 1070;
+$zindex-tooltip: 1080;
+$zindex-dropdown: 1100;
+$zindex-modal: 2000;
+
+// ------------------
+// Navigation
+// ------------------
+
+// Navbar
+// $navbar-light-active-color:
+// $navbar-light-active-color: red;
+
+// Navlink
+// $nav-link-padding-y: 0.5rem;
+// $nav-link-padding-x: 1rem;
+// $nav-link-font-size: null;
+// $nav-link-font-weight: null;
+$nav-link-color: $body-color;
+$nav-link-hover-color: $primary;
+
+// $nav-link-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+// $nav-link-disabled-color: $gray-600;
+// $nav-link-padding-y: 0.5rem;
+// $nav-link-padding-x: 1rem;
+$nav-link-font-size: 16px; // default: null
+// $nav-link-font-weight: null;
+
+// -----------------
+// Breadcrumb
+// -----------------
+// $breadcrumb-font-size: null;
+// $breadcrumb-padding-y: 0;
+// $breadcrumb-padding-x: 0;
+// $breadcrumb-item-padding-x: 0.5rem;
+$breadcrumb-margin-bottom: 0; // default 1rem
+// $breadcrumb-bg: null;
+// $breadcrumb-divider-color: $gray-600;
+// $breadcrumb-active-color: $gray-600;
+// $breadcrumb-divider: "/";
+// $breadcrumb-divider-flipped: $breadcrumb-divider;
+// $breadcrumb-border-radius: null;
+$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$primary}'><path d='M22.9585 13.5834H13.2085V23.0834H9.9585V13.5834H0.208496V10.4167H9.9585V0.916748H13.2085V10.4167H22.9585V13.5834Z'/></svg>");
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$primary}'><path d='M22.9585 3.58342H0.208496V0.416748H22.9585V3.58342Z'/></svg>");
+$accordion-icon-transform: none;
