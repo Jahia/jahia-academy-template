@@ -15,23 +15,46 @@
 <%--@elvariable id="currentAliasUser" type="org.jahia.services.usermanager.JahiaUser"--%>
 <c:if test="${(!renderContext.loggedIn || currentAliasUser.username eq 'guest') || renderContext.editMode}">
     ${currentNode.properties.textContent.string}
-    <ui:loginArea class="form-inline">
-        <c:if test="${not empty param['loginError']}">
-            <div class="alert alert-danger" role="alert">
-                <strong><i class="fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>&nbsp;Error:</strong>
-                <fmt:message
-                        key="${loginResult == 'account_locked' ? 'message.accountLocked' : 'message.invalidUsernamePassword'}"/>
+    <ui:loginArea onsubmit="loginButton.disabled = true; return true;">
+        <div class="modal-body">
+            <ui:isLoginError var="loginResult">
+                <div class="alert alert-danger" role="alert">
+                    <fmt:message key="${loginResult == 'account_locked' ? 'message.accountLocked' : 'message.invalidUsernamePassword'}"/>
+                </div>
+                <c:set var="error" value="true"/>
+            </ui:isLoginError>
+            <c:if test="${! empty param.loginError}">
+                <div class="alert alert-warning" role="alert">
+                    <fmt:message key="${param.loginError == 'account_locked' ? 'message.accountLocked' : 'message.invalidUsernamePassword'}"/>
+                </div>
+                <c:set var="error" value="true"/>
+            </c:if>
+
+            <div class="input-group mb-3">
+                <fmt:message key="label.username" var="usernameLabel"/>
+                <span class="input-group-text" id="username">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </span>
+                <input type="text" class="form-control" id="username" name="username" placeholder="${fn:escapeXml(usernameLabel)}" <c:if test="${! empty username}"><c:out value=" "/>value="${fn:escapeXml(username)}"</c:if> required autofocus aria-describedby="username">
             </div>
-        </c:if>
-        <div class="form-group">
-            <label class="sr-only" for="username"><fmt:message key='jacademy_loginForm.username'/></label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="<fmt:message key='jacademy_loginForm.username'/>">
+
+            <div class="input-group mb-3">
+                <fmt:message key="label.password" var="passwordLabel"/>
+                <span class="input-group-text" id="password">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                          <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                    </span>
+                <input type="password" class="form-control" id="password" name="password" placeholder="${fn:escapeXml(passwordLabel)}" required aria-describedby="password">
+            </div>
         </div>
-        <div class="form-group">
-            <label class="sr-only" for="password"><fmt:message key='jacademy_loginForm.password'/></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="<fmt:message key='jacademy_loginForm.password'/>">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="loginButton" class="btn btn-primary"><fmt:message key='bootstrap5nt_navbar.label.login'/></button>
         </div>
-        <button type="submit" class="btn btn-default"><fmt:message key='jacademy_loginForm.signIn'/></button>
+
     </ui:loginArea>
 </c:if>
 

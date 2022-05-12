@@ -63,9 +63,14 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
 
                 // Rewrite the whole IMG tag
                 /*
-				 <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4">
-                     <img src="//i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-responsive">
-                 </a>
+                <figure class="figure">
+                    <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox"
+                       data-gallery="example-gallery">
+                        <img src="https://unsplash.it/500/300.jpg?image=254"
+                             class="figure-img img-fluid rounded shadow" alt="...">
+                    </a>
+                </figure>
+
 				*/
                 StringBuilder newImgTag = new StringBuilder();
                 if (!disableLightbox) {
@@ -75,20 +80,15 @@ public class AcademyImageUrlRewriter extends AbstractFilter {
                     if (gallery == null) {
                         gallery="doc-images";
                     }
-                    newImgTag.append("<div class=\"image\">");
-                    newImgTag.append("<img src=\"").append(sbSrcValue.toString()).append("\"");
-                    newImgTag.append(" alt=\"" + imgAlt + "\"");
-                    if (imgClass != null && !"".equals(imgClass)) {
-                        newImgTag.append(" class=\"" + imgClass + "\"");
-                    }
-                    newImgTag.append("/>");
-                    newImgTag.append("<a href=\"").append(src).append("\" data-toggle=\"lightbox\" data-gallery=\"" + gallery + "\">");
-                    if (icon == null) {
-                        icon = "fa-search-plus";
-                    }
-                    newImgTag.append("<span class=\"fa fa-2x " + icon + "\"></span>");
-                    newImgTag.append("</a></div>");
+                    newImgTag.append("<figure class=\"figure\">");
+                    newImgTag.append("    <a href=\"").append(src).append("\" data-toggle=\"lightbox\" data-gallery=\"" + gallery + "\">");
 
+                    newImgTag.append("        <img src=\"").append(sbSrcValue.toString()).append("\"");
+                    newImgTag.append("           alt=\"" + imgAlt + "\"");
+                    newImgTag.append("           class=\"figure-img img-fluid rounded shadow\"");
+                    newImgTag.append("         />");
+                    newImgTag.append("    </a>");
+                    newImgTag.append("</figure>");
                     logger.debug("New IMG tag : " + newImgTag.toString());
                     out.replace(imgTag, newImgTag.toString());
                 }

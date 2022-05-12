@@ -7,7 +7,7 @@
 
                                     http://www.jahia.com
 
-        Copyright (C) 2002-2016 Jahia Solutions Group SA. All rights reserved.
+        Copyright (C) 2002-2020 Jahia Solutions Group SA. All rights reserved.
 
         THIS FILE IS AVAILABLE UNDER TWO DIFFERENT LICENSES:
         1/GPL OR 2/JSEL
@@ -28,7 +28,7 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program. If not, see <http://www.gnu.org/licenses />.
+        along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
         2/ JSEL - Commercial and Supported Versions of the program
@@ -44,50 +44,30 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-modules</artifactId>
-    <version>8.0.0.0</version>
+    <version>8.1.0.0</version>
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>jahia-academy-template</artifactId>
-  <version>3.4.23-SNAPSHOT</version>
+  <version>4.0.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>Jahia Academy Template</name>
-  <description>This is the custom profile module (Jahia Academy Template) for running on a Digital Experience Manager server.</description>
+  <name>New Academy Templates</name>
+  <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
   <scm>
-    <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
-    <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
-    <url>https://github.com/Jahia/jahia-academy-template</url>
-    <tag>HEAD</tag>
+    <connection>scm:dummy:uri</connection>
+    <developerConnection>scm:dummy:uri</developerConnection>
   </scm>
   <properties>
-    <Jahia-Module-Priority>1</Jahia-Module-Priority>
-    <jahia-depends>bootstrap3-components,bootstrap3-core,default,font-awesome,forms-core,highlightjs,jquery,search,tags,toc,academy-autocomplete-search,dx-download-release-table,robotsnoindex,sitemap</jahia-depends>
-    <jahia-module-signature>MCwCFC2Fa6EmQjKuK2nrM4XDVQ0bjv/OAhR8mdRmPmNRGBDBhLMWEqgexIKJAQ==</jahia-module-signature>
+    <jahia-module-signature>MCwCFDDQ1xJlzKijN2sKbc4nQmWVeFNIAhQrsbzt6x/hl7I4nI8l0DXAglKJWQ==</jahia-module-signature>
+    <Jahia-Module-Priority>10</Jahia-Module-Priority>
+    <jahia-depends>bootstrap5-components,default,font-awesome,jquery</jahia-depends>
     <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>org.jahia.modules</groupId>
-      <artifactId>forms-core</artifactId>
-      <version>3.2.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.ahocorasick</groupId>
-      <artifactId>ahocorasick</artifactId>
-      <version>0.4.0</version>
-    </dependency>
-  </dependencies>
   <repositories>
     <repository>
       <releases>
@@ -101,19 +81,15 @@
       <name>Jahia Public Repository</name>
       <url>https://devtools.jahia.com/nexus/content/groups/public</url>
     </repository>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>form-factory</id>
-      <name>Form Factory Repository</name>
-      <url>https://devtools.jahia.com/nexus/content/repositories/form-factory-releases</url>
-    </repository>
   </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>

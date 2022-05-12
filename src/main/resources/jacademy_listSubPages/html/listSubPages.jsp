@@ -11,6 +11,7 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
+<template:addResources type="css" resources="all.min.css"/>
 <c:set var="parentPage" value="${currentNode.properties['parentPage'].node}"/>
 <c:choose>
     <c:when test="${! empty parentPage}">
@@ -91,7 +92,7 @@
 
                     <c:choose>
                         <c:when test="${depth eq '2-level-accordion' && hasSubpages}">
-                            <a data-toggle="collapse" aria-expanded="false" aria-controls="ul${page.identifier}" href="#ul${page.identifier}">${pageTitle} <i class="fas fa-fw fa-angle-down"></i><i class="fas fa-fw fa-angle-up"></i></a>
+                            <a data-bs-toggle="collapse" aria-expanded="false" aria-controls="ul${page.identifier}" href="#ul${page.identifier}">${pageTitle} <i class="fas fa-fw fa-angle-down"></i><i class="fas fa-fw fa-angle-up"></i></a>
                         </c:when>
                         <c:otherwise>
                             <a href="${pageUrl}">${pageTitle}</a>

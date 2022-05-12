@@ -36,22 +36,3 @@
     </c:otherwise>
 </c:choose>
 <template:area path="free"/>
-<template:addResources type="inline">
-    <script>
-        $(document).ready(function () {
-            $('pre code').each(function (i, block) {
-                hljs.highlightBlock(block);
-                var copybutton = '<div class="bd-clipboard"><span class="btn-clipboard" title="Copy to clipboard">Copy</span></div>';
-                $(this).before(copybutton);
-            });
-            var clipboard = new ClipboardJS('.btn-clipboard', {
-                target: function (trigger) {
-                    return trigger.parentNode.nextElementSibling;
-                }
-            })
-            $('code.hljs').each(function(i, block) {
-                hljs.lineNumbersBlock(block);
-            });
-        });
-    </script>
-</template:addResources>

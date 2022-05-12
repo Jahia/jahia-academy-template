@@ -29,7 +29,7 @@ def empty = true
 def printMenu;
 printMenu = { node, navMenuLevel, omitFormatting ->
     if (navMenuLevel == 1) {
-        print("<div class=\"documentation-list-wrapper\" id=\"pinBoot\"  class=\"pinBoot\" style=\"height: 524px;\">")
+        print("<div class='row row-eq-height'>")
     }
     // jnt:navMenuText
     firstEntry = true;
@@ -90,7 +90,7 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                 shortdoc = true
                             }
                             if (description) {
-                                tooltip = "data-toggle=\"tooltip\" data-placement=\"right\" title=\"" + description.string + "\""
+                                tooltip = "data-bs-toggle=\"tooltip\" data-placement=\"right\" title=\"" + description.string + "\""
                             }
                             def linkURL = ""
                             def collapseAttributes = ""
@@ -103,13 +103,13 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                 if (menuItem.primaryNodeTypeName == "jnt:page") {
                                     linkURL = "href=\"" + menuItem.url + "\""
                                 } else {
-                                    linkURL = "href=\"#" + menuItem.identifier + "\" data-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\"" + menuItem.identifier + "\"";
+                                    linkURL = "href=\"#menu" + menuItem.identifier + "\" data-bs-toggle=\"collapse\" aria-expanded=\"false\" aria-controls=\"menu" + menuItem.identifier + "\"";
                                 }
                                 collapseAttributes = "role=\"button\""
                             }
                             if (render != "") {
                                 if (currentMenuLevel == 1) {
-                                    print("<article class=\"doc-list\">")
+                                    print("<div class='col-md-4'><div class='simplebox'>")
                                     print("<h3 " + tooltip + ">")
                                     if (shortdoc) {
                                         print("<a " + linkURL + collapseAttributes + ">")
@@ -122,13 +122,18 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                                 } else {
                                     if (firstEntry) {
                                         empty = false;
-                                        print("<ul id=\"" + node.identifier + "\" class=\"" + collapseClass + " navmenu level_${currentMenuLevel} documentation-list\">")
+                                        print("<ul id=\"menu" + node.identifier + "\" class=\"" + collapseClass + " book fa-ul level_${currentMenuLevel}\">")
                                         closeUl = true;
                                     }
                                     if (menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
                                         print("<li class=\"${listItemCssClass}\" " + tooltip + ">")
+                                        print ("<span class=\"fa-li\" ><i class=\"fas fa-chevron-right\"></i></span>");
                                         print("<a " + linkURL + collapseAttributes + ">")
                                         print(menuItem.displayableName)
+                                        if (hasChildren && menuItem.primaryNodeTypeName != "jnt:page") {
+                                            print("<i class=\"fas fa-fw fa-angle-down\"></i><i class=\"fas fa-fw fa-angle-up\"></i>");
+
+                                        }
                                         print("</a>")
                                     }
                                 }
@@ -138,7 +143,7 @@ printMenu = { node, navMenuLevel, omitFormatting ->
                             }
                             if (render != "") {
                                 if (currentMenuLevel == 1) {
-                                    print("</article>")
+                                    print("</div></div>")
                                 } else {
                                     if (menuItem.primaryNodeTypeName == "jnt:page" || hasChildren) {
                                         print "</li>"

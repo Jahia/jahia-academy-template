@@ -1,69 +1,82 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
-<%@ taglib prefix="ui" uri="http://www.jahia.org/tags/uiComponentsLib" %>
-<%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
-<%@ taglib prefix="query" uri="http://www.jahia.org/tags/queryLib" %>
-<%@ taglib prefix="utility" uri="http://www.jahia.org/tags/utilityLib" %>
-<%@ taglib prefix="s" uri="http://www.jahia.org/tags/search" %>
-<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
-<%--@elvariable id="out" type="java.io.PrintWriter"--%>
-<%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
-<%--@elvariable id="scriptInfo" type="java.lang.String"--%>
-<%--@elvariable id="workspace" type="java.lang.String"--%>
-<%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
-<%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
-<%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<%--
-<template:addResources type="css" resources="ck/googlecode.css"/>
-<template:addResources type="javascript" resources="academy/ck/lib/highlight.pack.js"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 
---%>
-<%--<template:addResources type="css" resources="highlightjs-line-numbers.css"/>--%>
-<template:addResources type="inline">
+<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
+<%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
+
+${currentNode.properties.textContent.string}
+
+
+<template:addResources type="css" resources="github.min.css"/>
+
+<template:addResources type="javascript" resources="jquery.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="clipboard.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="highlight.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="highlightjs-line-numbers.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+
+<template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
     <script>
         $(document).ready(function () {
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
-                var copybutton = '<div class="bd-clipboard"><span class="btn-clipboard" title="Copy to clipboard">Copy</span></div>';
-                $(this).before(copybutton);
             });
-            var clipboard = new ClipboardJS('.btn-clipboard', {
-                target: function (trigger) {
-                    return trigger.parentNode.nextElementSibling;
-                }
-            })
-            $('code.hljs').each(function(i, block) {
+            $('code.hljs').each(function (i, block) {
                 hljs.lineNumbersBlock(block);
             });
         });
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        // Insert copy to clipboard button before .highlight
+        var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard">Copy</button></div>'
+        document.querySelectorAll('pre')
+            .forEach(function (element) {
+                element.insertAdjacentHTML('beforebegin', btnHtml)
+            })
+
+        document.querySelectorAll('.btn-clipboard')
+            .forEach(function (btn) {
+                var tooltipBtn = new bootstrap.Tooltip(btn)
+
+                btn.addEventListener('mouseleave', function () {
+                    // Explicitly hide tooltip, since after clicking it remains
+                    // focused (as it's a button), so tooltip would otherwise
+                    // remain visible until focus is moved away
+                    tooltipBtn.hide()
+                })
+            })
+
+        var clipboard = new ClipboardJS('.btn-clipboard', {
+            target: function (trigger) {
+                return trigger.parentNode.nextElementSibling
+            }
+        })
+
+        clipboard.on('success', function (event) {
+            var tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
+
+            event.trigger.setAttribute('data-bs-original-title', 'Copied!')
+            tooltipBtn.show()
+
+            event.trigger.setAttribute('data-bs-original-title', 'Copy to clipboard')
+            event.clearSelection()
+        })
+
+        clipboard.on('error', function (event) {
+            var modifierKey = /mac/i.test(navigator.userAgent) ? '\u2318' : 'Ctrl-'
+            var fallbackMsg = 'Press ' + modifierKey + 'C to copy'
+            var tooltipBtn = bootstrap.Tooltip.getInstance(event.trigger)
+
+            event.trigger.setAttribute('data-bs-original-title', fallbackMsg)
+            tooltipBtn.show()
+
+            event.trigger.setAttribute('data-bs-original-title', 'Copy to clipboard')
+        })
     </script>
 </template:addResources>
-<c:set var="textContent" value="${currentNode.properties.textContent.string}"/>
-<div id="toc_${currentNode.identifier}" class="document-content">
-    ${fn:replace(textContent,'<code class="language-','<code class="')}
-    <c:if test="${empty textContent}">
-        <c:set var="pdfNode" value="${currentNode.properties.pdf.node}"/>
-        <c:if test="${! empty pdfNode}">
-            <c:url var="pdfUrl" value="${pdfNode.url}" context="/"/>
-            <div class="alert alert-warning">Sorry, there is no HTML version for this document. Get the latest PDF version here <a
-                    class="btn btn-danger" href="${pdfUrl}" type="button"><i aria-hidden="true"
-                                                                             class="fas fa-download fa-fw"></i> ${currentNode.displayableName}
-            </a></div>
-        </c:if>
-
-    </c:if>
-</div>
-<c:if test="${! empty textContent}">
-    <script>
-    $('.document-content').readingTime({
-        lang: '${renderContext.mainResourceLocale.language}',
-        round: true,
-        remoteTarget: '.readingTime'
-    });
-    $('.readTime').show();
-    </script>
-</c:if>

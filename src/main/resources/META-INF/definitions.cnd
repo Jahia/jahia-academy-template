@@ -1,12 +1,9 @@
-<docmix = 'http://www.jahia.org/jahia/docspace/mix/1.0'>
-<jacademix = 'http://www.jahia.org/academy/jahia/mix/1.0'>
-<jacademy = 'http://www.jahia.org/academy/jahia/nt/1.0'>
-<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
-<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <mix = 'http://www.jcp.org/jcr/mix/1.0'>
 <jcr='http://www.jcp.org/jcr/1.0'>
-
-
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<jacademix = 'http://www.jahia.org/academy/jahia/mix/1.0'>
+<jacademy = 'http://www.jahia.org/academy/jahia/nt/1.0'>
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
 
@@ -29,8 +26,7 @@
  - linkType (string, choicelist[linkInitializer,resourceBundle]) = 'noLink' autocreated < 'internal', 'external', 'file', 'noLink'
 
 [jacademix:textContent] mixin
- - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
-
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
 [jacademix:metadatas] mixin
  extends = jnt:page, jacademy:kbEntry
  itemtype = metadata
@@ -47,26 +43,14 @@
  - targetVersion (string, choicelist[versionsInitializer]) indexed=no
  - comment (string) indexed=no
 
-[jacademix:document] > jmix:droppableContent, mix:title, jmix:editorialContent mixin
+[jacademix:document] > mix:title, jacademix:component mixin
  - audiences (weakreference, choicelist[nodes='/sites/systemsite/categories/audiences;jnt:category',sort]) multiple facetable
- - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
+ - icon (weakreference, picker[type='image']) internationalized hidden < 'jmix:image'
  - author (string) = 'The Jahia Team'
 
 [jacademix:embedVideo] mixin
  - provider (string, choicelist[resourceBundle]) = 'youtube' autocreated < 'youtube', 'vimeo'
  - id (string) mandatory
-
-[jacademy:footer1] > jnt:content, jacademix:component
-
-[jacademy:footer2] > jnt:content, jmix:droppableContent, jacademix:textContent
-
-[jacademix:homeComponent] mixin
-
-[jacademy:productList] > jnt:contentList, jacademix:component, mix:title, jacademix:homeComponent orderable
- + * (jacademy:productCard)
-
-[jacademy:productCard] > jnt:content, mix:title, jacademix:textContent, jacademix:link
- - icon (weakreference, picker[type='image']) internationalized < 'jmix:image'
 
 [jacademy:boost] mixin
  extends = jacademix:document
@@ -79,30 +63,15 @@
  - specificVersions (string, tag[autocomplete='20.0',separator=',']) multiple facetable nofulltext
 
 [jacademy:document] > jnt:content, jacademix:document, jacademix:textContent
- - pdf (weakreference, picker[type='file']) internationalized < 'jnt:file'
- - pdfTitle (string) internationalized
+ - pdf (weakreference, picker[type='file']) internationalized hidden < 'jnt:file'
+ - pdfTitle (string) internationalized hidden
 
-[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component, jacademix:homeComponent
-
-[jacademy:video] > jnt:content, jacademix:embedVideo, jacademix:content, jacademix:component
-
-[jacademy:documentHeader] > jnt:content, jacademix:component, jmix:bindedComponent, jmix:studioOnly
-
-[jacademy:breadcrumb] > jnt:content, jacademix:component, mix:title, jmix:studioOnly
-
-[jacademy:navButtons] > jnt:content, jacademix:component, jmix:studioOnly
+[jacademy:textContent] > jnt:content, jacademix:textContent, jacademix:content, jacademix:component
 
 [jacademix:isVersionPage] mixin
  extends = jmix:navMenuItem
  itemtype = content
  - version (string) = '7.2' mandatory
-
-[jacademix:isMultiplePageDoc] mixin
- extends = jmix:navMenuItem
- itemtype = content
- - isMultiplePageDoc (string) = 'This doc is a multiple page doc' protected
-
-[jacademy:checkCurrentVersion] > jnt:content, jacademix:component, jmix:studioOnly
 
 [jacademy:embedVideo] > jnt:content, jacademix:document, jacademix:embedVideo
 
@@ -117,18 +86,18 @@
  - value (string) = 'This page will be hidden in the menu.' protected
 
 [jacademy:loginForm] > jnt:content, jacademix:document
- - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
 
 [jacademix:kbQa] > jmix:templateMixin mixin
  extends = jacademy:kbEntry
- - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
 
 [jacademix:kbUseCase] > jmix:templateMixin mixin
  extends = jacademy:kbEntry
- - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
- - cause (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
+ - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
+ - answer (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
+ - cause (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) internationalized
 
 [jacademy:kbEntry] > jnt:content, jacademix:component, jacademix:document
  - kbType (string, choicelist[kbInitializer,resourceBundle]) = 'qa' autocreated facetable < 'qa', 'useCase'
@@ -137,15 +106,6 @@
  + relatedlinks (jmix:droppableContent) = jmix:droppableContent
 
 [jacademy:relatedLink] > jnt:content, jmix:droppableContent, jacademix:link
-
-[jacademix:advancedCard] mixin
- extends = jacademy:card
- itemtype = content
- - backgroundImage (weakreference, picker[type='image']) internationalized < 'jmix:image'
- - backgroundColor (string) = '#00a0e3'
- - textColor (string) = '#ffffff'
-
-[jacademy:card] > jnt:content, mix:title, jacademix:textContent, jacademix:component
 
 [jacademy:listSubPages] > jnt:content, jacademix:component
  - parentPage (weakreference) < 'jmix:droppableContent', 'jmix:navMenuItem', 'jnt:navMenuText', 'jnt:page'
@@ -157,34 +117,10 @@
  - expanded (string, choicelist[resourceBundle]) = 'false' autocreated < 'false', 'true'
  + * (jmix:droppableContent)
 
-[jacademy:latestDoc] > jnt:content, jacademix:component, mix:title
- - nbPosts (long) = '5' mandatory indexed=no
-
-[jacademy:latestBlogs] > jnt:content, jacademix:component, mix:title
- - nbPosts (long) = '3' mandatory indexed=no
- - postType (string) multiple
-// - postType (string, choicelist[nodetypes='jcnt:blogEntry']) multiple
-
 [jacademix:hideBreadcrumb] mixin
  extends = jmix:navMenuItem
  itemtype = content
  - hideBreadcrumb (string) = 'Hide the breadcrumb on this page.' protected
-
-[jacademix:hideNavbuttons] mixin
- extends = jmix:navMenuItem
- itemtype = content
- - hideNavbuttons (string) = 'Hide the navigation buttons (only for documentation template).' protected
-
-[jacademy:glossaryTerm] > jnt:content, mix:title
- - glossaryDefinition   (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/academy/ck/ckconfig.js']) internationalized
-
-[jacademix:embedThisTerm] mixin
- extends = jacademy:glossaryTerm
- itemtype = content
- - embedThisTerm (string) = 'Embed this term automatically' protected
-
-[jacademy:glossary] > jnt:contentList, jmix:basicContent orderable
- + * (jacademy:glossaryTerm)
 
 [jacademix:whatsNew] mixin
 - releaseDate (date) mandatory
@@ -193,9 +129,6 @@
  - version (string) mandatory
  - releaseNotes (weakreference, picker[type='editoriallink']) < 'jmix:droppableContent', 'jnt:page'
  + * (jmix:droppableContent)
-
-[jacademy:whatsNewYouAreRunning] > jnt:content, jacademix:component, mix:title
- - jcr:title (string) = 'You are running DX' primary internationalized
 
 [jacademy:whatsNewModule] > jnt:contentList, jacademix:component, mix:title, jacademix:textContent, jacademix:whatsNew
  - version (string) mandatory
@@ -206,10 +139,6 @@
  - store (string) = 'https://'
  + * (jmix:droppableContent)
 
-[jacademy:popup] > jnt:content, jacademix:component, mix:title
- - closeText (string) = 'Close' internationalized
- - delay (long) = '3000' mandatory indexed=no
- - expires (long) = '365' indexed=no
- - size (string, choicelist[resourceBundle]) = 'default' autocreated indexed=no < 'default', 'lg', 'sm'
- - displayOnlyOnce (boolean) = 'true'
- + * (jmix:droppableContent) = jmix:droppableContent
+[jacademy:textBox] > jnt:content, jacademix:component, mix:title, bootstrap5mix:text
+- hx (string, choicelist[resourceBundle,moduleImage='png']) = 'h2' autocreated indexed=no < 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+- secondaryTitle (string) i18n

@@ -43,7 +43,22 @@
     </c:choose>
 </c:if>
 
-
+<div class="d-flex position-relative border-bottom p-3">
+    <div class="flex-shrink-0">
+        <a href="${detailView}" class="text-muted">
+            <i class="${icon} fa-fw fa-2x"></i>
+        </a>
+    </div>
+    <div class="flex-grow-1 ms-3 ">
+        <h5>${title}</h5>
+        <p>
+            <c:set var="textSummry" value="${functions:removeHtmlTags(summary)}"/>
+            ${functions:abbreviate(textSummry, 150, 250, '...')}
+            <a href="${detailView}" class="text-muted stretched-link"><i class="fas fa-arrow-right"></i></a>
+        </p>
+    </div>
+</div>
+<%--
 <div class="media kb" data-href="${detailView}">
     <div class="media-left">
         <a href="${detailView}" class="text-muted">
@@ -75,3 +90,4 @@
         </div>
     </div>
 </div>
+--%>
