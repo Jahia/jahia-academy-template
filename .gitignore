@@ -1,6 +1,8 @@
 /.classpath
 /.project
 /.settings
+/node_modules
+/node
 .idea
 *.iml
 *.ipr

@@ -1,0 +1,9 @@
+{
+    "extends": ["stylelint-config-standard-scss"],
+    "rules": {
+        "declaration-property-unit-disallowed-list": {
+            "height": ["%"]
+        },
+        "max-line-length": null
+    }
+}
