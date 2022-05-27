@@ -1,0 +1,35 @@
+.toc {
+  ul {
+    list-style: none;
+    padding-left: 1rem;
+  }
+
+  // Only remove padding-left for the first ul, we keep padding-left for nestead ul
+  > ul {
+    padding-left: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .nav-link {
+    position: relative;
+    padding: 4px 0;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    color: rgba($black, 0.65);
+
+    &.active {
+      font-weight: 900;
+      color: $blue;
+
+      &::before {
+        content: "➞";
+        position: absolute;
+        left: -16px;
+      }
+    }
+  }
+}

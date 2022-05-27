@@ -5,7 +5,8 @@
 <c:url var="homePageUrl" value="${renderContext.site.home.url}" context="/" />
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
-<nav class="jac-main-navigation navbar navbar-light border-bottom navbar-expand-lg container-fluid" role="navigation">
+<nav class="jac-main-navigation navbar navbar-light border-bottom navbar-expand-lg container-fluid bg-white"
+    role="navigation">
     <!-- Logo -->
     <a href="${homePageUrl}" class="navbar-brand text-decoration-nones">
         <c:set var="logoUrl" value="${url.currentModule}/images/logo-academy.svg" />

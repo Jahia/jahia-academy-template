@@ -60,7 +60,7 @@
                     <div class="row gx-5">
                         <div class="col-12 col-lg-9 ">
                             <!-- Page content -->
-                            <article class="jac-content pb-5 pt-3 bg-white" id="article">
+                            <article class="jac-content my-5 bg-white" id="article">
                                 <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
                                     <c:set var="personas" value="${mainResourceNode.properties.personas}" />
                                     <c:if test="${! empty personas}">
@@ -95,17 +95,15 @@
                         </div>
 
                         <!-- In this page -->
-                        <nav class="sticky-top toc col-3 d-none d-lg-block" id="toc">
-                            <strong class="text-primary">In this page</strong>
-                            <nav id="toc2" data-toggle="#article" data-scope="h2"></nav>
-                            <ul data-toc-headings="h2, h3" data-toc="#article"></ul>
-                            <ul>
-                                <li class="my-3 border-top"></li>
-                                <li>
-                                    <a href="#" data-scrollto="#top" class="nav-link text-muted top">Back to top</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="col-3">
+                            <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
+                                <strong class="text-primary mb-2 d-block">In this page</strong>
+                                <!-- <nav id="toc2" data-toggle="#article" data-scope="h2"></nav> -->
+                                <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
+                                <hr>
+                                <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>

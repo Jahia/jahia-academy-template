@@ -21,7 +21,7 @@
 <div class="container-lg ">
     <div class="row">
         <div class="col-12">
-            <article class="jac-content jac-content-knowledgebase pb-5 pt-3 bg-white" id="article">
+            <article class="jac-content jac-content-knowledgebase my-5 bg-white" id="article">
                 <div class="mb-4">
                     <c:set var="tagList" value="${currentNode.properties['j:tagList']}" />
                     <c:if test="${! empty tagList}">

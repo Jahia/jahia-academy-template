@@ -22,7 +22,7 @@
     </c:choose>
 </c:if>
 <c:if test="${fn:length(pageNodes) > 1}">
-    <nav class="jac-breadcrumb" aria-label="breadcrumb">
+    <nav class="jac-breadcrumb my-4" aria-label="breadcrumb">
         <ol class="breadcrumb d-flex align-items-center py-3 m-0 small">
             <c:forEach items="${functions:reverse(pageNodes)}" var="pageNode" varStatus="status">
                 <c:if test="${status.index > 1}">
