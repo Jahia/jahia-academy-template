@@ -1,0 +1,108 @@
+.jac-secondary-navigation-list {
+  > li {
+    margin-bottom: 1rem;
+  }
+}
+
+.jac-secondary-navigation-link {
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  width: 100%;
+  line-height: 1.4;
+
+  &.active {
+    font-weight: 900;
+    color: $primary;
+  }
+}
+
+.jac-secondary-navigation {
+  overflow-y: auto;
+
+  // @include media-breakpoint-up(md) {
+  //   position: sticky;
+  //   top: 0;
+
+  //   // Override collapse behaviors
+  //   // stylelint-disable-next-line declaration-no-important
+  //   display: block !important;
+
+  //   // TODO: Maybe this calc is not the right one
+  //   height: subtract(100vh, 7rem);
+
+  //   // Prevent focus styles to be cut off:
+  //   padding-left: 0.25rem;
+  //   margin-left: -0.25rem;
+  //   overflow-y: auto;
+  // }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  ul ul ul {
+    padding-left: 1rem;
+  }
+
+  > ul {
+    @include media-breakpoint-down(md) {
+      padding: 1.5rem 0.75rem;
+      background-color: $gray-100;
+      border-bottom: 1px solid $gray-200;
+    }
+
+    >li {
+      display: grid;
+      margin-bottom: 1rem;
+
+      >a,
+      >.btn {
+        font-weight: 600;
+      }
+    }
+  }
+
+  a,
+  .btn {
+    color: rgba($black, 0.65);
+    background-color: transparent;
+    text-decoration: none;
+    text-align: start;
+
+    &:hover,
+    &:focus {
+      color: rgba($black, 0.85);
+      background-color: rgba($dark, 0.05);
+    }
+  }
+
+  .btn {
+    padding: 0.25rem 0.5rem;
+    margin-left: -0.15rem;
+    border: 0;
+
+    // &:focus {
+    //   box-shadow: 0 0 0 1px rgba($bd-primary-bright, 0.7);
+    // }
+
+    &::before {
+      //   width: 1.25em;
+      //   line-height: 0; // Align in the middle
+      content: escape-svg($chevron-right);
+
+      //   transform-origin: 0.5em 50%;
+      //   transform: rotate(90deg);
+
+      @include transition(transform 0.35s ease);
+    }
+
+    &[aria-expanded="true"] {
+      color: rgba($black, 0.85);
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

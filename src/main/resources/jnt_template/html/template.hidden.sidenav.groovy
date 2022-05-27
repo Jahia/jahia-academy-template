@@ -58,9 +58,10 @@ printMenu = { startNode, level, maxlevel ->
                     }
 
                     if (hasChildren && level < maxlevel) {
+                        // FIXME: We don't manage when the element is a menu-label
                         if (level == 1) {
                             print "<li>";
-                                print "<a class='d-inline-flex align-items-center rounded collapsed' href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
+                                print "<a class='jac-secondary-navigation-link jac-secondary-navigation-link_one has-children d-inline-flex align-items-center rounded collapsed' href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
                                     if (isCurrent) {
                                         print " <span class='visually-hidden'>(current)</span>";
                                     }
@@ -72,7 +73,7 @@ printMenu = { startNode, level, maxlevel ->
 
                         } else if (level == 2) {
                             print "<li>";
-                                print "<a class='btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false' href='#'>${menuItemTitle}"
+                                print "<a class='jac-secondary-navigation-link jac-secondary-navigation-link_two has-children btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false' href='#'>${menuItemTitle}"
                                     if (isCurrent) {
                                         print " <span class='visually-hidden'>(current)</span>";
                                     }
@@ -101,7 +102,7 @@ printMenu = { startNode, level, maxlevel ->
                     } else {
                         if (level == 1) {
                             print "<li>";
-                                print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                print "<a class=\"jac-secondary-navigation-link jac-secondary-navigation-link_one d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
                                     if (isCurrent) {
                                         print " <span class=\"visually-hidden\">(current)</span>";
                                     }
@@ -110,7 +111,7 @@ printMenu = { startNode, level, maxlevel ->
 
                         } else if (level == 2) {
                                 print "<li>";
-                                    print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent?' active':''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                    print "<a class=\"jac-secondary-navigation-link jac-secondary-navigation-link_two d-inline-flex align-items-center rounded ${isCurrent?' active':''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
                                         if (isCurrent) {
                                             print " <span class=\"visually-hidden\">(current)</span>";
                                         }
@@ -119,7 +120,7 @@ printMenu = { startNode, level, maxlevel ->
 
                         } else {
                             print "<li>";
-                                print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                print "<a class=\"jac-secondary-navigation-link jac-secondary-navigation-link_three d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
                                     if (isCurrent) {
                                         print " <span class=\"visually-hidden\">(current)</span>";
                                     }
@@ -157,11 +158,11 @@ if (startNode != null) {
     } catch (ItemNotFoundException e) {
     }
 
-    print "<aside class=\"sticky-top bg-light d-none d-sm-block vh-100\">";
-        print "<nav class=\"jac-secondary-navigation collapse bd-links py-4 sticky-top \" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
-            print "<ul class=\"mb-0\">";
+    // print "<aside class=\"sticky-top d-none d-sm-block vh-100\">";
+        print "<nav class=\"jac-secondary-navigation py-4 sticky-top bg-light\" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
+            print "<ul class=\"jac-secondary-navigation-list mb-0\">";
                 printMenu(startNode, 1,  maxlevel)
             print "</ul>"
         print "</nav>";
-    print "</aside>";
+    // print "</aside>";
 }
