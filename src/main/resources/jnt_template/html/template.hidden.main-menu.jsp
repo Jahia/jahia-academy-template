@@ -17,7 +17,5 @@
 </ul>
 
 <header id="top" class="border-bottom border-gray sticky-top">
-    <nav class="navbar navbar-light border-bottom bg-white" role="navigation">
-        <template:include view="hidden.mainnav" />
-    </nav>
+    <template:include view="hidden.mainnav" />
 </header>

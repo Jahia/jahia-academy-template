@@ -11134,6 +11134,7 @@ html main {
 }
 html main .sticky-top {
   z-index: 100;
+  top: 83px;
 }
 html main .bg-left {
   left: 0;

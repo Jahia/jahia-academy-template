@@ -21,9 +21,9 @@
 <div class="container-lg ">
     <div class="row">
         <div class="col-12">
-            <article class="pb-5 pt-3 bg-white" id="article">
+            <article class="jac-content jac-content-knowledgebase pb-5 pt-3 bg-white" id="article">
                 <div class="mb-4">
-                    <c:set var="tagList" value="${currentNode.properties['j:tagList']}"/>
+                    <c:set var="tagList" value="${currentNode.properties['j:tagList']}" />
                     <c:if test="${! empty tagList}">
                         <c:forEach items="${tagList}" var="tag" varStatus="status">
                             <span class="badge bg-success">${tag.string}</span>
@@ -31,23 +31,25 @@
                     </c:if>
 
                     <c:if test="${jcr:isNodeType(currentNode, 'jacademix:metadatas')}">
-                        <c:set var="personas" value="${currentNode.properties.personas}"/>
+                        <c:set var="personas" value="${currentNode.properties.personas}" />
                         <c:if test="${! empty personas}">
                             <c:forEach items="${personas}" var="persona" varStatus="status">
-                                <c:set var="personaNode" value="${persona.node}"/>
+                                <c:set var="personaNode" value="${persona.node}" />
                                 <span class="badge bg-success">${personaNode.displayableName}</span>
                             </c:forEach>
                         </c:if>
                     </c:if>
                     <h1 class="pt-1">${currentNode.displayableName}</h1>
-                    <c:set var="lastPublishedDate" value="${currentNode.properties['j:lastPublished'].time}"/>
+                    <c:set var="lastPublishedDate" value="${currentNode.properties['j:lastPublished'].time}" />
                     <c:if test="${! empty lastPublishedDate}">
                         <c:choose>
                             <c:when test="${language eq 'fr'}">
-                                <fmt:formatDate value="${lastPublishedDate}" pattern="d MMMM yyyy" var="formatedReleaseDate"/>
+                                <fmt:formatDate value="${lastPublishedDate}" pattern="d MMMM yyyy"
+                                    var="formatedReleaseDate" />
                             </c:when>
                             <c:otherwise>
-                                <fmt:formatDate value="${lastPublishedDate}" pattern="MMMM d, yyyy" var="formatedReleaseDate"/>
+                                <fmt:formatDate value="${lastPublishedDate}" pattern="MMMM d, yyyy"
+                                    var="formatedReleaseDate" />
                             </c:otherwise>
                         </c:choose>
                         <div class="text-secondary small">${formatedReleaseDate} - <span class="eta"></span> read</div>
@@ -56,36 +58,47 @@
 
 
                 </div>
-                <h2 class="text-primary"><fmt:message key="jacademix_kbQa.jcr_title"/></h2>
+                <h2 class="text-primary">
+                    <fmt:message key="jacademix_kbQa.jcr_title" />
+                </h2>
                 ${currentNode.properties.textContent.string}
                 <c:if test="${jcr:isNodeType(currentNode, 'jacademix:kbUseCase')}">
-                    <c:set var="cause" value="${currentNode.properties.cause.string}"/>
+                    <c:set var="cause" value="${currentNode.properties.cause.string}" />
                     <c:if test="${! empty cause}">
-                        <h2 class="text-primary"><fmt:message key="jacademix_kbUseCase.cause"/></h2>
+                        <h2 class="text-primary">
+                            <fmt:message key="jacademix_kbUseCase.cause" />
+                        </h2>
                         ${cause}
                     </c:if>
                 </c:if>
                 <c:choose>
                     <c:when test="${jcr:isNodeType(currentNode, 'jacademix:kbUseCase')}">
-                        <h2 class="text-primary"><fmt:message key="jacademix_kbUseCase.answer"/></h2>
+                        <h2 class="text-primary">
+                            <fmt:message key="jacademix_kbUseCase.answer" />
+                        </h2>
                     </c:when>
                     <c:otherwise>
-                        <h2 class="text-primary"><fmt:message key="jacademix_kbQa.answer"/></h2>
+                        <h2 class="text-primary">
+                            <fmt:message key="jacademix_kbQa.answer" />
+                        </h2>
                     </c:otherwise>
                 </c:choose>
                 ${currentNode.properties.answer.string}
 
-                <jcr:node var="relatedLinksNode" path="${currentNode.path}/relatedlinks"/>
+                <jcr:node var="relatedLinksNode" path="${currentNode.path}/relatedlinks" />
 
                 <c:if test="${! empty relatedLinksNode || renderContext.editMode}">
-                    <template:area path="relatedlinks" nodeTypes="jacademy:relatedLink" areaAsSubNode="true" var="relatedlinks"/>
+                    <template:area path="relatedlinks" nodeTypes="jacademy:relatedLink" areaAsSubNode="true"
+                        var="relatedlinks" />
                     <c:if test="${! empty relatedlinks}">
                         <div class="alert alert-version">
                             <h4>Related links</h4>
                             <c:if test="${!renderContext.editMode}">
-                            <ul class="fa-ul list-unstyled"></c:if>
-                                ${relatedlinks}
-                                <c:if test="${!renderContext.editMode}"></ul>
+                                <ul class="fa-ul list-unstyled">
+                            </c:if>
+                            ${relatedlinks}
+                            <c:if test="${!renderContext.editMode}">
+                                </ul>
                             </c:if>
                         </div>
                     </c:if>
@@ -99,12 +112,16 @@
 
 
 
-<template:addResources type="css" resources="github.min.css"/>
+<template:addResources type="css" resources="github.min.css" />
 
-<template:addResources type="javascript" resources="jquery.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
-<template:addResources type="javascript" resources="clipboard.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
-<template:addResources type="javascript" resources="highlight.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
-<template:addResources type="javascript" resources="highlightjs-line-numbers.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="jquery.min.js"
+    targetTag="${renderContext.editMode?'head':'body'}" />
+<template:addResources type="javascript" resources="clipboard.min.js"
+    targetTag="${renderContext.editMode?'head':'body'}" />
+<template:addResources type="javascript" resources="highlight.min.js"
+    targetTag="${renderContext.editMode?'head':'body'}" />
+<template:addResources type="javascript" resources="highlightjs-line-numbers.min.js"
+    targetTag="${renderContext.editMode?'head':'body'}" />
 <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
     <script>
         $(document).ready(function () {

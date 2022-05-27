@@ -2,6 +2,7 @@
 $chevron-right: url("data:image/svg+xml,<svg width='12' height='12' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8.58997 16.59L13.17 12L8.58997 7.41L9.99997 6L16 12L9.99997 18L8.58997 16.59Z' fill='black'/></svg>");
 $arrow-right: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z'/></svg>");
 $bd-primary-bright: lighten(saturate($primary, 5%), 15%); // stylelint-disable-line function-disallowed-list
+$site-header-height: 83px;
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -19,6 +20,7 @@ html {
   main {
     .sticky-top {
       z-index: 100;
+      top: $site-header-height;
     }
 
     position: relative;
@@ -54,6 +56,8 @@ aside {
       // Override collapse behaviors
       // stylelint-disable-next-line declaration-no-important
       display: block !important;
+
+      // TODO: Maybe this calc is not the right one
       height: subtract(100vh, 7rem);
 
       // Prevent focus styles to be cut off:

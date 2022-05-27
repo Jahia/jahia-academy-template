@@ -18,14 +18,15 @@ printMenu = { startNode, level, maxlevel ->
                 if (menuItem.isNodeType("jmix:navMenu")) {
                     correctType = false;
                 }
+
                 if (menuItem.properties['j:displayInMenuName']) {
                     correctType = false;
                     menuItem.properties['j:displayInMenuName'].each() {
                         correctType |= (it.string.equals(currentNode.name))
                     }
                 }
-                if (correctType) {
 
+                if (correctType) {
                     boolean hasChildren = level < maxlevel && JCRTagUtils.hasChildrenOfType(menuItem, "jmix:navMenuItem")
                     String menuItemUrl = null;
                     String menuItemId = "page-" + menuItem.getIdentifier();
@@ -59,69 +60,71 @@ printMenu = { startNode, level, maxlevel ->
                     if (hasChildren && level < maxlevel) {
                         if (level == 1) {
                             print "<li>";
-                            print "<a class='d-inline-flex align-items-center rounded collapsed' href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
-                            if (isCurrent) {
-                                print " <span class='visually-hidden'>(current)</span>";
-                            }
-                            print "</a>";
-                            print "<ul>";
-                            printMenu(menuItem, level + 1, maxlevel);
-                            print "</ul>";
-
+                                print "<a class='d-inline-flex align-items-center rounded collapsed' href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
+                                    if (isCurrent) {
+                                        print " <span class='visually-hidden'>(current)</span>";
+                                    }
+                                print "</a>";
+                                print "<ul>";
+                                    printMenu(menuItem, level + 1, maxlevel);
+                                print "</ul>";
                             print "</li>";
+
                         } else if (level == 2) {
                             print "<li>";
-                            print "<a class='btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false' href='#'>${menuItemTitle}"
-                            if (isCurrent) {
-                                print " <span class='visually-hidden'>(current)</span>";
-                            }
-                            print "</a>";
-                            print "<div class=\"collapse${isActive?'d':''}\" id=\"sideMenu-${currentNode.identifier}-${menuItem.identifier}\">"
-                            print "<ul class=\"fw-normal pb-1 small\">";
-                            printMenu(menuItem, level + 1, maxlevel);
-                            print "</ul>";
-                            print "</div>"
+                                print "<a class='btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false' href='#'>${menuItemTitle}"
+                                    if (isCurrent) {
+                                        print " <span class='visually-hidden'>(current)</span>";
+                                    }
+                                print "</a>";
+                                print "<div class=\"collapse${isActive?'d':''}\" id=\"sideMenu-${currentNode.identifier}-${menuItem.identifier}\">"
+                                    print "<ul class=\"fw-normal pb-1 small\">";
+                                        printMenu(menuItem, level + 1, maxlevel);
+                                    print "</ul>";
+                                print "</div>"
                             print "</li>";
+
                         } else {
                             print "<li>";
-                            print "<a href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
-                            if (isCurrent) {
-                                print " <span class='visually-hidden'>(current)</span>";
-                            }
-                            print "</a>";
-                            print "<ul class=\"fw-normal pb-1 small\">";
-                            print "<li><a href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}</a></li>";
-                            //print "<li class='dropdown-divider'></li>";
-                            printMenu(menuItem, level + 1, maxlevel);
-                            print "</ul>";
+                                print "<a href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}"
+                                    if (isCurrent) {
+                                        print " <span class='visually-hidden'>(current)</span>";
+                                    }
+                                print "</a>";
+                                print "<ul class=\"fw-normal pb-1 small\">";
+                                    print "<li><a href='${menuItemUrl}' id='${menuItemId}'>${menuItemTitle}</a></li>";
+                                    printMenu(menuItem, level + 1, maxlevel);
+                                print "</ul>";
                             print "</li>";
                         }
+
                     } else {
                         if (level == 1) {
                             print "<li>";
-                            print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
-                            if (isCurrent) {
-                                print " <span class=\"visually-hidden\">(current)</span>";
-                            }
-                            print "</a>"
-                            print "</li>";
-                        } else if (level == 2) {
-                                print "<li>";
-                                print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent?' active':''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
-                                if (isCurrent) {
-                                    print " <span class=\"visually-hidden\">(current)</span>";
-                                }
+                                print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                    if (isCurrent) {
+                                        print " <span class=\"visually-hidden\">(current)</span>";
+                                    }
                                 print "</a>"
-                                print "</li>";
-                        } else {
-                            print "<li>";
-                            print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
-                            if (isCurrent) {
-                                print " <span class=\"visually-hidden\">(current)</span>";
-                            }
-                            print "</a>"
                             print "</li>";
 
+                        } else if (level == 2) {
+                                print "<li>";
+                                    print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent?' active':''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                        if (isCurrent) {
+                                            print " <span class=\"visually-hidden\">(current)</span>";
+                                        }
+                                    print "</a>"
+                                print "</li>";
+
+                        } else {
+                            print "<li>";
+                                print "<a class=\"d-inline-flex align-items-center rounded ${isCurrent ? ' active' : ''}\" href=\"${menuItemUrl}\" id='${menuItemId}'>${menuItemTitle}";
+                                    if (isCurrent) {
+                                        print " <span class=\"visually-hidden\">(current)</span>";
+                                    }
+                                print "</a>"
+                            print "</li>";
                         }
                     }
                 }
@@ -153,14 +156,12 @@ if (startNode != null) {
         currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath());
     } catch (ItemNotFoundException e) {
     }
-    print "<aside class=\"sticky-top bg-light d-none d-sm-block vh-100\">\n" +
-            "    <nav class=\"collapse bd-links pt-4 sticky-top \" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
-    print "<ul class=\"mb-0 py-2 pt-md-1\">";
-    printMenu(startNode, 1,  maxlevel)
-    print "</ul>"
-    print "</nav>";
+
+    print "<aside class=\"sticky-top bg-light d-none d-sm-block vh-100\">";
+        print "<nav class=\"jac-secondary-navigation collapse bd-links pt-4 sticky-top \" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
+            print "<ul class=\"mb-0 py-2 pt-md-1\">";
+                printMenu(startNode, 1,  maxlevel)
+            print "</ul>"
+        print "</nav>";
     print "</aside>";
 }
-
-
-

@@ -9,32 +9,28 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 
 
-<c:set var="pageNodes" value="${jcr:getParentsOfType(currentNode, 'jmix:navMenuItem')}"/>
+<c:set var="pageNodes" value="${jcr:getParentsOfType(currentNode, 'jmix:navMenuItem')}" />
 <c:if test="${empty pageNodes}">
-    <c:set var="mainResourceNode" value="${renderContext.mainResource.node}"/>
+    <c:set var="mainResourceNode" value="${renderContext.mainResource.node}" />
     <c:choose>
         <c:when test="${jcr:isNodeType(mainResourceNode, 'jnt:page')}">
-            <c:set var="pageNodes"
-                   value="${jcr:getMeAndParentsOfType(mainResourceNode,'jmix:navMenuItem')}"/>
+            <c:set var="pageNodes" value="${jcr:getMeAndParentsOfType(mainResourceNode,'jmix:navMenuItem')}" />
         </c:when>
         <c:otherwise>
-            <c:set var="pageNodes"
-                   value="${jcr:getParentsOfType(mainResourceNode, 'jmix:navMenuItem')}"/>
+            <c:set var="pageNodes" value="${jcr:getParentsOfType(mainResourceNode, 'jmix:navMenuItem')}" />
         </c:otherwise>
     </c:choose>
 </c:if>
 <c:if test="${fn:length(pageNodes) > 1}">
-    <nav aria-label="breadcrumb">
+    <nav class="jac-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb d-flex align-items-center py-3 m-0 small">
             <c:forEach items="${functions:reverse(pageNodes)}" var="pageNode" varStatus="status">
                 <c:if test="${status.index > 1}">
                     <c:if test="${! jcr:isNodeType(pageNode, 'jacademix:hidePage')}">
                         <%-- now we check if there is sister pages --%>
-                        <c:set var="parentPage" value="${jcr:getParentOfType(pageNode, 'jmix:navMenuItem')}"/>
-
-                        <c:set var="sisterPages"
-                               value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}"/>
-                        <c:set var="hasSisterPages" value="${fn:length(sisterPages) > 1}"/>
+                        <c:set var="parentPage" value="${jcr:getParentOfType(pageNode, 'jmix:navMenuItem')}" />
+                        <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}" />
+                        <c:set var="hasSisterPages" value="${fn:length(sisterPages) > 1}" />
                         <c:choose>
                             <c:when test="${hasSisterPages}">
                                 <%--
@@ -51,56 +47,65 @@
                                 </li>
                                 --%>
                                 <li class="breadcrumb-item dropdown">
-                                    <template:addCacheDependency node="${pageNode}"/>
+                                    <template:addCacheDependency node="${pageNode}" />
                                     <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
-                                       aria-expanded="false" id="breadcrumb_${pageNode.identifier}">
-                                            ${pageNode.displayableName}
+                                        aria-expanded="false" id="breadcrumb_${pageNode.identifier}">
+                                        ${pageNode.displayableName}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="breadcrumb_${pageNode.identifier}">
-                                            <%-- FIXME: This is what we call manual recursivity.... should be a call to groovy script... --%>
+                                        <%-- FIXME: This is what we call manual recursivity.... should be a call to groovy script... --%>
                                         <c:forEach items="${sisterPages}" var="sisterPage" varStatus="status">
                                             <c:if test="${! jcr:isNodeType(sisterPage, 'jacademix:hidePage')}">
                                                 <c:choose>
                                                     <c:when test="${jcr:isNodeType(sisterPage, 'jnt:navMenuText')}">
-                                                        <template:addCacheDependency node="${sisterPage}"/>
-                                                        <c:set var="active"><c:if
-                                                                test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}">active</c:if></c:set>
+                                                        <template:addCacheDependency node="${sisterPage}" />
+                                                        <c:set var="active">
+                                                            <c:if
+                                                                test="${fn:contains(renderContext.mainResource.path,sisterPage.path)}">
+                                                                active</c:if>
+                                                        </c:set>
                                                         <c:set var="subsisterPages"
-                                                               value="${jcr:getChildrenOfType(sisterPage, 'jmix:navMenuItem')}"/>
+                                                            value="${jcr:getChildrenOfType(sisterPage, 'jmix:navMenuItem')}" />
                                                         <c:set var="hassubSisterPages"
-                                                               value="${fn:length(subsisterPages) > 0}"/>
+                                                            value="${fn:length(subsisterPages) > 0}" />
                                                         <c:choose>
                                                             <c:when test="${hassubSisterPages}">
                                                                 <li class="dropdown-item dropdown ${active} dropend">
                                                                     <a href="#" class="dropdown-toggle"
-                                                                       data-bs-toggle="dropdown" role="button"
-                                                                       aria-expanded="false"
-                                                                       role="button"
-                                                                       id="breadcrumb_${sisterPage.identifier}">${sisterPage.displayableName}</a>
+                                                                        data-bs-toggle="dropdown" role="button"
+                                                                        aria-expanded="false" role="button"
+                                                                        id="breadcrumb_${sisterPage.identifier}">${sisterPage.displayableName}</a>
                                                                     <ul class="submenu dropdown-menu"
                                                                         aria-labelledby="breadcrumb_${sisterPage.identifier}">
                                                                         <c:forEach items="${subsisterPages}"
-                                                                                   var="subsisterPage"
-                                                                                   varStatus="status">
-                                                                            <c:if test="${! jcr:isNodeType(subsisterPage, 'jacademix:hidePage')}">
+                                                                            var="subsisterPage" varStatus="status">
+                                                                            <c:if
+                                                                                test="${! jcr:isNodeType(subsisterPage, 'jacademix:hidePage')}">
                                                                                 <c:choose>
-                                                                                    <c:when test="${jcr:isNodeType(subsisterPage, 'jnt:navMenuText')}">
+                                                                                    <c:when
+                                                                                        test="${jcr:isNodeType(subsisterPage, 'jnt:navMenuText')}">
                                                                                         <%-- This is a label -> link to the first page if exist --%>
                                                                                         <template:addCacheDependency
-                                                                                                node="${subsisterPage}"/>
+                                                                                            node="${subsisterPage}" />
                                                                                         <c:set var="subsubsisterPages"
-                                                                                               value="${jcr:getChildrenOfType(subsisterPage, 'jnt:page')}"/>
+                                                                                            value="${jcr:getChildrenOfType(subsisterPage, 'jnt:page')}" />
                                                                                         <c:forEach
-                                                                                                items="${subsubsisterPages}"
-                                                                                                var="subsubsisterPage"
-                                                                                                varStatus="substatus">
-                                                                                            <c:if test="${substatus.first}">
-                                                                                                <c:if test="${! jcr:isNodeType(subsubsisterPage, 'jacademix:hidePage')}">
-                                                                                                    <c:url var="subsubsisterPageUrl"
-                                                                                                           value="${subsubsisterPage.url}"/>
-                                                                                                    <li class="dropdown-item"${fn:contains(renderContext.mainResource.path,subsisterPage.path) ? ' active' : ''}>
+                                                                                            items="${subsubsisterPages}"
+                                                                                            var="subsubsisterPage"
+                                                                                            varStatus="substatus">
+                                                                                            <c:if
+                                                                                                test="${substatus.first}">
+                                                                                                <c:if
+                                                                                                    test="${! jcr:isNodeType(subsubsisterPage, 'jacademix:hidePage')}">
+                                                                                                    <c:url
+                                                                                                        var="subsubsisterPageUrl"
+                                                                                                        value="${subsubsisterPage.url}" />
+                                                                                                    <li class="dropdown-item"
+                                                                                                        ${fn:contains(renderContext.mainResource.path,subsisterPage.path)
+                                                                                                        ? ' active' : ''
+                                                                                                        }>
                                                                                                         <a
-                                                                                                                href="${subsubsisterPageUrl}">${subsisterPage.displayableName}</a>
+                                                                                                            href="${subsubsisterPageUrl}">${subsisterPage.displayableName}</a>
                                                                                                     </li>
                                                                                                 </c:if>
                                                                                             </c:if>
@@ -108,12 +113,14 @@
                                                                                     </c:when>
                                                                                     <c:otherwise>
                                                                                         <template:addCacheDependency
-                                                                                                node="${subsisterPage}"/>
+                                                                                            node="${subsisterPage}" />
                                                                                         <c:url var="subsisterPageUrl"
-                                                                                               value="${subsisterPage.url}"/>
-                                                                                        <li class="dropdown-item${fn:contains(renderContext.mainResource.path,subsisterPage.path)?' avtive' : ''}">
+                                                                                            value="${subsisterPage.url}" />
+                                                                                        <li
+                                                                                            class="dropdown-item${fn:contains(renderContext.mainResource.path,subsisterPage.path)?' avtive' : ''}">
                                                                                             <a
-                                                                                                    href="${subsisterPageUrl}">${subsisterPage.displayableName}</a>
+                                                                                                href="${subsisterPageUrl}">${subsisterPage.displayableName}
+                                                                                            </a>
                                                                                         </li>
 
                                                                                     </c:otherwise>
@@ -132,16 +139,16 @@
                                                     </c:when>
                                                     <c:when test="${jcr:isNodeType(sisterPage, 'jnt:page')}">
                                                         <c:url var="sisterPageUrl" value="${sisterPage.url}"
-                                                               context="/"/>
-                                                        <li class="dropdown-item${fn:contains(renderContext.mainResource.path,sisterPage.path) ? ' active':''}">
-                                                            <a
-                                                                    href="${sisterPageUrl}">${sisterPage.displayableName}</a>
+                                                            context="/" />
+                                                        <li
+                                                            class="dropdown-item${fn:contains(renderContext.mainResource.path,sisterPage.path) ? ' active':''}">
+                                                            <a href="${sisterPageUrl}">${sisterPage.displayableName}</a>
                                                         </li>
                                                     </c:when>
                                                 </c:choose>
                                             </c:if>
-                                            <c:remove var="subsisterPages"/>
-                                            <c:remove var="hassubSisterPages"/>
+                                            <c:remove var="subsisterPages" />
+                                            <c:remove var="hassubSisterPages" />
                                         </c:forEach>
                                     </ul>
                                 </li>
@@ -150,29 +157,30 @@
                                 <li class="breadcrumb-item">
                                     <c:choose>
                                         <c:when test="${jcr:findDisplayableNode(pageNode, renderContext) ne pageNode}">
-                                            <a href="#"><c:out value="${pageNode.displayableName}"/></a>
+                                            <a href="#">
+                                                <c:out value="${pageNode.displayableName}" />
+                                            </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="<c:url value='${pageNode.url}' context='/'/>"><c:out
-                                                    value="${pageNode.displayableName}"/></a>
+                                            <a href="<c:url value='${pageNode.url}' context='/'/>">
+                                                <c:out value="${pageNode.displayableName}" />
+                                            </a>
                                         </c:otherwise>
                                     </c:choose>
                                 </li>
                             </c:otherwise>
                         </c:choose>
-                        <c:remove var="sisterPages"/>
-                        <c:remove var="hasSisterPages"/>
+                        <c:remove var="sisterPages" />
+                        <c:remove var="hasSisterPages" />
                     </c:if>
                 </c:if>
-                <c:remove var="pageUrl"/>
+                <c:remove var="pageUrl" />
             </c:forEach>
         </ol>
     </nav>
 </c:if>
 
 <%--
-
-
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb d-flex align-items-center px-5 py-3 m-0">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
