@@ -16,8 +16,14 @@
   }
 }
 
+.jac-secondary-navigation-link_two,
+.jac-secondary-navigation-link_three {
+  padding-left: 20px;
+}
+
 .jac-secondary-navigation {
   overflow-y: auto;
+  max-height: calc(100vh - 86px);
 
   // @include media-breakpoint-up(md) {
   //   position: sticky;

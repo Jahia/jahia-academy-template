@@ -65,7 +65,7 @@
 
                                 <!-- Page content -->
                                 <article class="jac-content my-5" id="article">
-                                    <h1 class="py-0">${pageTitle}</h1>
+                                    <h1 class="jac-content-title">${pageTitle}</h1>
                                     <c:set var="lastPublishedDate"
                                         value="${mainResourceNode.properties['j:lastPublished'].time}" />
                                     <c:if test="${! empty lastPublishedDate}">
@@ -105,7 +105,7 @@
 
                             <!-- In this page -->
                             <div class="col-3">
-                                <nav class="sticky-top toc col-3 d-none d-lg-block py-4" id="toc">
+                                <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
                                     <strong class="text-primary mb-2 d-block">In this page</strong>
                                     <!-- <nav id="toc2" data-toggle="#article" data-scope="h2"></nav> -->
                                     <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>

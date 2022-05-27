@@ -15,13 +15,13 @@ html {
   }
 
   main {
+    position: relative;
+    background-color: white;
+
     .sticky-top {
       z-index: 100;
       top: $site-header-height;
     }
-
-    position: relative;
-    background-color: white;
 
     .bg-left {
       left: 0;
@@ -71,21 +71,6 @@ main {
 // --
 // Code snippets
 // --
-
-pre {
-  margin-top: 0.65rem;
-  white-space: pre;
-  padding: 0;
-  margin-bottom: 1rem;
-  background-color: $gray-100;
-  border: 0;
-  border-radius: 0.25rem;
-
-  code.hljs {
-    background-color: transparent;
-  }
-}
-
 .hljs-line-numbers {
   text-align: right;
   border-right: 1px solid #ccc;
@@ -266,69 +251,6 @@ td.hljs-ln-code {
 a[aria-expanded="false"] .fa-angle-up,
 a[aria-expanded="true"] .fa-angle-down {
   display: none;
-}
-
-article {
-  ol {
-    counter-reset: b;
-    list-style: none;
-    margin-bottom: 30px;
-    padding: 0;
-
-    li {
-      margin: 10px 0 10px 40px;
-      text-indent: -40px;
-
-      &::before {
-        background-color: $primary;
-        border-radius: 20px;
-        color: $white;
-        content: counters(b, ".");
-        counter-increment: b;
-        font-size: 15px;
-        font-weight: 300;
-        margin-right: 15px;
-        padding: 3px 8px;
-        font-weight: bold;
-      }
-    }
-
-    > li::before {
-      background-color: $primary;
-      border-radius: 20px;
-      color: $white;
-      content: counters(b, ".");
-      counter-increment: b;
-      font-size: 15px;
-      font-weight: 300;
-      margin-right: 15px;
-      padding: 3px 8px;
-      font-weight: bold;
-    }
-  }
-
-  ul {
-    &:not(.fa-ul) {
-      list-style: none;
-      margin-bottom: 30px;
-      padding: 0;
-
-      li {
-        margin: 0 0 5px 15px;
-        text-indent: -8px;
-
-        &::before {
-          background: $chevron-right 8px;
-          content: "";
-          display: inline-block;
-          height: 10px;
-          margin-right: 10px;
-          width: 5px;
-          background-repeat: no-repeat;
-        }
-      }
-    }
-  }
 }
 
 /* sticky footer */

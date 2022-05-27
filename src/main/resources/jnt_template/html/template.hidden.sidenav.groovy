@@ -159,7 +159,7 @@ if (startNode != null) {
     }
 
     // print "<aside class=\"sticky-top d-none d-sm-block vh-100\">";
-        print "<nav class=\"jac-secondary-navigation py-4 sticky-top bg-light\" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
+        print "<nav class=\"jac-secondary-navigation p-4 sticky-top bg-light\" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
             print "<ul class=\"jac-secondary-navigation-list mb-0\">";
                 printMenu(startNode, 1,  maxlevel)
             print "</ul>"

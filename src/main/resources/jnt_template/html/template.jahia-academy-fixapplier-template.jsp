@@ -70,7 +70,7 @@
                                             </c:forEach>
                                         </c:if>
                                     </c:if>
-                                    <h1>${pageTitle}</h1>
+                                    <h1 class="jac-content-title">${pageTitle}</h1>
                                     <c:set var="lastPublishedDate"
                                         value="${mainResourceNode.properties['j:lastPublished'].time}" />
                                     <c:if test="${! empty lastPublishedDate}">
