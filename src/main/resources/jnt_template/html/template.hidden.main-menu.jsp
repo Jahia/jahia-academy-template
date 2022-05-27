@@ -12,13 +12,12 @@
     </li>
 
     <li class="nav-item">
-        <template:include view="hidden.login"/>
+        <template:include view="hidden.login" />
     </li>
 </ul>
-<header class="border-bottom border-gray sticky-top" id="top">
-    <div class="bg-white">
-        <nav class="navbar navbar-light border-bottom" role="navigation">
-            <template:include view="hidden.mainnav"/>
-        </nav>
-    </div>
+
+<header id="top" class="border-bottom border-gray sticky-top">
+    <nav class="navbar navbar-light border-bottom bg-white" role="navigation">
+        <template:include view="hidden.mainnav" />
+    </nav>
 </header>
