@@ -1,0 +1,8 @@
+@function spacing($spacersIndex) {
+  @if map-has-key($spacers, $spacersIndex) {
+    @return map-get($spacers, $spacersIndex);
+  }
+
+  @warn "The key #{$spacersIndex} is not in the map ’$spacers’";
+  @return null;
+}

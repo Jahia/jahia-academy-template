@@ -4,12 +4,6 @@ $site-header-height: 83px;
 html {
   -webkit-font-smoothing: antialiased;
 
-  .jac-topbar {
-    .nav-link {
-      font-size: 0.8rem;
-    }
-  }
-
   .container-xxl.container-start {
     margin-left: 0 !important;
   }
@@ -42,32 +36,6 @@ html {
   }
 }
 
-main {
-  a.accordion-button {
-    text-decoration: none;
-    padding-left: 0;
-    border-top: 1px solid $gray-200;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      text-decoration: none;
-      color: $primary;
-    }
-
-    &:first-of-type {
-      border-top-width: 0;
-    }
-  }
-
-  h1 {
-    @extend .pt-5;
-    @extend .pb-3;
-  }
-}
-
 // --
 // Code snippets
 // --
@@ -81,16 +49,13 @@ main {
 
 .hljs-ln-line.hljs-ln-n {
   min-width: 30px;
+  padding-right: 8px;
+  text-align: right;
 }
 
 td.hljs-ln-numbers {
   border-right: 1px solid #ccc;
   color: #ccc;
-}
-
-.hljs-ln-line.hljs-ln-n {
-  padding-right: 8px;
-  text-align: right;
 }
 
 td.hljs-ln-code {
@@ -103,7 +68,6 @@ td.hljs-ln-code {
 }
 
 // clipboard.js
-//
 // JS-based `Copy` buttons for code snippets.
 
 .bd-clipboard {
@@ -133,8 +97,7 @@ td.hljs-ln-code {
   color: $secondary;
   background-color: $white;
   border: 1px solid;
-
-  @include border-radius;
+  border-radius: $border-radius;
 
   &:hover,
   &:focus {
@@ -143,28 +106,45 @@ td.hljs-ln-code {
   }
 }
 
-.accordion-button:not(.collapsed) {
-  color: inherit;
-  background-color: transparent;
-  box-shadow: none;
-}
+.accordion-button {
+  text-decoration: none;
+  padding-left: 0;
+  border-top: 1px solid $gray-200;
 
-.accordion-button:not(.collapsed)::after {
-  margin-top: 12px;
+  > * {
+    margin: 0;
+  }
+
+  // color: $primary;
+
+  &:first-of-type {
+    border-top-width: 0;
+  }
+
+  &:not(.collapsed) {
+    color: inherit;
+    background-color: transparent;
+    box-shadow: none;
+
+    &::after {
+      margin-top: 12px;
+    }
+  }
 }
 
 .nav-tabs {
   border-bottom: none;
-
-  @extend .py-3;
-  @extend .mb-3;
+  padding-top: spacing(3);
+  padding-bottom: spacing(3);
+  margin-bottom: spacing(3);
 
   .nav-link {
     color: rgba($black, 0.65);
+    color: $gray-600;
     font-size: larger;
     font-weight: bold;
-    padding: 0 0 1rem;
-    margin-right: 2rem;
+    padding: 0 0 spacing(3);
+    margin-right: spacing(5);
     border: none;
 
     &:hover,
@@ -203,28 +183,27 @@ td.hljs-ln-code {
 .dropdown-item {
   &.active {
     >a {
-      color: #fff;
+      color: $white;
     }
   }
 }
 
 .tab-content {
-  @extend .mb-2;
+  margin-bottom: spacing(2);
 }
 
 .bluebg {
-  @extend .bg-light;
-  @extend .py-4;
+  background-color: $light;
+  padding-top: spacing(4);
+  padding-bottom: spacing(4);
 }
 
 .simplebox {
-  /* border: 1px solid rgba(196, 209, 215, .3) !important; */
-  padding: 1.5rem;
-
-  @extend .shadow-sm;
-  @extend .rounded;
-  @extend .bg-body;
-  @extend .my-2;
+  padding: spacing(4);
+  margin-top: spacing(4);
+  background-color: $body-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-sm;
 }
 
 @include media-breakpoint-up(md) {
@@ -268,10 +247,4 @@ footer {
   bottom: 0;
   width: 100%;
   height: 100px;
-}
-
-.jac-main-navigation {
-  .nav-item + .nav-item {
-    margin-left: 1rem;
-  }
 }

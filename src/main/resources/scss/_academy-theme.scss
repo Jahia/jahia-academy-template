@@ -33,6 +33,10 @@ $success: $green;
 // Font
 $font-family-sans-serif: "Lato", sans-serif;
 
+// Heading
+$headings-margin-bottom: 2rem;
+$headings-margin-top: 2rem;
+
 // z-index
 $zindex-sticky: 1000;
 $zindex-fixed: 1000;
@@ -68,6 +72,23 @@ $navbar-light-active-color: $primary;
 // $nav-link-padding-x: 1rem;
 $nav-link-font-size: 16px; // default: null
 // $nav-link-font-weight: null;
+$nav-tabs-border-width: 0;
+
+// $nav-link-padding-y: 0.5rem;
+// $nav-link-padding-x: 1rem;
+// $nav-link-font-size: null;
+// $nav-link-font-weight: null;
+// // $nav-link-color: var(--#{$prefix}link-color);
+// // $nav-link-hover-color: var(--#{$prefix}link-hover-color);
+// $nav-link-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+// $nav-link-disabled-color: $gray-600;
+// $nav-tabs-border-color: $gray-300;
+// $nav-tabs-border-width: $border-width;
+// $nav-tabs-border-radius: $border-radius;
+// $nav-tabs-link-hover-border-color: $gray-200 $gray-200 $nav-tabs-border-color;
+// $nav-tabs-link-active-color: $gray-700;
+// $nav-tabs-link-active-bg: $body-bg;
+// $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg;
 
 // -----------------
 // Breadcrumb

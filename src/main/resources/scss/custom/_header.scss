@@ -1,0 +1,11 @@
+.jac-topbar {
+  .nav-link {
+    font-size: 0.8rem;
+  }
+}
+
+.jac-main-navigation {
+  .nav-item + .nav-item {
+    margin-left: spacing(3);
+  }
+}

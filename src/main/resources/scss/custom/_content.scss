@@ -1,8 +1,11 @@
 $list-puce-size: 22px;
 
-.jac-content {
+.jac-main {
+  padding-top: spacing(5);
   line-height: 1.6;
+}
 
+.jac-content {
   // -------
   // List
   // -------
@@ -13,22 +16,7 @@ $list-puce-size: 22px;
 
   li {
     position: relative;
-    margin-bottom: 1rem;
-  }
-
-  ul > li {
-    &::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      top: 4px;
-      left: calc(($list-puce-size + 5px) * -1);
-      height: $list-puce-size;
-      width: $list-puce-size;
-      background-image: $chevron-right;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
+    margin-bottom: spacing(3);
   }
 
   ol {
@@ -40,6 +28,7 @@ $list-puce-size: 22px;
         display: inline-block;
         background-color: $primary;
         border-radius: 20px;
+        border-radius: $border-radius-pill;
         color: $white;
         content: counters(b, ".");
         counter-increment: b;
@@ -56,23 +45,36 @@ $list-puce-size: 22px;
     }
   }
 
+  ul > li:not(.nav-item) {
+    &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 4px;
+      left: calc(($list-puce-size + 5px) * -1);
+      height: $list-puce-size;
+      width: $list-puce-size;
+      background-image: $chevron-right;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
   // -------
   // Snippet
   // -------
   p code {
     background-color: $gray-100;
     padding: 4px;
-    border-radius: 4px;
+    border-radius: $border-radius;
   }
 
   pre {
-    margin-top: 0.65rem;
     white-space: pre;
-    padding: 0;
-    margin-bottom: 1rem;
+    padding: spacing(3);
     background-color: $gray-100;
     border: 0;
-    border-radius: 4px;
+    border-radius: $border-radius;
 
     code {
       background-color: transparent;
@@ -83,10 +85,6 @@ $list-puce-size: 22px;
   // Images
   // -------
   figure {
-    margin: 1rem 0;
+    margin: spacing(3) 0;
   }
 }
-
-// .jac-content-title {
-
-// }

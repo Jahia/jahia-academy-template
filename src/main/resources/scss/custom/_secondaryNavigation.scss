@@ -1,12 +1,14 @@
 .jac-secondary-navigation-list {
   > li {
-    margin-bottom: 1rem;
+    margin-bottom: spacing(3);
   }
 }
 
 .jac-secondary-navigation-link {
-  padding: 0.1875rem 0.5rem;
-  margin-top: 0.125rem;
+  padding: 0.1875rem spacing(2);
+  margin-top: spacing(1);
+
+  //   border: 4px solid red;
   width: 100%;
   line-height: 1.4;
 
@@ -23,7 +25,7 @@
 
 .jac-secondary-navigation {
   overflow-y: auto;
-  max-height: calc(100vh - 86px);
+  max-height: calc(100vh - $site-header-height);
 
   // @include media-breakpoint-up(md) {
   //   position: sticky;
@@ -48,19 +50,19 @@
   }
 
   ul ul ul {
-    padding-left: 1rem;
+    padding-left: spacing(3);
   }
 
   > ul {
     @include media-breakpoint-down(md) {
-      padding: 1.5rem 0.75rem;
+      padding: spacing(4) spacing(2);
       background-color: $gray-100;
       border-bottom: 1px solid $gray-200;
     }
 
     >li {
       display: grid;
-      margin-bottom: 1rem;
+      margin-bottom: spacing(3);
 
       >a,
       >.btn {
@@ -84,7 +86,7 @@
   }
 
   .btn {
-    padding: 0.25rem 0.5rem;
+    padding: spacing(1) spacing(2);
     margin-left: -0.15rem;
     border: 0;
 
