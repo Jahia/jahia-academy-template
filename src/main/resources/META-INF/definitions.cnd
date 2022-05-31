@@ -85,6 +85,12 @@
  itemtype = content
  - value (string) = 'This page will be hidden in the menu.' protected
 
+[jacademix:hideInThisPageMenu] mixin
+ extends = jmix:navMenuItem
+ itemtype = content
+ - hideInThisPageMenu (string) = 'Do not display the In This Page menu.' protected
+
+
 [jacademy:loginForm] > jnt:content, jacademix:document
  - textContent (string, richtext[ckeditor.toolbar='Tiny',ckeditor.customConfig='$context/modules/jahia-academy-template/javascript/ck/ckconfig.js']) = '<h2>Restricted content</h2><p>You must sign in with your customer account to access this content.</p>' internationalized
 
