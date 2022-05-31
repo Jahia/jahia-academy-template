@@ -45,17 +45,17 @@ TODO: jacademix:alternateTitle
 <body class="jac-template-fixapplier d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
       data-bs-offset="180" tabindex="0">
 <template:include view="hidden.main-menu"/>
-
-<main class="jac-main container-fluid">
+<template:include view="hidden.sidenav" var="sidenav"/>
+<main class="jac-main ${empty sidenav?'container':'container-fluid'}">
     <div class="row">
         <!-- Secondary-navigation -->
-        <template:include view="hidden.sidenav" var="sidenav"/>
+
         <c:if test="${! empty sidenav}">
-            <aside class="d-none d-md-block col-3 col-xxl-3 p-0">
+            <aside class="d-none d-md-block col-md-3 p-0">
                     ${sidenav}
             </aside>
         </c:if>
-        <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'} col-xxl-${empty sidenav ? '10' : '8'}">
+        <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'} ">
             <div class="container-lg">
                 <div class="row gx-5">
                     <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
