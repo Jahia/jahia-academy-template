@@ -12,7 +12,7 @@
 <%--@elvariable id="workspace" type="java.lang.String"--%>
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
-<aside%--@elvariable id="url" type="org.jahia.services.render.URLGenerator" --%>
+<%--@elvariable id="url" type="org.jahia.services.render.URLGenerator" --%>
     <c:set var="language" value="${renderContext.mainResourceLocale.language}" />
     <c:set var="mainResourceNode" value="${renderContext.mainResource.node}" />
     <html lang="${language}">
