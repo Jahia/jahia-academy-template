@@ -90,6 +90,7 @@ TODO: jacademix:alternateTitle
                                 <span class="text-secondary small"><span id="publishedDate"></span> <span
                                         class="sr-only">${formatedReleaseDate}</span></span>
                             </c:if>
+                            <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
                                 <c:set var="personas" value="${mainResourceNode.properties.personas}"/>
                                 <c:if test="${! empty personas}">
@@ -99,6 +100,7 @@ TODO: jacademix:alternateTitle
                                     </c:forEach>
                                 </c:if>
                             </c:if>
+                            --%>
                             <div class="mt-4">
                                 <template:area path="document-area"/>
                             </div>

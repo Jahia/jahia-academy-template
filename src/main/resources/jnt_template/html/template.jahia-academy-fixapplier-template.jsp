@@ -61,6 +61,7 @@ TODO: jacademix:alternateTitle
                     <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
                         <!-- Page content -->
                         <article class="jac-content my-5 bg-white" id="article">
+                            <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
                                 <c:set var="personas" value="${mainResourceNode.properties.personas}"/>
                                 <c:if test="${! empty personas}">
@@ -70,6 +71,7 @@ TODO: jacademix:alternateTitle
                                     </c:forEach>
                                 </c:if>
                             </c:if>
+                            --%>
                             <h1 class="jac-content-title">${pageTitle}</h1>
                             <c:set var="lastPublishedDate"
                                    value="${mainResourceNode.properties['j:lastPublished'].time}"/>
