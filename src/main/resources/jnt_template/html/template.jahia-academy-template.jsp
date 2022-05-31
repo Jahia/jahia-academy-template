@@ -54,15 +54,29 @@
         <template:area path="footer" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
     </footer>
 
-    <template:addResources type="javascript" resources="bootstrap.bundle.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
-    <template:addResources type="javascript" resources="jquery.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
-    <template:addResources type="javascript" resources="toc.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
-    <template:addResources type="javascript" resources="index.bundle.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
+<template:addResources type="javascript" resources="bootstrap.bundle.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="jquery.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="toc.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="index.bundle.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="moment.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
+    <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
+        <script>
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
 
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })
+        </script>
+    </template:addResources>
     <c:if test="${renderContext.previewMode}">
 
         <div style="

@@ -86,7 +86,7 @@ After that, you need to play 2 scripts (play it until there are no more errors):
 
 - grid-refactoring.groovy
 - grid-rename.groovy
-
+- tooltips.groovy
 
 This may be usefull if we remove the custom hidePage
 

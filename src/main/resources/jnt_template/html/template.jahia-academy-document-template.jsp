@@ -130,10 +130,8 @@ TODO: jacademix:alternateTitle
                        targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="jquery.min.js"
                        targetTag="${renderContext.editMode?'head':'body'}"/>
-<c:if test="${displayInThisPage}">
-    <template:addResources type="javascript" resources="toc.min.js"
-                           targetTag="${renderContext.editMode?'head':'body'}"/>
-</c:if>
+<template:addResources type="javascript" resources="toc.min.js"
+                       targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="index.bundle.min.js"
                        targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="moment.min.js"
@@ -165,9 +163,19 @@ TODO: jacademix:alternateTitle
         <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         </c:if>
         $("#publishedDate").text(moment("${testDate}", "MMYY").fromNow());
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+
     </script>
 </template:addResources>
-
 <c:if test="${renderContext.previewMode}">
     <div style="
     position: fixed;
