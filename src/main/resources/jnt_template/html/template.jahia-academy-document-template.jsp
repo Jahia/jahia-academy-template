@@ -140,7 +140,7 @@ TODO: jacademix:alternateTitle
     <c:set var="pageId" value="#page-${mainResourceNode.identifier}" />
     <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
         <script>
-        <% --
+        <%--
                 $.fn.isInViewport = function () {
                     var elementTop = $(this).offset().top;
                     var elementBottom = elementTop + $(this).outerHeight();
