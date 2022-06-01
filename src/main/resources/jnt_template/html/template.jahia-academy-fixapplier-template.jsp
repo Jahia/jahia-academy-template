@@ -137,11 +137,6 @@ TODO: jacademix:alternateTitle
             var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)
             })
-
-            // Remove the Table of content when there are no items inside
-            if ($("#toc").find('.toc-list').is(':empty')) {
-                $("#toc").remove();
-            }
         </script>
     </template:addResources>
     <c:if test="${renderContext.previewMode}">
