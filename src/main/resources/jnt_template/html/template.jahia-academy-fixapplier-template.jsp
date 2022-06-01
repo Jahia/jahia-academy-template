@@ -39,6 +39,9 @@ TODO: jacademix:alternateTitle
     <c:if test="${empty pageTitle}">
         <c:set var="pageTitle" value="${mainResourceNode.displayableName}" />
     </c:if>
+    <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:fixApplier')}">
+        <c:set var="pageTitle" value="From ${mainResourceNode.properties.from.string} to ${mainResourceNode.properties.to.string}"/>
+    </c:if>
     <title>${fn:escapeXml(pageTitle)}</title>
 </head>
 
