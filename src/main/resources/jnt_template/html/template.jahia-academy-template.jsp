@@ -49,6 +49,13 @@
         <template:area path="pagecontent" />
     </main>
 
+    <c:if test="${renderContext.site.home.path eq mainResourceNode.path}">
+        <c:if test="${renderContext.editMode}">
+            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+        </c:if>
+    </c:if>
+
+
     <!-- Footer -->
     <footer class="footer py-3 px-5 bg-dark">
         <template:area path="footer" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
