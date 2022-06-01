@@ -60,7 +60,7 @@ TODO: jacademix:alternateTitle
                     <div class="row gx-5">
                         <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
                             <!-- Page content -->
-                            <article class="jac-content my-5 bg-white" id="article">
+                            <article class="jac-content bg-white" id="article">
                                 <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
                                 <c:set var="personas" value="${mainResourceNode.properties.personas}"/>
