@@ -163,6 +163,11 @@ TODO: jacademix:alternateTitle
         <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         </c:if>
             $("#publishedDate").text(moment("${testDate}", "MMYY").fromNow());
+            
+            // Remove the Table of content when there are no items inside
+            if ($("#toc").find('.toc-list').is(':empty')) {
+                $("#toc").remove();
+            }
 
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
