@@ -113,31 +113,36 @@ td.hljs-ln-code {
   padding-left: 0;
   border-top: 1px solid $gray-200;
 
-  > * {
-    margin: 0;
-  }
-
   // color: $primary;
+
+  &.active {
+    margin-bottom: spacing(2);
+  }
 
   &:first-of-type {
     border-top-width: 0;
   }
 
   &:not(.collapsed) {
-    color: inherit;
-    background-color: transparent;
+    // color: inherit;
+    // background-color: transparent;
     box-shadow: none;
 
     &::after {
       margin-top: 12px;
     }
   }
+
+  > * {
+    margin: 0;
+  }
 }
 
 .nav-tabs {
   border-bottom: none;
-  padding-top: spacing(3);
-  padding-bottom: spacing(3);
+  margin-top: spacing(3);
+
+  // padding-bottom: spacing(3);
   margin-bottom: spacing(3);
 
   .nav-link {
@@ -225,8 +230,9 @@ td.hljs-ln-code {
 
 .btn-primary {
   color: $white;
-  background-color: $primary;
-  border-color: $primary;
+
+  // background-color: $primary;
+  // border-color: $primary;
 
   &:hover {
     color: $white;

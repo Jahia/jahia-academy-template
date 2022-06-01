@@ -104,6 +104,20 @@ $breadcrumb-margin-bottom: 0; // default 1rem
 // $breadcrumb-divider: "/";
 // $breadcrumb-divider-flipped: $breadcrumb-divider;
 // $breadcrumb-border-radius: null;
+
+// -----------------
+// Accordion
+// -----------------
 $accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$primary}'><path d='M22.9585 13.5834H13.2085V23.0834H9.9585V13.5834H0.208496V10.4167H9.9585V0.916748H13.2085V10.4167H22.9585V13.5834Z'/></svg>");
 $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$primary}'><path d='M22.9585 3.58342H0.208496V0.416748H22.9585V3.58342Z'/></svg>");
+$accordion-color: $primary;
 $accordion-icon-transform: none;
+$accordion-button-active-bg: transparent;
+$accordion-button-active-color: $primary;
+$accordion-button-focus-border-color: transparent;
+$accordion-button-focus-box-shadow: none;
+
+// -----------------
+// Table
+// -----------------
+$table-cell-vertical-align: middle;
