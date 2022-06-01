@@ -14,7 +14,7 @@ String siteKey = "academy";
 
 /* limit the search/replace to a certain path */
 //String descendentnode = "/sites/academy/home/training--kb/how-to";
-String descendentnode = "/sites/academy/home/documentation";
+String descendentnode = "/sites/academy/home";
 //String descendentnode = "/sites/academy/home/documentation/end-user";
 //String descendentnode = "/sites/academy/home/documentation/developer";
 //String descendentnode = "/sites/academy/home/customer-center/digital-experience-manager/how-to-upgrade/pagecontent/byproduct/byproduct/view-all-fix-appliers/grid-layout-2/fix-applier-table-1.2";
@@ -23,6 +23,7 @@ String descendentnode = "/sites/academy/home/documentation";
 def propertiesToLookAt = new HashMap<String, Object>();
 //propertiesToLookAt.put("jnt:fixApplier",["howToUpgrade"]);
 propertiesToLookAt.put("jacademix:textContent",["textContent"]);
+propertiesToLookAt.put("jacademy:textBox",["text"]);
 propertiesToLookAt.put("jacademix:document",["jcr:title"]);
 propertiesToLookAt.put("jmix:navMenuItem",["jcr:title"]);
 propertiesToLookAt.put("jacademix:alternateTitle",["alternateTitle"]);
@@ -31,54 +32,61 @@ propertiesToLookAt.put("jacademix:kbUseCase",["textContent","answer","cause"]);
 
 /* only search/replace in path that contains a pathRestriction */
 Set<String> pathRestriction = new HashSet<String>();
-//pathRestriction.add("/");
-pathRestriction.add("/dx/73/");
-pathRestriction.add("/mf/110/");
-pathRestriction.add("/ff/23");
-pathRestriction.add("/dx/techwiki/");
-pathRestriction.add("/training--kb/how-to/");
+pathRestriction.add("/");
+//pathRestriction.add("/dx/73/");
+//pathRestriction.add("/mf/110/");
+//pathRestriction.add("/ff/23");
+//pathRestriction.add("/dx/techwiki/");
+//pathRestriction.add("/training--kb/how-to/");
 
 /* list of search / replace text */
 def searchReplace = new LinkedHashMap<String, String>();
+
+searchReplace.put("data-toggle","data-bs-toggle");
+searchReplace.put("data-content","data-bs-content");
+searchReplace.put("data-container","data-bs-container");
+searchReplace.put("data-placement","data-bs-placement");
+searchReplace.put("data-content","data-bs-content");
+
 //searchReplace.put("files/default/sites","files/live/sites");
-searchReplace.put("Jahia Digital Experience Manager", "Jahia");
-searchReplace.put("Digital Experience Manager", "Jahia");
-searchReplace.put("DXM", "Jahia");
-searchReplace.put("Jahia DX Manager", "Jahia");
-searchReplace.put("Jahia DX", "Jahia");
-searchReplace.put(" DX", " Jahia");
-searchReplace.put("DX ", "Jahia ");
-searchReplace.put(" JahiaP", " DXP"); // to prevent DXP -> JahiaP...
-searchReplace.put("Marketing Factory (MF)", "jExperience");
-searchReplace.put("Marketing Factory", "jExperience");
-searchReplace.put(" MF", " jExperience");
-searchReplace.put("MF ", "jExperience ");
-searchReplace.put("Form Factory (FF)", "Forms");
-searchReplace.put("Form Factory", "Forms");
-searchReplace.put(" FF", " Forms");
-searchReplace.put("FF ", "Forms ");
-searchReplace.put("OForms ", "OFF "); // to prevent OFF -> OForms
-searchReplace.put("Jahia Jahia ", "Jahia");
-searchReplace.put("Jahia 7.3.1", "DX 7.3.1");
-searchReplace.put("Jahia 7.3.0", "DX 7.3.0");
-searchReplace.put("Jahia 7.2", "DX 7.2");
-searchReplace.put("Jahia 7.1", "DX 7.1");
-searchReplace.put("Jahia 7.0", "DX 7.0");
-searchReplace.put("jExperience 1.9", "Marketing Factory 1.9");
-searchReplace.put("jExperience 1.8", "Marketing Factory 1.8");
-searchReplace.put("jExperience 1.7", "Marketing Factory 1.7");
-searchReplace.put("jExperience 1.6", "Marketing Factory 1.6");
-searchReplace.put("Forms 2.2", "Form Factory 2.2");
-searchReplace.put("Forms 2.1", "Form Factory 2.1");
-searchReplace.put("JahiaGraphQLExtensionsProvider", "DXGraphQLExtensionsProvider");
-searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
-searchReplace.put(" Unomi", " Apache Unomi");
-searchReplace.put("Unomi ", "Apache Unomi ");
-searchReplace.put("Apache Apache Unomi", "Apache Unomi");
-searchReplace.put("Apache Unomi", "jCustomer");
-searchReplace.put("Apache jCustomer", "jCustomer");
-searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
-searchReplace.put("JExperience", "jExperience");
+//searchReplace.put("Jahia Digital Experience Manager", "Jahia");
+//searchReplace.put("Digital Experience Manager", "Jahia");
+//searchReplace.put("DXM", "Jahia");
+//searchReplace.put("Jahia DX Manager", "Jahia");
+//searchReplace.put("Jahia DX", "Jahia");
+//searchReplace.put(" DX", " Jahia");
+//searchReplace.put("DX ", "Jahia ");
+//searchReplace.put(" JahiaP", " DXP"); // to prevent DXP -> JahiaP...
+//searchReplace.put("Marketing Factory (MF)", "jExperience");
+//searchReplace.put("Marketing Factory", "jExperience");
+//searchReplace.put(" MF", " jExperience");
+//searchReplace.put("MF ", "jExperience ");
+//searchReplace.put("Form Factory (FF)", "Forms");
+//searchReplace.put("Form Factory", "Forms");
+//searchReplace.put(" FF", " Forms");
+//searchReplace.put("FF ", "Forms ");
+//searchReplace.put("OForms ", "OFF "); // to prevent OFF -> OForms
+//searchReplace.put("Jahia Jahia ", "Jahia");
+//searchReplace.put("Jahia 7.3.1", "DX 7.3.1");
+//searchReplace.put("Jahia 7.3.0", "DX 7.3.0");
+//searchReplace.put("Jahia 7.2", "DX 7.2");
+//searchReplace.put("Jahia 7.1", "DX 7.1");
+//searchReplace.put("Jahia 7.0", "DX 7.0");
+//searchReplace.put("jExperience 1.9", "Marketing Factory 1.9");
+//searchReplace.put("jExperience 1.8", "Marketing Factory 1.8");
+//searchReplace.put("jExperience 1.7", "Marketing Factory 1.7");
+//searchReplace.put("jExperience 1.6", "Marketing Factory 1.6");
+//searchReplace.put("Forms 2.2", "Form Factory 2.2");
+//searchReplace.put("Forms 2.1", "Form Factory 2.1");
+//searchReplace.put("JahiaGraphQLExtensionsProvider", "DXGraphQLExtensionsProvider");
+//searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
+//searchReplace.put(" Unomi", " Apache Unomi");
+//searchReplace.put("Unomi ", "Apache Unomi ");
+//searchReplace.put("Apache Apache Unomi", "Apache Unomi");
+//searchReplace.put("Apache Unomi", "jCustomer");
+//searchReplace.put("Apache jCustomer", "jCustomer");
+//searchReplace.put("MANIFEST.jExperience", "MANIFEST.MF");
+//searchReplace.put("JExperience", "jExperience");
 
 
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey(siteKey);
