@@ -52,7 +52,9 @@
                                     var="formatedReleaseDate" />
                             </c:otherwise>
                         </c:choose>
+                        <%--
                         <div class="text-secondary small">${formatedReleaseDate} - <span class="eta"></span> read</div>
+                        --%>
                     </c:if>
 
 
