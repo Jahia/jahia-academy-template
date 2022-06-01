@@ -90,7 +90,9 @@ td.hljs-ln-code {
   right: 0.65rem;
   z-index: 10;
   display: block;
-  padding: 0.25rem 0.5rem;
+
+  // padding: 0.25rem 0.5rem;
+  padding: spacing(1) spacing(2);
 
   @include font-size(0.65em);
 
@@ -188,9 +190,9 @@ td.hljs-ln-code {
   }
 }
 
-.tab-content {
-  margin-bottom: spacing(2);
-}
+// .tab-content {
+//   margin-bottom: spacing(2);
+// }
 
 .bluebg {
   background-color: $light;
@@ -225,6 +227,10 @@ td.hljs-ln-code {
   color: $white;
   background-color: $primary;
   border-color: $primary;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 a[aria-expanded="false"] .fa-angle-up,

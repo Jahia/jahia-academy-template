@@ -1,16 +1,22 @@
 $list-puce-size: 22px;
 
 .jac-main {
-  padding-top: spacing(5);
   line-height: 1.6;
 }
 
 .jac-content {
+  padding-top: spacing(5);
+
+  .blue {
+    color: $primary;
+  }
+
   // -------
   // List
   // -------
   ol,
-  ul:not(.fa-ul) {
+  ul {
+    // ul:not(.fa-ul) {
     list-style: none;
   }
 
@@ -45,7 +51,8 @@ $list-puce-size: 22px;
     }
   }
 
-  ul > li:not(.nav-item) {
+  ul:not(.nav-tabs) > li {
+    // ul:not(.fa-ul, .nav-tabs) > li {
     &::before {
       content: "";
       display: inline-block;
@@ -85,6 +92,7 @@ $list-puce-size: 22px;
   // Images
   // -------
   figure {
-    margin: spacing(3) 0;
+    display: block;
+    margin: spacing(4) 0;
   }
 }

@@ -64,7 +64,7 @@
                                 </c:if>
 
                                 <!-- Page content -->
-                                <article class="jac-content my-5" id="article">
+                                <article class="jac-content" id="article">
                                     <h1 class="jac-content-title">${pageTitle}</h1>
                                     <c:set var="lastPublishedDate"
                                         value="${mainResourceNode.properties['j:lastPublished'].time}" />

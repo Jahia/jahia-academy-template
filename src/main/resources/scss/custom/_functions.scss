@@ -1,3 +1,5 @@
+// The spacing map object is definied by bootstrap anc can be overiden
+// Bootstrap doc: https://getbootstrap.com/docs/5.2/utilities/spacing/#sass
 @function spacing($spacersIndex) {
   @if map-has-key($spacers, $spacersIndex) {
     @return map-get($spacers, $spacersIndex);

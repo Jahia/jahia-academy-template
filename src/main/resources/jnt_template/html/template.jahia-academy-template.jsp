@@ -45,7 +45,7 @@
     data-bs-offset="180" tabindex="0">
     <template:include view="hidden.main-menu" />
 
-    <main class="jac-main jac-content my-5">
+    <main class="jac-main jac-content">
         <template:area path="pagecontent" />
     </main>
 

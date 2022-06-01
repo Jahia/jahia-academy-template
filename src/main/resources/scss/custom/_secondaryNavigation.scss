@@ -95,6 +95,8 @@
     // }
 
     &::before {
+      margin-right: spacing(1);
+
       //   width: 1.25em;
       //   line-height: 0; // Align in the middle
       content: escape-svg($chevron-right);

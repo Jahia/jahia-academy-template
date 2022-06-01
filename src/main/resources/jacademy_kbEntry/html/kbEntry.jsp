@@ -51,18 +51,18 @@
     </div>
     <div class="flex-grow-1 ms-3 ">
         <h5>${title}</h5>
-        <p>
+        <span>
             <c:set var="textSummry" value="${functions:removeHtmlTags(summary)}"/>
             ${functions:abbreviate(textSummry, 150, 250, '...')}
             <a href="${detailView}" class="text-muted stretched-link"><i class="fas fa-arrow-right"></i></a>
-        </p>
+        </span>
     </div>
 </div>
 <%--
 <div class="media kb" data-href="${detailView}">
     <div class="media-left">
         <a href="${detailView}" class="text-muted">
-            <i class="${icon} fa-fw fa-2x"></i>
+            <i class="${icon} fa-fw fa-2x ms-2"></i>
         </a>
     </div>
     <div class="media-body">
