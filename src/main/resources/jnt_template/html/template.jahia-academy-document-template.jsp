@@ -64,7 +64,7 @@ TODO: jacademix:alternateTitle
                             </c:if>
 
                             <!-- Page content -->
-                            <article class="jac-content my-5" id="article">
+                            <article class="jac-content" id="article">
                                 <h1 class="jac-content-title">${pageTitle}</h1>
                                 <c:set var="lastPublishedDate"
                                     value="${mainResourceNode.properties['j:lastPublished'].time}" />
@@ -86,7 +86,7 @@ TODO: jacademix:alternateTitle
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="text-secondary small"><span id="publishedDate"></span> <span
-                                            class="sr-only">${formatedReleaseDate}</span></span>
+                                            class="sr-only">Published ${formatedReleaseDate}</span></span>
                                 </c:if>
                                 <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
@@ -163,6 +163,11 @@ TODO: jacademix:alternateTitle
         <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         </c:if>
             $("#publishedDate").text(moment("${testDate}", "MMYY").fromNow());
+            
+            // Remove the Table of content when there are no items inside
+            if ($("#toc").find('.toc-list').is(':empty')) {
+                $("#toc").remove();
+            }
 
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

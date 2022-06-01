@@ -12,24 +12,45 @@ $list-puce-size: 22px;
   }
 
   // -------
+  // Headings
+  // -------
+  h6,
+  .h6,
+  h5,
+  .h5,
+  h4,
+  .h4,
+  h3,
+  .h3,
+  h2,
+  .h2,
+  h1,
+  .h1 {
+    &:not(:first-child) {
+      margin-top: spacing(4);
+    }
+  }
+
+  // -------
   // List
   // -------
   ol,
   ul {
-    // ul:not(.fa-ul) {
     list-style: none;
   }
 
-  li {
+  li:not(.nav-item) {
     position: relative;
     margin-bottom: spacing(3);
   }
 
   ol {
     counter-reset: b;
-    list-style: none;
+    list-style: none !important;
 
     > li {
+      list-style-type: none;
+
       &::before {
         display: inline-block;
         background-color: $primary;
@@ -51,9 +72,8 @@ $list-puce-size: 22px;
     }
   }
 
-  ul:not(.nav-tabs) > li {
-    // ul:not(.fa-ul, .nav-tabs) > li {
-    &::before {
+  ul:not(.fa-ul, .nav-tabs) {
+    & > li::before {
       content: "";
       display: inline-block;
       position: absolute;

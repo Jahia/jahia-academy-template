@@ -63,7 +63,7 @@ TODO: jacademix:alternateTitle
                     <div class="row gx-5">
                         <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
                             <!-- Page content -->
-                            <article class="jac-content my-5 bg-white" id="article">
+                            <article class="jac-content bg-white" id="article">
                                 <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
                                 <c:set var="personas" value="${mainResourceNode.properties.personas}"/>
@@ -89,9 +89,7 @@ TODO: jacademix:alternateTitle
                                                 var="formatedReleaseDate" />
                                         </c:otherwise>
                                     </c:choose>
-                                    <div class="text-secondary small">${formatedReleaseDate} - <span class="eta"></span>
-                                        read
-                                    </div>
+                                    <div class="text-secondary small">Published ${formatedReleaseDate}</div>
                                 </c:if>
 
                                 <div class="mt-4">
@@ -142,6 +140,11 @@ TODO: jacademix:alternateTitle
             var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)
             })
+
+            // Remove the Table of content when there are no items inside
+            if ($("#toc").find('.toc-list').is(':empty')) {
+                $("#toc").remove();
+            }
         </script>
     </template:addResources>
     <c:if test="${renderContext.previewMode}">
