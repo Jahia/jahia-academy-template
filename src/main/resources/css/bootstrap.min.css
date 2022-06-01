@@ -11382,6 +11382,10 @@ footer {
   font-weight: 900;
   color: #209fda;
 }
+.jac-secondary-navigation-link[href="#"] {
+  cursor: pointer;
+  pointer-events: none;
+}
 
 .jac-secondary-navigation-link_two,
 .jac-secondary-navigation-link_three {
@@ -11459,19 +11463,19 @@ footer {
 .jac-content .blue {
   color: #209fda;
 }
-.jac-content h6,
-.jac-content .h6,
-.jac-content h5,
-.jac-content .h5,
-.jac-content h4,
-.jac-content .h4,
-.jac-content h3,
-.jac-content .h3,
-.jac-content h2,
-.jac-content .h2,
-.jac-content h1,
-.jac-content .h1 {
-  margin-top: 3rem;
+.jac-content h6:not(:first-child),
+.jac-content .h6:not(:first-child),
+.jac-content h5:not(:first-child),
+.jac-content .h5:not(:first-child),
+.jac-content h4:not(:first-child),
+.jac-content .h4:not(:first-child),
+.jac-content h3:not(:first-child),
+.jac-content .h3:not(:first-child),
+.jac-content h2:not(:first-child),
+.jac-content .h2:not(:first-child),
+.jac-content h1:not(:first-child),
+.jac-content .h1:not(:first-child) {
+  margin-top: 1.5rem;
 }
 .jac-content ol,
 .jac-content ul {
@@ -11483,7 +11487,10 @@ footer {
 }
 .jac-content ol {
   counter-reset: b;
-  list-style: none;
+  list-style: none !important;
+}
+.jac-content ol > li {
+  list-style-type: none;
 }
 .jac-content ol > li::before {
   display: inline-block;

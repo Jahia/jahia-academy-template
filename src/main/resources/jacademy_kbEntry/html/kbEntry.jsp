@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="flex-grow-1 ms-3 ">
-        <h5>${title}</h5>
+        <h5 class="mb-1">${title}</h5>
         <span>
             <c:set var="textSummry" value="${functions:removeHtmlTags(summary)}"/>
             ${functions:abbreviate(textSummry, 150, 250, '...')}

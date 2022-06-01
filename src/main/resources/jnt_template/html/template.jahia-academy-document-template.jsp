@@ -86,7 +86,7 @@ TODO: jacademix:alternateTitle
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="text-secondary small"><span id="publishedDate"></span> <span
-                                            class="sr-only">${formatedReleaseDate}</span></span>
+                                            class="sr-only">Published ${formatedReleaseDate}</span></span>
                                 </c:if>
                                 <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">

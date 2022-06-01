@@ -16,6 +16,11 @@
     font-weight: 900;
     color: $primary;
   }
+
+  &[href="#"] {
+    cursor: pointer;
+    pointer-events: none;
+  }
 }
 
 .jac-secondary-navigation-link_two,

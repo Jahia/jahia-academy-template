@@ -86,9 +86,7 @@ TODO: jacademix:alternateTitle
                                                 var="formatedReleaseDate" />
                                         </c:otherwise>
                                     </c:choose>
-                                    <div class="text-secondary small">${formatedReleaseDate} - <span class="eta"></span>
-                                        read
-                                    </div>
+                                    <div class="text-secondary small">Published ${formatedReleaseDate}</div>
                                 </c:if>
 
                                 <div class="mt-4">

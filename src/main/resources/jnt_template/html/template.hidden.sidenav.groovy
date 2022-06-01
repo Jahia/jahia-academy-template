@@ -73,11 +73,11 @@ printMenu = { startNode, level, maxlevel ->
 
                         } else if (level == 2) {
                             print "<li>";
-                                print "<a class='jac-secondary-navigation-link jac-secondary-navigation-link_two has-children btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false' href='#'>${menuItemTitle}"
+                                print "<span class='jac-secondary-navigation-link jac-secondary-navigation-link_two has-children btn d-inline-flex align-items-center rounded collapse' data-bs-target='#sideMenu-${currentNode.identifier}-${menuItem.identifier}' data-bs-toggle='collapse' aria-expanded='false'>${menuItemTitle}"
                                     if (isCurrent) {
                                         print " <span class='visually-hidden'>(current)</span>";
                                     }
-                                print "</a>";
+                                print "</span>";
                                 print "<div class=\"collapse${isActive?'d':''}\" id=\"sideMenu-${currentNode.identifier}-${menuItem.identifier}\">"
                                     print "<ul class=\"fw-normal pb-1 small\">";
                                         printMenu(menuItem, level + 1, maxlevel);
