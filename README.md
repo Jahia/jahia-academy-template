@@ -89,65 +89,10 @@ After that, you need to play 2 scripts (play it until there are no more errors):
 - tooltips.groovy
 - search-for-row-eq-height.groovy
 
-This may be usefull if we remove the custom hidePage
+## Jahia config
 
-Search for jacademix:hidePage
---> add j:displayInMenuName property with value hide-this-page
-
-This can be done with this script
-
+Set the following settings in the `jahia.properties` to prevent bad loading of forms JS files
 ```
-import org.jahia.api.Constants
-import org.jahia.services.content.*
-import org.jahia.services.sites.JahiaSite
-
-import javax.jcr.NodeIterator
-import javax.jcr.PathNotFoundException
-import javax.jcr.RepositoryException
-import javax.jcr.query.Query
-
-String mixin = "jacademix:hidePage";
-def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey("academy");
-
-for (Locale locale : site.getLanguagesAsLocales()) {
-    JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
-        @Override
-        Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
-            def q = "SELECT * FROM [" + mixin + "]";
-
-            NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(q, Query.JCR_SQL2).execute().getNodes();
-            while (iterator.hasNext()) {
-                final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
-                node.addMixin("jmix:navMenu");
-                JCRPropertyWrapper platformVersionsProperty = null;
-                try {
-                    platformVersionsProperty = node.getProperty("j:displayInMenuName");
-                    try {
-                        platformVersionsProperty.addValue("hide-this-page");
-                    } catch (javax.jcr.ValueFormatException e) {
-                    }
-                    node.setProperty("j:displayInMenuName", platformVersionsProperty.getValues());
-                    logger.info(node.path);
-                    session.save();
-                } catch (PathNotFoundException pnf) {
-
-                }
-
-            }
-            return null;
-        }
-    }
-    );
-}
-
+aggregateAssets=false
+compressAssetsDuringAggregation=false
 ```
-
-
-
-
-
-
-
-
-
-
