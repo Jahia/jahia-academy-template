@@ -105,14 +105,18 @@
                         </div>
                     </c:if>
                 </c:if>
-
-
             </article>
         </div>
     </div>
 </div>
 
-
+<div class="container-lg my-3">
+    <div class="row">
+        <div class="col-12">
+            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+        </div>
+    </div>
+</div>
 
 <template:addResources type="css" resources="github.min.css" />
 

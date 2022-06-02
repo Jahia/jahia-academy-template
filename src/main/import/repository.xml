@@ -83,9 +83,6 @@
                    jcr:primaryType="jnt:contentTemplate">
                   <pagecontent jcr:primaryType="jnt:contentList">
                      <main-resource-display j:mainResourceView="detail" jcr:primaryType="jnt:mainResourceDisplay"/>
-                     <feedback j:level="0"
-                               j:limitedAbsoluteAreaEdit="false"
-                               jcr:primaryType="jnt:absoluteArea"/>
                   </pagecontent>
                </kb>
             </base>
