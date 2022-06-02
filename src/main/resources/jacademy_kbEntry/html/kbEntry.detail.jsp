@@ -113,7 +113,7 @@
 <div class="container-lg my-3">
     <div class="row">
         <div class="col-12">
-            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" editable="false"/>
         </div>
     </div>
 </div>

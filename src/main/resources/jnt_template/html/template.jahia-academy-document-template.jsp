@@ -119,7 +119,7 @@ TODO: jacademix:alternateTitle
                     </div>
                     <div class="row my-3">
                         <div class="col-12">
-                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
                         </div>
                     </div>
             </div>
