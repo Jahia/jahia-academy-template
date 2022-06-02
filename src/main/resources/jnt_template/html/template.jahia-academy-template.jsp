@@ -49,9 +49,15 @@
         <template:area path="pagecontent" />
     </main>
 
-    <c:if test="${renderContext.site.home.path eq mainResourceNode.path}">
-        <c:if test="${renderContext.editMode}">
-            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+    <c:if test="${renderContext.editMode}">
+        <c:if test="${renderContext.site.home.path eq mainResourceNode.path}">
+            <div class="container-lg my-3">
+                <div class="row">
+                    <div class="col-12">
+                        <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+                    </div>
+                </div>
+            </div>
         </c:if>
     </c:if>
 

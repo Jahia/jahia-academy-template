@@ -117,7 +117,11 @@ TODO: jacademix:alternateTitle
                             </div>
                         </c:if>
                     </div>
-                </div>
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0" />
+                        </div>
+                    </div>
             </div>
         </div>
     </main>
