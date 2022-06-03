@@ -1,4 +1,5 @@
 import org.jahia.api.Constants
+import org.jahia.registries.ServicesRegistry
 import org.jahia.services.content.*
 import org.jahia.services.sites.JahiaSite
 
@@ -7,7 +8,7 @@ import javax.jcr.RepositoryException
 import javax.jcr.query.Query
 
 /* DANGER ZONE set to true to save the result */
-boolean doIt = false;
+boolean doIt = true;
 
 /* siteKey */
 String siteKey = "academy";
@@ -28,7 +29,7 @@ pathRestriction.add("/");
 def searchReplace = new LinkedHashMap<String, String>();
 
 searchReplace.put("row-eq-height","row-eq-height-disabled");
-
+Set<String> nodesToAutoPublish = new HashSet<String>();
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey(siteKey);
 for (Locale locale : site.getLanguagesAsLocales()) {
     JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
@@ -47,6 +48,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                         if (isInPathRestriction(nodePath,pathRestriction)) {
                             if (updateNode(node, prop, searchReplace)) {
                                 log.info("update [" + nt + "  " + prop + "] in path " + node.path + " " );
+                                nodesToAutoPublish.add(node.identifier);
                             }
                         }
                     }
@@ -55,7 +57,16 @@ for (Locale locale : site.getLanguagesAsLocales()) {
             if (doIt) {
                 session.save();
             }
-
+            if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
+                if (doIt) {
+                    ServicesRegistry.getInstance().getJCRPublicationService().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, null);
+                };
+                logger.info("");
+                logger.info("Nodes published:")
+                for (String identifier : nodesToAutoPublish) {
+                    logger.warn("   " + session.getNodeByIdentifier(identifier).getPath());
+                }
+            }
             return null;
         }
     });
