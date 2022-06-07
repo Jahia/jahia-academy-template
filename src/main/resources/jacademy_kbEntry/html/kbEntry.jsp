@@ -51,43 +51,10 @@
     </div>
     <div class="flex-grow-1 ms-3 ">
         <h5 class="mb-1">${title}</h5>
-        <span>
+        <span class="text-secondary">
             <c:set var="textSummry" value="${functions:removeHtmlTags(summary)}"/>
             ${functions:abbreviate(textSummry, 150, 250, '...')}
-            <a href="${detailView}" class="text-muted stretched-link"><i class="fas fa-arrow-right"></i></a>
+            <a href="${detailView}" class="text-muted stretched-link"><i class="ms-2 fas fa-arrow-right"></i></a>
         </span>
     </div>
 </div>
-<%--
-<div class="media kb" data-href="${detailView}">
-    <div class="media-left">
-        <a href="${detailView}" class="text-muted">
-            <i class="${icon} fa-fw fa-2x ms-2"></i>
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="${detailView}">${title}</a></h3>
-        <c:set var="textSummry" value="${functions:removeHtmlTags(summary)}"/>
-        ${functions:abbreviate(textSummry, 150, 250, '...')}
-        <a href="${detailView}" class="text-muted"><i class="fas fa-arrow-right"></i></a>
-        <div class="tags">
-            <c:if test="${! empty tagList}">
-                <c:forEach items="${tagList}" var="tag" varStatus="status">
-                    <c:if test="${! empty searchPage}">
-                        <c:url var="searchTagUrl" value="${searchPage.url}" context="/">
-                            <c:param name="src_terms[0].term" value="${tag.string}"/>
-                            <c:param name="src_terms[0].fields.tags" value="true"/>
-                            <c:param name="src_sites.values" value="${renderContext.site.siteKey}"/>
-                            <c:param name="autoSuggest" value="false"/>
-                        </c:url>
-                        <c:if test="${status.first}">
-                            <i class="fas fa-tags fa-fw text-muted" aria-hidden="true"></i>
-                        </c:if>
-                        <a class="label label-info" href="${searchTagUrl}">${tag.string}</a>
-                    </c:if>
-                </c:forEach>
-            </c:if>
-        </div>
-    </div>
-</div>
---%>

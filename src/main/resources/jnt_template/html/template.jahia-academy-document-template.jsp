@@ -50,12 +50,12 @@ TODO: jacademix:alternateTitle
         <div class="row">
             <!-- Secondary-navigation -->
             <c:if test="${! empty sidenav}">
-                <aside class="d-none d-md-block col-md-3 p-0">
+                <aside class="bg-light d-none d-md-block col-md-3 p-0">
                     ${sidenav}
                 </aside>
             </c:if>
             <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'}">
-                <div class="container-lg">
+                <div class="container-lg mb-4">
                     <div class="row gx-5">
                         <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
                             <!-- Breadcrumb -->
@@ -85,8 +85,10 @@ TODO: jacademix:alternateTitle
                                                 var="formatedReleaseDate" />
                                         </c:otherwise>
                                     </c:choose>
-                                    <span class="text-secondary small"><span id="publishedDate"></span> <span
-                                            class="sr-only">Published ${formatedReleaseDate}</span></span>
+                                    <div class="text-secondary small">
+                                        <span id="publishedDate"></span>
+                                        <span class="sr-only">${formatedReleaseDate}</span>
+                                    </div>
                                 </c:if>
                                 <%--
                             <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
@@ -99,7 +101,7 @@ TODO: jacademix:alternateTitle
                                 </c:if>
                             </c:if>
                             --%>
-                                <div class="mt-4">
+                                <div class="mt-5">
                                     <template:area path="document-area" />
                                 </div>
                             </article>
@@ -109,7 +111,6 @@ TODO: jacademix:alternateTitle
                             <div class="col-3">
                                 <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
                                     <strong class="text-primary mb-2 d-block">In this page</strong>
-                                    <!-- <nav id="toc2" data-toggle="#article" data-scope="h2"></nav> -->
                                     <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
                                     <hr>
                                     <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
@@ -118,7 +119,7 @@ TODO: jacademix:alternateTitle
                         </c:if>
                     </div>
                     <div class="row my-3">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-9">
                             <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
                         </div>
                     </div>
@@ -159,14 +160,14 @@ TODO: jacademix:alternateTitle
             --%>
         <c:set var="lastPublishedDate" value="${mainResourceNode.properties['j:lastPublished'].time}"/>
         <c:if test="${empty lastPublishedDate}">
-        <c:set var="lastPublishedDate" value="${mainResourceNode.properties['jcr:created'].time}"/>
+            <c:set var="lastPublishedDate" value="${mainResourceNode.properties['jcr:created'].time}"/>
         </c:if>
-        <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
+            <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         <c:if test="${testDate eq '0422'}">
-        <c:set var="lastPublishedDate" value="${mainResourceNode.properties['jcr:created'].time}"/>
-        <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
+            <c:set var="lastPublishedDate" value="${mainResourceNode.properties['jcr:created'].time}"/>
+            <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         </c:if>
-            $("#publishedDate").text(moment("${testDate}", "MMYY").fromNow());
+            $("#publishedDate").text(`Published ${moment("${testDate}", "MMYY").fromNow()}`);
 
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

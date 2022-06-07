@@ -9,3 +9,4 @@
 target
 // Generated styles
 src/main/resources/css/*.min.css
+src/main/resources/css/*.min.css.map

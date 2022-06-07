@@ -23,7 +23,7 @@
 </c:if>
 <c:if test="${fn:length(pageNodes) > 1}">
     <nav class="jac-breadcrumb mt-4" aria-label="breadcrumb">
-        <ol class="breadcrumb d-flex align-items-center py-3 m-0 small">
+        <ol class="breadcrumb d-flex align-items-center m-0 small">
             <c:forEach items="${functions:reverse(pageNodes)}" var="pageNode" varStatus="status">
                 <c:if test="${status.index > 1}">
                     <c:if test="${! jcr:isNodeType(pageNode, 'jacademix:hidePage')}">
@@ -179,33 +179,3 @@
         </ol>
     </nav>
 </c:if>
-
-<%--
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb d-flex align-items-center px-5 py-3 m-0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item dropdown">
-            <a href="#" class="dropdown-toggle" type="button" id="breadcrumb2" data-bs-toggle="dropdown"
-               aria-expanded="false">Library</a>
-            <ul class="dropdown-menu" aria-labelledby="breadcrumb2">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-            </ul>
-        </li>
-        <li class="breadcrumb-item dropdown active">
-            <a href="#" class="dropdown-toggle" type="button" id="breadcrumb3" data-bs-toggle="dropdown"
-               aria-expanded="false">Data</a>
-            <ul class="dropdown-menu" aria-labelledby="breadcrumb3">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-            </ul>
-        </li>
-    </ol>
-</nav>
---%>

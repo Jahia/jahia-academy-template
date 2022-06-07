@@ -54,7 +54,7 @@ TODO: jacademix:alternateTitle
             <!-- Secondary-navigation -->
 
             <c:if test="${! empty sidenav}">
-                <aside class="d-none d-md-block col-md-3 p-0">
+                <aside class="bg-light d-none d-md-block col-md-3 p-0">
                     ${sidenav}
                 </aside>
             </c:if>
@@ -92,7 +92,7 @@ TODO: jacademix:alternateTitle
                                     <div class="text-secondary small">Published ${formatedReleaseDate}</div>
                                 </c:if>
 
-                                <div class="mt-4">
+                                <div class="mt-5">
                                     <template:area path="pagecontent" />
                                 </div>
                             </article>
