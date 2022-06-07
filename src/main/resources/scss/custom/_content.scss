@@ -39,7 +39,7 @@ $list-puce-size: 22px;
     list-style: none;
   }
 
-  li:not(.nav-item) {
+  li:not(.nav-item, .rc-pagination-item) {
     position: relative;
     margin-bottom: spacing(3);
   }
@@ -72,7 +72,7 @@ $list-puce-size: 22px;
     }
   }
 
-  ul:not(.fa-ul, .nav-tabs) {
+  ul:not(.fa-ul, .nav-tabs, .rc-pagination) {
     & > li::before {
       content: "";
       display: inline-block;
@@ -84,6 +84,15 @@ $list-puce-size: 22px;
       background-image: $chevron-right;
       background-size: contain;
       background-repeat: no-repeat;
+    }
+  }
+
+  // Do not display bullet for Search results list
+  .sui-result li {
+    margin-bottom: 0;
+
+    &::before {
+      display: none;
     }
   }
 
