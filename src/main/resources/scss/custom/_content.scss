@@ -72,7 +72,7 @@ $list-puce-size: 22px;
     }
   }
 
-  ul:not(.fa-ul, .nav-tabs, .rc-pagination) {
+  ul:not(.fa-ul, .nav-tabs, .rc-pagination, .rc-pagination-prev) {
     & > li::before {
       content: "";
       display: inline-block;
@@ -92,7 +92,7 @@ $list-puce-size: 22px;
     margin-bottom: 0;
 
     &::before {
-      display: none;
+      display: none !important;
     }
   }
 
