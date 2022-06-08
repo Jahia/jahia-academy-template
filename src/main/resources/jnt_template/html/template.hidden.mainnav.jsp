@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <c:url var="homePageUrl" value="${renderContext.site.home.url}" context="/" />
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
@@ -36,10 +37,12 @@
                 <c:set var="curentPageNode" value="${jcr:getParentOfType(curentPageNode, 'jmix:navMenuItem')}" />
             </c:if>
             <c:set var="rootNode" value="${renderContext.site.home}" />
+            <template:addCacheDependency node="${rootNode}"/>
             <c:set var="level1Pages" value="${jcr:getChildrenOfType(rootNode, 'jmix:navMenuItem')}" />
             <c:set var="hasLevel1Pages" value="${fn:length(level1Pages) > 0}" />
             <c:if test="${hasLevel1Pages}">
                 <c:forEach items="${level1Pages}" var="level1Page" varStatus="status">
+                    <template:addCacheDependency node="${level1Page}"/>
                     <c:if test="${! jcr:isNodeType(level1Page, 'jacademix:hidePage')}">
                         <c:set var="displayLevel1Page" value="true" />
                         <c:if test="${jcr:isNodeType(level1Page, 'jacademix:hidePage')}">
@@ -97,6 +100,7 @@
                                                 <div class="dropdown-divider"></div>
 
                                                 <c:forEach items="${level2Pages}" var="level2Page" varStatus="status">
+                                                    <template:addCacheDependency node="${level2Page}"/>
                                                     <c:if test="${! jcr:isNodeType(level2Page, 'jacademix:hidePage')}">
                                                         <c:set var="displayLevel2Page" value="true" />
                                                         <c:if

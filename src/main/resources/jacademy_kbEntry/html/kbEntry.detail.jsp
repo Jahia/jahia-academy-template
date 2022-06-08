@@ -90,9 +90,11 @@
                 <jcr:node var="relatedLinksNode" path="${currentNode.path}/relatedlinks" />
 
                 <c:if test="${! empty relatedLinksNode || renderContext.editMode}">
-                    <template:area path="relatedlinks" nodeTypes="jacademy:relatedLink" areaAsSubNode="true"
-                        var="relatedlinks" />
-                    <c:if test="${! empty relatedlinks}">
+                    <c:set var="subNodes" value="${jcr:getChildrenOfType(relatedLinksNode, 'jacademy:relatedLink')}"/>
+
+                    <template:area path="relatedlinks" nodeTypes="jacademy:relatedLink" areaAsSubNode="true" var="relatedlinks" />
+                    <c:set var="hasSubLinks" value="${fn:length(subNodes)>0}"/>
+                    <c:if test="${hasSubLinks || renderContext.editMode}">
                         <div class="alert alert-version">
                             <h4>Related links</h4>
                             <c:if test="${!renderContext.editMode}">
