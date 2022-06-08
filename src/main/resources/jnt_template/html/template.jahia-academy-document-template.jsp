@@ -167,9 +167,10 @@ TODO: jacademix:alternateTitle
             <c:set var="lastPublishedDate" value="${mainResourceNode.properties['jcr:created'].time}"/>
             <fmt:formatDate value="${lastPublishedDate}" pattern="MMyy" var="testDate"/>
         </c:if>
-            $("#publishedDate").text(`Published ${moment("${testDate}", "MMYY").fromNow()}`);
+        $("#publishedDate").text('Published ' + moment("${testDate}", "MMYY").fromNow());
 
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
