@@ -52,64 +52,46 @@ TODO: jacademix:alternateTitle
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
         <div class="row">
             <!-- Secondary-navigation -->
-
             <c:if test="${! empty sidenav}">
                 <aside class="bg-light d-none d-md-block col-md-3 p-0">
                     ${sidenav}
                 </aside>
             </c:if>
-            <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'} ">
-                <div class="container-lg">
-                    <div class="row gx-5">
-                        <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
-                            <!-- Page content -->
-                            <article class="jac-content bg-white" id="article">
-                                <%--
-                            <c:if test="${jcr:isNodeType(mainResourceNode, 'jacademix:metadatas')}">
-                                <c:set var="personas" value="${mainResourceNode.properties.personas}"/>
-                                <c:if test="${! empty personas}">
-                                    <c:forEach items="${personas}" var="persona" varStatus="status">
-                                        <c:set var="personaNode" value="${persona.node}"/>
-                                        <span class="badge bg-success">${personaNode.displayableName}</span>
-                                    </c:forEach>
-                                </c:if>
+
+            <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'} col-lg-8 mb-4">
+                <div class="row gx-5 mx-5">
+                    <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
+                        <!-- Page content -->
+                        <article class="jac-content bg-white" id="article">
+                            <h1 class="jac-content-title">${pageTitle}</h1>
+                            <c:set var="lastPublishedDate" value="${mainResourceNode.properties['j:lastPublished'].time}" />
+                            <c:if test="${! empty lastPublishedDate}">
+                                <c:choose>
+                                    <c:when test="${language eq 'fr'}">
+                                        <fmt:formatDate value="${lastPublishedDate}" pattern="d MMMM yyyy" var="formatedReleaseDate" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatDate value="${lastPublishedDate}" pattern="MMMM d, yyyy" var="formatedReleaseDate" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="text-secondary small">Published ${formatedReleaseDate}</div>
                             </c:if>
-                            --%>
-                                <h1 class="jac-content-title">${pageTitle}</h1>
-                                <c:set var="lastPublishedDate"
-                                    value="${mainResourceNode.properties['j:lastPublished'].time}" />
-                                <c:if test="${! empty lastPublishedDate}">
-                                    <c:choose>
-                                        <c:when test="${language eq 'fr'}">
-                                            <fmt:formatDate value="${lastPublishedDate}" pattern="d MMMM yyyy"
-                                                var="formatedReleaseDate" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:formatDate value="${lastPublishedDate}" pattern="MMMM d, yyyy"
-                                                var="formatedReleaseDate" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <div class="text-secondary small">Published ${formatedReleaseDate}</div>
-                                </c:if>
-
-                                <div class="mt-5">
-                                    <template:area path="pagecontent" />
-                                </div>
-                            </article>
-                        </div>
-
-                        <c:if test="${displayInThisPage}">
-                            <div class="col-3">
-                                <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
-                                    <strong class="text-primary mb-2 d-block">In this page</strong>
-                                    <!-- <nav id="toc2" data-toggle="#article" data-scope="h2"></nav> -->
-                                    <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
-                                    <hr>
-                                    <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
-                                </nav>
+                            <div class="my-5">
+                                <template:area path="pagecontent" />
                             </div>
-                        </c:if>
+                        </article>
                     </div>
+
+                    <c:if test="${displayInThisPage}">
+                        <div class="col-3">
+                            <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
+                                <strong class="text-primary mb-2 d-block">In this page</strong>
+                                <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
+                                <hr>
+                                <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
+                            </nav>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
