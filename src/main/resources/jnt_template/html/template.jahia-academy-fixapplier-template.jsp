@@ -61,9 +61,13 @@ TODO: jacademix:alternateTitle
                 </aside>
             </c:if>
 
-            <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9'} mb-4">
+            <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9 col-lg-8'}  mb-4">
                 <div class="row gx-5 mx-5">
                     <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
+                        <c:if test="${!jcr:isNodeType(mainResourceNode, 'jacademix:hideBreadcrumb')}">
+                            <template:include view="hidden.breadcrumb" />
+                        </c:if>
+
                         <!-- Page content -->
                         <article class="jac-content bg-white" id="article">
                             <h1 class="jac-content-title">${pageTitle}</h1>
