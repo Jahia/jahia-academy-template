@@ -17,7 +17,6 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-
 <c:set var="linkType" value="${currentNode.properties.linkType.string}"/>
 <c:set var="linkTitle" value="${currentNode.properties.linkTitle.string}"/>
 <c:if test="${empty linkTitle}">
@@ -52,8 +51,6 @@
         <a href="${linkUrl}">${linkTitle}</a>
     </c:when>
     <c:otherwise>
-        <c:if test="${! empty linkUrl}">
-            <li><span class="fa-li"><i class="fas fa-long-arrow-alt-right"></i></span><a href="${linkUrl}">${linkTitle}</a></li>
-        </c:if>
+        <c:if test="${! empty linkUrl}"><li><span class="fa-li"><i class="fas fa-long-arrow-alt-right"></i></span><a href="${linkUrl}">${linkTitle}</a></li></c:if>
     </c:otherwise>
 </c:choose>

@@ -70,12 +70,16 @@ sed 's/bootstrap5mix:createContainer bootstrap5mix:createRow bootstrap5mix:creat
 sed 's/jacademix:hideNavbuttons//g' repository.xml > new.xml && mv new.xml repository.xml
 sed 's/jacademix:isMultiplePageDoc//g' repository.xml > new.xml && mv new.xml repository.xml
 sed 's/bootstrap5nt:textBox/jacademy:textBox/g' repository.xml > new.xml && mv new.xml repository.xml
+sed 's/jcr:mixinTypes="bootstrap5mix:predefinedGrid"/jcr:mixinTypes="bootstrap5mix:predefinedGrid bootstrap5mix:createRow" /g' repository.xml > new.xml && mv new.xml repository.xml
+sed 's/bootstrap3-basic/bootstrap5-basic/g' repository.xml > new.xml && mv new.xml repository.xml
+
 ```
 
 For lines with bootstrap5mix:predefinedGrid check if there is a bootstrap5mix:createRow (found 4)
 
 ```    cat -n repository.xml|grep bootstrap5mix:predefinedGrid|grep -v bootstrap5mix:createRow```
 
+(not that it should be fixed using the last sed)
 
 ## Import
 Befor importing, in `site.properties`, change `installedModules.16=bootstrap3-components` to `installedModules.16=bootstrap5-components`(maybe the id is not 16)

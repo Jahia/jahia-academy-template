@@ -12,7 +12,7 @@ ${currentNode.properties.textContent.string}
 
 <template:addResources type="css" resources="github.min.css"/>
 
-<template:addResources type="javascript" resources="jquery.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="jquery.min.js"/>
 <template:addResources type="javascript" resources="clipboard.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="highlight.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="highlightjs-line-numbers.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>

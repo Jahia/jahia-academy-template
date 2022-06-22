@@ -1,4 +1,5 @@
 import org.jahia.api.Constants
+import org.jahia.registries.ServicesRegistry
 import org.jahia.services.content.*
 import org.jahia.services.sites.JahiaSite
 
@@ -39,6 +40,8 @@ searchReplace.put("data-placement","data-bs-placement");
 searchReplace.put("data-content","data-bs-content");
 searchReplace.put("data-html","data-bs-html");
 searchReplace.put("data-trigger","data-bs-trigger");
+searchReplace.put("data-original-title","data-bs-original-title");
+Set<String> nodesToAutoPublish = new HashSet<String>();
 
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey(siteKey);
 for (Locale locale : site.getLanguagesAsLocales()) {
@@ -58,6 +61,7 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                         if (isInPathRestriction(nodePath,pathRestriction)) {
                             if (updateNode(node, prop, searchReplace)) {
                                 log.info("update [" + nt + "  " + prop + "] in path " + node.path + " " );
+                                nodesToAutoPublish.add(node.identifier);
                             }
                         }
                     }
@@ -66,7 +70,16 @@ for (Locale locale : site.getLanguagesAsLocales()) {
             if (doIt) {
                 session.save();
             }
-
+            if (CollectionUtils.isNotEmpty(nodesToAutoPublish)) {
+                if (doIt) {
+                    ServicesRegistry.getInstance().getJCRPublicationService().publish(nodesToAutoPublish.asList(), Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, null);
+                };
+                logger.info("");
+                logger.info("Nodes published:")
+                for (String identifier : nodesToAutoPublish) {
+                    logger.warn("   " + session.getNodeByIdentifier(identifier).getPath());
+                }
+            }
             return null;
         }
     });

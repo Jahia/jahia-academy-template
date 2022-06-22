@@ -1,5 +1,6 @@
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<template:addResources type="javascript" resources="jquery.min.js"/>
 <template:addResources type="javascript" resources="jquery-ui.min.js"/>
 <template:addResources type="css" resources="jquery-ui.smoothness.css"/>
 <template:addResources type="css" resources="jquery-ui.smoothness-jahia.css"/>
@@ -13,6 +14,10 @@
 
         .fa.fa-star-o:before {
             content: "\f005";
+        }
+        .ff-has-error {
+            color: red;
+            border: 1px solid red ;
         }
     </style>
 </template:addResources>
@@ -77,9 +82,3 @@
         angular.module('formFactory').directive('ffDatePickerUi', ['$log', 'i18nService', 'ffCommonUseFactory', datePickerJqueryUI]);
     })();
 </script>
-<style>
-    .ff-has-error {
-        color: red;
-        border: 1px solid red ;
-    }
-</style>
