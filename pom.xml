@@ -28,7 +28,7 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program. If not, see <http://www.gnu.org/licenses/>.
+        along with this program. If not, see <http://www.gnu.org/licenses />.
 
 
         2/ JSEL - Commercial and Supported Versions of the program
@@ -44,8 +44,7 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jahia.modules</groupId>
@@ -54,7 +53,7 @@
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>jahia-academy-template</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>4.0.0</version>
   <packaging>bundle</packaging>
   <name>New Academy Templates</name>
   <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
@@ -62,6 +61,7 @@
       <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
       <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
       <url>https://github.com/Jahia/jahia-academy-template</url>
+    <tag>jahia-academy-template-4.0.0</tag>
   </scm>
   <properties>
     <jahia-module-signature>MCwCFDDQ1xJlzKijN2sKbc4nQmWVeFNIAhQrsbzt6x/hl7I4nI8l0DXAglKJWQ==</jahia-module-signature>
