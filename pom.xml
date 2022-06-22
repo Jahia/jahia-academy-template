@@ -59,8 +59,9 @@
   <name>New Academy Templates</name>
   <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
   <scm>
-    <connection>scm:dummy:uri</connection>
-    <developerConnection>scm:dummy:uri</developerConnection>
+      <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
+      <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
+      <url>https://github.com/Jahia/jahia-academy-template</url>
   </scm>
   <properties>
     <jahia-module-signature>MCwCFDDQ1xJlzKijN2sKbc4nQmWVeFNIAhQrsbzt6x/hl7I4nI8l0DXAglKJWQ==</jahia-module-signature>
