@@ -72,6 +72,7 @@ TODO: jacademix:alternateTitle
                         <article class="jac-content bg-white" id="article">
                             <h1 class="jac-content-title">${pageTitle}</h1>
                             <c:set var="lastPublishedDate" value="${mainResourceNode.properties['j:lastPublished'].time}" />
+
                             <c:if test="${! empty lastPublishedDate}">
                                 <c:choose>
                                     <c:when test="${language eq 'fr'}">
@@ -81,7 +82,30 @@ TODO: jacademix:alternateTitle
                                         <fmt:formatDate value="${lastPublishedDate}" pattern="MMMM d, yyyy" var="formatedReleaseDate" />
                                     </c:otherwise>
                                 </c:choose>
-                                <div class="text-secondary small">Published ${formatedReleaseDate}</div>
+                                <div class="text-secondary small mb-3">Published ${formatedReleaseDate}</div>
+                            </c:if>
+                            <c:if test="${jcr:isNodeType(mainResourceNode,'jnt:fixApplier' )}">
+                                <c:set var="webappURL" value="${mainResourceNode.properties.webappURL.string}"/>
+                                <c:set var="webappMD5" value="${mainResourceNode.properties.webappMD5.string}"/>
+                                <c:set var="releaseNotesNode" value="${mainResourceNode.properties.releaseNotes.node}"/>
+                                <c:set var="toVerstion" value="${mainResourceNode.properties.to.string}"/>
+
+
+                                <c:if test="${! empty webappURL}">
+                                    <a href="${webappURL}" type="button" class="btn btn-primary text-uppercase btn-sm me-3"><span data-bs-toggle="popover" title="MD5" data-bs-content="${webappMD5}" data-bs-trigger="hover" data-bs-placement="top"><i class="fas fa-download fa-fw"></i> Webapp</span></a>
+                                </c:if>
+                                <c:if test="${jcr:isNodeType(mainResourceNode, 'jnt:fixApplierTomcat')}">
+                                    <c:set var="webappAndTomcatURL" value="${mainResourceNode.properties.webappAndTomcatURL.string}"/>
+                                    <c:set var="webappAndTomcatMD5" value="${mainResourceNode.properties.webappAndTomcatMD5.string}"/>
+                                    <c:if test="${! empty webappAndTomcatURL}">
+                                        <a href="${webappAndTomcatURL}" type="button" class="btn btn-primary text-uppercase btn-sm me-3"><span data-bs-toggle="popover" title="MD5" data-bs-content="${webappAndTomcatMD5}" data-bs-trigger="hover" data-bs-placement="top"><i class="fas fa-download fa-fw"></i> Webapp + Tomcat</span></a>
+                                    </c:if>
+                                </c:if>
+                                <c:if test="${! empty releaseNotesNode}">
+                                    <c:url var="releaseNotesUrl" value="${releaseNotesNode.url}" context="/"/>
+                                    <a href="${releaseNotesUrl}">${toVerstion} Release notes</a>
+                                </c:if>
+
                             </c:if>
                             <div class="my-5">
                                 <template:area path="pagecontent" />
