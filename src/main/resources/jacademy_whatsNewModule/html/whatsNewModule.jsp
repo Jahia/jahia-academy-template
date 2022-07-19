@@ -55,49 +55,50 @@
     }
 </style>
 
-<div class="whatsnew module" data-dependency="${currentNode.properties.versionDependency.string}">
-    <h4>${currentNode.properties['jcr:title'].string}${' '}${currentNode.properties.version.string} <span><fmt:message key="jacademy_whatsNewModule.required"/> ${currentNode.properties.versionDependency.string}</span></h4>
-    <div class="description">${currentNode.properties.textContent.string}</div>
-    <div class="releaseDate">${formatedReleaseDate}</div>
-    <c:if test="${! empty academyNode}">
-        <c:url var="academyNodeUrl" value="${academyNode.url}" context="/"/>
-        <div class="academy">
-            <a href="${academyNodeUrl}" title="${fn:escapeXml(academyNode.displayableName)}"><span><fmt:message key="jacademy_whatsNewModule.academy"/></span></a>
-        </div>
-    </c:if>
-    <c:if test="${! empty store}">
-        <div class="store">
-            <a href="${store}"><span><fmt:message key="jacademy_whatsNewModule.store"/></span></a>
-        </div>
-    </c:if>
-    <c:set var="releaseNotesNode" value="${currentNode.properties.releaseNotes.node}"/>
+<div class="simplebox">
+    <a class="accordion accordion-button${expanded?' ':' collapsed'}" data-bs-toggle="collapse" href="#collapse${currentNode.identifier}" role="button" aria-expanded="true" aria-controls="collapse${currentNode.identifier}"><h4>${currentNode.properties['jcr:title'].string}${' '}${currentNode.properties.version.string}</h4></a>
+    <div class="collapse${expanded ? ' show':''}" id="collapse${currentNode.identifier}">
+        <div class="description">${currentNode.properties.textContent.string}</div>
+        <i><small><fmt:message key="jacademy_whatsNewModule.required"/> ${currentNode.properties.versionDependency.string}</small></i></br>
+        <div class="releaseDate"><small>${formatedReleaseDate}</small></div>
+                <c:if test="${! empty academyNode}">
+                    <c:url var="academyNodeUrl" value="${academyNode.url}" context="/"/>
+            <div class="academy">
+                <a href="${academyNodeUrl}" title="${fn:escapeXml(academyNode.displayableName)}"><small><fmt:message key="jacademy_whatsNewModule.academy"/></small></a>
+            </div>
+        </c:if>
+        <c:if test="${! empty store}">
+            <div class="store">
+                <a href="${store}"><small><fmt:message key="jacademy_whatsNewModule.store"/></small></a>
+            </div>
+        </c:if>
+        <c:set var="releaseNotesNode" value="${currentNode.properties.releaseNotes.node}"/>
+        <c:if test="${! empty releaseNotesNode}">
+            <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}" context="/"/>
+            <div class="releaseNotes">
+                <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><small><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></small></a>
+            </div>
+        </c:if>
+        <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
+        <c:forEach items="${moduleMap.currentList}" var="droppableContent" begin="${moduleMap.begin}" end="${moduleMap.end}" varStatus="item">
+            <template:module node="${droppableContent}" editable="true"/>
+        </c:forEach>
+        <c:if test="${renderContext.editMode}">
+            <template:module path="*" nodeTypes="jmix:droppableContent"/>
+        </c:if>
 
-    <c:if test="${! empty releaseNotesNode}">
-        <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}" context="/"/>
-        <div class="releaseNotes">
-            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
-        </div>
-    </c:if>
-    <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
-    <c:forEach items="${moduleMap.currentList}" var="droppableContent" begin="${moduleMap.begin}" end="${moduleMap.end}" varStatus="item">
-        <template:module node="${droppableContent}" editable="true"/>
-    </c:forEach>
-    <c:if test="${renderContext.editMode}">
-        <template:module path="*" nodeTypes="jmix:droppableContent"/>
-    </c:if>
-
+    </div>
 </div>
-
 <c:if test="${! empty currentVersion}">
     <template:addResources type="inline">
         <script>
             $(document).ready(function () {
-                $( ".whatsnew.module" ).each(function() {
+                $(".whatsnew.module").each(function () {
                     var dependency = $(this).data('dependency');
-                    if (versionCompare(dependency,'${currentVersion}')>0) {
+                    if (versionCompare(dependency, '${currentVersion}') > 0) {
                         $(this).addClass('new');
                     }
-                    if (versionCompare(dependency,'${currentVersion}')==0) {
+                    if (versionCompare(dependency, '${currentVersion}') == 0) {
                         $(this).addClass('current');
                     }
                 });

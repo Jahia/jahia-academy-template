@@ -39,14 +39,16 @@
 
 <template:include view="hidden.header"/>
 
-<div class="whatsnew dx" data-version="${currentNode.properties.version.string}">
-    <h4>${currentNode.properties['jcr:title'].string}</h4>
+<div class="simplebox">
+    <a class="accordion accordion-button${expanded?' ':' collapsed'}" data-bs-toggle="collapse" href="#collapse${currentNode.identifier}" role="button" aria-expanded="true" aria-controls="collapse${currentNode.identifier}"><h4>${currentNode.properties['jcr:title'].string}</h4></a>
+<div class="collapse${expanded ? ' show':''}" id="collapse${currentNode.identifier}">
+
     <div class="description">${currentNode.properties.textContent.string}</div>
-    <div class="releaseDate">${formatedReleaseDate}</div>
+    <div class="releaseDate"><small>${formatedReleaseDate}</small></div>
     <c:if test="${! empty releaseNotesNode}">
         <c:url var="releaseNotesNodeUrl" value="${releaseNotesNode.url}" context="/"/>
         <div class="releaseNotes">
-            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></a>
+            <a href="${releaseNotesNodeUrl}" title="${fn:escapeXml(releaseNotesNode.displayableName)}"><small><fmt:message key="jacademy_whatsNewDX.releaseNotes"/></small></a>
         </div>
     </c:if>
     <%--<c:forEach items="${jcr:getChildrenOfType(currentNode, 'jmix:droppableContent')}" var="droppableContent">--%>
@@ -57,6 +59,7 @@
         <template:module path="*" nodeTypes="jmix:droppableContent"/>
     </c:if>
 
+</div>
 </div>
 
 <c:if test="${! empty currentVersion}">
