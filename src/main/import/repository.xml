@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
    <modules jcr:primaryType="jnt:modules">
-      <jahia-academy-template j:dependencies="bootstrap5-components default font-awesome jquery"
+      <jahia-academy-template j:dependencies="bootstrap5-components default font-awesome jquery animate"
                               j:installedModules="jahia-academy-template"
                               j:modulePriority="10"
                               j:moduleType="templatesSet"
