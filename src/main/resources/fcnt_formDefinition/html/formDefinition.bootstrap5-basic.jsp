@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<template:include view="bootstrap3-basic-formView" templateType="html" />
+<template:include view="bootstrap5-basic-formView" templateType="html" />
 
 <ff-progress-bar ng-if="!_.isUndefined(vm.currentForm.progressBar) && (vm.currentForm.progressBar.position === 'bottom' || vm.currentForm.progressBar.position === 'both') && !vm.getFormController().$submitted"
                  form="vm.currentForm" current-step="vm.currentStep"></ff-progress-bar>

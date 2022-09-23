@@ -21,6 +21,7 @@
         }
     </style>
 </template:addResources>
+<template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
 <script>
     (function(){
         <!--Configure the ffFormControlProvider-->
@@ -82,3 +83,4 @@
         angular.module('formFactory').directive('ffDatePickerUi', ['$log', 'i18nService', 'ffCommonUseFactory', datePickerJqueryUI]);
     })();
 </script>
+</template:addResources>

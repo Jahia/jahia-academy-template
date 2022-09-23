@@ -121,8 +121,7 @@ TODO: jacademix:alternateTitle
     </footer>
     <template:addResources type="javascript" resources="bootstrap.bundle.min.js"
         targetTag="${renderContext.editMode?'head':'body'}" />
-    <template:addResources type="javascript" resources="jquery.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
+    <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="toc.min.js"
         targetTag="${renderContext.editMode?'head':'body'}" />
     <template:addResources type="javascript" resources="index.bundle.min.js"

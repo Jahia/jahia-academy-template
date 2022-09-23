@@ -17,7 +17,8 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<template:addResources type="javascript" resources="jquery.min.js,version_compare.js"/>
+<template:addResources type="javascript" resources="jquery.min.js"/>
+<template:addResources type="javascript" resources="version_compare.js" targetTag="${renderContext.editMode?'head':'body'}"/>
 <c:set var="currentVersion" value="${param.dxversion}"/>
 
 <c:set var="language" value="${currentResource.locale.language}"/>
@@ -63,7 +64,7 @@
 </div>
 
 <c:if test="${! empty currentVersion}">
-    <template:addResources type="inline">
+    <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
         <script>
             $(document).ready(function () {
                 $( ".whatsnew.dx" ).each(function() {

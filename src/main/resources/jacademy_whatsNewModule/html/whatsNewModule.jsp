@@ -90,7 +90,7 @@
     </div>
 </div>
 <c:if test="${! empty currentVersion}">
-    <template:addResources type="inline">
+    <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
         <script>
             $(document).ready(function () {
                 $(".whatsnew.module").each(function () {

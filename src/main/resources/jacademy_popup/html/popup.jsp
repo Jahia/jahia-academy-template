@@ -17,7 +17,7 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="bootstrap.min.css"/>
-<template:addResources type="javascript" resources="jquery.min.js,bootstrap.min.js,jquery.cookie.js"/>
+<template:addResources type="javascript" resources="jquery.min.js,jquery.cookie.js"/>
 
 <c:set var="size" value="modal-${currentNode.properties.size.string}"/>
 <c:set var="title" value="${currentNode.properties['jcr:title'].string}"/>
@@ -62,6 +62,7 @@
     </div>
 </div>
 <c:if test="${!renderContext.editMode}">
+    <template:addResources type="inline" targetTag="${renderContext.editMode?'head':'body'}">
     <script>
         <c:choose>
         <c:when test="${displayOnlyOnce}">
@@ -90,4 +91,5 @@
         </c:otherwise>
         </c:choose>
     </script>
+    </template:addResources>
 </c:if>

@@ -49,9 +49,6 @@ TODO: jacademix:alternateTitle
     data-bs-offset="180" tabindex="0">
     <template:include view="hidden.main-menu" />
     <template:include view="hidden.sidenav" var="sidenav" />
-    <script>
-        console.log("sidenav is [${sidenav}]");
-    </script>
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
         <div class="row">
             <!-- Secondary-navigation -->
