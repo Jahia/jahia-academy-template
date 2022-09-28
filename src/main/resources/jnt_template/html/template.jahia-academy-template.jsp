@@ -39,6 +39,7 @@
         <c:set var="pageTitle" value="${mainResourceNode.displayableName}" />
     </c:if>
     <title>${fn:escapeXml(pageTitle)}</title>
+    <template:addResources type="javascript" resources="jquery.min.js"/>
 </head>
 
 <body class="jac-template-default d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
@@ -69,7 +70,6 @@
 
 <template:addResources type="javascript" resources="bootstrap.bundle.min.js"
                        targetTag="${renderContext.editMode?'head':'body'}"/>
-<template:addResources type="javascript" resources="jquery.min.js"/>
 <template:addResources type="javascript" resources="toc.min.js"
                        targetTag="${renderContext.editMode?'head':'body'}"/>
 <template:addResources type="javascript" resources="index.bundle.min.js"

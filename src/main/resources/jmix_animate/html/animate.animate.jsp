@@ -2,7 +2,7 @@
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <template:addResources type="css" resources="animate.min.css"/>
 <template:addResources type="javascript" resources="jquery.min.js"/>
-<template:addResources type="javascript" resources="jquery.appear.min.js" targetTag="${renderContext.editMode?'head':'body'}"/>
+<template:addResources type="javascript" resources="jquery.appear.min.js"  targetTag="${renderContext.editMode?'head':'body'}" />
 <c:set var="animation" value=" ${currentNode.properties['j:animation'].string}"/>
 <c:set var="animationDelay" value="${currentNode.properties['j:animationDelay'].double}"/>
 <c:set var="animationDuration" value="${currentNode.properties['j:animationDuration'].double}"/>

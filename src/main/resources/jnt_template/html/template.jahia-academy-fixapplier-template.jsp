@@ -43,6 +43,7 @@ TODO: jacademix:alternateTitle
         <c:set var="pageTitle" value="From ${mainResourceNode.properties.from.string} to ${mainResourceNode.properties.to.string}"/>
     </c:if>
     <title>${fn:escapeXml(pageTitle)}</title>
+    <template:addResources type="javascript" resources="jquery.min.js"/>
 </head>
 
 <body class="jac-template-fixapplier d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
@@ -132,8 +133,7 @@ TODO: jacademix:alternateTitle
 
     <template:addResources type="javascript" resources="bootstrap.bundle.min.js"
         targetTag="${renderContext.editMode?'head':'body'}" />
-    <template:addResources type="javascript" resources="jquery.min.js"
-        targetTag="${renderContext.editMode?'head':'body'}" />
+    <template:addResources type="javascript" resources="jquery.min.js" />
     <template:addResources type="javascript" resources="toc.min.js"
         targetTag="${renderContext.editMode?'head':'body'}" />
     <template:addResources type="javascript" resources="index.bundle.min.js"
