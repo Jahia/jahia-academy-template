@@ -27,11 +27,6 @@ ${currentNode.properties.textContent.string}
             });
         });
 
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-
         // Insert copy to clipboard button before .highlight
         var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard">Copy</button></div>'
         document.querySelectorAll('pre')
@@ -39,6 +34,7 @@ ${currentNode.properties.textContent.string}
                 element.insertAdjacentHTML('beforebegin', btnHtml)
             })
 
+        <c:if test="${! renderContext.editMode}">
         document.querySelectorAll('.btn-clipboard')
             .forEach(function (btn) {
                 var tooltipBtn = new bootstrap.Tooltip(btn)
@@ -77,5 +73,6 @@ ${currentNode.properties.textContent.string}
 
             event.trigger.setAttribute('data-bs-original-title', 'Copy to clipboard')
         })
+        </c:if>
     </script>
 </template:addResources>
