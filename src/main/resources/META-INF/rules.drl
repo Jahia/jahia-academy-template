@@ -21,6 +21,6 @@ rule "Update community thumbnail"
         - not in operation import
             - the mimetype matches image/.*
     then
-        Create a thumbnail "community750" of size 750
+        Create a nice thumbnail "community750" of size 750
         Log "Community thumbnail created"
 end
