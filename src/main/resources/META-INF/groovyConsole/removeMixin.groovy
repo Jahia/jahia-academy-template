@@ -9,7 +9,7 @@ import javax.jcr.query.Query
 boolean doIt = false;
 def logger = log;
 
-String mixin = "jmix:autoCompletedSearchCategory";
+String mixin = "jmix:noindex";
 
 Set<String> nodesToAutoPublish = new HashSet<String>();
 Set<String> nodesToManuallyPublish = new HashSet<String>();
