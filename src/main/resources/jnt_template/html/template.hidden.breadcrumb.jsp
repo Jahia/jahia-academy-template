@@ -100,12 +100,12 @@
                                                                                                     <c:url
                                                                                                         var="subsubsisterPageUrl"
                                                                                                         value="${subsubsisterPage.url}" />
-                                                                                                    <li class="dropdown-item"
+                                                                                                    <li class="dropdown-item position-relative"
                                                                                                         ${fn:contains(renderContext.mainResource.path,subsisterPage.path)
                                                                                                         ? ' active' : ''
                                                                                                         }>
                                                                                                         <a
-                                                                                                            href="${subsubsisterPageUrl}">${subsisterPage.displayableName}</a>
+                                                                                                            href="${subsubsisterPageUrl}" class="stretched-link ">${subsisterPage.displayableName}</a>
                                                                                                     </li>
                                                                                                 </c:if>
                                                                                             </c:if>
@@ -117,9 +117,9 @@
                                                                                         <c:url var="subsisterPageUrl"
                                                                                             value="${subsisterPage.url}" />
                                                                                         <li
-                                                                                            class="dropdown-item${fn:contains(renderContext.mainResource.path,subsisterPage.path)?' avtive' : ''}">
+                                                                                            class="dropdown-item position-relative${fn:contains(renderContext.mainResource.path,subsisterPage.path)?' active' : ''}">
                                                                                             <a
-                                                                                                href="${subsisterPageUrl}">${subsisterPage.displayableName}
+                                                                                                href="${subsisterPageUrl}" class="stretched-link">${subsisterPage.displayableName}
                                                                                             </a>
                                                                                         </li>
 
@@ -131,8 +131,8 @@
                                                                 </li>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <li class="dropdown-item">
-                                                                    <a href="#">${sisterPage.displayableName}</a>
+                                                                <li class="dropdown-item position-relative">
+                                                                    <a href="#" class="stretched-link">${sisterPage.displayableName}</a>
                                                                 </li>
                                                             </c:otherwise>
                                                         </c:choose>
@@ -141,8 +141,8 @@
                                                         <c:url var="sisterPageUrl" value="${sisterPage.url}"
                                                             context="/" />
                                                         <li
-                                                            class="dropdown-item${fn:contains(renderContext.mainResource.path,sisterPage.path) ? ' active':''}">
-                                                            <a href="${sisterPageUrl}">${sisterPage.displayableName}</a>
+                                                            class="dropdown-item position-relative${fn:contains(renderContext.mainResource.path,sisterPage.path) ? ' active':''}">
+                                                            <a href="${sisterPageUrl}" class="stretched-link">${sisterPage.displayableName}</a>
                                                         </li>
                                                     </c:when>
                                                 </c:choose>
