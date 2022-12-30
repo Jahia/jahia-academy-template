@@ -53,7 +53,7 @@
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>jahia-academy-template</artifactId>
-  <version>4.0.12</version>
+  <version>4.0.13-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>New Academy Templates</name>
   <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
@@ -61,7 +61,7 @@
       <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
       <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
       <url>https://github.com/Jahia/jahia-academy-template</url>
-    <tag>jahia-academy-template-4.0.12</tag>
+    <tag>HEAD</tag>
   </scm>
   <properties>
     <jahia-module-signature>MCwCFDDQ1xJlzKijN2sKbc4nQmWVeFNIAhQrsbzt6x/hl7I4nI8l0DXAglKJWQ==</jahia-module-signature>
