@@ -21,8 +21,26 @@
             <c:url var="nodeLink" value="${node.url}" context="/"/>
             <c:set var="nodeTitle" value="${node.displayableName}"/>
             <div class="col-md-4">
-
                 <div class="simplebox position-relative">
+                    <c:if test="${jcr:isNodeType(node, 'jcnt:blogEntry')}">
+                        <c:set var="blogDate" value="${node.properties['date']}"/>
+
+                        <fmt:setTimeZone value="ETC"/>
+                        <fmt:formatDate value="${blogDate.time}" pattern="MMMM d, yyyy" var="formatedDate"/>
+
+                        <c:set var="imageNode" value="${node.properties.image.node}"/>
+                        <c:if test="${! empty imageNode}">
+                            <c:url var="imageUrl" value="${imageNode.url}" context="/">
+                                <c:param name="t" value="w540"/>
+                            </c:url>
+                            <figure class="figure mt-0">
+                                <img src="${imageUrl}" alt="${fn:escapeXml(imageNode.displayableName)}" class="figure-img img-fluid "/>
+                            </figure>
+                        </c:if>
+                        <div class="text-muted fs-6">
+                                ${formatedDate}
+                        </div>
+                    </c:if>
                     <c:if test="${jcr:isNodeType(node, 'jacademix:metadatas')}">
                         <div class="jahia-badge">
                             <c:set var="personas" value="${node.properties.personas}" />
