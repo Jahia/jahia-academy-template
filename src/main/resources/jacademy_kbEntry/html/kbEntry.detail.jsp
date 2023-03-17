@@ -38,6 +38,15 @@
                                 <span class="badge bg-success">${personaNode.displayableName}</span>
                             </c:forEach>
                         </c:if>
+
+                        <c:set var="platformVersions" value="${currentNode.properties.platformVersions}" />
+                        <c:if test="${! empty platformVersions}">
+                            <c:forEach items="${platformVersions}" var="platformVersion" varStatus="status">
+                                <c:set var="platformVersionNode" value="${platformVersion.node}" />
+                                <span class="badge bg-primary">${platformVersionNode.displayableName}</span>
+                            </c:forEach>
+                        </c:if>
+
                     </c:if>
                     <h1 class="pt-1">${currentNode.displayableName}</h1>
                     <c:set var="lastPublishedDate" value="${currentNode.properties['j:lastPublished'].time}" />
