@@ -33,6 +33,7 @@
 --%>
 <template:include view="hidden.header"/>
 <c:set var="currentVersion" value="${param.dxversion}"/>
+<c:set var="expanded" value="${currentResource.moduleParams.expanded}"/>
 
 <c:set var="language" value="${currentResource.locale.language}"/>
 <c:set var="releaseDate" value="${currentNode.properties.releaseDate.time}"/>
