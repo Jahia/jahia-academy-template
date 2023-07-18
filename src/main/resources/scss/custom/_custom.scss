@@ -244,9 +244,14 @@ td.hljs-ln-code {
     color: $white;
     background-color: $dark-fuchsia;
     border-color: $dark-fuchsia;
-    &:hover {
+    &:hover,
+    &:active,
+    &.active {
         color: $white;
+        background-color: darken($dark-fuchsia, 10%);
+        border: 1px solid darken($dark-fuchsia, 10%);
     }
+
 }
 
 a[aria-expanded="false"] .fa-angle-up,

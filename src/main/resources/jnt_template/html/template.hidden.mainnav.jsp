@@ -22,7 +22,7 @@
 
     <!-- Menu naviagtion -->
     <div class="collapse navbar-collapse" id="mainMenu">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav me-auto">
             <%--
                 <li>
                     <a href="${homePageUrl}" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-nones">
@@ -216,6 +216,11 @@
                     </c:if>
                 </c:forEach>
             </c:if>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link main_cta main_cta_contact pe-4" href="https://www.jahia.com/contact" target="_blank"><span class="btn btn-dark-fuchsia text-nowrap" style="margin-top: -0.45rem; ">Contact Us</span></a>
+            </li>
         </ul>
     </div>
 </nav>
