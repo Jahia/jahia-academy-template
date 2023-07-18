@@ -12,7 +12,7 @@
     </li>
 
     <li class="nav-item">
-        <template:include view="hidden.login" />
+        <template:module node="${currentNode}" view="hidden.login" />
     </li>
 </ul>
 
