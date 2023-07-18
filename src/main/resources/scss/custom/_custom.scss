@@ -1,5 +1,6 @@
 $bd-primary-bright: lighten(saturate($primary, 5%), 15%); // stylelint-disable-line function-disallowed-list
 $site-header-height: 83px;
+$dark-fuchsia: #d6217d;
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -237,6 +238,15 @@ td.hljs-ln-code {
   &:hover {
     color: $white;
   }
+}
+
+.btn-dark-fuchsia {
+    color: $white;
+    background-color: $dark-fuchsia;
+    border-color: $dark-fuchsia;
+    &:hover {
+        color: $white;
+    }
 }
 
 a[aria-expanded="false"] .fa-angle-up,
