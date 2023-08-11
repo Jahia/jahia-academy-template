@@ -48,6 +48,25 @@ TODO: jacademix:alternateTitle
     <template:include view="hidden.main-menu" />
     <template:include view="hidden.sidenav" var="sidenav" />
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
+        <c:if test="${! empty sidenav && fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/documentation')}">
+            <template:include view="hidden.personanav" />
+            <%--<div class="row darkblue">
+                <div class="col-md-12">
+                    <ul class="nav nav-underline">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">End User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Developer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">System Administrator</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            --%>
+        </c:if>
         <div class="row">
             <!-- Secondary-navigation -->
             <c:if test="${! empty sidenav}">

@@ -213,6 +213,39 @@ td.hljs-ln-code {
   border-radius: $border-radius;
   box-shadow: $box-shadow-sm;
 }
+.darkblue {
+  background-color: $darkblue;
+  padding-top: spacing(4);
+  padding-bottom: spacing(4);
+  padding-left: spacing(3);
+  .nav-underline {
+    // scss-docs-start nav-underline-css-vars
+    --#{$prefix}nav-underline-link-active-color: #{$nav-underline-link-active-color};
+    gap: var(--#{$prefix}nav-underline-gap);
+    .nav-link {
+      color: rgba($white, 0.6);
+      //color: $gray-300;
+      font-size: larger;
+      font-weight: bold;
+      padding: 0 spacing(2) spacing(2) spacing(2);
+      margin: 0 spacing(3) 0 0;
+      &:hover,
+      &:focus {
+        color: rgba($white, 0.6);;
+        border-bottom-color: rgba($white, 0.6);
+      }
+    }
+    .nav-link.active,
+    .show > .nav-link {
+      color: $white;
+      border-bottom-color: $white;
+    }
+  }
+  .dropdown-item.product {
+    font-size: .8rem;
+    font-weight: 900;
+  }
+}
 
 @include media-breakpoint-up(md) {
   .row-eq-height {

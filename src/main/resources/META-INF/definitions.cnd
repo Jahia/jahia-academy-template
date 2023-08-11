@@ -75,6 +75,11 @@
  itemtype = content
  - version (string) = '7.2' mandatory
 
+[jacademix:isProduct] mixin
+ extends = jnt:navMenuText
+ itemtype = content
+ - productName (string) = 'Jahia' mandatory
+
 [jacademy:embedVideo] > jnt:content, jacademix:document, jacademix:embedVideo
 
 [jacademix:alternateTitle] mixin

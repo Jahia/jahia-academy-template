@@ -13,9 +13,9 @@ site.getLanguagesAsLocales().each { locale ->
         @Override
         Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
             // main entry point
-            createNode("/sites/academy/home/documentation/jahia","Jahia",session)
-            createNode("/sites/academy/home/documentation/forms","Forms",session)
-            createNode("/sites/academy/home/documentation/jexperience","jExperience",session)
+            createNode("/sites/academy/home/documentation/jahia","Jahia",session,null,"jahia")
+            createNode("/sites/academy/home/documentation/forms","Forms",session,null,"forms")
+            createNode("/sites/academy/home/documentation/jexperience","jExperience",session,null,"jexperience")
 
             // Jahia 8
             createNode("/sites/academy/home/documentation/jahia/8","Jahia 8",session)
@@ -75,11 +75,18 @@ site.getLanguagesAsLocales().each { locale ->
             moveNode("/sites/academy/home/documentation/developer/jexperience/1.x","/sites/academy/home/documentation/jexperience/1/developer",session,true);
 
             // jahia-cloud
-            createNode("/sites/academy/home/documentation/jahia-cloud","Jahia Cloud",session,"current")
-            moveNode("/sites/academy/home/documentation/system-administrator/jahia-cloud/managing-your-cloud-environment","/sites/academy/home/documentation/jahia-cloud",session,true)
+            createNode("/sites/academy/home/documentation/jahia-cloud","Jahia Cloud",session,null,"cloud")
+            createNode("/sites/academy/home/documentation/jahia-cloud/latest","Jahia Cloud",session,"current")
+            moveNode("/sites/academy/home/documentation/system-administrator/jahia-cloud/managing-your-cloud-environment","/sites/academy/home/documentation/jahia-cloud/latest",session,true)
 
-            createNode("/sites/academy/home/documentation/augmented-search","Augmented search",session,"current");
-            moveNode("/sites/academy/home/documentation/developer/augmented-search","/sites/academy/home/documentation/augmented-search",session,true)
+            createNode("/sites/academy/home/documentation/augmented-search","Augmented search",session,null, "as");
+            createNode("/sites/academy/home/documentation/augmented-search/3.1 and 1.5","3.1-1.5",session,"3.1-1.5");
+            createNode("/sites/academy/home/documentation/augmented-search/3.3","3,3+",session,"current");
+            createNode("/sites/academy/home/documentation/augmented-search/misc","Misc",session,"misc");
+            moveNode("/sites/academy/home/documentation/developer/augmented-search/31-15","/sites/academy/home/documentation/augmented-search/3.1-1.5",session,true)
+            moveNode("/sites/academy/home/documentation/developer/augmented-search/as-3","/sites/academy/home/documentation/augmented-search/3.3",session,true)
+            moveNode("/sites/academy/home/documentation/developer/augmented-search","/sites/academy/home/documentation/augmented-search/misc",session,true)
+
 
             // cleanup
             removeNode("/sites/academy/home/documentation/end-user",session);
@@ -149,10 +156,12 @@ void moveNode(String sourcePath, String targetPath, JCRSessionWrapper session, b
 }
 
 JCRNodeWrapper createNode(String path, String title, JCRSessionWrapper session) throws RepositoryException {
-    return createNode(path, title, session, null)
-
+    return createNode(path, title, session, null,null)
 }
 JCRNodeWrapper createNode(String path, String title, JCRSessionWrapper session, String version) throws RepositoryException {
+    return createNode(path, title, session, version,null)
+}
+JCRNodeWrapper createNode(String path, String title, JCRSessionWrapper session, String version, String product) throws RepositoryException {
     String parentPath = getParentPath(path)
     String nodeName = getNodeName(path)
     title = title ?: nodeName
@@ -174,6 +183,10 @@ JCRNodeWrapper createNode(String path, String title, JCRSessionWrapper session, 
             if (version != null) {
                 newNode.addMixin("jacademix:isVersionPage");
                 newNode.setProperty("version",version);
+            }
+            if (product != null) {
+                newNode.addMixin("jacademix:isProduct");
+                newNode.setProperty("productName",product);
             }
             session.save()
             return newNode
