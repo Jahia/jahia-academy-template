@@ -5,6 +5,7 @@ import org.jahia.services.content.JCRContentUtils
 import org.jahia.services.content.JCRNodeWrapper
 import org.jahia.taglibs.jcr.node.JCRTagUtils
 import org.slf4j.LoggerFactory
+import org.jahia.modules.academy.Functions
 
 logger = LoggerFactory.getLogger(this.class)
 
@@ -28,7 +29,7 @@ def printMenu(JCRNodeWrapper startNode) {
                     if (menuItem.isNodeType("jnt:page")) {
                         menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
                     } else if (menuItem.isNodeType("jnt:navMenuText")) {
-                        menuItemUrl = findFirstSubPageUrl(menuItem)
+                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
                     }
                     print """
                         <li class="nav-item">
@@ -66,7 +67,7 @@ def printProducts(JCRNodeWrapper startNode, int level) {
                     if (menuItem.isNodeType("jnt:page")) {
                         menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
                     } else if (menuItem.isNodeType("jnt:navMenuText")) {
-                        menuItemUrl = findFirstSubPageUrl(menuItem)
+                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
                     }
                     if (idx>1 && level == 0) {
                         print """
@@ -86,24 +87,6 @@ def printProducts(JCRNodeWrapper startNode, int level) {
 }
 
 
-def findFirstSubPageUrl(JCRNodeWrapper node) {
-    if (!node) return null
-
-    def children = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem")
-
-    for (menuItem in children) {
-        if (menuItem.isNodeType("jnt:page")) {
-            return menuItem.getUrl()
-        } else {
-            def subPageUrl = findFirstSubPageUrl(menuItem)
-            if (subPageUrl) {
-                return subPageUrl
-            }
-        }
-    }
-
-    return null
-}
 
 def startNode = null
 JCRNodeWrapper curentPageNode = renderContext.mainResource.node

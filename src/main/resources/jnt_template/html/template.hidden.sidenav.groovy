@@ -5,6 +5,7 @@ import org.jahia.services.render.RenderService
 import org.jahia.services.render.Resource
 import org.jahia.taglibs.jcr.node.JCRTagUtils
 import org.slf4j.LoggerFactory
+import org.jahia.modules.academy.Functions
 
 logger = LoggerFactory.getLogger(this.class)
 
@@ -54,7 +55,7 @@ printMenu = { startNode, level, maxlevel ->
                         menuItemUrl = menuItem.properties['j:url'].string;
                     }
                     if (menuItemUrl == null || "".equals(menuItemUrl)) {
-                        menuItemUrl = "#";
+                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem);
                     }
 
                     if (hasChildren && level < maxlevel) {
@@ -133,7 +134,24 @@ printMenu = { startNode, level, maxlevel ->
         }
     }
 }
+def findFirstSubPageUrl(JCRNodeWrapper node) {
+    if (!node) return null
 
+    def children = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem")
+
+    for (menuItem in children) {
+        if (menuItem.isNodeType("jnt:page")) {
+            return menuItem.getUrl()
+        } else {
+            def subPageUrl = findFirstSubPageUrl(menuItem)
+            if (subPageUrl) {
+                return subPageUrl
+            }
+        }
+    }
+
+    return "#"
+}
 long maxlevel = 5;
 
 JCRNodeWrapper startNode = null;

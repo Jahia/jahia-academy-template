@@ -3,6 +3,7 @@
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<%@ taglib prefix="af" uri="http://academy.jahia.org/af" %>
 <c:url var="homePageUrl" value="${renderContext.site.home.url}" context="/" />
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
@@ -127,7 +128,7 @@
                                                             <c:choose>
                                                                 <c:when
                                                                     test="${jcr:isNodeType(level2Page, 'jnt:navMenuText')}">
-                                                                    <c:set var="page2Url" value="#" />
+                                                                    <c:set var="page2Url" value="${af:findFirstSubPageUrl(level2Page)}" />
                                                                     <c:set var="page2Title"
                                                                         value="${level2Page.displayableName}" />
                                                                 </c:when>
