@@ -11,7 +11,7 @@ logger = LoggerFactory.getLogger(this.class)
 
 def printMenu(JCRNodeWrapper startNode) {
     if (startNode) {
-        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
+        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")Only
         children.eachWithIndex { menuItem, index ->
             if (menuItem) {
                 def correctType = true
@@ -32,10 +32,10 @@ def printMenu(JCRNodeWrapper startNode) {
                         menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
                     }
                     print """
-                        <li class="nav-item">
-                            <a class="nav-link${statusClass}" href="${menuItemUrl ?: '#'}">${menuItemTitle}</a>
-                        </li>
-                    """
+                    <li class="nav-item">
+                        <a class="nav-link${statusClass}" href="${menuItemUrl ?: '#'}">${menuItemTitle}</a>
+                    </li>
+                """
                 }
             }
         }
@@ -106,19 +106,20 @@ if (!parentPages.empty) {
 }
 
 if (startNode) {
-    try {
-        currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath())
-    } catch (ItemNotFoundException e) {
-        // Handle exception if needed
-    }
+    if (JCRContentUtils.getChildrenOfType(startNode, "jacademix:isVersionPage").size()>1) {
+        try {
+            currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath())
+        } catch (ItemNotFoundException e) {
+            // Handle exception if needed
+        }
 
-    print """
+        print """
         <div class="row darkblue">
             <div class="col-md-8">
                 <ul class="nav nav-underline ">
     """
-    printMenu(startNode)
-    print """
+        printMenu(startNode)
+        print """
                 </ul>
             </div>            
             <div class="col-md-4 text-end pe-4">                
@@ -128,10 +129,10 @@ if (startNode) {
                   </button>
                   <ul class="dropdown-menu">
     """
-    if (documentationNode != null) {
-        printProducts(documentationNode,0)
-    }
-    print """
+        if (documentationNode != null) {
+            printProducts(documentationNode,0)
+        }
+        print """
                   </ul>
                 </div>
                 
@@ -139,4 +140,6 @@ if (startNode) {
             </div>
         </div>
     """
+    }
+
 }

@@ -134,24 +134,7 @@ printMenu = { startNode, level, maxlevel ->
         }
     }
 }
-def findFirstSubPageUrl(JCRNodeWrapper node) {
-    if (!node) return null
 
-    def children = JCRContentUtils.getChildrenOfType(node, "jmix:navMenuItem")
-
-    for (menuItem in children) {
-        if (menuItem.isNodeType("jnt:page")) {
-            return menuItem.getUrl()
-        } else {
-            def subPageUrl = findFirstSubPageUrl(menuItem)
-            if (subPageUrl) {
-                return subPageUrl
-            }
-        }
-    }
-
-    return "#"
-}
 long maxlevel = 5;
 
 JCRNodeWrapper startNode = null;
