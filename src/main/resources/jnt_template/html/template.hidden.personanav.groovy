@@ -11,7 +11,7 @@ logger = LoggerFactory.getLogger(this.class)
 
 def printMenu(JCRNodeWrapper startNode) {
     if (startNode) {
-        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")Only
+        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
         children.eachWithIndex { menuItem, index ->
             if (menuItem) {
                 def correctType = true
