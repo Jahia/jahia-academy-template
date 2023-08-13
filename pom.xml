@@ -54,7 +54,7 @@
     </parent>
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-academy-template</artifactId>
-    <version>4.1.0-SNAPSHOT</version>
+    <version>4.2.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>New Academy Templates</name>
     <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
@@ -65,8 +65,7 @@
         <tag>HEAD</tag>
     </scm>
     <properties>
-        <jahia-module-signature>MCwCFHdhSjhop0z17Db/nGAw894Wbj0bAhRgERDQC7XhCDqezoPHFP/J2rd/Pw==
-        </jahia-module-signature>
+        <jahia-module-signature>MCwCFFYZ9EXcaUKncxSedeuHaHMnYOscAhQEM0aZGzqSV6r3/RfOeL2RbvpWIw==</jahia-module-signature>
         <Jahia-Module-Priority>10</Jahia-Module-Priority>
         <jahia-depends>bootstrap5-components,default,font-awesome,jquery,animate,jahiacom-templates</jahia-depends>
         <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"
