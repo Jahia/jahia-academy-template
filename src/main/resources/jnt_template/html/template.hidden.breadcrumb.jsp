@@ -23,7 +23,7 @@
     </c:choose>
 </c:if>
 <c:if test="${fn:length(pageNodes) > 1}">
-    <nav class="jac-breadcrumb mt-4" aria-label="breadcrumb">
+    <nav class="jac-breadcrumb mt-4 d-none d-sm-block d-md-none" aria-label="breadcrumb">
         <ol class="breadcrumb d-flex align-items-center m-0 small">
             <c:set var="productSectionFound" value="false"/>
             <c:set var="isFirst" value="true"/>
