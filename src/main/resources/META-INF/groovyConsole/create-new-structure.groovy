@@ -1,6 +1,7 @@
 import org.jahia.api.Constants
 import org.jahia.services.content.*
 import org.jahia.services.sites.JahiaSite
+import javax.jcr.PathNotFoundException
 import javax.jcr.RepositoryException
 
 def logger = log
@@ -12,6 +13,7 @@ site.getLanguagesAsLocales().each { locale ->
     JCRTemplate.getInstance().doExecuteWithSystemSession(null, Constants.EDIT_WORKSPACE, locale, new JCRCallback() {
         @Override
         Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
+
             // main entry point
             createNode("/sites/academy/home/documentation/jahia","Jahia",session,null,"jahia")
             createNode("/sites/academy/home/documentation/forms","Forms",session,null,"forms")
@@ -87,22 +89,67 @@ site.getLanguagesAsLocales().each { locale ->
             moveNode("/sites/academy/home/documentation/developer/augmented-search/as-3","/sites/academy/home/documentation/augmented-search/3.3",session,true)
             moveNode("/sites/academy/home/documentation/developer/augmented-search","/sites/academy/home/documentation/augmented-search/misc",session,true)
 
-
             // cleanup
-            removeNode("/sites/academy/home/documentation/end-user",session);
-            removeNode("/sites/academy/home/documentation/developer",session);
-            removeNode("/sites/academy/home/documentation/system-administrator",session);
-            removeNode("/sites/academy/home/documentation/end-user-previous",session);
-            removeNode("/sites/academy/home/documentation/system-administrator-previous",session);
-            removeNode("/sites/academy/home/documentation/developer-previous",session);
+            removeNode("/sites/academy/home/documentation/end-user","/sites/academy/home/documentation/jahia/8/end-user",session);
+            removeNode("/sites/academy/home/documentation/developer","/sites/academy/home/documentation/jahia/8/developer", session);
+            removeNode("/sites/academy/home/documentation/system-administrator","/sites/academy/home/documentation/jahia/8/sysadmin",session);
+            removeNode("/sites/academy/home/documentation/end-user-previous","/sites/academy/home/documentation/jahia/7.3/end-user",session);
+            removeNode("/sites/academy/home/documentation/system-administrator-previous","/sites/academy/home/documentation/jahia/7.3/sysadmin",session);
+            removeNode("/sites/academy/home/documentation/developer-previous","/sites/academy/home/documentation/jahia/7.3/developer",session);
 
             return null
         }
     })
 }
 void removeNode(String path, JCRSessionWrapper session) throws RepositoryException {
+    removeNode(path,null,session);
+}
+void removeNode(String path, String substitutePath, JCRSessionWrapper session) throws RepositoryException {
     try {
         JCRNodeWrapper node = session.getNode(path)
+
+        if (node != null) {
+            // if a substitutePath has benn set, then we try to move all existing vanity to the first subpage found
+            if (substitutePath != null) {
+                if (node.isNodeType("jmix:vanityUrlMapped")) {
+                    logger.info("Try to move old vanity of ${path} to ${substitutePath}");
+                    try {
+                        JCRNodeWrapper substituteNode = session.getNode(substitutePath);
+                        if (substituteNode != null) {
+                            if (! substituteNode.isNodeType("jcr:path")){
+                                substituteNode = findFirstSubPageNode(substituteNode);
+                            }
+                            if (substituteNode != null) {
+                                if (!substituteNode.isNodeType("jmix:vanityUrlMapped")) {
+                                    substituteNode.addMixin("jmix:vanityUrlMapped");
+                                }
+                                logger.info("Moving vanities from ${path} to ${substituteNode.getPath()}")
+                                try {
+                                    vanityUrlMappingNode = session.getNode("${path}/vanityUrlMapping");
+                                    if (vanityUrlMappingNode != null) {
+                                        List<JCRNodeWrapper> vanities = JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl");
+                                        vanities.each { vanity ->
+                                            vanity.setProperty("j:default",false);
+                                            try {
+                                                session.move(vanity.getPath(), "${substituteNode.getPath()}/vanityUrlMapping/${vanity.getName()}");
+                                            } catch (javax.jcr.RepositoryException e3) {
+                                                logger.error(e3.getMessage());
+                                            }
+
+                                        }
+                                    } else {
+                                        logger.info("Could not found node with path ${path}/vanityUrlMapping")
+                                    }
+                                } catch (PathNotFoundException e2) {
+                                    logger.info(e2.getMessage());
+                                }
+                            }
+                        }
+                    } catch (PathNotFoundException e) {
+                    }
+                }
+            }
+        }
         node.remove()
         session.save();
         logger.info("Remove node $path");
@@ -151,7 +198,8 @@ void moveNode(String sourcePath, String targetPath, JCRSessionWrapper session, b
     }
     // DANGER but why not
     if (removeSource) {
-        removeNode(sourcePath,session);
+        // we should now move the old vanitys to the first new node
+        removeNode(sourcePath,targetPath,session);
     }
 }
 
@@ -210,4 +258,28 @@ String getNodeName(String path) {
     path = path.replaceAll(/\/+$/, "")
     def lastSlashIndex = path.lastIndexOf('/')
     lastSlashIndex != -1 ? path.substring(lastSlashIndex + 1) : path
+}
+public static JCRNodeWrapper findFirstSubPageNode(JCRNodeWrapper node) throws RepositoryException {
+    if (node == null) {
+        return null;
+    }
+
+    Stack<JCRNodeWrapper> stack = new Stack<>();
+    stack.push(node);
+
+    while (!stack.isEmpty()) {
+        JCRNodeWrapper current = stack.pop();
+
+        // Check if the current node is a page
+        if (current.isNodeType("jnt:page")) {
+            return current;
+        }
+
+        // Add child nodes of the specified type to the stack
+        List<JCRNodeWrapper> children = JCRContentUtils.getChildrenOfType(current, "jmix:navMenuItem");
+        Collections.reverse(children); // Reverse the list to maintain depth-first order
+        stack.addAll(children);
+    }
+
+    return null; // Return "#" if no sub-page URL found
 }
