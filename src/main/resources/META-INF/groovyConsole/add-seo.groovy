@@ -23,7 +23,7 @@ import javax.jcr.query.Query
 boolean executeOnFiles = false;
 
 // set to true to run this script to add vanityUrls on content
-boolean executeOnContent = false;
+boolean executeOnContent = true;
 
 // set to true to run this script to add vanityUrls on navMenuText
 // if set to true the first page founded under a navMenuText will have a non default vanity

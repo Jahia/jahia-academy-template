@@ -45,7 +45,9 @@ TODO: jacademix:alternateTitle
 
 <body class="jac-template-document d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
     data-bs-offset="180" tabindex="0">
-    <template:include view="hidden.main-menu" />
+    <c:if test="${! mainResourceNode.isNodeType('jcmix:hideMenu')}">
+        <template:include view="hidden.main-menu" />
+    </c:if>
     <template:include view="hidden.sidenav" var="sidenav" />
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
         <c:if test="${! empty sidenav && fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/documentation')}">
@@ -77,6 +79,31 @@ TODO: jacademix:alternateTitle
             <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9 col-lg-8'}  mb-4">
                 <div class="row gx-5">
                     <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
+                        <%--
+                        <div class="modal modal-xl " id="edit-pp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editppLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Search</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="searchPage">
+                                        <div class="m-3">Loading...</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a class="" href="#" id="edit-pp-modal" data-bs-toggle="modal" data-bs-target="#edit-pp" onclick="showEditPP()">Open Modal</a>
+                        <script>
+                            function showEditPP() {
+                                $.get('/sites/academy/home/search-1.html', function(data) {
+                                    $('.searchPage').html(data);
+                                });
+                            }
+
+                        </script>
+                        --%>
                         <!-- Breadcrumb -->
                         <c:if test="${!jcr:isNodeType(mainResourceNode, 'jacademix:hideBreadcrumb')}">
                             <template:include view="hidden.breadcrumb" />

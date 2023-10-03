@@ -112,7 +112,6 @@ void removeNode(String path, String substitutePath, JCRSessionWrapper session) t
             // if a substitutePath has benn set, then we try to move all existing vanity to the first subpage found
             if (substitutePath != null) {
                 if (node.isNodeType("jmix:vanityUrlMapped")) {
-                    logger.info("Try to move old vanity of ${path} to ${substitutePath}");
                     try {
                         JCRNodeWrapper substituteNode = session.getNode(substitutePath);
                         if (substituteNode != null) {
