@@ -62,24 +62,29 @@ def printProducts(JCRNodeWrapper startNode, int level) {
                     }
                     String menuItemUrl = null
                     String menuItemTitle = menuItem.displayableName
-                    String statusClass = renderContext.mainResource.node.path.contains(menuItem.path) ? ' active' : ''
-                    String extraClass = level == 0 ? " product":""
-                    if (menuItem.isNodeType("jnt:page")) {
-                        menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
-                    } else if (menuItem.isNodeType("jnt:navMenuText")) {
-                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
-                    }
-                    if (idx>1 && level == 0) {
-                        print """
+                    boolean isCurentProductPage = renderContext.mainResource.node.path.contains(menuItem.path) || level > 0;
+                    if (isCurentProductPage) {
+                        String extraClass = level == 0 ? " product" : ""
+                        if (menuItem.isNodeType("jnt:page")) {
+                            menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
+                        } else if (menuItem.isNodeType("jnt:navMenuText")) {
+                            menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
+                        }
+
+                        if (idx > 1 && level == 0) {
+                            print """
                             <li><hr class="dropdown-divider"></li>
                         """
-                    }
-                    print """
+                        }
+                        print """
                         <li><a class="dropdown-item ${extraClass}" href="${menuItemUrl}">${menuItemTitle}</a></li>
-                    """
-                    if (level == 0 && ! menuItem.isNodeType("jacademix:isVersionPage")) {
-                        printProducts(menuItem,level+1);
+                        """
+
+                        if (level == 0 && !menuItem.isNodeType("jacademix:isVersionPage")) {
+                            printProducts(menuItem, level + 1);
+                        }
                     }
+
                 }
             }
         }
@@ -89,6 +94,7 @@ def printProducts(JCRNodeWrapper startNode, int level) {
 
 
 def startNode = null
+def productName = null
 JCRNodeWrapper curentPageNode = renderContext.mainResource.node
 JCRNodeWrapper documentationNode = currentResource.getSession().getNode("/sites/academy/home/documentation")
 
