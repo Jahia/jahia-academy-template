@@ -214,11 +214,12 @@ TODO: jacademix:alternateTitle
             })
 
         // scroll to active link on the side menu
-            (function() {
-                const s = document.getElementById('bd-docs-nav');
-                const a = s && s.querySelector('a.active');
-                a && a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            })();
+        document.addEventListener('DOMContentLoaded', function() {
+            const s = document.getElementById('bd-docs-nav');
+            const a = s && s.querySelector('a.active');
+            a && a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
 
         </script>
     </template:addResources>
