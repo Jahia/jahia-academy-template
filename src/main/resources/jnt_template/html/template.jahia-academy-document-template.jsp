@@ -213,6 +213,13 @@ TODO: jacademix:alternateTitle
                 return new bootstrap.Popover(popoverTriggerEl)
             })
 
+        // scroll to active link on the side menu
+            (function() {
+                const s = document.getElementById('bd-docs-nav');
+                const a = s && s.querySelector('a.active');
+                a && a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            })();
+
         </script>
     </template:addResources>
     <c:if test="${renderContext.previewMode}">
