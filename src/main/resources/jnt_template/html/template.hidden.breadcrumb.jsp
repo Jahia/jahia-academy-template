@@ -23,7 +23,7 @@
     </c:choose>
 </c:if>
 <c:if test="${fn:length(pageNodes) > 1}">
-    <nav class="jac-breadcrumb mt-4 d-none d-sm-block d-xs-block d-md-none" aria-label="breadcrumb">
+    <nav class="jac-breadcrumb mt-4 d-block d-md-none" aria-label="breadcrumb">
         <ol class="breadcrumb d-flex align-items-center m-0 small">
             <c:set var="productSectionFound" value="false"/>
             <c:set var="isFirst" value="true"/>
@@ -36,9 +36,6 @@
                         </c:if>
                         <c:if test="${productSectionFound}">
                             <c:if test="${! isFirst}">
-
-
-
                                 <%-- now we check if there is sister pages --%>
                                 <c:set var="parentPage" value="${jcr:getParentOfType(pageNode, 'jmix:navMenuItem')}" />
                                 <c:set var="sisterPages" value="${jcr:getChildrenOfType(parentPage, 'jmix:navMenuItem')}" />
