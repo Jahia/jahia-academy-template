@@ -41,6 +41,7 @@ TODO: jacademix:alternateTitle
     </c:if>
     <title>${fn:escapeXml(pageTitle)}</title>
     <template:addResources type="javascript" resources="jquery.min.js"/>
+    <template:addResources type="javascript" resources="tabs-to-dropdown.js" targetTag="${renderContext.editMode?'head':'body'}"/>
 </head>
 
 <body class="jac-template-document d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
