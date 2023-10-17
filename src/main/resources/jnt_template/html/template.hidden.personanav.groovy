@@ -1,5 +1,4 @@
 import org.jahia.utils.JcrUtils
-
 import javax.jcr.ItemNotFoundException
 import org.jahia.services.content.JCRContentUtils
 import org.jahia.services.content.JCRNodeWrapper
@@ -9,82 +8,98 @@ import org.jahia.modules.academy.Functions
 
 logger = LoggerFactory.getLogger(this.class)
 
-def printMenu(JCRNodeWrapper startNode) {
-    if (startNode) {
-        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
-        children.eachWithIndex { menuItem, index ->
-            if (menuItem) {
-                def correctType = true
-                if (menuItem.isNodeType("jmix:navMenu")) {
-                    correctType = false
-                }
-                if (menuItem.properties["j:displayInMenuName"]) {
-                    correctType = menuItem.properties["j:displayInMenuName"]
-                            .any { it.string == currentNode.name }
-                }
-                if (correctType) {
-                    String menuItemUrl = null
-                    String menuItemTitle = menuItem.displayableName
-                    String statusClass = renderContext.mainResource.node.path.contains(menuItem.path) ? ' active' : ''
-                    if (menuItem.isNodeType("jnt:page")) {
-                        menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
-                    } else if (menuItem.isNodeType("jnt:navMenuText")) {
-                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
-                    }
-                    print """
-                    <li class="nav-item">
-                        <a class="nav-link${statusClass}" href="${menuItemUrl ?: '#'}">${menuItemTitle}</a>
-                    </li>
+// Helper method to check if menuItem should be processed
+def isCorrectType(menuItem) {
+    if (!menuItem) return false
+
+    if (menuItem.isNodeType("jmix:navMenu")) return false
+
+    if (menuItem.properties["j:displayInMenuName"]) {
+        return menuItem.properties["j:displayInMenuName"].any { it.string == currentNode.name }
+    }
+
+    return true
+}
+
+def printMenu(JCRNodeWrapper startNode, String style) {
+    if (!startNode) return
+
+    def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
+    children.eachWithIndex { menuItem, index ->
+        if (isCorrectType(menuItem)) {
+            String menuItemUrl = null
+            String menuItemTitle = menuItem.displayableName
+            String statusClass = renderContext.mainResource.node.path.contains(menuItem.path) ? ' active' : ''
+
+            if (menuItem.isNodeType("jnt:page")) {
+                menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
+            } else if (menuItem.isNodeType("jnt:navMenuText")) {
+                menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
+            }
+
+            if ("tab".equals(style)) {
+                print """
+                <li class="nav-item">
+                    <a class="nav-link${statusClass}" href="${menuItemUrl ?: '#'}">${menuItemTitle}</a>
+                </li>
                 """
-                }
+            } else {
+                print """
+                <li><a class="dropdown-item" href="${menuItemUrl ?: '#'}">${menuItemTitle}</a></li>
+                """
             }
         }
+    }
+}
+
+def printPersona(JCRNodeWrapper startNode) {
+    if (!startNode) return
+
+    def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
+    children.find { menuItem ->
+        if (isCorrectType(menuItem) && renderContext.mainResource.node.path.contains(menuItem.path)) {
+            print menuItem.displayableName
+            return true
+        }
+        return false
     }
 }
 
 def printProducts(JCRNodeWrapper startNode, int level) {
-    if (startNode) {
-        def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
-        int idx = 0;
-        children.eachWithIndex { menuItem, index ->
-            if (menuItem) {
-                def correctType = true
-                if (menuItem.isNodeType("jmix:navMenu")) {
-                    correctType = false
+    if (!startNode) return
+
+    def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
+    int idx = 0
+
+    children.eachWithIndex { menuItem, index ->
+        if (isCorrectType(menuItem) && (level > 0 || menuItem.isNodeType("jacademix:isProduct"))) {
+            if (menuItem.isNodeType("jacademix:isProduct")) idx++
+
+            String menuItemUrl = null
+            String menuItemTitle = menuItem.displayableName
+            boolean isCurrentProductPage = renderContext.mainResource.node.path.contains(menuItem.path) || level > 0
+
+            if (isCurrentProductPage) {
+                String extraClass = level == 0 ? " product" : ""
+
+                if (menuItem.isNodeType("jnt:page")) {
+                    menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
+                } else if (menuItem.isNodeType("jnt:navMenuText")) {
+                    menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
                 }
-                if (menuItem.properties["j:displayInMenuName"]) {
-                    correctType = menuItem.properties["j:displayInMenuName"]
-                            .any { it.string == currentNode.name }
+
+                if (idx > 1 && level == 0) {
+                    print """
+                    <li><hr class="dropdown-divider"></li>
+                    """
                 }
-                if (correctType && (level > 0 || menuItem.isNodeType("jacademix:isProduct"))) {
-                    if (menuItem.isNodeType("jacademix:isProduct")) {
-                        idx++;
-                    }
-                    String menuItemUrl = null
-                    String menuItemTitle = menuItem.displayableName
-                    boolean isCurentProductPage = renderContext.mainResource.node.path.contains(menuItem.path) || level > 0;
-                    if (isCurentProductPage) {
-                        String extraClass = level == 0 ? " product" : ""
-                        if (menuItem.isNodeType("jnt:page")) {
-                            menuItemUrl = renderContext.getResponse().encodeURL(menuItem.url)
-                        } else if (menuItem.isNodeType("jnt:navMenuText")) {
-                            menuItemUrl = Functions.findFirstSubPageUrl(menuItem)
-                        }
 
-                        if (idx > 1 && level == 0) {
-                            print """
-                            <li><hr class="dropdown-divider"></li>
-                        """
-                        }
-                        print """
-                        <li><a class="dropdown-item ${extraClass}" href="${menuItemUrl}">${menuItemTitle}</a></li>
-                        """
+                print """
+                <li><a class="dropdown-item ${extraClass}" href="${menuItemUrl}">${menuItemTitle}</a></li>
+                """
 
-                        if (level == 0 && !menuItem.isNodeType("jacademix:isVersionPage")) {
-                            printProducts(menuItem, level + 1);
-                        }
-                    }
-
+                if (level == 0 && !menuItem.isNodeType("jacademix:isVersionPage")) {
+                    printProducts(menuItem, level + 1)
                 }
             }
         }
@@ -92,9 +107,7 @@ def printProducts(JCRNodeWrapper startNode, int level) {
 }
 
 
-
 def startNode = null
-def productName = null
 JCRNodeWrapper curentPageNode = renderContext.mainResource.node
 JCRNodeWrapper documentationNode = currentResource.getSession().getNode("/sites/academy/home/documentation")
 
@@ -121,31 +134,42 @@ if (startNode) {
 
         print """
         <div class="row darkblue">
-            <div class="col-md-8">
-                <ul class="nav nav-underline ">
-    """
-        printMenu(startNode)
-        print """
-                </ul>
-            </div>            
-            <div class="col-md-4 text-end pe-4">                
+            <div class="col-8">
+                <div class="d-inline d-md-none">
+                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        """
+                            printPersona(startNode)
+                        print """
+                    </button>
+                    <ul class="dropdown-menu">
+                    """
+                    printMenu(startNode,"dropdown")
+                    print """
+                    </ul>
+                </div>
+                <div class="d-none d-md-block">
+                    <ul class="nav nav-underline ">
+        """
+            printMenu(startNode,"tab")
+            print """
+                    </ul>
+                </div>           
+            </div> 
+            <div class="col-4 text-end pe-4">                
                 <div class="btn-group">
-                  <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    ${startNode.getDisplayableName()}
-                  </button>
-                  <ul class="dropdown-menu">
+                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        ${startNode.getDisplayableName()}
+                    </button>
+                    <ul class="dropdown-menu">
     """
         if (documentationNode != null) {
             printProducts(documentationNode,0)
         }
         print """
-                  </ul>
+                    </ul>
                 </div>
-                
-                
             </div>
         </div>
     """
     }
-
 }
