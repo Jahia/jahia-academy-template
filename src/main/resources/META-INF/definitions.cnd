@@ -4,6 +4,8 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jacademix = 'http://www.jahia.org/academy/jahia/mix/1.0'>
 <jacademy = 'http://www.jahia.org/academy/jahia/nt/1.0'>
+<bootstrap5mix = 'http://www.jahia.org/bootstrap5/mix/1.0'>
+
 
 [jacademix:component] > jmix:droppableContent, jmix:editorialContent mixin
 

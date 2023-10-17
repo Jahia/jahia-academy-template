@@ -1,8 +1,10 @@
-$bd-primary-bright: lighten(saturate($primary, 5%), 15%); // stylelint-disable-line function-disallowed-list
+$bd-primary-bright: lighten(saturate($primary, 5%), 15%);
 $site-header-height: 83px;
 $dark-fuchsia: #d6217d;
 
 html {
+  position: relative;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
 
   .container-xxl.container-start {
@@ -19,11 +21,15 @@ html {
     }
 
     .bg-left {
-      left: 0;
-      top: 0;
-      bottom: 0;
       position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
       width: 50%;
+    }
+
+    img {
+      max-width: 100%;
     }
   }
 
@@ -32,44 +38,39 @@ html {
   }
 
   .book a,
-  .breadcrumb-item a {
+  .breadcrumb-item a,
+  .accordion-button {
     text-decoration: none;
   }
 }
 
-// --
-// Code snippets
-// --
-.hljs-line-numbers {
-  text-align: right;
-  border-right: 1px solid #ccc;
-  color: #999;
-  -webkit-touch-callout: none;
-  user-select: none;
-}
-
-.hljs-ln-line.hljs-ln-n {
-  min-width: 30px;
-  padding-right: 8px;
-  text-align: right;
-}
-
-td.hljs-ln-numbers {
-  border-right: 1px solid #ccc;
-  color: #ccc;
-}
-
-td.hljs-ln-code {
-  padding-left: 10px !important;
-  width: 100%;
-}
-
 .hljs {
   padding: 0 0.5em;
-}
 
-// clipboard.js
-// JS-based `Copy` buttons for code snippets.
+  &-line-numbers {
+    text-align: right;
+    border-right: 1px solid #ccc;
+    color: #999;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  &-ln-line.hljs-ln-n {
+    min-width: 30px;
+    padding-right: 8px;
+    text-align: right;
+  }
+
+  td &-ln-numbers {
+    border-right: 1px solid #ccc;
+    color: #ccc;
+  }
+
+  td &-ln-code {
+    padding-left: 10px !important;
+    width: 100%;
+  }
+}
 
 .bd-clipboard {
   position: relative;
@@ -83,167 +84,24 @@ td.hljs-ln-code {
   @include media-breakpoint-up(md) {
     display: block;
   }
-}
 
-.btn-clipboard {
-  position: absolute;
-  top: 0.65rem;
-  right: 0.65rem;
-  z-index: 10;
-  display: block;
-
-  // padding: 0.25rem 0.5rem;
-  padding: spacing(1) spacing(2);
-
-  @include font-size(0.65em);
-
-  color: $secondary;
-  background-color: $white;
-  border: 1px solid;
-  border-radius: $border-radius;
-
-  &:hover,
-  &:focus {
-    color: $white;
-    background-color: $primary;
-  }
-}
-
-.accordion-button {
-  text-decoration: none;
-  padding-left: 0;
-  border-top: 1px solid $gray-200;
-
-  // color: $primary;
-
-  &.active {
-    margin-bottom: spacing(2);
-  }
-
-  &:first-of-type {
-    border-top-width: 0;
-  }
-
-  &:not(.collapsed) {
-    // color: inherit;
-    // background-color: transparent;
-    box-shadow: none;
-
-    &::after {
-      margin-top: 12px;
-    }
-  }
-
-  > * {
-    margin: 0;
-  }
-}
-
-.nav-tabs {
-  border-bottom: none;
-  margin-top: spacing(3);
-
-  // padding-bottom: spacing(3);
-  margin-bottom: spacing(3);
-
-  .nav-link {
-    color: rgba($black, 0.65);
-    color: $gray-600;
-    font-size: larger;
-    font-weight: bold;
-    padding: 0 0 spacing(3);
-    margin-right: spacing(5);
-    border: none;
+  .btn-clipboard {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    z-index: 10;
+    display: block;
+    padding: spacing(1) spacing(2);
+    color: $secondary;
+    background-color: $white;
+    border: 1px solid;
+    border-radius: $border-radius;
 
     &:hover,
     &:focus {
-      color: $primary;
-    }
-
-    &.disabled {
-      color: $nav-link-disabled-color;
-      background-color: transparent;
-      border-color: transparent;
-    }
-  }
-
-  .nav-link.active,
-  .nav-item.show .nav-link {
-    color: $primary;
-    border-bottom: 2px solid $primary;
-    background-color: transparent;
-  }
-}
-
-.nav-item,
-.dropdown-item {
-  > a {
-    color: rgba($black, 0.85);
-  }
-
-  &.active {
-    > a {
-      color: $primary;
-    }
-  }
-}
-
-.dropdown-item {
-  &.active {
-    >a {
       color: $white;
+      background-color: $primary;
     }
-  }
-}
-
-// .tab-content {
-//   margin-bottom: spacing(2);
-// }
-
-.bluebg {
-  background-color: $light;
-  padding-top: spacing(4);
-  padding-bottom: spacing(4);
-}
-
-.simplebox {
-  padding: spacing(4);
-  margin-top: spacing(4);
-  background-color: $body-bg;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow-sm;
-}
-.darkblue {
-  background-color: $darkblue;
-  padding-top: spacing(4);
-  padding-bottom: spacing(4);
-  padding-left: spacing(3);
-  .nav-underline {
-    // scss-docs-start nav-underline-css-vars
-    --#{$prefix}nav-underline-link-active-color: #{$nav-underline-link-active-color};
-    gap: var(--#{$prefix}nav-underline-gap);
-    .nav-link {
-      color: rgba($white, 0.6);
-      //color: $gray-300;
-      font-size: larger;
-      font-weight: bold;
-      padding: 0 spacing(2) spacing(2) spacing(2);
-      margin: 0 spacing(3) 0 0;
-      &:hover,
-      &:focus {
-        color: rgba($white, 0.6);;
-        border-bottom-color: rgba($white, 0.6);
-      }
-    }
-    .nav-link.active,
-    .show > .nav-link {
-      color: $white;
-      border-bottom-color: $white;
-    }
-  }
-  .dropdown-item.product {
-    font-size: .8rem;
-    font-weight: 900;
   }
 }
 
@@ -262,11 +120,44 @@ td.hljs-ln-code {
   }
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.jahia-badge {
+  padding-bottom: 1rem !important;
+
+  .badge {
+    font-weight: $font-weight-normal !important;
+    padding: 0.2em 0.7em !important;
+    background-color: #178eca !important;
+    color: #f6fafd !important;
+    margin-right: 0.5rem !important;
+
+    &.jahia {
+      background-color: rgb(99, 209, 255, 0.4) !important;
+      color: #004781 !important;
+    }
+
+    &.jexperience {
+      background-color: rgb(112, 24, 224, 0.2) !important;
+      color: #293136 !important;
+    }
+
+    &.persona {
+      background-color: rgb(218, 218, 218, 0.4) !important;
+      color: #004781 !important;
+    }
+  }
+}
+
+// ... Previous styles ...
+
 .btn-primary {
   color: $white;
-
-  // background-color: $primary;
-  // border-color: $primary;
 
   &:hover {
     color: $white;
@@ -292,46 +183,105 @@ a[aria-expanded="true"] .fa-angle-down {
   display: none;
 }
 
-/* sticky footer */
-html {
-  position: relative;
-  min-height: 100%;
-}
+.nav-tabs {
+  border-bottom: none;
+  margin-top: spacing(3);
+  margin-bottom: spacing(3);
 
-body {
-  margin-bottom: 100px;
-}
+  .nav-link {
+    color: $gray-600;
+    font-size: larger;
+    font-weight: bold;
+    padding: 0 0 spacing(3);
+    margin-right: spacing(5);
+    border: none;
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-}
-
-.jahia-badge {
-  padding-bottom: 1rem !important;
-
-  .badge {
-    font-weight: $font-weight-normal !important;
-    padding: 0.2em 0.7em !important;
-    background-color: #178eca !important;
-    color: #f6fafd !important;
-    margin-right: 0.5rem !important;
-
-    &.jahia {
-      background-color: rgb(99 209 255 / 40%) !important;
-      color: #004781 !important;
+    &:hover,
+    &:focus {
+      color: $primary;
     }
 
-    &.jexperience {
-      background-color: rgb(112 24 224 / 20%) !important;
-      color: #293136 !important;
+    &.disabled {
+      color: $nav-link-disabled-color;
+      background-color: transparent;
+      border-color: transparent;
     }
 
-    &.persona {
-      background-color: rgb(218 218 218 / 40%) !important;
-      color: #004781 !important;
+    &.active,
+    .nav-item.show & {
+      color: $primary;
+      border-bottom: 2px solid $primary;
+      background-color: transparent;
     }
   }
 }
+
+.nav-item,
+.dropdown-item {
+  > a {
+    color: rgba($black, 0.85);
+  }
+
+  &.active {
+    > a {
+      color: $primary;
+    }
+  }
+
+  &.active > a {
+    color: $white;
+  }
+}
+
+.bluebg {
+  background-color: $light;
+  padding-top: spacing(4);
+  padding-bottom: spacing(4);
+}
+
+.simplebox {
+  padding: spacing(4);
+  margin-top: spacing(4);
+  background-color: $body-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-sm;
+}
+
+.darkblue {
+  background-color: $darkblue;
+  padding-top: spacing(4);
+  padding-bottom: spacing(4);
+  padding-left: spacing(3);
+
+  .nav-underline {
+    --#{$prefix}nav-underline-link-active-color: #{$nav-underline-link-active-color};
+    gap: var(--#{$prefix}nav-underline-gap);
+
+    .nav-link {
+      color: rgba($white, 0.6);
+      font-size: larger;
+      font-weight: bold;
+      padding: 0 spacing(2) spacing(2) spacing(2);
+      margin: 0 spacing(3) 0 0;
+
+      &:hover,
+      &:focus {
+        color: rgba($white, 0.6);
+        border-bottom-color: rgba($white, 0.6);
+      }
+
+      &.active,
+      .show > & {
+        color: $white;
+        border-bottom-color: $white;
+      }
+    }
+  }
+
+  .dropdown-item.product {
+    font-size: .8rem;
+    font-weight: 900;
+  }
+}
+
+
