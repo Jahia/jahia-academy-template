@@ -43,6 +43,7 @@
             <c:set var="hasLevel1Pages" value="${fn:length(level1Pages) > 0}" />
             <c:if test="${hasLevel1Pages}">
                 <c:forEach items="${level1Pages}" var="level1Page" varStatus="status">
+                    <c:set var="page1Active" value="false"/>
                     <template:addCacheDependency node="${level1Page}"/>
                     <c:if test="${! jcr:isNodeType(level1Page, 'jacademix:hidePage')}">
                         <c:set var="displayLevel1Page" value="true" />
@@ -80,9 +81,10 @@
                                     </c:if>
                                 </c:when>
                             </c:choose>
-                            <c:if test="${fn:contains(renderContext.mainResource.path, level1Page.path)}">
+                            <c:if test="${fn:contains(renderContext.mainResource.node.path, level1Page.path)}">
                                 <c:set var="page1Active" value="true" />
                             </c:if>
+
                             <c:set var="level2Pages" value="${jcr:getChildrenOfType(level1Page, 'jmix:navMenuItem')}" />
                             <c:set var="hasLevel2Pages" value="${fn:length(level2Pages) > 0}" />
                             <c:set var="level2PageCounter" value="0" />
@@ -210,11 +212,10 @@
                                 </c:otherwise>
                             </c:choose>
                         </c:if>
-
-                        <c:remove var="page1Active" />
-                        <c:remove var="page1Url" />
-                        <c:remove var="page1Title" />
                     </c:if>
+                    <c:remove var="page1Active" />
+                    <c:remove var="page1Url" />
+                    <c:remove var="page1Title" />
                 </c:forEach>
             </c:if>
         </ul>
