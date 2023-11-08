@@ -80,31 +80,6 @@ TODO: jacademix:alternateTitle
             <div class="col-sm-12 col-md-${empty sidenav ? '12' : '9 col-lg-8'}  mb-4">
                 <div class="row gx-5">
                     <div class="col-12 ${displayInThisPage? 'col-lg-9':' '} px-5">
-                        <%--
-                        <div class="modal modal-xl " id="edit-pp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editppLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Search</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="searchPage">
-                                        <div class="m-3">Loading...</div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <a class="" href="#" id="edit-pp-modal" data-bs-toggle="modal" data-bs-target="#edit-pp" onclick="showEditPP()">Open Modal</a>
-                        <script>
-                            function showEditPP() {
-                                $.get('/sites/academy/home/search-1.html', function(data) {
-                                    $('.searchPage').html(data);
-                                });
-                            }
-
-                        </script>
-                        --%>
                         <!-- Breadcrumb -->
                         <c:if test="${!jcr:isNodeType(mainResourceNode, 'jacademix:hideBreadcrumb')}">
                             <template:include view="hidden.breadcrumb" />
@@ -154,9 +129,10 @@ TODO: jacademix:alternateTitle
                         </div>
                     </c:if>
 
-                <div class="row my-3">
-                    <div class="col-12 col-lg-9">
-                        <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
+                    <div class="row my-3">
+                        <div class="col-12 col-lg-9">
+                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
+                        </div>
                     </div>
                 </div>
             </div>
