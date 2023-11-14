@@ -44,8 +44,7 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jahia.modules</groupId>
@@ -54,7 +53,7 @@
     </parent>
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-academy-template</artifactId>
-    <version>4.2.1-SNAPSHOT</version>
+    <version>4.2.1</version>
     <packaging>bundle</packaging>
     <name>New Academy Templates</name>
     <description>This is the custom profile module (New academy templates) for running on a Jahia server.</description>
@@ -62,7 +61,7 @@
         <connection>scm:git:git@github.com:Jahia/jahia-academy-template.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jahia-academy-template.git</developerConnection>
         <url>https://github.com/Jahia/jahia-academy-template</url>
-        <tag>HEAD</tag>
+        <tag>jahia-academy-template-4.2.1</tag>
     </scm>
     <properties>
         <jahia-module-signature>MCwCFFYZ9EXcaUKncxSedeuHaHMnYOscAhQEM0aZGzqSV6r3/RfOeL2RbvpWIw==</jahia-module-signature>
