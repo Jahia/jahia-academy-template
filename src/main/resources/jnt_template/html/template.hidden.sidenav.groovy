@@ -138,7 +138,7 @@ printMenu = { startNode, level, maxlevel ->
 long maxlevel = 5;
 
 JCRNodeWrapper startNode = null;
-String productName = null;
+String productName = "";
 JCRNodeWrapper curentPageNode = renderContext.mainResource.node;
 List<JCRNodeWrapper> parentPages = JCRTagUtils.getParentsOfType(curentPageNode,"jmix:navMenuItem");
 if (!parentPages.empty) {
