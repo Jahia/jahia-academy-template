@@ -1,102 +1,53 @@
+# Jahia Academy Templates Repository
 
-# Academy templates v5
+This repository holds the specialized template set used for the [academy.jahia.com](https://academy.jahia.com) website. These templates are tailored specifically for our needs, with some code sections containing hard-coded content related to certain Jahia websites.
 
-A few search and replace are mandatory to migrate from bootstrap 3 to bootstrap 5.
-Here is the list of search replace to do on the repository.xml (default + live)
+This template set not only shapes the aesthetic design but also includes detailed content definitions for displaying the site's information effectively.
 
-- bootstrap3nt:columns -> bootstrap5nt:grid
-- bootstrap5mix:customColumns -> bootstrap5mix:customGrid
-- bootstrap5mix:predefinedColumns -> bootstrap5mix:predefinedGrid
-- bootstrap5mix:siteLogo / siteLogo ->  bootstrap5mix:siteBrand / brandImage
-- bootstrap5mix:advancedModal / size -> bootstrap5mix:modal -> modalSize
-- bootstrap3nt:modal -> bootstrap5nt:button + add mixin bootstrap5mix:modal
-- columnsType -> typeOfGrid
-- typeOfGrid="predefinedColumns" -> typeOfGrid="predefinedGrid"
-- typeOfGrid="customColumns" -> typeOfGrid="customGrid"
-- gridLayout -> containerType
-- fixed-width -> container
-- full-width -> container-fluid
-- fadeEffect -> fade
-- navigation="tab" -> type="tab"
-- navigation="pill" -> type="pill"
-- useSystemNameAsAnchor -> useListNameAsAnchor
-- tabsPosition="top" -> align="justify-content-start"
+Please be aware that we incorporate certain external bundles in the live website due to historical reasons.
 
-Also a few remove are mandatory
+## License
 
-- remove navJustified="false"
-- remove navStacked="false"
-- remove state="primary"
+The repository is available under two licenses: GPL and JSEL.
 
-And a few things to check:
+- GPL: If you opt for the GPL license, please adhere to the terms of the GNU General Public License as published by the Free Software Foundation.
+- JSEL: If you choose the JSEL license, the commercial and supported versions of the program, also known as Enterprise Distributions, must be used according to the terms and conditions detailed in a separate written agreement between you and Jahia Solutions Group SA.
 
-- For lines with bootstrap5mix:customGrid check if there is a bootstrap5mix:createRow
-- For lines with bootstrap5mix:predefinedGrid check if there is a bootstrap5mix:createRow
-- For blocks with typeOfGrid="nogrid" check if there is a bootstrap5mix:createRow
-- On jnt:virtualsite node, remove modal property
+For more information, please visit the [Jahia License Page](http://www.jahia.com).
 
-## how to upgrade the repository.xml
+## Installation
 
-Here is a few search / replace that do the job:
+### Prerequisites
+Before compiling and building this template set, ensure Yarn is installed on your system.
 
+Ensure you have Jahia v8.1.0.0 or a later version installed. Clone the repository and navigate to the project's root directory. Install the necessary dependencies with the following commands:
+
+```bash
+git clone git@github.com:Jahia/jahia-academy-template.git
+cd jahia-academy-template
+mvn clean install
 ```
-sed 's/bootstrap3mix/bootstrap5mix/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap3nt:columns/bootstrap5nt:grid/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:customColumns/bootstrap5mix:customGrid/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:predefinedColumns/bootstrap5mix:predefinedGrid/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/columnsType/typeOfGrid/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/typeOfGrid="predefinedColumns"/typeOfGrid="predefinedGrid"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/typeOfGrid="customColumns"/typeOfGrid="customGrid"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/gridLayout/containerType/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/fixed-width/container/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/full-width/container-fluid/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/fadeEffect/fade/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/navigation="tab"/type="tab"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/navigation="pill"/type="pill"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/navJustified="false"//g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/navStacked="false"//g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/state="primary"//g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/tabsPosition="top"/align="justify-content-start"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/useSystemNameAsAnchor/useListNameAsAnchor/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:siteLogo/bootstrap5mix:siteBrand/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/siteLogo/brandImage/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:advancedModal/bootstrap5mix:modal/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/size="lg"/modalSize="lg"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/size="default"/modalSize="default"/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap3nt:modal/bootstrap5nt:button/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap3nt/bootstrap5nt/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:createContainer/bootstrap5mix:createContainer bootstrap5mix:createRow/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5mix:createContainer bootstrap5mix:createRow bootstrap5mix:createRow/bootstrap5mix:createContainer bootstrap5mix:createRow/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/jacademix:hideNavbuttons//g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/jacademix:isMultiplePageDoc//g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap5nt:textBox/jacademy:textBox/g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/jcr:mixinTypes="bootstrap5mix:predefinedGrid"/jcr:mixinTypes="bootstrap5mix:predefinedGrid bootstrap5mix:createRow" /g' repository.xml > new.xml && mv new.xml repository.xml
-sed 's/bootstrap3-basic/bootstrap5-basic/g' repository.xml > new.xml && mv new.xml repository.xml
+## Dependencies
 
-```
+The module relies on the following Jahia modules:
 
-For lines with bootstrap5mix:predefinedGrid check if there is a bootstrap5mix:createRow (found 4)
+- bootstrap5-components
+- default
+- font-awesome
+- jquery
+- animate
+- jahiacom-templates
 
-```    cat -n repository.xml|grep bootstrap5mix:predefinedGrid|grep -v bootstrap5mix:createRow```
+## Yarn Dependencies
 
-(not that it should be fixed using the last sed)
+This project uses:
 
-## Import
-Befor importing, in `site.properties`, change `installedModules.16=bootstrap3-components` to `installedModules.16=bootstrap5-components`(maybe the id is not 16)
+- [Bootstrap 5](https://getbootstrap.com/): A popular HTML, CSS, and JS framework for developing responsive, mobile-first projects.
+- [@popperjs/core](https://popper.js.org/): A positioning engine to manage the positioning of tooltips, popovers, dropdowns, etc.
 
-THen you can import
+The project relies on the following development dependencies:
 
-After that, you need to play 2 scripts (play it until there are no more errors):
-
-- grid-refactoring.groovy
-- grid-rename.groovy
-- tooltips.groovy
-- search-for-row-eq-height.groovy
-
-## Jahia config
-
-Set the following settings in the `jahia.properties` to prevent bad loading of forms JS files
-```
-aggregateAssets=false
-compressAssetsDuringAggregation=false
-```
+- [Sass](https://sass-lang.com/): A mature extension to standard CSS, offering nested rules, variables, mixins, selector inheritance, etc.
+- [Stylelint](https://stylelint.io/): A powerful, modern CSS linter that enforces consistent conventions and averts errors in stylesheets.
+- [PostCSS](https://postcss.org/): A tool for transforming styles with JS plugins, useful for automating routine operations, supporting CSS features, and fixing CSS bugs.
+- [Stylelint-config-standard-scss](https://www.npmjs.com/package/stylelint-config-standard-scss): The standard shareable SCSS configuration for Stylelint.

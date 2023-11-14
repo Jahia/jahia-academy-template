@@ -1,6 +1,7 @@
 import org.jahia.api.Constants
 import org.jahia.services.SpringContextSingleton
 import org.jahia.services.content.JCRCallback
+import org.jahia.services.content.JCRContentUtils
 import org.jahia.services.content.JCRNodeWrapper
 import org.jahia.services.content.JCRPublicationService
 import org.jahia.services.content.JCRSessionWrapper
@@ -17,11 +18,17 @@ import javax.jcr.NodeIterator
 import javax.jcr.RepositoryException
 import javax.jcr.query.Query
 
+
 // set to true to run this script to add vanityUrls on files
 boolean executeOnFiles = false;
 
 // set to true to run this script to add vanityUrls on content
 boolean executeOnContent = true;
+
+// set to true to run this script to add vanityUrls on navMenuText
+// if set to true the first page founded under a navMenuText will have a non default vanity
+// based on the path of the navMenuText
+boolean executeOnNavMenuText = true;
 
 // list of languages to ignore
 Set<String> langToIgnore = new HashSet<String>();
@@ -37,7 +44,7 @@ pathToIgnore.add("/sites/jahiacom/home/registration/verified");
 pathToIgnore.add("/sites/jahiacom/home/profile");
 
 // Choose a files firectory prefix. Could be "/files" or "/static" or "" for instance
-String FILES_PREFIX  = "/static";
+String FILES_PREFIX = "/static";
 
 // list of file extention to handle
 Set<String> fileExtentions = new HashSet<String>();
@@ -72,14 +79,14 @@ if (site != null) {
             Object doInJCR(JCRSessionWrapper session) throws RepositoryException {
                 VanityUrlManager urlMgr = SpringContextSingleton.getInstance().getContext().getBean(VanityUrlManager.class);
 
-                if (executeOnContent){
+                if (executeOnContent) {
                     String stmt = "select * from [jnt:contentTemplate]";
                     NodeIterator iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
                     while (iterator.hasNext()) {
                         final JCRNodeWrapper contentTemplateNode = (JCRNodeWrapper) iterator.nextNode();
                         if (contentTemplateNode.hasProperty('j:applyOn')) {
-                            for (JCRValueWrapper  valueWrapper : contentTemplateNode.getProperty('j:applyOn').getValues()) {
-                                String contentType = valueWrapper .getString();
+                            for (JCRValueWrapper valueWrapper : contentTemplateNode.getProperty('j:applyOn').getValues()) {
+                                String contentType = valueWrapper.getString();
                                 contentTypes.add(contentType);
                             }
                         }
@@ -104,7 +111,7 @@ if (site != null) {
                     contentTypes.add("jnt:page");
 
                     Iterator contentTypeIterator = contentTypes.iterator();
-                    while(contentTypeIterator.hasNext()){
+                    while (contentTypeIterator.hasNext()) {
                         String contentType = contentTypeIterator.next();
                         logger.info(contentType);
                         try {
@@ -112,8 +119,8 @@ if (site != null) {
                             iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
                             while (iterator.hasNext()) {
                                 final JCRNodeWrapper page = (JCRNodeWrapper) iterator.nextNode();
-                                if (! pathToIgnore.contains(page.getPath())) {
-                                    children = JCRTagUtils.getParentsOfType(page,'jmix:navMenuItem');
+                                if (!pathToIgnore.contains(page.getPath())) {
+                                    children = JCRTagUtils.getParentsOfType(page, 'jmix:navMenuItem');
                                     String url = "/" + slug(page.getDisplayableName());
                                     if (page.isNodeType('jnt:fixApplier')) {
                                         String fromVersion = page.getPropertyAsString('from');
@@ -122,7 +129,7 @@ if (site != null) {
                                     }
                                     children.eachWithIndex() { parentPage, index ->
                                         if (parentPage != null) {
-                                            if (index !=  children.size()-1) {
+                                            if (index != children.size() - 1) {
                                                 String pageTitle = parentPage.getDisplayableName();
                                                 if (pageTitle != null) {
                                                     String slugTitle = slug(pageTitle);
@@ -131,15 +138,15 @@ if (site != null) {
                                             }
                                         }
                                     }
-                                    if (! "en".equals(locale.toString())) {
+                                    if (!"en".equals(locale.toString())) {
                                         url = "/${locale.toString()}${url}"
                                     }
 
-                                    if(urlMgr.findExistingVanityUrls(url,site.getSiteKey(),session).isEmpty()) {
-                                        VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(),locale.toString(),true,true);
+                                    if (urlMgr.findExistingVanityUrls(url, site.getSiteKey(), session).isEmpty()) {
+                                        VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(), locale.toString(), true, true);
                                         if (doIt) {
                                             try {
-                                                urlMgr.saveVanityUrlMapping(page,vanityUrl,session);
+                                                urlMgr.saveVanityUrlMapping(page, vanityUrl, session);
                                             } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
 
                                             } catch (java.lang.NullPointerException npe) {
@@ -170,14 +177,82 @@ if (site != null) {
                             logger.error(e2.getMessage());
                         } catch (javax.jcr.query.InvalidQueryException e) {
                             logger.error(e.getMessage());
-                        } catch (RepositoryException e1 ) {
+                        } catch (RepositoryException e1) {
                             logger.error(e1.getMessage());
                         }
-
                     }
-
                 }
-                if (executeOnFiles){
+                if (executeOnNavMenuText) {
+
+                try {
+                        stmt = "select * from [jnt:navMenuText] where isdescendantnode('" + site.getJCRLocalPath() + "/home')";
+                        iterator = session.getWorkspace().getQueryManager().createQuery(stmt, Query.JCR_SQL2).execute().getNodes();
+                        while (iterator.hasNext()) {
+                            final JCRNodeWrapper node = (JCRNodeWrapper) iterator.nextNode();
+                            if (!pathToIgnore.contains(node.getPath())) {
+                                String url = "/" + slug(node.getDisplayableName());
+                                children = JCRTagUtils.getParentsOfType(node, 'jmix:navMenuItem');
+                                children.eachWithIndex() { parentPage, index ->
+                                    if (parentPage != null) {
+                                        if (index != children.size() - 1) {
+                                            String pageTitle = parentPage.getDisplayableName();
+                                            if (pageTitle != null) {
+                                                String slugTitle = slug(pageTitle);
+                                                url = "/" + slugTitle + url;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (!"en".equals(locale.toString())) {
+                                    url = "/${locale.toString()}${url}"
+                                }
+
+                                JCRNodeWrapper firstSubpage = findFirstSubPageNode(node);
+                                if (firstSubpage != null) {
+                                    if (urlMgr.findExistingVanityUrls(url, site.getSiteKey(), session).isEmpty()) {
+                                        VanityUrl vanityUrl = new VanityUrl(url, site.getSiteKey(), locale.toString(), false, true);
+                                        if (doIt) {
+                                            try {
+                                                urlMgr.saveVanityUrlMapping(firstSubpage, vanityUrl, session);
+                                            } catch (org.jahia.services.seo.jcr.NonUniqueUrlMappingException uniq) {
+
+                                            } catch (java.lang.NullPointerException npe) {
+
+                                            }
+
+                                        }
+                                        logger.info("    [" + locale.toString() + "] [jnt:page] " + firstSubpage.getPath() + " [" + url + "]");
+                                        if (hasPendingModification(firstSubpage)) {
+                                            nodesToManuelPublish.add(firstSubpage.identifier);
+                                        } else {
+                                            nodesToAutoPublish.add(firstSubpage.identifier);
+                                            try {
+                                                JCRNodeWrapper vanityUrlMappingNode = session.getNode(firstSubpage.getPath() + "/vanityUrlMapping");
+                                                if (vanityUrlMappingNode != null) {
+                                                    for (JCRNodeWrapper vanityURlNode : JCRContentUtils.getChildrenOfType(vanityUrlMappingNode, "jnt:vanityUrl")) {
+                                                        vanityNodesToAutoPublish.add(vanityURlNode.identifier);
+                                                    }
+                                                }
+                                            } catch (javax.jcr.PathNotFoundException e) {
+
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+                    } catch (javax.jcr.nodetype.NoSuchNodeTypeException e2) {
+                        logger.error(e2.getMessage());
+                    } catch (javax.jcr.query.InvalidQueryException e) {
+                        logger.error(e.getMessage());
+                    } catch (RepositoryException e1) {
+                        logger.error(e1.getMessage());
+                    }
+                }
+
+                if (executeOnFiles) {
                     // now on files, only for PDF in english yet
                     if ("en".equals(locale.toString())) {
                         String stmt = "select * from [jnt:file] where isdescendantnode('" + site.getJCRLocalPath() + "/files')";
@@ -185,14 +260,14 @@ if (site != null) {
                         while (iterator.hasNext()) {
                             final JCRNodeWrapper file = (JCRNodeWrapper) iterator.nextNode();
                             String filePath = file.getPath();
-                            if (! pathToIgnore.contains(filePath)) {
+                            if (!pathToIgnore.contains(filePath)) {
                                 Iterator<Integer> iterator = fileExtentions.iterator();
-                                while(iterator.hasNext()) {
+                                while (iterator.hasNext()) {
                                     String fileExtention = iterator.next();
                                     if (filePath.toLowerCase(Locale.ENGLISH).endsWith("." + fileExtention.toLowerCase(Locale.ENGLISH))) {
                                         String[] parts = filePath.replaceAll(site.getJCRLocalPath() + "/files/", "").split("/");
                                         String url = FILES_PREFIX;
-                                        for(String part : parts) {
+                                        for (String part : parts) {
                                             String slugTitle = slugFile(part);
                                             url = url + "/" + slugTitle;
                                         }
@@ -277,15 +352,42 @@ public boolean hasPendingModification(final JCRNodeWrapper node) throws Reposito
         return false;
     }
 }
+
 public String slug(final String str) {
     if (str == null) {
         return "";
     }
     return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("[^ \\w|.]", "").trim().replaceAll("\\s+", "-").toLowerCase(Locale.ENGLISH)
 }
+
 public String slugFile(final String str) {
     if (str == null) {
         return "";
     }
-    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("[^ \\w|.|-]", "").trim().replaceAll("\\s+", "_").replaceAll("\\-+", "-").replaceAll("\\_+", "_").replaceAll("_-_","-").toLowerCase(Locale.ENGLISH);
+    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replaceAll("[^ \\w|.|-]", "").trim().replaceAll("\\s+", "_").replaceAll("\\-+", "-").replaceAll("\\_+", "_").replaceAll("_-_", "-").toLowerCase(Locale.ENGLISH);
+}
+
+public static JCRNodeWrapper findFirstSubPageNode(JCRNodeWrapper node) throws RepositoryException {
+    if (node == null) {
+        return null;
+    }
+
+    Stack<JCRNodeWrapper> stack = new Stack<>();
+    stack.push(node);
+
+    while (!stack.isEmpty()) {
+        JCRNodeWrapper current = stack.pop();
+
+        // Check if the current node is a page
+        if (current.isNodeType("jnt:page")) {
+            return current;
+        }
+
+        // Add child nodes of the specified type to the stack
+        List<JCRNodeWrapper> children = JCRContentUtils.getChildrenOfType(current, "jmix:navMenuItem");
+        Collections.reverse(children); // Reverse the list to maintain depth-first order
+        stack.addAll(children);
+    }
+
+    return null; // Return "#" if no sub-page URL found
 }

@@ -41,13 +41,35 @@ TODO: jacademix:alternateTitle
     </c:if>
     <title>${fn:escapeXml(pageTitle)}</title>
     <template:addResources type="javascript" resources="jquery.min.js"/>
+    <template:addResources type="javascript" resources="tabs-to-dropdown.js" targetTag="${renderContext.editMode?'head':'body'}"/>
 </head>
 
 <body class="jac-template-document d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
     data-bs-offset="180" tabindex="0">
-    <template:include view="hidden.main-menu" />
+    <c:if test="${! mainResourceNode.isNodeType('jcmix:hideMenu')}">
+        <template:include view="hidden.main-menu" />
+    </c:if>
     <template:include view="hidden.sidenav" var="sidenav" />
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
+        <c:if test="${! empty sidenav && fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/documentation')}">
+            <template:include view="hidden.personanav" />
+            <%--<div class="row darkblue">
+                <div class="col-md-12">
+                    <ul class="nav nav-underline">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">End User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Developer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">System Administrator</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            --%>
+        </c:if>
         <div class="row">
             <!-- Secondary-navigation -->
             <c:if test="${! empty sidenav}">
@@ -107,9 +129,10 @@ TODO: jacademix:alternateTitle
                         </div>
                     </c:if>
 
-                <div class="row my-3">
-                    <div class="col-12 col-lg-9">
-                        <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
+                    <div class="row my-3">
+                        <div class="col-12 col-lg-9">
+                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,6 +189,14 @@ TODO: jacademix:alternateTitle
             var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)
             })
+
+        // scroll to active link on the side menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const s = document.getElementById('bd-docs-nav');
+            const a = s && s.querySelector('a.active');
+            a && a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
 
         </script>
     </template:addResources>

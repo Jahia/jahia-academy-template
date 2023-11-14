@@ -5,6 +5,7 @@ import org.jahia.services.render.RenderService
 import org.jahia.services.render.Resource
 import org.jahia.taglibs.jcr.node.JCRTagUtils
 import org.slf4j.LoggerFactory
+import org.jahia.modules.academy.Functions
 
 logger = LoggerFactory.getLogger(this.class)
 
@@ -54,7 +55,7 @@ printMenu = { startNode, level, maxlevel ->
                         menuItemUrl = menuItem.properties['j:url'].string;
                     }
                     if (menuItemUrl == null || "".equals(menuItemUrl)) {
-                        menuItemUrl = "#";
+                        menuItemUrl = Functions.findFirstSubPageUrl(menuItem);
                     }
 
                     if (hasChildren && level < maxlevel) {
@@ -137,7 +138,7 @@ printMenu = { startNode, level, maxlevel ->
 long maxlevel = 5;
 
 JCRNodeWrapper startNode = null;
-
+String productName = null;
 JCRNodeWrapper curentPageNode = renderContext.mainResource.node;
 List<JCRNodeWrapper> parentPages = JCRTagUtils.getParentsOfType(curentPageNode,"jmix:navMenuItem");
 if (!parentPages.empty) {
@@ -145,12 +146,16 @@ if (!parentPages.empty) {
     reversedList.addAll(parentPages);
     Collections.reverse(reversedList);
     for (JCRNodeWrapper parentPage : reversedList) {
+        if (JCRTagUtils.isNodeType(parentPage, "jacademix:isProduct")) {
+            productName = parentPage.getDisplayableName();
+        }
         if (JCRTagUtils.isNodeType(parentPage,'jacademix:isVersionPage')) {
             startNode = parentPage;
             break;
         }
     }
 }
+
 if (startNode != null) {
     // Add dependencies to parent of main resource so that we are aware of new pages at sibling level
     try {
@@ -159,6 +164,7 @@ if (startNode != null) {
     }
 
     print "<nav class=\"jac-secondary-navigation p-4 sticky-top\" id=\"bd-docs-nav\" aria-label=\"Docs navigation\">";
+        print "<p class='h4'>$productName</p>";
         print "<ul class=\"jac-secondary-navigation-list mb-0\">";
             printMenu(startNode, 1,  maxlevel)
         print "</ul>"

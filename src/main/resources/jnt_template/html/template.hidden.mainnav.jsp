@@ -3,6 +3,7 @@
 <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<%@ taglib prefix="af" uri="http://academy.jahia.org/af" %>
 <c:url var="homePageUrl" value="${renderContext.site.home.url}" context="/" />
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
@@ -42,6 +43,7 @@
             <c:set var="hasLevel1Pages" value="${fn:length(level1Pages) > 0}" />
             <c:if test="${hasLevel1Pages}">
                 <c:forEach items="${level1Pages}" var="level1Page" varStatus="status">
+                    <c:set var="page1Active" value="false"/>
                     <template:addCacheDependency node="${level1Page}"/>
                     <c:if test="${! jcr:isNodeType(level1Page, 'jacademix:hidePage')}">
                         <c:set var="displayLevel1Page" value="true" />
@@ -79,9 +81,10 @@
                                     </c:if>
                                 </c:when>
                             </c:choose>
-                            <c:if test="${fn:contains(renderContext.mainResource.path, level1Page.path)}">
+                            <c:if test="${fn:contains(renderContext.mainResource.node.path, level1Page.path)}">
                                 <c:set var="page1Active" value="true" />
                             </c:if>
+
                             <c:set var="level2Pages" value="${jcr:getChildrenOfType(level1Page, 'jmix:navMenuItem')}" />
                             <c:set var="hasLevel2Pages" value="${fn:length(level2Pages) > 0}" />
                             <c:set var="level2PageCounter" value="0" />
@@ -127,7 +130,7 @@
                                                             <c:choose>
                                                                 <c:when
                                                                     test="${jcr:isNodeType(level2Page, 'jnt:navMenuText')}">
-                                                                    <c:set var="page2Url" value="#" />
+                                                                    <c:set var="page2Url" value="${af:findFirstSubPageUrl(level2Page)}" />
                                                                     <c:set var="page2Title"
                                                                         value="${level2Page.displayableName}" />
                                                                 </c:when>
@@ -209,11 +212,10 @@
                                 </c:otherwise>
                             </c:choose>
                         </c:if>
-
-                        <c:remove var="page1Active" />
-                        <c:remove var="page1Url" />
-                        <c:remove var="page1Title" />
                     </c:if>
+                    <c:remove var="page1Active" />
+                    <c:remove var="page1Url" />
+                    <c:remove var="page1Title" />
                 </c:forEach>
             </c:if>
         </ul>
