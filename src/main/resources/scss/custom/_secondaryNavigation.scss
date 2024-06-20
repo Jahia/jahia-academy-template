@@ -14,7 +14,11 @@
 
   &.active {
     font-weight: 900;
-    color: $primary;
+    // color: $primary;
+    color: var(--jac-white);
+    background-color: var(--jac-primary);
+    pointer-events: none; // to prevent hover on active element
+
   }
 
   &[href="#"] {
