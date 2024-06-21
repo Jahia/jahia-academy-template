@@ -45,7 +45,7 @@ TODO: jacademix:alternateTitle
 </head>
 
 <body class="jac-template-document d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
-    data-bs-offset="180" tabindex="0">
+    data-bs-offset="120" tabindex="0">
     <c:if test="${! mainResourceNode.isNodeType('jcmix:hideMenu')}">
         <template:include view="hidden.main-menu" />
     </c:if>

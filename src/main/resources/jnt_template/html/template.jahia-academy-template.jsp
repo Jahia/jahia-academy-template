@@ -44,7 +44,7 @@
 </head>
 
 <body class="jac-template-default d-flex flex-column h-100 " data-bs-spy="scroll" data-bs-target="#toc"
-    data-bs-offset="180" tabindex="0">
+    data-bs-offset="120" tabindex="0">
     <template:module node="${currentNode}" view="hidden.main-menu" />
 
 
