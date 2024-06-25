@@ -124,4 +124,9 @@ $list-puce-size: 22px;
     display: block;
     margin: spacing(4) 0;
   }
+
+  // prevent the overlapping of the "In this page" section
+  table {
+    table-layout: fixed
+  }
 }
