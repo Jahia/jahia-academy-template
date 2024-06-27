@@ -75,7 +75,7 @@ CKEDITOR.addTemplates('default',
                 title:'table',
                 image:'table.png',
                 description:'',
-                html:'<table class="table">\n' +
+                html:'<table class="table table-borderless table-striped">\n' +
                     '  <thead>\n' +
                     '    <tr>\n' +
                     '      <th scope="col">#</th>\n' +
