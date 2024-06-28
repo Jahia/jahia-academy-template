@@ -28,7 +28,7 @@ pathRestriction.add("/");
 
 /* list of search / replace text */
 def searchReplace = new LinkedHashMap<String, String>();
-searchReplace.put("<table\\s+class=\"table\\s[^\"]*\">","<table class=\"table table-borderless table-striped\">");
+searchReplace.put("<table([^>]*)\\sclass=\"table\\s[^\"]*\"([^>]*)>", "<table class=\"table table-borderless table-striped\">");
 searchReplace.put("<table\\s+class=\"table\">","<table class=\"table table-borderless table-striped\">");
 
 def JahiaSite site = org.jahia.services.sites.JahiaSitesService.getInstance().getSiteByKey(siteKey);
