@@ -14,7 +14,7 @@ boolean doIt = false;
 String siteKey = "academy";
 
 /* limit the search/replace to a certain path */
-String descendentnode = "/sites/academy/home/documentation";
+String descendentnode = "/sites/academy";
 
 /* propertiesToLookAt is the list of nodeTypes/properties to search in */
 def propertiesToLookAt = new HashMap<String, Object>();
@@ -53,8 +53,8 @@ for (Locale locale : site.getLanguagesAsLocales()) {
                                     List<String> uuidsToPublish = getAllSubIds(node, session);
                                     ServicesRegistry.getInstance().getJCRPublicationService().publish(uuidsToPublish, Constants.EDIT_WORKSPACE, Constants.LIVE_WORKSPACE, null);
                                 }
-                                String URL = JCRTagUtils.getMeAndParentsOfType(node, "jnt:page")[0].getUrl();
-                                log.info("update [" + nt + "  " + prop + "] in page " + URL + " " );
+                                //String URL = JCRTagUtils.getMeAndParentsOfType(node, "jnt:page")[0].getUrl();
+                                log.info("update [" + nt + "  " + prop + "] in path " + node.getPath() + " " );
                             }
                         }
                     }
