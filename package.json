@@ -4,7 +4,7 @@
   "description": "Bootstrap theme for Academy website",
   "scripts": {
     "watch": "sass --watch src/main/resources/scss/bootstrap.scss src/main/resources/css/bootstrap.min.css",
-    "build:css": "sass src/main/resources/scss/bootstrap.scss src/main/resources/css/bootstrap.min.css --style compressed && postcss src/main/resources/css/bootstrap.min.css --use postcss-mq-optimize cssnano cssnano-preset-advanced --output src/main/resources/css/bootstrap.min.css",
+    "build:css": "sass src/main/resources/scss/bootstrap.scss src/main/resources/css/bootstrap.min.css --style compressed && postcss src/main/resources/css/bootstrap.min.css --output src/main/resources/css/bootstrap.min.css",
     "build": "npm run build:css",
     "lint:scss": "stylelint src/**/*.scss",
     "lint:scss:fix": "yarn lint:scss --fix"
@@ -14,8 +14,7 @@
     "postcss-cli": "^10.1.0",
     "sass": "^1.77.8",
     "stylelint": "^16.8.1",
-    "stylelint-config-standard-scss": "^13.1.0",
-    "postcss-cli": "^11.0.0"
+    "stylelint-config-standard-scss": "^13.1.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
