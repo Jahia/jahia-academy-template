@@ -15,6 +15,7 @@
 
   &.active {
     font-weight: 900;
+
     // color: $primary;
     color: var(--jac-white);
     background-color: var(--jac-primary);
@@ -58,6 +59,7 @@
     padding-left: 0;
     list-style: none;
   }
+
   ul ul a.nav-link {
     padding-left: spacing(3);
   }
@@ -129,6 +131,7 @@
     }
   }
 }
+
 .toc-list ul {
   padding-left: spacing(3);
 }

@@ -47,9 +47,11 @@ $list-puce-size: 22px;
   ol {
     counter-reset: none;
     list-style: none !important;
+
     > :first-child {
       counter-reset:b;
     }
+
     > li {
       list-style-type: none;
 
