@@ -112,7 +112,9 @@ $list-puce-size: 22px;
   pre {
     white-space: pre;
     padding: spacing(3);
-    padding-top: spacing(5);
+    @include media-breakpoint-up(md) {
+      padding-top: spacing(5);
+    }
     background-color: $gray-100;
     border: 0;
     border-radius: $border-radius;
