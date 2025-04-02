@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Cache frequently accessed DOM elements for efficiency.
     let navTabs = document.querySelector('.nav-tabs');
+    if (!navTabs) return;
+
     let dropdownToggleBtn;
     let dropdownDiv;
 
