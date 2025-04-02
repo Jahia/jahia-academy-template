@@ -51,7 +51,9 @@ TODO: jacademix:alternateTitle
     </c:if>
     <template:include view="hidden.sidenav" var="sidenav" />
     <main class="jac-main ${empty sidenav?'container':'container-fluid'}">
-        <c:if test="${! empty sidenav && fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/documentation')}">
+        <c:if test="${! empty sidenav
+    && (fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/documentation')
+    || fn:startsWith(mainResourceNode.getPath(), '/sites/academy/home/customer-center'))}">
             <template:include view="hidden.personanav" />
             <%--<div class="row darkblue">
                 <div class="col-md-12">
