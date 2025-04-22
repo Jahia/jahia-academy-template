@@ -4,7 +4,7 @@ import org.jahia.services.content.*
 import javax.jcr.*
 import javax.jcr.query.Query
 
-// Supprime une propriété JCR si elle existe, sauf si elle est protégée
+// Attempts to remove a property from a node, unless it is protected
 def tryRemoveProperty(javax.jcr.Node node, String propertyName) {
     if (node.hasProperty(propertyName)) {
         try {
@@ -28,14 +28,21 @@ def tryRemoveProperty(javax.jcr.Node node, String propertyName) {
     }
 }
 
-// Supprime toutes les propriétés liées au lock sur un noeud
+// Removes all known lock-related properties from a node
 def cleanLocks(javax.jcr.Node node) {
-    ["j:lockTypes", "j:processId", "jcr:lockOwner", "j:locktoken", "jcr:lockIsDeep"].each {
-        tryRemoveProperty(node, it)
+    def lockProps = [
+            "j:lockTypes",
+            "j:processId",
+            "jcr:lockOwner",
+            "j:locktoken",
+            "jcr:lockIsDeep"
+    ]
+    lockProps.each { prop ->
+        tryRemoveProperty(node, prop)
     }
 }
 
-// Déverrouille un JCRNodeWrapper s'il est effectivement verrouillé
+// Safely unlocks a node only if it's actually locked
 def safeUnlock(JCRNodeWrapper node) {
     try {
         if (node.isLocked()) {
@@ -46,21 +53,21 @@ def safeUnlock(JCRNodeWrapper node) {
             log.debug("Node not locked: ${node.path}")
         }
     } catch (javax.jcr.lock.LockException ex) {
-        // Bénin : le nœud n'était pas vraiment locké
+        // Safe to ignore: the node is already unlocked or lock is orphaned
         log.debug("Unlock skipped (node not really locked): ${node.path}")
     } catch (RepositoryException ex) {
         log.warn("Unlock failed for ${node.path}", ex)
     }
 }
 
-// Connexion au repository avec auto-fix activé
+// Connect to the repository with autoFix enabled
 JahiaRepositoryImpl rep = SpringContextSingleton.getBean("jackrabbit").getRepository()
 SimpleCredentials cred = (SimpleCredentials) org.apache.jackrabbit.core.security.JahiaLoginModule.getSystemCredentials(" system ")
 cred.setAttribute("org.apache.jackrabbit.autoFixCorruptions", "true")
 Session jcrsession = rep.login(cred, "default")
 
 try {
-    final String stmt = "SELECT * FROM [jnt:content] WHERE ISDESCENDANTNODE('/sites/academy/home/customer-center/jahia-1/downloads')"
+    final String stmt = "SELECT * FROM [jnt:page] WHERE ISDESCENDANTNODE('/sites/academy/home/customer-center/jahia-1/downloads/how-to-upgrade')"
     javax.jcr.NodeIterator results = jcrsession.getWorkspace()
             .getQueryManager()
             .createQuery(stmt, Query.JCR_SQL2)
@@ -73,19 +80,19 @@ try {
                 .getCurrentUserSession("default", null)
                 .getNode(contentNode.path)
 
-        // Nettoyage des sous-noeuds de traduction
+        // Process all child translation nodes
         JCRNodeIteratorWrapper children = node.getNodes() as JCRNodeIteratorWrapper
         while (children.hasNext()) {
             JCRNodeWrapper subNode = children.nextNode()
             if (subNode.isNodeType("jnt:translation")) {
                 safeUnlock(subNode)
-                cleanLocks(subNode.getRealNode())
+                cleanLocks(subNode)
             }
         }
 
-        // Nettoyage du nœud principal
+        // Process the parent node
         safeUnlock(node)
-        cleanLocks(node.getRealNode())
+        cleanLocks(node)
 
         log.info("Fully cleaned: ${node.path}")
     }
