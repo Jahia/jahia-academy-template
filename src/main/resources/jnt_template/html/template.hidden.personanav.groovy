@@ -125,7 +125,7 @@ if (!parentPages.empty) {
 }
 
 if (startNode) {
-    if (JCRContentUtils.getChildrenOfType(startNode, "jacademix:isVersionPage").size()>1) {
+    if (JCRContentUtils.getChildrenOfType(startNode, "jacademix:isVersionPage").size() > 1) {
         try {
             currentResource.dependencies.add(renderContext.mainResource.node.getParent().getCanonicalPath())
         } catch (ItemNotFoundException e) {
@@ -138,38 +138,48 @@ if (startNode) {
                 <div class="d-inline d-md-none">
                     <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         """
-                            printPersona(startNode)
-                        print """
+        printPersona(startNode)
+        print """
                     </button>
                     <ul class="dropdown-menu">
                     """
-                    printMenu(startNode,"dropdown")
-                    print """
+        printMenu(startNode, "dropdown")
+        print """
                     </ul>
                 </div>
                 <div class="d-none d-md-block">
                     <ul class="nav nav-underline ">
         """
-            printMenu(startNode,"tab")
-            print """
+        printMenu(startNode, "tab")
+        print """
                     </ul>
                 </div>           
             </div> 
+        """
+
+        // Affichage conditionnel de la colonne droite
+        def currentPath = renderContext.mainResource.node.getPath()
+        if (currentPath.startsWith("/sites/academy/home/documentation/")) {
+            print """
             <div class="col-4 text-end pe-4">                
                 <div class="btn-group">
                     <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         ${startNode.getDisplayableName()}
                     </button>
                     <ul class="dropdown-menu">
-    """
-        if (documentationNode != null) {
-            printProducts(documentationNode,0)
-        }
-        print """
+            """
+            if (documentationNode != null) {
+                printProducts(documentationNode, 0)
+            }
+            print """
                     </ul>
                 </div>
             </div>
+            """
+        }
+
+        print """
         </div>
-    """
+        """
     }
 }
