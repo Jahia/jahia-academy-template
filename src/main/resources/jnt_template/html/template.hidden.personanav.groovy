@@ -26,7 +26,7 @@ def printMenu(JCRNodeWrapper startNode, String style) {
 
     def children = JCRContentUtils.getChildrenOfType(startNode, "jmix:navMenuItem")
     children.eachWithIndex { menuItem, index ->
-        if (isCorrectType(menuItem)) {
+        if (isCorrectType(menuItem) && ! menuItem.isNodeType("jacademix:hideInPersonaMenu")) {
             String menuItemUrl = null
             String menuItemTitle = menuItem.displayableName
             String statusClass = renderContext.mainResource.node.path.contains(menuItem.path) ? ' active' : ''
