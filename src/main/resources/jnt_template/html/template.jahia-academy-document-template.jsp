@@ -117,6 +117,8 @@ TODO: jacademix:alternateTitle
                             <div class="my-5">
                                 <template:area path="document-area" />
                             </div>
+
+                            <template:area path="feedback" moduleType="absoluteArea" level="0" />
                         </article>
                     </div>
 
@@ -125,18 +127,12 @@ TODO: jacademix:alternateTitle
                             <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
                                 <strong class="text-primary mb-2 d-block">In this page</strong>
                                 <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
-                                <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
-                                <hr>
                                 <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
+                                <hr>
+                                <template:area path="feedback" moduleType="absoluteArea" level="0" />
                             </nav>
                         </div>
                     </c:if>
-
-                    <div class="row my-3">
-                        <div class="col-12 col-lg-9">
-                            <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
