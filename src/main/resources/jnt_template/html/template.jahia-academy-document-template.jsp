@@ -125,6 +125,7 @@ TODO: jacademix:alternateTitle
                             <nav class="sticky-top toc d-none d-lg-block py-4" id="toc">
                                 <strong class="text-primary mb-2 d-block">In this page</strong>
                                 <ul class="toc-list" data-toc-headings="h2, h3" data-toc="#article"></ul>
+                                <template:area path="feedback" areaAsSubNode="true" moduleType="absoluteArea" level="0"  editable="false"/>
                                 <hr>
                                 <a href="#" data-scrollto="#top" class="nav-link text-muted">Back to top</a>
                             </nav>
