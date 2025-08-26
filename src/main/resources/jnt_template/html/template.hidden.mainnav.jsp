@@ -61,7 +61,7 @@
                         <c:if test="${displayLevel1Page}">
                             <c:choose>
                                 <c:when test="${jcr:isNodeType(level1Page, 'jnt:navMenuText')}">
-                                    <c:set var="page1Url" value="#" />
+                                    <c:set var="page1Url" value="${af:findFirstSubPageUrl(level1Page)}" />
                                     <c:set var="page1Title" value="${level1Page.displayableName}" />
                                 </c:when>
                                 <c:when test="${jcr:isNodeType(level1Page, 'jnt:externalLink')}">
