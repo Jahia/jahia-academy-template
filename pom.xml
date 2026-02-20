@@ -67,8 +67,7 @@
         <jahia-module-signature>MCwCFFYZ9EXcaUKncxSedeuHaHMnYOscAhQEM0aZGzqSV6r3/RfOeL2RbvpWIw==</jahia-module-signature>
         <Jahia-Module-Priority>10</Jahia-Module-Priority>
         <jahia-depends>bootstrap5-components,default,font-awesome,jquery,animate,jahiacom-templates,legacy-default-components</jahia-depends>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
-    </properties>
+        </properties>
     <repositories>
         <repository>
             <releases>
@@ -101,7 +100,7 @@
                 <configuration>
                     <instructions>
                         <_dsannotations>
-                            org.jahia.modules.components.initializers.*
+                            org.jahia.modules.components.initializers.*,org.jahia.modules.academy.*
                         </_dsannotations>
                         <Jahia-Module-Type>templatesSet</Jahia-Module-Type>
                         <Export-Package>org.jahia.modules.academy</Export-Package>
