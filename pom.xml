@@ -66,9 +66,8 @@
     <properties>
         <jahia-module-signature>MCwCFFYZ9EXcaUKncxSedeuHaHMnYOscAhQEM0aZGzqSV6r3/RfOeL2RbvpWIw==</jahia-module-signature>
         <Jahia-Module-Priority>10</Jahia-Module-Priority>
-        <jahia-depends>bootstrap5-components,default,font-awesome,jquery,animate,jahiacom-templates,legacy-default-components</jahia-depends>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"
-        </require-capability>
+        <jahia-depends>bootstrap5-components,default,font-awesome,jquery,animate,jahiacom-templates,legacy-default-components,forms-core</jahia-depends>
+        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
     </properties>
     <repositories>
         <repository>
@@ -91,6 +90,13 @@
             <version>2.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>forms-core</artifactId>
+            <version>3.17.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
