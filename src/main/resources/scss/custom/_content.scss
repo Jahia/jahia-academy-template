@@ -135,6 +135,8 @@ $list-puce-size: 22px;
 
   // prevent the overlapping of the "In this page" section
   table {
+    @extend .table;
+    @extend .table-striped;
     table-layout: fixed
   }
 }
