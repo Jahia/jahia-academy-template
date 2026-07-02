@@ -49,8 +49,8 @@ html {
 
   &-line-numbers {
     text-align: right;
-    border-right: 1px solid #ccc;
-    color: #999;
+    border-right: 1px solid $gray-600;
+    color: $gray-600;
     -webkit-touch-callout: none;
     user-select: none;
   }
@@ -61,14 +61,21 @@ html {
     text-align: right;
   }
 
-  td &-ln-numbers {
-    border-right: 1px solid #ccc;
-    color: #ccc;
+  &-ln {
+    white-space: normal;
   }
 
-  td &-ln-code {
+  &-ln-numbers {
+    border-right: 1px solid $gray-600;
+    color: $gray-600;
+    user-select: none;
+    width: 1%;
+    white-space: nowrap;
+  }
+
+  &-ln-code {
     padding-left: 10px !important;
-    width: 100%;
+    white-space: pre;
   }
 }
 

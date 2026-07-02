@@ -25,6 +25,7 @@ ${currentNode.properties.textContent.string}
             $('code.hljs').each(function (i, block) {
                 hljs.lineNumbersBlock(block);
             });
+            $('.hljs-ln-numbers').attr('aria-hidden', 'true');
         });
 
         // Insert copy to clipboard button before .highlight
