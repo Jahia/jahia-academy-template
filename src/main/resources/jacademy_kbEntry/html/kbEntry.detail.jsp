@@ -116,6 +116,21 @@
                         </div>
                     </c:if>
                 </c:if>
+
+                <%-- Public revision history for this entry.
+                     Guarded the same way relatedlinks is, and for the same reasons: nothing is
+                     rendered in live mode unless the node exists, and edit mode shows the drop
+                     target so an editor can add it.
+                     The list has to live INSIDE this node rather than beside it on the page. The
+                     module resolves which node a history belongs to by walking UP from the
+                     component and stopping at the first page, so a history placed in a page area
+                     next to a revisioned kbEntry would resolve to no owner and report "no snapshot
+                     recorded" permanently. The slot itself comes from jmix:publiclyRevisioned,
+                     so it exists only once this entry is marked as revisioned. --%>
+                <jcr:node var="revisionHistoryNode" path="${currentNode.path}/revisionHistory"/>
+                <c:if test="${! empty revisionHistoryNode || renderContext.editMode}">
+                    <template:module path="*" nodeTypes="crh:revisionHistory"/>
+                </c:if>
             </article>
         </div>
     </div>
