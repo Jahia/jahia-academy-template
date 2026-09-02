@@ -118,19 +118,29 @@
                 </c:if>
 
                 <%-- Public revision history for this entry.
-                     Guarded the same way relatedlinks is, and for the same reasons: nothing is
-                     rendered in live mode unless the node exists, and edit mode shows the drop
-                     target so an editor can add it.
-                     The list has to live INSIDE this node rather than beside it on the page. The
-                     module resolves which node a history belongs to by walking UP from the
-                     component and stopping at the first page, so a history placed in a page area
-                     next to a revisioned kbEntry would resolve to no owner and report "no snapshot
-                     recorded" permanently. The slot itself comes from jmix:publiclyRevisioned,
-                     so it exists only once this entry is marked as revisioned. --%>
-                <jcr:node var="revisionHistoryNode" path="${currentNode.path}/revisionHistory"/>
-                <c:if test="${! empty revisionHistoryNode || renderContext.editMode}">
-                    <template:module path="*" nodeTypes="crh:revisionHistory"/>
-                </c:if>
+
+                     An AREA, not `template:module path="*"`, and the difference is the whole
+                     reason this works. Per the taglib, `path` on either tag is "the path to the
+                     node to include" -- module INCLUDES, area CREATES. `path="*"` therefore shows
+                     a drop zone and lets Jahia generate the child's name, and this type has no
+                     definition matching a generated name: it declares `relatedlinks` and
+                     `revisionHistory` and no wildcard. The button appeared and creating did
+                     nothing, because the create violated the child-node constraint.
+
+                     `path="revisionHistory"` creates the node with exactly that name, which is
+                     the slot jmix:publiclyRevisioned provides, and `areaType` makes the created
+                     node the history component itself rather than the default jnt:contentList.
+                     `nodeTypes` then constrains what may be dropped INSIDE it: revision entries.
+                     Structurally this is the same shape as the relatedlinks area above.
+
+                     It has to live INSIDE this node rather than beside it on the page: the module
+                     resolves which node a history belongs to by walking UP from the component and
+                     stopping at the first page, so a history in a page area next to a revisioned
+                     kbEntry resolves to no owner and reports "no snapshot recorded" permanently.
+                     The slot exists only once the entry is marked as revisioned, so nothing shows
+                     here until then. --%>
+                <template:area path="revisionHistory" areaType="crh:revisionHistory"
+                               nodeTypes="crh:revisionEntry" areaAsSubNode="true"/>
             </article>
         </div>
     </div>
