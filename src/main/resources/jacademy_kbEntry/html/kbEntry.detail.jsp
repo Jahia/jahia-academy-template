@@ -128,10 +128,12 @@
                      nothing, because the create violated the child-node constraint.
 
                      `path="revisionHistory"` creates the node with exactly that name, which is
-                     the slot jmix:publiclyRevisioned provides, and `areaType` makes the created
-                     node the history component itself rather than the default jnt:contentList.
-                     `nodeTypes` then constrains what may be dropped INSIDE it: revision entries.
-                     Structurally this is the same shape as the relatedlinks area above.
+                     the slot jmix:publiclyRevisioned provides, and `nodeTypes` constrains what may
+                     be dropped INSIDE it to the history component. The area node itself is the
+                     default jnt:contentList -- setting `areaType` to the component was tried and
+                     left no add button at all, because the slot then rejected the list Jahia
+                     creates for an area. This is now byte-for-byte the shape of the relatedlinks
+                     area above, which is a pattern proven in production rather than reasoned out.
 
                      It has to live INSIDE this node rather than beside it on the page: the module
                      resolves which node a history belongs to by walking UP from the component and
@@ -139,8 +141,8 @@
                      kbEntry resolves to no owner and reports "no snapshot recorded" permanently.
                      The slot exists only once the entry is marked as revisioned, so nothing shows
                      here until then. --%>
-                <template:area path="revisionHistory" areaType="crh:revisionHistory"
-                               nodeTypes="crh:revisionEntry" areaAsSubNode="true"/>
+                <template:area path="revisionHistory" nodeTypes="crh:revisionHistory"
+                               areaAsSubNode="true"/>
             </article>
         </div>
     </div>
