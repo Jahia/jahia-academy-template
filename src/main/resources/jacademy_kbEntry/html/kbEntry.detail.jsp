@@ -116,6 +116,33 @@
                         </div>
                     </c:if>
                 </c:if>
+
+                <%-- Public revision history for this entry.
+
+                     An AREA, not `template:module path="*"`, and the difference is the whole
+                     reason this works. Per the taglib, `path` on either tag is "the path to the
+                     node to include" -- module INCLUDES, area CREATES. `path="*"` therefore shows
+                     a drop zone and lets Jahia generate the child's name, and this type has no
+                     definition matching a generated name: it declares `relatedlinks` and
+                     `revisionHistory` and no wildcard. The button appeared and creating did
+                     nothing, because the create violated the child-node constraint.
+
+                     `path="revisionHistory"` creates the node with exactly that name, which is
+                     the slot jmix:publiclyRevisioned provides, and `nodeTypes` constrains what may
+                     be dropped INSIDE it to the history component. The area node itself is the
+                     default jnt:contentList -- setting `areaType` to the component was tried and
+                     left no add button at all, because the slot then rejected the list Jahia
+                     creates for an area. This is now byte-for-byte the shape of the relatedlinks
+                     area above, which is a pattern proven in production rather than reasoned out.
+
+                     It has to live INSIDE this node rather than beside it on the page: the module
+                     resolves which node a history belongs to by walking UP from the component and
+                     stopping at the first page, so a history in a page area next to a revisioned
+                     kbEntry resolves to no owner and reports "no snapshot recorded" permanently.
+                     The slot exists only once the entry is marked as revisioned, so nothing shows
+                     here until then. --%>
+                <template:area path="revisionHistory" nodeTypes="crh:revisionHistory"
+                               areaAsSubNode="true"/>
             </article>
         </div>
     </div>
